@@ -1,13 +1,27 @@
-import { Tabs, Stack } from 'expo-router'
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Tabs } from 'expo-router'
+import { IconBook, IconPerson } from '../../data/icons'
 
-export default () => {
+const Layout = () => {
     return (
         <Tabs>
-            <Stack.Screen name='feed' options={{ title: 'Feed' }} />
-            <Stack.Screen name='search' options={{ title: 'Search' }} />
-            <Stack.Screen name='camera' options={{ title: 'Camera' }} />
-            <Stack.Screen name='library' options={{ title: 'Library' }} />
-            <Stack.Screen name='profile' options={{ title: 'Profile' }} />
+            <Tabs.Screen
+                name="one"
+                options={{
+                    tabBarLabel: 'Home',
+                    tabBarIcon: ({ size, color }) => <IconBook size={size} color={color} />
+                }}
+            />
+            <Tabs.Screen
+                name="two"
+                options={{
+                    tabBarLabel: 'Profile',
+                    tabBarIcon: ({ size, color }) => <IconPerson size={size} color={color} />
+                }}
+            />
         </Tabs>
     )
 }
+
+export default Layout
