@@ -335,14 +335,17 @@ export async function utilityScrapSearch(author, search) {
     return await handleResponse(route, data, 'post')
 }
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function utilityGet(author, demands) {
-    const route = `api/utility/get`
-    const data = { author, demands: JSON.stringify(demands) }
-    return await handleResponse(route, data, 'post')
+export async function utilityGet(modelName, id, key) {
+    const route = `api/utility/get/${modelName}/${id}/${key}`
+    return await handleResponse(route, null, 'get')
 }
-export async function utilitySet(author, demands) {
+export async function utilityGetPhoto(photo) {
+    const route = `api/utility/getPhoto/${photo}`
+    return await handleResponse(route, null, 'get')
+}
+export async function utilitySet(modelName, id, key, value) {
     const route = `api/utility/set`
-    const data = { author, demands: JSON.stringify(demands) }
+    const data = { modelName, id, key, value }
     return await handleResponse(route, data, 'patch')
 }
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
