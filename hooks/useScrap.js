@@ -1,0 +1,97 @@
+import { useEffect, useState, useContext } from 'react'
+import AppContext from '../context/AppContext'
+import { defaultImage, defaultHeadshot } from '../data/icons'
+import Cache from '../data/cache'
+
+export default function useScrap(scrap, requests) {
+    const { user } = useContext(AppContext)
+
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [author, setAuthor] = useState('')
+    const [threads, setThreads] = useState('')
+
+    const [latitude, setLatitude] = useState(0)
+    const [longitude, setLongitude] = useState(0)
+    const [place, setPlace] = useState('')
+
+    const [prograph, setPrograph] = useState('')
+    const [retrograph, setRetrograph] = useState('')
+    const [iPrograph, setIPrograph] = useState(defaultImage)
+    const [iRetrograph, setIRetrograph] = useState(defaultHeadshot)
+
+    const get = async (modelName, identifier, field, setResponse = () => { }, handleError = () => { }) => {
+        if (!modelName || !identifier || !field || !setResponse) return undefined
+        try {
+            let response = null
+            if (!isCanceled) response = await Cache.get(modelName, identifier, field, user)
+            if (!isCanceled) setResponse(response)
+        } catch (error) {
+            if (!isCanceled) handleError()
+        }
+    }
+
+    const processRequest = (request, promises) => {
+        let set = (blank) => { console.log('blank setter: ', blank) }
+
+        if (request.includes('iRetrograph')) set = setIRetrograph
+        else if (request.includes('iPrograph')) set = setIPrograph
+        else if (request === 'retrograph') set = setRetrograph
+        else if (request === 'prograph') set = setPrograph
+        else if (request === 'title') set = setTitle
+        else if (request === 'description') set = setDescription
+        else if (request === 'author') set = setAuthor
+        else if (request === 'latitude') set = setLatitude
+        else if (request === 'longitude') set = setLongitude
+        else if (request === 'place') set = setPlace
+        else if (request === 'threads') set = setThreads
+
+        promises.push(get('Scrap', scrap, request, set))
+    }
+
+    useEffect(() => {
+        const primary = []
+        requests.forEach(request => {
+            processRequest(request, primary)
+        })
+
+        Promise.all(primary)
+    }, [scrap, requests])
+
+    useEffect(() => {
+        return () => {
+            setIsCanceled(true)
+        }
+    }, [])
+
+    const [graph, setGraph] = useState('prograph')
+    const toggleGraph = () => {
+        if (graph === 'ambigraph') setGraph('prograph')
+        else if (graph === 'prograph') setGraph('retrograph')
+        else if (graph === 'retrograph') setGraph('ambigraph')
+    }
+
+    const [direction, setDirection] = useState('forwards')
+    const toggleDirection = () => {
+        if (direction === 'forwards') setDirection('backwards')
+        else if (direction === 'backwards') setDirection('forwards')
+    }
+
+    return {
+        title,
+        description,
+        author,
+        place,
+        threads,
+        latitude,
+        longitude,
+        prograph,
+        retrograph,
+        iPrograph,
+        iRetrograph,
+        graph,
+        direction,
+        toggleGraph,
+        toggleDirection,
+    }
+}
