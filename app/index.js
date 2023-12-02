@@ -1,7 +1,6 @@
 import { Redirect } from 'expo-router'
 import AppContextProvider from '../context/AppContextProvider'
-import { View } from 'react-native'
-import { Button } from 'tamagui'
+import { View, Button } from 'react-native'
 import { useRouter, Link } from 'expo-router'
 
 export default function App() {
@@ -9,9 +8,7 @@ export default function App() {
   return (
     <AppContextProvider>
       <View>
-        <Button onPress={() => router.push('/register')}>
-          <Text>Open register</Text>
-        </Button>
+        <Button onPress={() => router.push('/register')} title='Open register' />
         <Link href={'/register'} asChild>
           <Button title='Open Register with link' />
         </Link>
