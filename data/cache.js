@@ -72,7 +72,7 @@ class Cache {
                     if (response.success) {
                         const data = response.data[field]
                         // Cache the retrieved data and resolve the promise with it
-                        this.put(modelName, identifier, field, data, false)
+                        this.put(modelName, identifier, field, data)
                         resolve(data)
                     } else {
                         // Reject the promise with the error message
