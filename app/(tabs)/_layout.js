@@ -3,11 +3,11 @@ import { Tabs, Stack } from 'expo-router'
 export default () => {
     return (
         <Tabs>
-            <Stack.Screen name='feed' />
-            <Stack.Screen name='search' />
-            <Stack.Screen name='camera' />
-            <Stack.Screen name='library' />
-            <Stack.Screen name='profile' />
+            <Stack.Screen name='feed' options={{ title: 'Feed' }} />
+            <Stack.Screen name='search' options={{ title: 'Search' }} />
+            <Stack.Screen name='camera' options={{ title: 'Camera' }} />
+            <Stack.Screen name='library' options={{ title: 'Library' }} />
+            <Stack.Screen name='profile' options={{ title: 'Profile' }} />
         </Tabs>
     )
 }
