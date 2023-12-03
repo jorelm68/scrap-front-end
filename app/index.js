@@ -27,13 +27,13 @@ const Autothenticate = () => {
   const autothenticate = async () => {
     const user = await retrieveData('autothenticate')
     if (!user) {
-      router.replace('/authenticate')
+      router.replace('/signIn')
       return
     }
     const response = await authorExists(user)
     if (!response.success) {
       await deleteData('autothenticate')
-      router.replace('/authenticate')
+      router.replace('/signIn')
       return
     }
 

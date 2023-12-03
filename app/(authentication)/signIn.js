@@ -1,13 +1,13 @@
 import { Redirect } from 'expo-router'
-import { View, Button, Alert } from 'react-native'
 import { useRouter, Link } from 'expo-router'
-import { TextField, Text } from 'react-native-ui-lib'
+import { TextField, Text, Button, Colors, View } from 'react-native-ui-lib'
 import { useContext, useState } from 'react'
 import { regexAuthorEmail, regexAuthorPseudonym, regexAuthorPassword } from '../../data/regex'
 import { errorAuthorEmail, errorAuthorPseudonym, errorAuthorPassword } from '../../data/error'
 import { authorSignIn } from '../../data/api'
 import { storeData } from '../../data/utility'
 import AppContext from '../../context/AppContext'
+import { IconArrowForward, IconPerson } from '../../data/icons'
 
 export default function App() {
   const { setUser, setAuthenticated, setLoading, accounts, setAccounts } = useContext(AppContext)
@@ -19,7 +19,7 @@ export default function App() {
   const [passwordError, setPasswordError] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = async () => {
+  const handleSignIn = async () => {
     // Make sure the value submitted makes sense
     if (value.includes('@')) {
       if (!regexAuthorEmail.test(value)) {
@@ -46,44 +46,48 @@ export default function App() {
       setPasswordError('')
     }
 
-    if (!valueError && !passwordError) {
+    if ((regexAuthorEmail.test(value) || regexAuthorPseudonym.test(value)) && regexAuthorPassword.test(password)) {
       const response = await authorSignIn(value, password)
       if (response.error) {
         setError(response.error)
       }
       else {
         const account = {
-          author: response.data.user,
+          author: response.data.author,
           pseudonym: response.data.pseudonym,
-          expires: oneWeekFromNow(),
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         }
 
-        await storeData('autothenticate', response.data.user)
+        await storeData('autothenticate', response.data.author)
         await storeAccount(account)
-        setUser(response.data.user)
+        setUser(response.data.author)
         router.replace('/one')
       }
     }
   }
 
-  const oneWeekFromNow = () => {
-    return new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-  }
-
   const storeAccount = async (account) => {
     const filteredAccounts = [...(accounts.filter(value => value.author !== account.author)), account]
-    setAccounts(filteredAccounts)
     await storeData('accounts', JSON.stringify(filteredAccounts))
+    setAccounts(filteredAccounts)
   }
 
   return (
     <View>
+      <Button
+        label=" Choose Account"
+        size={Button.sizes.large}
+        backgroundColor={Colors.blue1}
+        onPress={() => router.push('chooseAccount')}
+        iconSource={() => <IconPerson color={'white'} size={18} />}
+      />
       <TextField
         placeholder={'Pseudonym or Email'}
         floatingPlaceholder
         onChangeText={(value) => {
           setValue(value)
           setValueError('')
+          setError('')
         }}
         value={value}
         maxLength={30}
@@ -95,13 +99,21 @@ export default function App() {
         onChangeText={(password) => {
           setPassword(password)
           setPasswordError('')
+          setError('')
         }}
         value={password}
         maxLength={30}
       />
       <Text>{passwordError}</Text>
       <Text>{error}</Text>
-      <Button title="Sign In" onPress={handleSubmit} />
+      <Button
+        label="Sign In "
+        size={Button.sizes.large}
+        backgroundColor={Colors.blue1}
+        onPress={handleSignIn}
+        iconOnRight
+        iconSource={() => <IconArrowForward color='white' size={18} />}
+      />
     </View>
   )
 }

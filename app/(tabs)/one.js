@@ -9,7 +9,7 @@ const Page = () => {
         <View>
             <Button title='Logout' onPress={() => {
                 deleteData('autothenticate')
-                router.replace('/authenticate')
+                router.replace('/signIn')
             }} />
         </View>
     )
