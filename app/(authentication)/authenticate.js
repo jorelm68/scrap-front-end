@@ -81,7 +81,10 @@ export default function App() {
       <TextField
         placeholder={'Pseudonym or Email'}
         floatingPlaceholder
-        onChangeText={(value) => { setValue(value) }}
+        onChangeText={(value) => {
+          setValue(value)
+          setValueError('')
+        }}
         value={value}
         maxLength={30}
       />
@@ -89,7 +92,10 @@ export default function App() {
       <TextField
         placeholder={'Password'}
         floatingPlaceholder
-        onChangeText={(password) => { setPassword(password) }}
+        onChangeText={(password) => {
+          setPassword(password)
+          setPasswordError('')
+        }}
         value={password}
         maxLength={30}
       />
