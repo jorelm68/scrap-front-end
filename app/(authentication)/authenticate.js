@@ -47,49 +47,55 @@ export default function App() {
     }
 
     if (!valueError && !passwordError) {
-      setLoading(true)
-      const user = await authorSignIn(value, password)
-      if (!user) {
-        setError('Invalid credentials')
+      const response = await authorSignIn(value, password)
+      if (response.error) {
+        setError(response.error)
       }
       else {
-        await storeData('autothenticate', user)
-        setUser(user)
-        setAuthenticated(true)
-        setLoading(false)
-      }
+        const account = {
+          author: response.data.user,
+          pseudonym: response.data.pseudonym,
+          expires: oneWeekFromNow(),
+        }
 
+        await storeData('autothenticate', response.data.user)
+        await storeAccount(account)
+        setUser(response.data.user)
+        router.replace('/one')
+      }
     }
   }
 
+  const oneWeekFromNow = () => {
+    return new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+  }
+
+  const storeAccount = async (account) => {
+    const filteredAccounts = [...(accounts.filter(value => value.author !== account.author)), account]
+    setAccounts(filteredAccounts)
+    await storeData('accounts', JSON.stringify(filteredAccounts))
+  }
+
   return (
-      <View>
-        <TextField
-          placeholder={'Pseudonym or Email'}
-          floatingPlaceholder
-          onChangeText={(value) => { setValue(value) }}
-          value={value}
-          maxLength={30}
-        />
-        <Text>{valueError}</Text>
-        <TextField
-          placeholder={'Password'}
-          floatingPlaceholder
-          onChangeText={(password) => { setPassword(password) }}
-          value={password}
-          maxLength={30}
-        />
-        <Text>{passwordError}</Text>
-        <Button title="Submit" onPress={handleSubmit} />
-
-
-        <Button onPress={() => router.push('/register')} title='Open register' />
-        <Link href={'/register'} asChild>
-          <Button title='Open Register with link' />
-        </Link>
-        <Link href={'/one'} replace asChild>
-          <Button title='Login' />
-        </Link>
-      </View>
+    <View>
+      <TextField
+        placeholder={'Pseudonym or Email'}
+        floatingPlaceholder
+        onChangeText={(value) => { setValue(value) }}
+        value={value}
+        maxLength={30}
+      />
+      <Text>{valueError}</Text>
+      <TextField
+        placeholder={'Password'}
+        floatingPlaceholder
+        onChangeText={(password) => { setPassword(password) }}
+        value={password}
+        maxLength={30}
+      />
+      <Text>{passwordError}</Text>
+      <Text>{error}</Text>
+      <Button title="Sign In" onPress={handleSubmit} />
+    </View>
   )
 }

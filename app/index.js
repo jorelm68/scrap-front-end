@@ -7,24 +7,25 @@ import { useRouter } from 'expo-router'
 
 const Autothenticate = () => {
   const router = useRouter()
-  const [fontsLoaded, setFontsLoaded] = useState(false)
-  const { loading, setLoading, offline, setOffline, authenticated, setUser, setAuthenticated } = useContext(AppContext)
+  const { setOffline, setUser, setAuthenticated } = useContext(AppContext)
 
   useEffect(() => {
     loadFonts().then(() => {
-      setFontsLoaded(true)
-    }).catch(() => { })
-    isDeviceOffline().then(offline => {
-      setOffline(offline)
-      if (!offline) {
-        autothenticate()
-      }
-    }).catch(() => { })
+      isDeviceOffline().then(offline => {
+        setOffline(offline)
+        if (!offline) {
+          autothenticate()
+        }
+      }).catch((error) => {
+        console.log(error.message)
+      })
+    }).catch((error) => { 
+      console.log(error.message)
+    })
   }, [])
 
   const autothenticate = async () => {
     const user = await retrieveData('autothenticate')
-    console.log(user)
     if (!user) {
       router.replace('/authenticate')
       return
@@ -32,7 +33,7 @@ const Autothenticate = () => {
     const response = await authorExists(user)
     if (!response.success) {
       await deleteData('autothenticate')
-      router.push('/authenticate')
+      router.replace('/authenticate')
       return
     }
 

@@ -10,7 +10,13 @@ const Layout = () => {
         <Stack.Screen
           name="index"
           options={{
-            title: 'Login',
+            title: 'Autothenticate',
+          }}
+        />
+        <Stack.Screen
+          name="(authentication)/authenticate"
+          options={{
+            title: 'Authenticate',
           }}
         />
         <Stack.Screen
