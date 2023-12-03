@@ -46,7 +46,6 @@ async function handlePatch(route, formData) {
     }
 }
 async function handlePost(route, formData) {
-    console.log(API_KEY)
     try {
         const response = await axios.post(`${API_URL}/${route}`, formData, {
             headers: {

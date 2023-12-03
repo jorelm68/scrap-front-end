@@ -16,6 +16,33 @@ export async function storeData(key, value) {
     }
 }
 
+export async function saveAccount(account) {
+    try {
+        const data = await retrieveData('accounts')
+        const accounts = JSON.parse(data)
+        for (const storedAccount of accounts) {
+            if (storedAccount.author === account.author) {
+                return
+            }
+        }
+
+        await storeData('accounts', JSON.stringify([account, ...accounts]))
+    } catch (error) {
+        console.log('Error while adding account: ', error)
+    }
+}
+export async function forgetAccount(account) {
+    try {
+        const data = await retrieveData('accounts')
+        const accounts = JSON.parse(data)
+        const updatedAccounts = accounts.filter(storedAccount => storedAccount.author !== account.author)
+        await storeData('accounts', JSON.stringify(updatedAccounts))
+    } catch (error) {
+        console.error('Error while forgetting account: ', error)
+    }
+}
+
+
 export async function retrieveData(key) {
     try {
         const value = await SecureStore.getItemAsync(key)

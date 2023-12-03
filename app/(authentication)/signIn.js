@@ -1,16 +1,16 @@
 import { Redirect } from 'expo-router'
 import { useRouter, Link } from 'expo-router'
 import { TextField, Text, Button, Colors, View } from 'react-native-ui-lib'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { regexAuthorEmail, regexAuthorPseudonym, regexAuthorPassword } from '../../data/regex'
 import { errorAuthorEmail, errorAuthorPseudonym, errorAuthorPassword } from '../../data/error'
 import { authorSignIn } from '../../data/api'
-import { storeData } from '../../data/utility'
+import { retrieveData, saveAccount, storeData } from '../../data/utility'
 import AppContext from '../../context/AppContext'
 import { IconArrowForward, IconPerson } from '../../data/icons'
 
 export default function App() {
-  const { setUser, setAuthenticated, setLoading, accounts, setAccounts } = useContext(AppContext)
+  const { setUser } = useContext(AppContext)
   const router = useRouter()
 
   const [value, setValue] = useState('');
@@ -59,17 +59,11 @@ export default function App() {
         }
 
         await storeData('autothenticate', response.data.author)
-        await storeAccount(account)
+        await saveAccount(account)
         setUser(response.data.author)
         router.replace('/one')
       }
     }
-  }
-
-  const storeAccount = async (account) => {
-    const filteredAccounts = [...(accounts.filter(value => value.author !== account.author)), account]
-    await storeData('accounts', JSON.stringify(filteredAccounts))
-    setAccounts(filteredAccounts)
   }
 
   return (
