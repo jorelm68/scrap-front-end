@@ -3,7 +3,7 @@ import AppContext from './AppContext'
 
 const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
-    const [user, setUser] = useState(undefined)
+    const [user, setUser] = useState('bruh')
     const [newScrap, setNewScrap] = useState({})
     const [newBook, setNewBook] = useState({})
     const [loading, setLoading] = useState(true)
