@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, LoaderScreen, Colors } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/AppContext'
 import { deleteData, loadFonts, retrieveData } from '../data/utility'
@@ -19,7 +19,7 @@ const Autothenticate = () => {
       }).catch((error) => {
         console.log(error.message)
       })
-    }).catch((error) => { 
+    }).catch((error) => {
       console.log(error.message)
     })
   }, [])
@@ -39,13 +39,11 @@ const Autothenticate = () => {
 
     setUser(user)
     setAuthenticated(true)
-    router.push('/feed')
+    router.replace('/feed')
   }
 
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <LoaderScreen message={'Scrap'} color={Colors.grey40} />
   )
 }
 

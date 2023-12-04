@@ -27,6 +27,7 @@ const SignUp = () => {
   const [error, setError] = useState('')
 
   const handleSignUp = async () => {
+    router.push('/loading')
     if (!regexAuthorPseudonym.test(pseudonym)) {
       setPseudonymError(errorAuthorPseudonym)
       setError('')
@@ -93,6 +94,7 @@ const SignUp = () => {
       })
 
       if (!response.success) {
+        router.back()
         setError(response.error)
         return
       }
@@ -107,7 +109,11 @@ const SignUp = () => {
       await saveAccount(account)
       
       setUser(response.data.author)
+      router.back()
       router.replace('/feed')
+    }
+    else {
+      router.back()
     }
   }
 

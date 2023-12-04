@@ -33,6 +33,10 @@ const Layout = () => {
           name="(tabs)"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="loading"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </AppContextProvider>
   )

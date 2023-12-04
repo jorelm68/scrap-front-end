@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { API_URL, API_KEY } from '@env'
+console.log(API_URL)
 
 export const isDeviceOffline = async () => {
     try {
@@ -11,10 +12,10 @@ export const isDeviceOffline = async () => {
     }
 }
 
-async function handleGet(route, blob) {
+async function handleGet(route) {
     try {
         return await axios.get(`${API_URL}/${route}`, {
-            responseType: blob ? 'blob' : 'json',
+            responseType: 'json',
             headers: {
                 'x-api-key': API_KEY
             },
@@ -133,44 +134,33 @@ async function handleResponse(route, data, method) {
         }
     }
 }
-async function handleBlob(route, key) {
+async function handleBlob(route) {
     try {
-        const response = await handleGet(route, true)
+        const response = await fetch(`${API_URL}/${route}`, {
+            headers: {
+                'x-api-key': API_KEY,
+            },
+        });
 
-        if (response.status === 200) {
-            const blob = await response.data
+        if (response.ok) {
+            const blob = await response.blob();
+            const dataUrl = URL.createObjectURL(blob);
 
-            // Convert the blob to a data URL
-            const reader = new FileReader()
-            reader.readAsDataURL(blob)
-
-            return new Promise((resolve, reject) => {
-                reader.onloadend = () => {
-                    const dataUrl = reader.result
-                    resolve({
-                        success: true,
-                        data: { [key]: { uri: dataUrl } },
-                    })
-                }
-
-                reader.onerror = () => {
-                    reject({
-                        success: false,
-                        error: 'Failed to convert blob to data URL',
-                    })
-                }
-            })
+            return {
+                success: true,
+                data: { iPhoto: { uri: dataUrl } }
+            };
         } else {
             return {
                 success: false,
-                error: response,
-            }
+                error: `Request failed with status: ${response.status}`,
+            };
         }
     } catch (error) {
         return {
             success: false,
             error: error.message,
-        }
+        };
     }
 }
 
@@ -341,9 +331,9 @@ export async function utilityGet(modelName, id, key) {
     const route = `api/utility/get/${modelName}/${id}/${key}`
     return await handleResponse(route, null, 'get')
 }
-export async function utilityGetPhoto(photo) {
-    const route = `api/utility/getPhoto/${photo}`
-    return await handleResponse(route, null, 'get')
+export async function utilityGetPhoto(photo, size) {
+    const route = `api/utility/getPhoto/${photo}/${size}`
+    return await handleBlob(route)
 }
 export async function utilitySet(modelName, id, key, value) {
     const route = `api/utility/set`

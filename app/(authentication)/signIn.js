@@ -27,6 +27,7 @@ export default function App() {
 
   // Function for handling when the user presses the Sign In button
   const handleSignIn = async () => {
+    router.push('/loading')
     // First set the error messages if necessary
     if (!regexAuthorPseudonymOrEmail.test(value)) {
       setValueError(errorAuthorPseudonymOrEmail)
@@ -48,6 +49,7 @@ export default function App() {
       // If all tests pass, make a sign in request to the back-end
       const response = await authorSignIn(value, password)
       if (response.error) {
+        router.back()
         setError(response.error)
       }
       else {
@@ -62,8 +64,12 @@ export default function App() {
         await saveAccount(account)
 
         setUser(response.data.author)
+        router.back()
         router.replace('/feed')
       }
+    }
+    else {
+      router.back()
     }
   }
 

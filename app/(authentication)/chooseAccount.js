@@ -33,15 +33,18 @@ const ChooseAccount = () => {
     }
     // Function that handles when the user clicks the Sign In button on the drawer
     const handleSignIn = async (account) => {
+        router.push('/loading')
         // First, make sure the author exists on the back end
         const response = await authorExists(account.author)
         // If there is some sort of error, forget the account
         if (response.error) {
+            router.back()
             Alert.alert('Error', 'Error signing into your account. Please try manually')
             await forgetAccount(account)
             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
         }
         else if (!response.data.exists) {
+            router.back()
             Alert.alert('Error', 'Error signing into your account. Please try manually')
             await forgetAccount(account)
             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
@@ -59,6 +62,7 @@ const ChooseAccount = () => {
 
             await storeData('autothenticate', account.author)
             setUser(account.author)
+            router.back()
             router.replace('/feed')
         }
     }

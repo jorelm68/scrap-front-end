@@ -9,7 +9,7 @@ const Feed = () => {
     // Function for handling when you press the logout button
     const handleLogout = async () => {
         deleteData('autothenticate')
-        router.replace('/(authentication)/signIn')
+        router.replace('/signIn')
         while (router.canGoBack()) {
             router.back()
         }

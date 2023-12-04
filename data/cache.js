@@ -48,7 +48,7 @@ class Cache {
     }
 
     // Retrieve data from cache or fetch from backend if not available
-    async get(modelName, identifier, field, user) {
+    async get(modelName, identifier, field) {
         const key = this.key(modelName, identifier, field)
 
         if (this.cache.has(key)) {
@@ -72,7 +72,59 @@ class Cache {
                     if (response.success) {
                         const data = response.data[field]
                         // Cache the retrieved data and resolve the promise with it
-                        this.put(modelName, identifier, field, data)
+                        this.put(this.key(modelName, identifier, field), data)
+                        resolve(data)
+                    } else {
+                        // Reject the promise with the error message
+                        reject(new Error(response.error))
+                    }
+                } catch (error) {
+                    // Reject the promise with any other error that occurred
+                    reject(error)
+                }
+
+                // Remove the request from requests once resolved or rejected
+                delete this.requests[key]
+            })
+
+            // Store the promise in the requests object
+            this.requests[key] = fetch
+
+            try {
+                // Await the promise to get the retrieved data
+                const data = await fetch
+                return data
+            } catch (error) {
+                // Handle the error here or propagate it to the calling code
+                throw error
+            }
+        }
+    }
+    // Retrieve data from cache or fetch from backend if not available
+    async getPhoto(photo, size) {
+        const key = this.key(photo, size)
+        if (this.cache.has(key)) {
+            // Cache hit - Move the key to the end to mark it as most recently used
+            const value = this.cache.get(key)
+            this.cache.delete(key)
+            this.cache.set(key, value)
+            return value
+        } else {
+            if (this.requests[key]) {
+                // Cache miss but ongoing request for the same data - return the promise
+                return this.requests[key]
+            }
+
+            // Cache miss and no ongoing request - create a new promise for data retrieval
+            const fetch = new Promise(async (resolve, reject) => {
+                try {
+                    // Fetch data from the backend
+                    const response = await utilityGetPhoto(photo, size)
+
+                    if (response.success) {
+                        const data = response.data.iPhoto
+                        // Cache the retrieved data and resolve the promise with it
+                        this.put(key, data)
                         resolve(data)
                     } else {
                         // Reject the promise with the error message
@@ -102,9 +154,7 @@ class Cache {
     }
 
     // Put data in the cache and optionally update the backend
-    put(modelName, identifier, field, value) {
-        const key = this.key(modelName, identifier, field)
-
+    put(key, value) {
         if (this.cache.has(key)) {
             // If the key already exists, move it to the end
             this.cache.delete(key)

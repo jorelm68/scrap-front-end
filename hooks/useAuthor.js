@@ -1,12 +1,9 @@
 import { useState, useEffect, useContext } from 'react'
 import AppContext from '../context/AppContext'
 import Cache from '../data/cache'
-import PhotoCache from '../data/photoCache'
 import { defaultHeadshot, defaultCover } from '../data/icons'
 
 export default function useAuthor(author, requests) {
-    const { user } = useContext(AppContext)
-
     const [headshot, setHeadshot] = useState('')
     const [cover, setCover] = useState('')
     const [iHeadshot, setIHeadshot] = useState(defaultHeadshot)
@@ -37,19 +34,17 @@ export default function useAuthor(author, requests) {
         if (!modelName || !identifier || !field || !setResponse) return undefined
         try {
             let response = null
-            response = await Cache.get(modelName, identifier, field, user)
+            response = await Cache.get(modelName, identifier, field)
             setResponse(response)
         } catch (error) {
             handleError()
         }
     }
 
-    const processRequest = (request, promises) => {
+    const processRequest = async (request, promises) => {
         let set = (blank) => { console.log('blank setter: ', blank)}
 
-        if (request.includes('iHeadshot')) set = setIHeadshot
-        else if (request.includes('iCover')) set = setICover
-        else if (request === 'headshot') set = setHeadshot
+        if (request === 'headshot') set = setHeadshot
         else if (request === 'cover') set = setCover
         else if (request === 'autobiography') set = setAutobiography
         else if (request === 'firstName') set = setFirstName
@@ -68,7 +63,19 @@ export default function useAuthor(author, requests) {
         else if (request === 'feed') set = setFeed
         else if (request === 'actions') set = setActions
 
-        promises.push(get('Author', author, request, set))
+        if (request.includes('iHeadshot')) {
+            const headshot = await Cache.get('Author', author, 'headshot')
+            const iHeadshot = await Cache.getPhoto(headshot, request.split('->')[1])
+            setIHeadshot(iHeadshot)
+        }
+        else if (request.includes('iCover')) {
+            const cover = await Cache.get('Author', author, 'cover')
+            const iCover = await Cache.getPhoto(cover, request.split('->')[1])
+            setICover(iCover)
+        }
+        else {
+            promises.push(get('Author', author, request, set))
+        }
     }
 
     useEffect(() => {
