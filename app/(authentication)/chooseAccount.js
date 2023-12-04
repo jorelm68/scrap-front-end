@@ -59,7 +59,7 @@ const ChooseAccount = () => {
 
             await storeData('autothenticate', account.author)
             setUser(account.author)
-            router.replace('/one')
+            router.replace('/feed')
         }
     }
 

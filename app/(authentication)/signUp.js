@@ -107,7 +107,7 @@ const SignUp = () => {
       await saveAccount(account)
       
       setUser(response.data.author)
-      router.replace('/one')
+      router.replace('/feed')
     }
   }
 

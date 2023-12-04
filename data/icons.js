@@ -1,5 +1,6 @@
 import { Ionicons, Feather, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons'
 
+export const IconHome = ({ style, color, size }) => <Ionicons name="home" size={size} color={color} style={style} />
 export const IconImage = ({ style, color, size }) => <Ionicons name="image" size={size} color={color} style={style} />
 export const IconLeaf = ({ style, color, size }) => <Ionicons name="leaf" size={size} color={color} style={style} />
 export const IconPerson = ({ style, color, size }) => <Ionicons name="person" size={size} color={color} style={style} />

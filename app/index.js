@@ -39,7 +39,7 @@ const Autothenticate = () => {
 
     setUser(user)
     setAuthenticated(true)
-    router.push('/one')
+    router.push('/feed')
   }
 
   return (

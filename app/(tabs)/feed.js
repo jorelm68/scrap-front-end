@@ -3,13 +3,13 @@ import React from 'react'
 import { Link, useRouter } from 'expo-router'
 import { deleteData } from '../../data/utility'
 
-const Page = () => {
+const Feed = () => {
     const router = useRouter()
 
     // Function for handling when you press the logout button
     const handleLogout = async () => {
         deleteData('autothenticate')
-        router.replace('/signIn')
+        router.replace('/(authentication)/signIn')
         while (router.canGoBack()) {
             router.back()
         }
@@ -22,4 +22,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default Feed

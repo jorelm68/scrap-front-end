@@ -62,7 +62,7 @@ export default function App() {
         await saveAccount(account)
 
         setUser(response.data.author)
-        router.replace('/one')
+        router.replace('/feed')
       }
     }
   }
