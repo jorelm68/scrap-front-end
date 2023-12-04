@@ -12,7 +12,6 @@ import { IconArrowForward, IconPerson } from '../../data/icons'
 export default function App() {
   const { setUser } = useContext(AppContext)
   const [accounts, setAccounts] = useState([])
-  console.log(accounts)
   const router = useRouter()
   useEffect(() => {
     retrieveData('accounts').then((accounts) => {
