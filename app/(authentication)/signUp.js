@@ -3,10 +3,13 @@ import { View, Text, TextField, Button, Colors } from 'react-native-ui-lib'
 import { regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../../data/regex'
 import { errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../../data/error'
 import { authorSignUp } from '../../data/api'
-import { Alert } from 'react-native'
+import { Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native'
 import { useRouter } from 'expo-router'
 import AppContext from '../../context/AppContext'
 import { saveAccount, storeData } from '../../data/utility'
+import LogoComponent from '../../components/LogoComponent'
+import FieldComponent from '../../components/FieldComponent'
+import ButtonComponent from '../../components/ButtonComponent'
 
 const SignUp = () => {
   const router = useRouter()
@@ -107,7 +110,7 @@ const SignUp = () => {
 
       await storeData('autothenticate', response.data.author)
       await saveAccount(account)
-      
+
       setUser(response.data.author)
       router.back()
       router.replace('/feed')
@@ -118,94 +121,120 @@ const SignUp = () => {
   }
 
   return (
-    <View>
-      <TextField
-        placeholder={'Pseudonym (username)'}
-        floatingPlaceholder
-        onChangeText={(pseudonym) => {
-          setPseudonym(pseudonym)
-          setPseudonymError('')
-          setError('')
-        }}
-        value={pseudonym}
-        maxLength={16}
-      />
-      <Text>{pseudonymError}</Text>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <KeyboardAvoidingView behavior="padding" style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <View width='100%' flex center>
+          <LogoComponent />
+          <FieldComponent
+            placeholder='Pseudonym (username)'
+            onChangeText={(pseudonym) => {
+              setPseudonym(pseudonym)
+              setPseudonymError('')
+              setError('')
+            }}
+            value={pseudonym}
+            maxLength={16}
+            width='80%'
+          />
+          <View>
+            <Text center red5>{pseudonymError}</Text>
+          </View>
+          
+          <FieldComponent
+            placeholder='Email Address'
+            onChangeText={(email) => {
+              setEmail(email)
+              setEmailError('')
+              setError('')
+            }}
+            value={email}
+            width='80%'
+          />
+          <View>
+            <Text center red5>{emailError}</Text>
+          </View>
 
-      <TextField
-        placeholder={'Email Address'}
-        floatingPlaceholder
-        onChangeText={(email) => {
-          setEmail(email)
-          setEmailError('')
-          setError('')
-        }}
-        value={email}
-        maxLength={30}
-      />
-      <Text>{emailError}</Text>
+          <FieldComponent
+            placeholder='Password'
+            onChangeText={(password) => {
+              setPassword(password)
+              setPasswordError('')
+              setError('')
+            }}
+            value={password}
+            maxLength={24}
+            width='80%'
+          />
+          <View>
+            <Text center red5>{passwordError}</Text>
+          </View>
 
-      <TextField
-        placeholder={'Password'}
-        floatingPlaceholder
-        onChangeText={(password) => {
-          setPassword(password)
-          setPasswordError('')
-          setError('')
-        }}
-        value={password}
-        maxLength={30}
-      />
-      <Text>{passwordError}</Text>
+          <FieldComponent
+            placeholder='Confirm Password'
+            onChangeText={(confirmPassword) => {
+              setConfirmPassword(confirmPassword)
+              setConfirmPasswordError('')
+              setError('')
+            }}
+            value={confirmPassword}
+            maxLength={24}
+            width='80%'
+          />
+          <View>
+            <Text center red5>{confirmPasswordError}</Text>
+          </View>
 
-      <TextField
-        placeholder={'Confirm Password'}
-        floatingPlaceholder
-        onChangeText={(confirmPassword) => {
-          setConfirmPassword(confirmPassword)
-          setConfirmPasswordError('')
-          setError('')
-        }}
-        value={confirmPassword}
-        maxLength={30}
-      />
-      <Text>{confirmPasswordError}</Text>
+          <View width='100%' style={{ flexDirection: 'row' }}>
+            <View width='10%' />
+            <FieldComponent
+              placeholder="First Name"
+              onChangeText={(firstName) => {
+                setFirstName(firstName);
+                setFirstNameError('');
+                setError('');
+              }}
+              value={firstName}
+              maxLength={24}
+              width='38.75%'
+            />
+            <View width='2.5%' />
 
-      <TextField
-        placeholder={'First Name'}
-        floatingPlaceholder
-        onChangeText={(firstName) => {
-          setFirstName(firstName)
-          setFirstNameError('')
-          setError('')
-        }}
-        value={firstName}
-        maxLength={30}
-      />
-      <Text>{firstNameError}</Text>
+            <FieldComponent
+              placeholder="Last Name"
+              onChangeText={(lastName) => {
+                setLastName(lastName);
+                setLastNameError('');
+                setError('');
+              }}
+              value={lastName}
+              maxLength={24}
+              width='38.75%'
+            />
+          </View>
 
-      <TextField
-        placeholder={'Last Name'}
-        floatingPlaceholder
-        onChangeText={(lastName) => {
-          setLastName(lastName)
-          setLastNameError('')
-          setError('')
-        }}
-        value={lastName}
-        maxLength={30}
-      />
-      <Text>{lastNameError}</Text>
+          <View>
+            <Text center red5>{firstNameError}{'\n'}{lastNameError}</Text>
+          </View>
 
-      <Text>{error}</Text>
+          <View>
+            <Text>{error}</Text>
+          </View>
 
-      <Button
-        label={'Sign Up'}
-        size={Button.sizes.large}
-        backgroundColor={Colors.blue1}
-        onPress={handleSignUp}
-      />
-    </View>
+          <ButtonComponent
+            label='Sign Up'
+            size='large'
+            width='50%'
+            onPress={handleSignUp}
+            iconOnRight
+            icon='checkmark'
+          />
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   )
 }
 

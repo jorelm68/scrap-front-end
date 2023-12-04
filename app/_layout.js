@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Keyboard } from 'react-native'
 import React from 'react'
 import { Stack } from 'expo-router'
 import AppContextProvider from '../context/AppContextProvider'
@@ -13,19 +13,20 @@ const Layout = () => {
         />
         <Stack.Screen
           name="(authentication)/signIn"
-          options={{
-            title: 'Sign In',
-          }}
+          options={{ headerShown: false }}
+
         />
         <Stack.Screen
           name="(authentication)/signUp"
           options={{
+            presentation: 'modal',
             title: 'Sign Up',
           }}
         />
         <Stack.Screen
           name="(authentication)/chooseAccount"
           options={{
+            presentation: 'modal',
             title: 'Choose Account',
           }}
         />

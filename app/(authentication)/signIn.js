@@ -1,6 +1,6 @@
 import { Redirect } from 'expo-router'
 import { useRouter, Link } from 'expo-router'
-import { Text, Button, Colors, View } from 'react-native-ui-lib'
+import { Text, View } from 'react-native-ui-lib'
 import { useContext, useEffect, useState } from 'react'
 import { regexAuthorPseudonymOrEmail, regexAuthorPassword } from '../../data/regex'
 import { errorAuthorPseudonymOrEmail, errorAuthorPassword } from '../../data/error'
@@ -10,6 +10,9 @@ import AppContext from '../../context/AppContext'
 import { IconPerson } from '../../data/icons'
 import { colors, styles } from '../../data/styles'
 import FieldComponent from '../../components/FieldComponent'
+import ButtonComponent from '../../components/ButtonComponent'
+import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'
+import LogoComponent from '../../components/LogoComponent'
 
 export default function App() {
   const { setUser } = useContext(AppContext)
@@ -86,51 +89,84 @@ export default function App() {
   }
 
   return (
-    <View flex center>
-      <FieldComponent
-        placeholder={'Pseudonym or Email'}
-        onChangeText={(value) => {
-          setValue(value)
-          setValueError('')
-          setError('')
-        }}
-        value={value}
-        maxLength={32}
-      />
-      <Text center red5>{valueError}</Text>
-      <FieldComponent 
-        placeholder={'Password'}
-        onChangeText={(password) => {
-          setPassword(password)
-          setPasswordError('')
-          setError('')
-        }}
-        value={password}
-        maxLength={24}
-      />
-      <Text center red5>{passwordError}</Text>
-      <Text>{error}</Text>
-      <Button
-        label="Sign In"
-        size={Button.sizes.large}
-        backgroundColor={Colors.blue1}
-        onPress={handleSignIn}
-      />
-      <Button
-        label="Sign Up"
-        size={Button.sizes.large}
-        backgroundColor={Colors.blue1}
-        onPress={handleSignUp}
-      />
-      {accounts && accounts.length !== 0 && (
-        <Button
-          label=" Choose Account"
-          size={Button.sizes.large}
-          backgroundColor={Colors.blue1}
-          onPress={handleChooseAccount}
-          iconSource={() => <IconPerson color={'white'} size={18} />}
-        />
-      )}
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <KeyboardAvoidingView behavior="padding" style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <View width='100%' flex center>
+          <LogoComponent />
+          {accounts && accounts.length !== 0 && (
+            <ButtonComponent
+              label='Choose Account'
+              size='large'
+              onPress={handleChooseAccount}
+              icon='person'
+            />
+          )}
+
+          <View height={24} />
+
+          <FieldComponent
+            placeholder={'Pseudonym or Email'}
+            autoCorrect={false}
+            autoCapitalize={false}
+            autoComplete='off'
+            onChangeText={(value) => {
+              setValue(value)
+              setValueError('')
+              setError('')
+            }}
+            value={value}
+            alignment='center'
+            width='80%'
+          />
+          <View>
+            <Text center red5>{valueError}</Text>
+          </View>
+
+          <FieldComponent
+            placeholder={'Password'}
+            autoCapitalize={false}
+            autoCorrect={false}
+            autoComplete='off'
+            onChangeText={(password) => {
+              setPassword(password)
+              setPasswordError('')
+              setError('')
+            }}
+            value={password}
+            maxLength={24}
+            alignment='center'
+            width='80%'
+          />
+          <View>
+            <Text center red5>{passwordError}</Text>
+          </View>
+
+          <View>
+            <Text center red5>{error}</Text>
+          </View>
+          
+          <ButtonComponent
+            label='Sign In'
+            size='large'
+            onPress={handleSignIn}
+            icon='checkmark'
+            iconOnRight
+          />
+
+          <View height={24} />
+
+          <ButtonComponent
+            label='Sign Up'
+            size='large'
+            onPress={handleSignUp}
+            icon='person-add'
+          />
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   )
 }
