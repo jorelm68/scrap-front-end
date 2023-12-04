@@ -2,12 +2,12 @@ import { Redirect } from 'expo-router'
 import { useRouter, Link } from 'expo-router'
 import { TextField, Text, Button, Colors, View } from 'react-native-ui-lib'
 import { useContext, useEffect, useState } from 'react'
-import { regexAuthorEmail, regexAuthorPseudonym, regexAuthorPassword } from '../../data/regex'
-import { errorAuthorEmail, errorAuthorPseudonym, errorAuthorPassword } from '../../data/error'
+import { regexAuthorPseudonymOrEmail, regexAuthorPassword } from '../../data/regex'
+import { errorAuthorPseudonymOrEmail, errorAuthorPassword } from '../../data/error'
 import { authorSignIn } from '../../data/api'
 import { retrieveData, saveAccount, storeData } from '../../data/utility'
 import AppContext from '../../context/AppContext'
-import { IconArrowForward, IconPerson } from '../../data/icons'
+import { IconPerson } from '../../data/icons'
 
 export default function App() {
   const { setUser } = useContext(AppContext)
@@ -27,25 +27,12 @@ export default function App() {
 
   // Function for handling when the user presses the Sign In button
   const handleSignIn = async () => {
-    // First, check if the value submitted is an email or not
-    // This if statement is strictly for setting the error messages
-    if (value.includes('@')) {
-      // Now check if the email is valid
-      if (!regexAuthorEmail.test(value)) {
-        setValueError(errorAuthorEmail)
-      }
-      else {
-        setValueError('')
-      }
+    // First set the error messages if necessary
+    if (!regexAuthorPseudonymOrEmail.test(value)) {
+      setValueError(errorAuthorPseudonymOrEmail)
     }
     else {
-      // Now check if the pseudonym is valid
-      if (!regexAuthorPseudonym.test(value)) {
-        setValueError(errorAuthorPseudonym)
-      }
-      else {
-        setValueError('')
-      }
+      setValueError('')
     }
 
     // Make sure the password submitted makes sense
@@ -57,7 +44,7 @@ export default function App() {
     }
 
     // Now, make sure all tests pass
-    if ((regexAuthorEmail.test(value) || regexAuthorPseudonym.test(value)) && regexAuthorPassword.test(password)) {
+    if (regexAuthorPseudonymOrEmail.test(value) & regexAuthorPassword.test(password)) {
       // If all tests pass, make a sign in request to the back-end
       const response = await authorSignIn(value, password)
       if (response.error) {
@@ -80,6 +67,11 @@ export default function App() {
     }
   }
 
+  // Function for handling when the user switches to the sign up screen
+  const handleSignUp = async () => {
+    router.push('signUp')
+  }
+
   // Function for handling when the user presses the Choose Account button
   const handleChooseAccount = async () => {
     router.push('chooseAccount')
@@ -87,16 +79,6 @@ export default function App() {
 
   return (
     <View>
-      {accounts && accounts.length !== 0 && (
-        <Button
-          label=" Choose Account"
-          size={Button.sizes.large}
-          backgroundColor={Colors.blue1}
-          onPress={() => handleChooseAccount()}
-          iconSource={() => <IconPerson color={'white'} size={18} />}
-        />
-      )}
-
       <TextField
         placeholder={'Pseudonym or Email'}
         floatingPlaceholder
@@ -123,13 +105,26 @@ export default function App() {
       <Text>{passwordError}</Text>
       <Text>{error}</Text>
       <Button
-        label="Sign In "
+        label="Sign In"
         size={Button.sizes.large}
         backgroundColor={Colors.blue1}
         onPress={handleSignIn}
-        iconOnRight
-        iconSource={() => <IconArrowForward color='white' size={18} />}
       />
+      <Button
+        label="Sign Up"
+        size={Button.sizes.large}
+        backgroundColor={Colors.blue1}
+        onPress={handleSignUp}
+      />
+      {accounts && accounts.length !== 0 && (
+        <Button
+          label=" Choose Account"
+          size={Button.sizes.large}
+          backgroundColor={Colors.blue1}
+          onPress={handleChooseAccount}
+          iconSource={() => <IconPerson color={'white'} size={18} />}
+        />
+      )}
     </View>
   )
 }

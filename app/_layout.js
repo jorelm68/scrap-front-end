@@ -20,6 +20,12 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="(authentication)/signUp"
+          options={{
+            title: 'Sign Up',
+          }}
+        />
+        <Stack.Screen
           name="(authentication)/chooseAccount"
           options={{
             title: 'Choose Account',

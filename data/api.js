@@ -180,8 +180,9 @@ export async function authorExists(author) {
     const data = { author }
     return await handleResponse(route, data, 'post')
 }
-export async function authorSignUp({ author }) {
+export async function authorSignUp(author) {
     const route = 'api/authors/signUp'
+    console.log(author)
     return await handleResponse(route, author, 'post')
 }
 export async function authorSignIn(value, password) {
@@ -190,8 +191,9 @@ export async function authorSignIn(value, password) {
     return await handleResponse(route, data, 'post')
 }
 export async function authorDeleteAccount(author) {
-    const route = `api/authors/deleteAccount/${author}`
-    return await handleResponse(route, null, 'delete')
+    const route = `api/authors/deleteAccount`
+    const data = { author }
+    return await handleResponse(route, data, 'post')
 }
 export async function authorCheckCredentials(author, password) {
     const route = `api/authors/checkCredentials`
