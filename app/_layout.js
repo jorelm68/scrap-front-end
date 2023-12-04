@@ -14,13 +14,12 @@ const Layout = () => {
         <Stack.Screen
           name="(authentication)/signIn"
           options={{ headerShown: false }}
-
         />
         <Stack.Screen
           name="(authentication)/signUp"
           options={{
             presentation: 'modal',
-            title: 'Sign Up',
+            headerShown: false
           }}
         />
         <Stack.Screen

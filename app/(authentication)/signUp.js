@@ -131,6 +131,8 @@ const SignUp = () => {
           <LogoComponent />
           <FieldComponent
             placeholder='Pseudonym (username)'
+            autoCapitalize='none'
+            autoCorrect={false}
             onChangeText={(pseudonym) => {
               setPseudonym(pseudonym)
               setPseudonymError('')
@@ -143,9 +145,11 @@ const SignUp = () => {
           <View>
             <Text center red5>{pseudonymError}</Text>
           </View>
-          
+
           <FieldComponent
             placeholder='Email Address'
+            autoCapitalize='none'
+            autoCorrect={false}
             onChangeText={(email) => {
               setEmail(email)
               setEmailError('')
@@ -160,6 +164,8 @@ const SignUp = () => {
 
           <FieldComponent
             placeholder='Password'
+            autoCapitalize='none'
+            autoCorrect={false}
             onChangeText={(password) => {
               setPassword(password)
               setPasswordError('')
@@ -175,6 +181,8 @@ const SignUp = () => {
 
           <FieldComponent
             placeholder='Confirm Password'
+            autoCapitalize='none'
+            autoCorrect={false}
             onChangeText={(confirmPassword) => {
               setConfirmPassword(confirmPassword)
               setConfirmPasswordError('')
@@ -192,6 +200,8 @@ const SignUp = () => {
             <View width='10%' />
             <FieldComponent
               placeholder="First Name"
+              autoCapitalize='words'
+              autoCorrect={false}
               onChangeText={(firstName) => {
                 setFirstName(firstName);
                 setFirstNameError('');
@@ -205,6 +215,8 @@ const SignUp = () => {
 
             <FieldComponent
               placeholder="Last Name"
+              autoCapitalize='words'
+              autoCorrect={false}
               onChangeText={(lastName) => {
                 setLastName(lastName);
                 setLastNameError('');

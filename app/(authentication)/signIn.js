@@ -111,7 +111,7 @@ export default function App() {
           <FieldComponent
             placeholder={'Pseudonym or Email'}
             autoCorrect={false}
-            autoCapitalize={false}
+            autoCapitalize='none'
             autoComplete='off'
             onChangeText={(value) => {
               setValue(value)
@@ -128,7 +128,7 @@ export default function App() {
 
           <FieldComponent
             placeholder={'Password'}
-            autoCapitalize={false}
+            autoCapitalize='none'
             autoCorrect={false}
             autoComplete='off'
             onChangeText={(password) => {
