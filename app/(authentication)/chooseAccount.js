@@ -54,17 +54,11 @@ const ChooseAccount = () => {
                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             }
 
-            // Update the expiration date on the device storage
             await forgetAccount(account)
             await saveAccount(updatedAccount)
 
-            // Set this as the account the device will automatically sign into for the future
             await storeData('autothenticate', account.author)
-
-            // Set the user variable for the session
             setUser(account.author)
-
-            // Navigate to the home page
             router.replace('/one')
         }
     }

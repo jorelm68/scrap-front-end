@@ -11,7 +11,13 @@ import { IconArrowForward, IconPerson } from '../../data/icons'
 
 export default function App() {
   const { setUser } = useContext(AppContext)
+  const [accounts, setAccounts] = useState([])
   const router = useRouter()
+  useEffect(() => {
+    retrieveData('accounts').then((accounts) => {
+      setAccounts(accounts)
+    }).catch(() => { })
+  }, [])
 
   const [value, setValue] = useState('');
   const [password, setPassword] = useState('');
@@ -19,9 +25,12 @@ export default function App() {
   const [passwordError, setPasswordError] = useState('')
   const [error, setError] = useState('')
 
+  // Function for handling when the user presses the Sign In button
   const handleSignIn = async () => {
-    // Make sure the value submitted makes sense
+    // First, check if the value submitted is an email or not
+    // This if statement is strictly for setting the error messages
     if (value.includes('@')) {
+      // Now check if the email is valid
       if (!regexAuthorEmail.test(value)) {
         setValueError(errorAuthorEmail)
       }
@@ -30,6 +39,7 @@ export default function App() {
       }
     }
     else {
+      // Now check if the pseudonym is valid
       if (!regexAuthorPseudonym.test(value)) {
         setValueError(errorAuthorPseudonym)
       }
@@ -46,12 +56,15 @@ export default function App() {
       setPasswordError('')
     }
 
+    // Now, make sure all tests pass
     if ((regexAuthorEmail.test(value) || regexAuthorPseudonym.test(value)) && regexAuthorPassword.test(password)) {
+      // If all tests pass, make a sign in request to the back-end
       const response = await authorSignIn(value, password)
       if (response.error) {
         setError(response.error)
       }
       else {
+        // If successfully signed in, save the account to the device for future use
         const account = {
           author: response.data.author,
           pseudonym: response.data.pseudonym,
@@ -60,21 +73,30 @@ export default function App() {
 
         await storeData('autothenticate', response.data.author)
         await saveAccount(account)
+
         setUser(response.data.author)
         router.replace('/one')
       }
     }
   }
 
+  // Function for handling when the user presses the Choose Account button
+  const handleChooseAccount = async () => {
+    router.push('chooseAccount')
+  }
+
   return (
     <View>
-      <Button
-        label=" Choose Account"
-        size={Button.sizes.large}
-        backgroundColor={Colors.blue1}
-        onPress={() => router.push('chooseAccount')}
-        iconSource={() => <IconPerson color={'white'} size={18} />}
-      />
+      {accounts && accounts.length !== 0 && (
+        <Button
+          label=" Choose Account"
+          size={Button.sizes.large}
+          backgroundColor={Colors.blue1}
+          onPress={() => handleChooseAccount()}
+          iconSource={() => <IconPerson color={'white'} size={18} />}
+        />
+      )}
+
       <TextField
         placeholder={'Pseudonym or Email'}
         floatingPlaceholder
