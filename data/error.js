@@ -10,6 +10,6 @@ export const errorScrapDescription = 'Invalid description. Keep it less than 200
 export const errorBookTitle = 'Invalid title. Keep it less than than 40 characters long.'
 export const errorBookDescription = 'Invalid description. Keep it less than 2000 characters long.'
 export const errorCollectionName = 'Invalid name. Keep it less than 40 characters long.'
-export const errorAuthorPseudonymOrEmail = 'Invalid pseudonym or email.\n\nMake sure your pseudonym only uses letters, digits and underscores, and keep it between 3-16 characters long, or make sure your email is valid.'
+export const errorAuthorPseudonymOrEmail = 'Invalid pseudonym or email.\nMake sure your pseudonym only uses letters, digits and underscores, and keep it between 3-16 characters long, or make sure your email is valid.'
 export const errorScrapComment = 'Invalid comment. Please keep it less than 2000 characters long.'
 export const errorScrapReply = 'Invalid reply. Please keep it less than 2000 characters long.'

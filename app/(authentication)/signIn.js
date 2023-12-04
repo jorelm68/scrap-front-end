@@ -1,6 +1,6 @@
 import { Redirect } from 'expo-router'
 import { useRouter, Link } from 'expo-router'
-import { TextField, Text, Button, Colors, View } from 'react-native-ui-lib'
+import { Text, Button, Colors, View } from 'react-native-ui-lib'
 import { useContext, useEffect, useState } from 'react'
 import { regexAuthorPseudonymOrEmail, regexAuthorPassword } from '../../data/regex'
 import { errorAuthorPseudonymOrEmail, errorAuthorPassword } from '../../data/error'
@@ -8,6 +8,8 @@ import { authorSignIn } from '../../data/api'
 import { retrieveData, saveAccount, storeData } from '../../data/utility'
 import AppContext from '../../context/AppContext'
 import { IconPerson } from '../../data/icons'
+import { colors, styles } from '../../data/styles'
+import FieldComponent from '../../components/FieldComponent'
 
 export default function App() {
   const { setUser } = useContext(AppContext)
@@ -84,31 +86,29 @@ export default function App() {
   }
 
   return (
-    <View>
-      <TextField
+    <View flex center>
+      <FieldComponent
         placeholder={'Pseudonym or Email'}
-        floatingPlaceholder
         onChangeText={(value) => {
           setValue(value)
           setValueError('')
           setError('')
         }}
         value={value}
-        maxLength={30}
+        maxLength={32}
       />
-      <Text>{valueError}</Text>
-      <TextField
+      <Text center red5>{valueError}</Text>
+      <FieldComponent 
         placeholder={'Password'}
-        floatingPlaceholder
         onChangeText={(password) => {
           setPassword(password)
           setPasswordError('')
           setError('')
         }}
         value={password}
-        maxLength={30}
+        maxLength={24}
       />
-      <Text>{passwordError}</Text>
+      <Text center red5>{passwordError}</Text>
       <Text>{error}</Text>
       <Button
         label="Sign In"

@@ -1,5 +1,5 @@
-import { View, Text, LoaderScreen, Colors } from 'react-native-ui-lib'
-import React, { useContext, useEffect, useState } from 'react'
+import { LoaderScreen, Colors } from 'react-native-ui-lib'
+import React, { useContext, useEffect } from 'react'
 import AppContext from '../context/AppContext'
 import { deleteData, loadFonts, retrieveData } from '../data/utility'
 import { authorExists, isDeviceOffline } from '../data/api'
