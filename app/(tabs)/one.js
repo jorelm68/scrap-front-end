@@ -5,12 +5,19 @@ import { deleteData } from '../../data/utility'
 
 const Page = () => {
     const router = useRouter()
+
+    // Function for handling when you press the logout button
+    const handleLogout = async () => {
+        deleteData('autothenticate')
+        router.replace('/signIn')
+        while (router.canGoBack()) {
+            router.back()
+        }
+    }
+
     return (
         <View>
-            <Button title='Logout' onPress={() => {
-                deleteData('autothenticate')
-                router.replace('/signIn')
-            }} />
+            <Button title='Logout' onPress={() => handleLogout()} />
         </View>
     )
 }
