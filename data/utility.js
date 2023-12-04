@@ -9,7 +9,6 @@ import Cache from '../data/cache'
 
 export async function storeData(key, value) {
     try {
-        console.log('store: ', key, value)
         await SecureStore.setItemAsync(key, value)
     } catch (error) {
         console.log('error storing: ', error.message)
@@ -47,7 +46,6 @@ export async function retrieveData(key) {
     try {
         const value = await SecureStore.getItemAsync(key)
         if (value !== null) {
-            console.log('retrieve: ', key, value)
             return value
         }
         else {
@@ -61,7 +59,6 @@ export async function retrieveData(key) {
 
 export async function deleteData(key) {
     try {
-        console.log('delete: ', key)
         await SecureStore.deleteItemAsync(key)
     }
     catch (error) {

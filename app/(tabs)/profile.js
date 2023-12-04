@@ -10,11 +10,9 @@ const Profile = () => {
     iHeadshot,
     iCover,
   } = useAuthor(user, [
-    'iHeadshot->180',
-    'iCover->180',
+    'iHeadshot->1080',
+    'iCover->1080',
   ])
-
-  console.log(iHeadshot)
 
   return (
     <View>

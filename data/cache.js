@@ -209,7 +209,6 @@ class Cache {
     filter(fieldsToMatch) {
         for (const key of this.cache.keys()) {
             if (fieldsToMatch.every(field => key.includes(field || 'actions'))) {
-                console.log('deleting:', key)
                 this.cache.delete(key)
             }
         }

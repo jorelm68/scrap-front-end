@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { API_URL, API_KEY } from '@env'
-console.log(API_URL)
 
 export const isDeviceOffline = async () => {
     try {
@@ -134,26 +133,45 @@ async function handleResponse(route, data, method) {
         }
     }
 }
+
+async function readFileAsync(reader) {
+    return new Promise((resolve, reject) => {
+        reader.onloadend = () => {
+            const base64data = reader.result;
+            resolve({
+                success: true,
+                data: { iPhoto: { uri: base64data } }
+            });
+        };
+        reader.onerror = () => {
+            reject({
+                success: false,
+                error: 'Error reading the blob data',
+            });
+        };
+    });
+}
+
 async function handleBlob(route) {
     try {
-        const response = await fetch(`${API_URL}/${route}`, {
+        const response = await axios.get(`${API_URL}/${route}`, {
+            responseType: 'blob',
             headers: {
-                'x-api-key': API_KEY,
+                'x-api-key': API_KEY
             },
         });
 
-        if (response.ok) {
-            const blob = await response.blob();
-            const dataUrl = URL.createObjectURL(blob);
+        if (response.status === 200) {
+            const blob = await response.data
 
-            return {
-                success: true,
-                data: { iPhoto: { uri: dataUrl } }
-            };
+            const reader = new FileReader()
+            reader.readAsDataURL(blob)
+
+            return readFileAsync(reader)
         } else {
             return {
                 success: false,
-                error: `Request failed with status: ${response.status}`,
+                error: response,
             };
         }
     } catch (error) {
@@ -164,6 +182,7 @@ async function handleBlob(route) {
     }
 }
 
+
 //-------------------------AUTHOR-------------------------------
 export async function authorExists(author) {
     const route = 'api/authors/exists'
@@ -172,7 +191,6 @@ export async function authorExists(author) {
 }
 export async function authorSignUp(author) {
     const route = 'api/authors/signUp'
-    console.log(author)
     return await handleResponse(route, author, 'post')
 }
 export async function authorSignIn(value, password) {
