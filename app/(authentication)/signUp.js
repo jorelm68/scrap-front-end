@@ -232,9 +232,13 @@ const SignUp = () => {
             <Text center red5>{firstNameError}{'\n'}{lastNameError}</Text>
           </View>
 
+          <View height={24} />
+
           <View>
-            <Text>{error}</Text>
+            <Text center red5>{error}</Text>
           </View>
+
+          <View height={24} />
 
           <ButtonComponent
             label='Sign Up'

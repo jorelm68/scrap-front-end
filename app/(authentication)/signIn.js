@@ -145,10 +145,14 @@ export default function App() {
             <Text center red5>{passwordError}</Text>
           </View>
 
+          <View height={24} />
+
           <View>
             <Text center red5>{error}</Text>
           </View>
-          
+
+          <View height={24} />
+
           <ButtonComponent
             label='Sign In'
             size='large'
