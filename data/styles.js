@@ -14,7 +14,7 @@ export const light = {
     button2: '#2C6AD3',
     button2Text: '#2C6AD3',
     text: '#2C6AD3',
-    textError: '#2C6AD3',
+    textError: Colors.red5,
     textInteracton: '#2C6AD3',
 }
 export const dark = {

@@ -13,6 +13,7 @@ import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'
 import LogoComponent from '../../components/LogoComponent'
+import ErrorComponent from '../../components/ErrorComponent'
 
 export default function App() {
   const { setUser } = useContext(AppContext)
@@ -122,9 +123,7 @@ export default function App() {
             alignment='center'
             width='80%'
           />
-          <View>
-            <Text center red5>{valueError}</Text>
-          </View>
+          <ErrorComponent error={valueError} />
 
           <FieldComponent
             placeholder={'Password'}
@@ -141,17 +140,8 @@ export default function App() {
             alignment='center'
             width='80%'
           />
-          <View>
-            <Text center red5>{passwordError}</Text>
-          </View>
-
-          <View height={24} />
-
-          <View>
-            <Text center red5>{error}</Text>
-          </View>
-
-          <View height={24} />
+          <ErrorComponent error={passwordError} />
+          <ErrorComponent error={error} />
 
           <ButtonComponent
             label='Sign In'

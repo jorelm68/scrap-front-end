@@ -10,6 +10,7 @@ import { saveAccount, storeData } from '../../data/utility'
 import LogoComponent from '../../components/LogoComponent'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
+import ErrorComponent from '../../components/ErrorComponent'
 
 const SignUp = () => {
   const router = useRouter()
@@ -142,9 +143,7 @@ const SignUp = () => {
             maxLength={16}
             width='80%'
           />
-          <View>
-            <Text center red5>{pseudonymError}</Text>
-          </View>
+          <ErrorComponent error={pseudonymError} />
 
           <FieldComponent
             placeholder='Email Address'
@@ -158,9 +157,7 @@ const SignUp = () => {
             value={email}
             width='80%'
           />
-          <View>
-            <Text center red5>{emailError}</Text>
-          </View>
+          <ErrorComponent error={emailError} />
 
           <FieldComponent
             placeholder='Password'
@@ -175,9 +172,7 @@ const SignUp = () => {
             maxLength={24}
             width='80%'
           />
-          <View>
-            <Text center red5>{passwordError}</Text>
-          </View>
+          <ErrorComponent error={passwordError} />
 
           <FieldComponent
             placeholder='Confirm Password'
@@ -192,9 +187,7 @@ const SignUp = () => {
             maxLength={24}
             width='80%'
           />
-          <View>
-            <Text center red5>{confirmPasswordError}</Text>
-          </View>
+          <ErrorComponent error={confirmPasswordError} />
 
           <View width='100%' style={{ flexDirection: 'row' }}>
             <View width='10%' />
@@ -228,17 +221,8 @@ const SignUp = () => {
             />
           </View>
 
-          <View>
-            <Text center red5>{firstNameError}{'\n'}{lastNameError}</Text>
-          </View>
-
-          <View height={24} />
-
-          <View>
-            <Text center red5>{error}</Text>
-          </View>
-
-          <View height={24} />
+          <ErrorComponent error={firstNameError} />
+          <ErrorComponent error={error} />
 
           <ButtonComponent
             label='Sign Up'
