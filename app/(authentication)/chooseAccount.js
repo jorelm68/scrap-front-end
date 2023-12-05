@@ -69,7 +69,7 @@ const ChooseAccount = () => {
     }
 
     // This is the callback function for displaying each individual drawer in the FlatList
-    const renderItem = ({ index, item }) => {
+    const renderItem = ({ item }) => {
         return (
             <Drawer
                 rightItems={[
@@ -78,7 +78,7 @@ const ChooseAccount = () => {
                 ]}
                 leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
             >
-                <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: index === 0 ? 0 : 1 }}>
+                <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: 1 }}>
                     <Text style={{
                         fontFamily: 'jockeyOne',
                         fontSize: 18,
