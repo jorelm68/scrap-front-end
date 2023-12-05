@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native'
 import { Colors } from 'react-native-ui-lib'
-const dimensions = Dimensions.get('window')
+export const dimensions = Dimensions.get('window')
 
 export const light = {
     background: '#FFFFFF',

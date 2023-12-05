@@ -100,8 +100,13 @@ export async function registerForPushNotifications() {
 export async function loadFonts() {
     try {
         await Font.loadAsync({
-            'Itim': require('../assets/fonts/Itim-Regular.ttf'),
-            'Jockey One': require('../assets/fonts/JockeyOne-Regular.ttf'),
+            'itim': require('../assets/fonts/Itim-Regular.ttf'),
+            'jockeyOne': require('../assets/fonts/JockeyOne-Regular.ttf'),
+            'playpenSans': require('../assets/fonts/PlaypenSans-Regular.ttf'),
+            'loveYa': require('../assets/fonts/LoveYaLikeASister-Regular.ttf'),
+            'dekko': require('../assets/fonts/Dekko-Regular.ttf'),
+            'play': require('../assets/fonts/Play-Regular.ttf'),
+            'playBold': require('../assets/fonts/Play-Bold.ttf'),
         })
     } catch (error) {
         throw new Error('Error in loadFonts: ' + error.message)

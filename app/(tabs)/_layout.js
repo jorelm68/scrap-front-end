@@ -11,7 +11,7 @@ const Layout = () => {
                 options={{
                     tabBarLabel: 'Feed',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'home'} size={size} color={color} />,
-                    headerShown: false,
+                    headerTitle: 'Feed',
                 }}
             />
             <Tabs.Screen
@@ -19,7 +19,7 @@ const Layout = () => {
                 options={{
                     tabBarLabel: 'Search',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'search'} size={size} color={color} />,
-                    headerShown: false,
+                    headerTitle: 'Search',
                 }}
             />
             <Tabs.Screen
@@ -27,7 +27,7 @@ const Layout = () => {
                 options={{
                     tabBarLabel: 'Camera',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'camera'} size={size} color={color} />,
-                    headerShown: false,
+                    headerTitle: 'Camera',
                 }}
             />
             <Tabs.Screen
@@ -35,7 +35,7 @@ const Layout = () => {
                 options={{
                     tabBarLabel: 'Library',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'library'} size={size} color={color} />,
-                    headerShown: false,
+                    headerTitle: 'Library',
                 }}
             />
             <Tabs.Screen
@@ -43,7 +43,11 @@ const Layout = () => {
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'person'} size={size} color={color} />,
-                    headerShown: false,
+                    headerTitle: 'Profile',
+                    headerTitleStyle: {
+                        fontFamily: 'playBold',
+                        fontSize: 24,
+                    }                   
                 }}
             />
         </Tabs>

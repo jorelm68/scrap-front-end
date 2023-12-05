@@ -5,6 +5,8 @@ import { deleteData, loadFonts, retrieveData } from '../data/utility'
 import { authorExists, isDeviceOffline } from '../data/api'
 import { useRouter } from 'expo-router'
 
+loadFonts()
+
 const Autothenticate = () => {
   const router = useRouter()
   const { setOffline, setUser, setAuthenticated } = useContext(AppContext)
