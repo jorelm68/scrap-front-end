@@ -4,6 +4,8 @@ import Cache from '../data/cache'
 import { defaultHeadshot, defaultCover } from '../data/icons'
 
 export default function useAuthor(author, requests) {
+    const { user } = useContext(AppContext)
+
     const [headshot, setHeadshot] = useState('')
     const [cover, setCover] = useState('')
     const [iHeadshot, setIHeadshot] = useState(defaultHeadshot)
@@ -34,7 +36,7 @@ export default function useAuthor(author, requests) {
         if (!modelName || !identifier || !field || !setResponse) return undefined
         try {
             let response = null
-            response = await Cache.get(modelName, identifier, field)
+            response = await Cache.get(modelName, identifier, field, user)
             setResponse(response)
         } catch (error) {
             handleError()
@@ -64,12 +66,12 @@ export default function useAuthor(author, requests) {
         else if (request === 'actions') set = setActions
 
         if (request.includes('iHeadshot')) {
-            const headshot = await Cache.get('Author', author, 'headshot')
+            const headshot = await Cache.get('Author', author, 'headshot', user)
             const iHeadshot = await Cache.getPhoto(headshot, request.split('->')[1])
             setIHeadshot(iHeadshot)
         }
         else if (request.includes('iCover')) {
-            const cover = await Cache.get('Author', author, 'cover')
+            const cover = await Cache.get('Author', author, 'cover', user)
             const iCover = await Cache.getPhoto(cover, request.split('->')[1])
             setICover(iCover)
         }

@@ -4,6 +4,7 @@ export const dimensions = Dimensions.get('window')
 
 export const light = {
     background: '#FFFFFF',
+    secondary: Colors.grey50,
     header: '#2C6AD3',
     headerTitle: '#2C6AD3',
     headerInteraction: '#2C6AD3',

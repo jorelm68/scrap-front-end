@@ -48,7 +48,7 @@ class Cache {
     }
 
     // Retrieve data from cache or fetch from backend if not available
-    async get(modelName, identifier, field) {
+    async get(modelName, identifier, field, user) {
         const key = this.key(modelName, identifier, field)
 
         if (this.cache.has(key)) {
@@ -67,7 +67,7 @@ class Cache {
             const fetch = new Promise(async (resolve, reject) => {
                 try {
                     // Fetch data from the backend
-                    const response = await utilityGet(modelName, identifier, field)
+                    const response = await utilityGet(modelName, identifier, field, user)
 
                     if (response.success) {
                         const data = response.data[field]

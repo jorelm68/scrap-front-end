@@ -3,7 +3,7 @@ import { styles, colors } from '../data/styles'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 
-const ButtonComponent = ({ label, size, onPress, icon, width, iconOnRight }) => {
+const ButtonComponent = ({ label, size, onPress, width, icon, iconOnRight }) => {
     return (
         <View width={width}>
             <Button
@@ -15,7 +15,7 @@ const ButtonComponent = ({ label, size, onPress, icon, width, iconOnRight }) => 
                 size={size === 'large' ? Button.sizes.large : size === 'medium' ? Button.sizes.medium : size === 'small' ? Button.sizes.small : Button.sizes.xSmall}
                 backgroundColor={colors.button1}
                 onPress={onPress}
-                width={width}
+                
                 iconSource={() => <Ionicons name={icon} color={colors.button1Text} size={18} />}
                 iconOnRight={iconOnRight}
             />

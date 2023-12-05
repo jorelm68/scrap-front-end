@@ -346,8 +346,8 @@ export async function utilityScrapSearch(author, search) {
     return await handleResponse(route, data, 'post')
 }
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function utilityGet(modelName, id, key) {
-    const route = `api/utility/get/${modelName}/${id}/${key}`
+export async function utilityGet(modelName, id, key, user) {
+    const route = `api/utility/get/${modelName}/${id}/${key}/${user}`
     return await handleResponse(route, null, 'get')
 }
 export async function utilityGetPhoto(photo, size) {
