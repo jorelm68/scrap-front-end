@@ -5,6 +5,7 @@ import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
 import { useRouter } from 'expo-router'
+import { colors } from '../../data/styles'
 
 const ChooseAccount = () => {
     const router = useRouter()
@@ -68,17 +69,20 @@ const ChooseAccount = () => {
     }
 
     // This is the callback function for displaying each individual drawer in the FlatList
-    const renderItem = ({ item }) => {
+    const renderItem = ({ index, item }) => {
         return (
             <Drawer
                 rightItems={[
-                    { text: 'Sign In', background: Colors.green30, onPress: () => handleSignIn(item) },
-                    { text: 'Forget', background: Colors.red30, onPress: () => handleForget(item) },
+                    { text: 'Sign In', background: colors.textSuccess, onPress: () => handleSignIn(item) },
+                    { text: 'Forget', background: colors.textError, onPress: () => handleForget(item) },
                 ]}
                 leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
             >
-                <View centerV padding-s4 bg-white style={{ height: 60 }}>
-                    <Text text70>{item.pseudonym}</Text>
+                <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: index === 0 ? 0 : 1 }}>
+                    <Text style={{
+                        fontFamily: 'jockeyOne',
+                        fontSize: 18,
+                    }}>{item.pseudonym}</Text>
                 </View>
             </Drawer>
         )

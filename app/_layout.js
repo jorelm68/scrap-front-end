@@ -26,7 +26,7 @@ const Layout = () => {
           name="(authentication)/chooseAccount"
           options={{
             presentation: 'modal',
-            headerTitle: 'Choose Account',
+            headerTitle: 'Choose your Account',
             headerTitleStyle: {
               fontFamily: 'playBold',
             }

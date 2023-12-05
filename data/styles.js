@@ -15,6 +15,7 @@ export const light = {
     button2Text: '#2C6AD3',
     text: '#2C6AD3',
     textError: Colors.red5,
+    textSuccess: Colors.green5,
     textInteracton: '#2C6AD3',
 }
 export const dark = {
