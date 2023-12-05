@@ -4,7 +4,10 @@ import React from 'react'
 const LogoComponent = () => {
     return (
         <View style={{ marginBottom: 24 }}>
-            <Text text20>Scrap</Text>
+            <Text style={{
+                fontFamily: 'jockeyOne',
+                fontSize: 48,
+            }}>Scrap</Text>
         </View>
     )
 }

@@ -26,7 +26,10 @@ const Layout = () => {
           name="(authentication)/chooseAccount"
           options={{
             presentation: 'modal',
-            title: 'Choose Account',
+            headerTitle: 'Choose Account',
+            headerTitleStyle: {
+              fontFamily: 'playBold',
+            }
           }}
         />
         <Stack.Screen

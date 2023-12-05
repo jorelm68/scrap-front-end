@@ -10,6 +10,7 @@ const ButtonComponent = ({ label, size, onPress, icon, width, iconOnRight }) => 
                 label={`${icon && !iconOnRight ? ' ' : ''}${label}${icon && iconOnRight ? ' ' : ''}`}
                 labelStyle={{
                     color: colors.button1Text,
+                    fontFamily: 'itim',
                 }}
                 size={size === 'large' ? Button.sizes.large : size === 'medium' ? Button.sizes.medium : size === 'small' ? Button.sizes.small : Button.sizes.xSmall}
                 backgroundColor={colors.button1}

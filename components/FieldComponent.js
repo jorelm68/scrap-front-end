@@ -21,7 +21,9 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                 autoCorrect={autoCorrect}
                 autoComplete={autoComplete}
                 style={{
-                    marginLeft: textAlign === 'center' ? 0 : 12,
+                    paddingHorizontal: 8,
+                    fontFamily: 'itim',
+                    height: 40,
                 }}
                 onChangeText={onChangeText}
                 value={value}
