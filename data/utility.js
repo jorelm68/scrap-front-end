@@ -6,6 +6,8 @@ import * as Device from 'expo-device'
 import * as Notifications from 'expo-notifications'
 import * as SecureStore from 'expo-secure-store'
 import Cache from '../data/cache'
+import { utilityGet, utilitySet } from './api'
+import cache from '../data/cache'
 
 export async function storeData(key, value) {
     try {
@@ -110,5 +112,21 @@ export async function loadFonts() {
         })
     } catch (error) {
         throw new Error('Error in loadFonts: ' + error.message)
+    }
+}
+
+export async function edit(modelName, id, key, value) {
+    try {
+        await cache.push(modelName, id, key, value)
+        cache.put(cache.key(modelName, id, key), value)
+
+        return {
+            success: true,
+        }
+    } catch (error) {
+        return {
+            success: false,
+            error: error,
+        }
     }
 }

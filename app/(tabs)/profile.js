@@ -4,11 +4,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../context/AppContext'
 import useAuthor from '../../hooks/useAuthor'
 import { colors, dimensions } from '../../data/styles'
-import { useNavigation } from 'expo-router'
+import { useNavigation, useRouter } from 'expo-router'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import ButtonComponent from '../../components/ButtonComponent'
+import { Ionicons } from '@expo/vector-icons'
 
 const Profile = () => {
+  const router = useRouter()
   const { user } = useContext(AppContext)
   const navigation = useNavigation()
   const [name, setName] = useState('')
@@ -71,6 +73,10 @@ const Profile = () => {
     setMode('friends')
   }
 
+  const handleSettings = () => {
+    router.push('/settings')
+  }
+
   const profileHeader = <ScrollView flex>
     <TouchableWithoutFeedback onPress={handleTogglePhotos}>
       <Image source={photosReverse ? iCover : iHeadshot} width={dimensions.width} height={dimensions.width / 2} style={{
@@ -78,7 +84,7 @@ const Profile = () => {
       }} />
     </TouchableWithoutFeedback>
 
-    <View flex row>
+    <View width='100%' flex row center>
       <TouchableWithoutFeedback onPress={handleTogglePhotos}>
         <Image source={photosReverse ? iHeadshot : iCover} width={dimensions.width / 4} height={dimensions.width / 4} style={{
           borderRadius: dimensions.width / 8,
@@ -91,9 +97,18 @@ const Profile = () => {
           height: dimensions.width / 8,
           marginLeft: 8,
           fontSize: 28,
+          width: dimensions.width * (1 / 2 + 1 / 8),
           fontFamily: 'jockeyOne',
         }}>{name}</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleSettings} style={{
+        width: dimensions.width / 8 - 8,
+        alignItems: 'center',
+      }}>
+        <Ionicons name='settings' color={colors.button1} size={24} />
+      </TouchableOpacity>
+
     </View>
 
     <View row>

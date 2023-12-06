@@ -33,6 +33,16 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="settings"
+          options={{
+            presentation: 'modal',
+            headerTitle: 'Settings',
+            headerTitleStyle: {
+              fontFamily: 'playBold',
+            }
+          }}
+        />
+        <Stack.Screen
           name="(tabs)"
           options={{ headerShown: false }}
         />

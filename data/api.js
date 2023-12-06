@@ -356,7 +356,7 @@ export async function utilityGetPhoto(photo, size) {
 }
 export async function utilitySet(modelName, id, key, value) {
     const route = `api/utility/set`
-    const data = { modelName, id, key, value }
+    const data = { model: modelName, id, key, value }
     return await handleResponse(route, data, 'patch')
 }
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
