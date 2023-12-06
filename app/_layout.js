@@ -1,9 +1,13 @@
 import { View, Text, Keyboard } from 'react-native'
 import React from 'react'
-import { Stack } from 'expo-router'
+import { Stack, useRouter } from 'expo-router'
 import AppContextProvider from '../context/AppContextProvider'
+import { Ionicons } from '@expo/vector-icons'
+import { colors } from '../data/styles'
+import { TouchableOpacity } from 'react-native-ui-lib'
 
 const Layout = () => {
+  const router = useRouter()
   return (
     <AppContextProvider>
       <Stack>
@@ -35,11 +39,16 @@ const Layout = () => {
         <Stack.Screen
           name="settings"
           options={{
-            presentation: 'modal',
+            gestureEnabled: false,
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name='close' color={colors.textError} size={24} />
+              </TouchableOpacity>
+            ),
             headerTitle: 'Settings',
             headerTitleStyle: {
               fontFamily: 'playBold',
-            }
+            },
           }}
         />
         <Stack.Screen
