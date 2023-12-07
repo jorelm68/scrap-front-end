@@ -61,19 +61,23 @@ const Settings = () => {
                 boxes={[
                     {
                         placeholder: 'New Email',
-                        name: 'email',
                         regex: regexAuthorEmail,
                         error: errorAuthorEmail,
+                        autoCorrect: false,
+                        autoCapitalize: 'none',
+                        autoComplete: 'none',
                     },
                     {
-                        placeholder: 'Bruh',
-                        name: 'bruh',
+                        placeholder: 'Password',
                         regex: regexAuthorPassword,
                         error: errorAuthorPassword,
+                        autoCorrect: false,
+                        autoCapitalize: 'none',
+                        autoComplete: 'none',
                     }
                 ]}
                 onSubmit={async (values) => {
-                    const response = await authorCheckCredentials(user, values.password)
+                    const response = await authorCheckCredentials(user, values[1])
                     if (response.success) {
                         return {
                             success: true,

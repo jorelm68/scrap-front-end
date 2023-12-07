@@ -8,45 +8,50 @@ import { colors } from '../data/styles'
 
 const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
     const [isDropped, setIsDropped] = useState(false)
-    const [values, setValues] = useState({})
+    const [values, setValues] = useState([])
+    const [submissions, setSubmissions] = useState([])
     const [error, setError] = useState('')
     console.log(values)
 
     useEffect(() => {
-        let newValues = {
-            ...values,
-        }
-        boxes.forEach((box) => {
-            newValues = {
-                ...newValues,
-                [box.name]: '',
-            }
+        let newValues = []
+        let newSubmissions = []
+        boxes.forEach(() => {
+            newValues.push('')
+            newSubmissions.push(false)
         })
+
+        setSubmissions(newSubmissions)
         setValues(newValues)
     }, [])
 
     const handleSubmit = async () => {
         let passing = true
-        let newValues = {
-            ...values,
-        }
+        let newSubmissions = [
+            ...submissions,
+        ]
         boxes.forEach((box, index) => {
-            console.log(index)
-            newValues = {
-                ...newValues,
-                [index]: true,
-            }
+            newSubmissions[index] = true
 
-            if (!box.regex.test(values[box.name])) {
+            if (!box.regex.test(values[index])) {
                 passing = false
             }
         })
-        setValues(newValues)
+        setSubmissions(newSubmissions)
 
         if (passing) {
             const { error, success } = await onSubmit(values)
             if (success) {
                 setIsDropped(false)
+                
+                let newValues = []
+                let newSubmissions = []
+                boxes.forEach(() => {
+                    newValues.push('')
+                    newSubmissions.push(false)
+                })
+                setValues(newValues)
+                setSubmissions(newSubmissions)
             }
             else {
                 setError(error)
@@ -54,15 +59,19 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
         }
     }
 
-    const handleChangeField = (name, index, text) => {
-        const newValues = {
+    const handleChangeField = (index, text) => {
+        const newValues = [
             ...values,
-            [name]: text,
-            [index]: false,
-        }
+        ]
+        const newSubmissions = [
+            ...submissions,
+        ]
 
-        setError('')
+        newValues[index] = text
+        newSubmissions[index] = false
+        setSubmissions(newSubmissions)
         setValues(newValues)
+        setError('')
     }
 
     return (
@@ -86,7 +95,6 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                             fontFamily: 'itim',
                             fontSize: 18,
                             width: '72.5%',
-                            backgroundColor: 'brown',
                         }}>{value}</Text>
 
                         <TouchableOpacity center style={{
@@ -111,11 +119,13 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                                         }}>
                                             <FieldComponent
                                                 placeholder={box.placeholder}
+                                                autoCapitalize={box.autoCapitalize}
+                                                autoCorrect={box.autoCorrect}
+                                                autoComplete={box.autoComplete}
                                                 width={index === boxes.length - 1 ? '90%' : '100%'}
-                                                value={values[box.name]}
+                                                value={values[index]}
                                                 onChangeText={(text) => {
-                                                    console.log(text)
-                                                    handleChangeField(box.name, index, text)
+                                                    handleChangeField(index, text)
                                                 }}
                                             />
                                             {index === boxes.length - 1 && (
@@ -126,7 +136,7 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                                                 </TouchableOpacity>
                                             )}
                                         </View>
-                                        {values[index] && !box.regex.test(values[box.name]) && (
+                                        {submissions[index] && !box.regex.test(values[index]) && (
                                             <ErrorComponent error={box.error} />
                                         )}
                                     </View>
