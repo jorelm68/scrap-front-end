@@ -11,12 +11,11 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
     const [values, setValues] = useState([])
     const [submissions, setSubmissions] = useState([])
     const [error, setError] = useState('')
-    console.log(values)
 
     useEffect(() => {
         let newValues = []
         let newSubmissions = []
-        boxes.forEach(() => {
+        boxes && boxes.forEach(() => {
             newValues.push('')
             newSubmissions.push(false)
         })
@@ -30,7 +29,7 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
         let newSubmissions = [
             ...submissions,
         ]
-        boxes.forEach((box, index) => {
+        boxes && boxes.forEach((box, index) => {
             newSubmissions[index] = true
 
             if (!box.regex.test(values[index])) {
@@ -39,14 +38,14 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
         })
         setSubmissions(newSubmissions)
 
-        if (passing) {
+        if (onSubmit && passing) {
             const { error, success } = await onSubmit(values)
             if (success) {
                 setIsDropped(false)
                 
                 let newValues = []
                 let newSubmissions = []
-                boxes.forEach(() => {
+                boxes && boxes.forEach(() => {
                     newValues.push('')
                     newSubmissions.push(false)
                 })
@@ -88,13 +87,13 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                         <Text style={{
                             fontFamily: 'itim',
                             fontSize: 18,
-                            width: '20%',
+                            width: '30%',
                             paddingLeft: 4,
                         }}>{title}</Text>
                         <Text style={{
                             fontFamily: 'itim',
                             fontSize: 18,
-                            width: '72.5%',
+                            width: '62.5%',
                         }}>{value}</Text>
 
                         <TouchableOpacity center style={{
@@ -136,7 +135,7 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                                                 </TouchableOpacity>
                                             )}
                                         </View>
-                                        {submissions[index] && !box.regex.test(values[index]) && (
+                                        {boxes && submissions[index] && !box.regex.test(values[index]) && (
                                             <ErrorComponent error={box.error} />
                                         )}
                                     </View>

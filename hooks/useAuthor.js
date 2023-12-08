@@ -10,6 +10,7 @@ export default function useAuthor(author, requests) {
     const [cover, setCover] = useState('')
     const [iHeadshot, setIHeadshot] = useState(defaultHeadshot)
     const [iCover, setICover] = useState(defaultCover)
+    const [headshotAndCover, setHeadshotAndCover] = useState('')
     const [autobiography, setAutobiography] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -48,6 +49,7 @@ export default function useAuthor(author, requests) {
 
         if (request === 'headshot') set = setHeadshot
         else if (request === 'cover') set = setCover
+        else if (request === 'headshotAndCover') set = setHeadshotAndCover
         else if (request === 'autobiography') set = setAutobiography
         else if (request === 'firstName') set = setFirstName
         else if (request === 'lastName') set = setLastName
@@ -99,6 +101,8 @@ export default function useAuthor(author, requests) {
         setHeadshot,
         cover,
         setCover,
+        headshotAndCover,
+        setHeadshotAndCover,
         iHeadshot,
         setIHeadshot,
         iCover,

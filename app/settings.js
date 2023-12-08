@@ -11,21 +11,10 @@ import { regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAutho
 import { errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
 import { authorCheckCredentials, utilitySet } from '../data/api'
 import { edit } from '../data/utility'
-import { useNavigation } from 'expo-router'
 import DropDownComponent from '../components/DropDownComponent'
 
 const Settings = () => {
     const { user } = useContext(AppContext)
-    const navigation = useNavigation()
-    useEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <TouchableOpacity onPress={() => { console.log('hello') }}>
-                    <Ionicons name="checkmark" size={24} color={colors.textSuccess} />
-                </TouchableOpacity>
-            ),
-        });
-    }, [navigation])
 
     const {
         firstName: initialFirstName,
@@ -43,18 +32,89 @@ const Settings = () => {
         'email',
     ])
 
-    const [verified, setVerified] = useState(false)
-    const [values, setValues] = useState([])
-    console.log(values)
-
     const [email, setEmail] = useState(initialEmail)
     useEffect(() => {
         setEmail(initialEmail)
     }, [initialEmail])
-
+    const [firstName, setFirstName] = useState(initialFirstName)
+    useEffect(() => {
+        setFirstName(initialFirstName)
+    }, [initialFirstName])
+    const [lastName, setLastName] = useState(initialLastName)
+    useEffect(() => {
+        setLastName(initialLastName)
+    }, [initialLastName])
+    const [pseudonym, setPseudonym] = useState(initialPseudonym)
+    useEffect(() => {
+        setPseudonym(initialPseudonym)
+    }, [initialPseudonym])
 
     return (
         <View>
+            <DropDownComponent
+                title='First Name: '
+                value={firstName}
+                boxes={[
+                    {
+                        placeholder: 'New First Name',
+                        regex: regexAuthorFirstName,
+                        error: errorAuthorFirstName,
+                        autoCorrect: false,
+                        autoCapitalize: 'words',
+                        autoComplete: 'off',
+                    }
+                ]}
+                onSubmit={async (values) => {
+                    const response = await edit('Author', user, 'firstName', values[0])
+                    if (response.success) {
+                        setFirstName(values[0])
+                    }
+                    return response
+                }}
+            />
+            <DropDownComponent
+                title='Last Name:'
+                value={lastName}
+                boxes={[
+                    {
+                        placeholder: 'New Last Name',
+                        regex: regexAuthorLastName,
+                        error: errorAuthorLastName,
+                        autoCorrect: false,
+                        autoCapitalize: 'words',
+                        autoComplete: 'off'
+                    }
+                ]}
+                onSubmit={async (values) => {
+                    const response = await edit('Author', user, 'lastName', values[0])
+                    if (response.success) {
+                        setLastName(values[0])
+                    }
+                    return response
+                }}
+            />
+            <DropDownComponent
+                title='Pseudonym:'
+                value={pseudonym}
+                boxes={[
+                    {
+                        placeholder: 'New Pseudonym',
+                        regex: regexAuthorPseudonym,
+                        error: errorAuthorPseudonym,
+                        autoCorrect: false,
+                        autoCapitalize: 'none',
+                        autoComplete: 'off',
+                    }
+                ]}
+                onSubmit={async (values) => {
+                    const response = await edit('Author', user, 'pseudonym', values[0])
+                    if (response.success) {
+                        setPseudonym(values[0])
+                    }
+                    return response
+                }}
+            />
+
             <DropDownComponent
                 title='Email: '
                 value={email}
@@ -65,7 +125,7 @@ const Settings = () => {
                         error: errorAuthorEmail,
                         autoCorrect: false,
                         autoCapitalize: 'none',
-                        autoComplete: 'none',
+                        autoComplete: 'off',
                     },
                     {
                         placeholder: 'Password',
@@ -73,277 +133,22 @@ const Settings = () => {
                         error: errorAuthorPassword,
                         autoCorrect: false,
                         autoCapitalize: 'none',
-                        autoComplete: 'none',
+                        autoComplete: 'off',
                     }
                 ]}
                 onSubmit={async (values) => {
                     const response = await authorCheckCredentials(user, values[1])
                     if (response.success) {
-                        return {
-                            success: true,
+                        const response2 = await edit('Author', user, 'email', values[0])
+                        if (response2.success) {
+                            setEmail(values[0])
                         }
+                        return response2
                     }
-                    else {
-                        return {
-                            success: false,
-                            error: response.error,
-                        }
-                    }
+                    return response
                 }}
             />
         </View>
     )
-
-    // if (!verified) {
-    //     return (
-    //         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    //             <KeyboardAvoidingView behavior='padding'>
-    //                 <View style={{
-    //                     height: '100%',
-    //                     paddingTop: '10%',
-
-    //                 }} centerH>
-    //                     <FieldComponent
-    //                         placeholder={`Please Verify your Password`}
-    //                         width='80%'
-    //                         autoCapitalize='none'
-    //                         autoCorrect={false}
-    //                         onSubmit={async (password) => {
-    //                             const response = await authorCheckCredentials(user, password)
-    //                             if (!response.success) {
-    //                                 return {
-    //                                     message: response.error,
-    //                                     color: colors.textError,
-    //                                     success: false,
-    //                                 }
-    //                             }
-    //                             else {
-    //                                 setVerified(true)
-    //                                 Keyboard.dismiss()
-    //                                 return {
-    //                                     message: 'Successfully verified',
-    //                                     color: colors.textSuccess,
-    //                                     success: true,
-    //                                 }
-    //                             }
-    //                         }}
-    //                         validation={[
-    //                             {
-    //                                 test: (password) => {
-    //                                     if (!regexAuthorPassword.test(password)) {
-    //                                         return errorAuthorPassword
-    //                                     }
-    //                                     return null
-    //                                 },
-    //                                 color: colors.textError,
-    //                             },
-    //                         ]}
-    //                     />
-    //                 </View>
-    //             </KeyboardAvoidingView>
-    //         </TouchableWithoutFeedback>
-    //     )
-    // }
-    // else {
-    //     return (
-    //         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    //             <KeyboardAvoidingView behavior='padding'>
-    //                 <View style={{
-    //                     paddingVertical: 50,
-    //                 }} center>
-    //                     <FieldComponent
-    //                         placeholder={`First Name: ${firstName}`}
-    //                         width='80%'
-    //                         onSubmit={async (firstName) => {
-    //                             const response = await edit('Author', user, 'firstName', firstName)
-    //                             if (!response.success) {
-    //                                 return {
-    //                                     message: response.error,
-    //                                     color: colors.textError,
-    //                                     success: false,
-    //                                 }
-    //                             }
-    //                             else {
-    //                                 setFirstName(firstName)
-    //                                 return {
-    //                                     message: 'Successfully changed your first name',
-    //                                     color: colors.textSuccess,
-    //                                     success: true,
-    //                                 }
-    //                             }
-    //                         }}
-    //                         validation={[
-    //                             {
-    //                                 test: (firstName) => {
-    //                                     if (!regexAuthorFirstName.test(firstName)) {
-    //                                         return errorAuthorFirstName
-    //                                     }
-    //                                     return null
-    //                                 },
-    //                                 color: colors.textError,
-    //                             }
-    //                         ]}
-    //                     />
-
-    //                     <FieldComponent
-    //                         placeholder={`Last Name: ${lastName}`}
-    //                         width='80%'
-    //                         onSubmit={async (lastName) => {
-    //                             const response = await edit('Author', user, 'lastName', lastName)
-    //                             if (!response.success) {
-    //                                 return {
-    //                                     color: colors.textError,
-    //                                     message: response.error,
-    //                                     success: false,
-    //                                 }
-    //                             }
-    //                             else {
-    //                                 setLastName(lastName)
-    //                                 return {
-    //                                     color: colors.textSuccess,
-    //                                     message: 'Successfully changed your last name',
-    //                                     success: true
-    //                                 }
-    //                             }
-    //                         }}
-    //                         validation={[
-    //                             {
-    //                                 test: (lastName) => {
-    //                                     if (!regexAuthorLastName.test(lastName)) {
-    //                                         return errorAuthorLastName
-    //                                     }
-    //                                     return null
-    //                                 },
-    //                                 color: colors.textError,
-    //                             }
-    //                         ]}
-    //                     />
-
-    //                     <FieldComponent
-    //                         placeholder={`Pseudonym: ${pseudonym}`}
-    //                         width='80%'
-    //                         onSubmit={async (pseudonym) => {
-    //                             const response = await edit('Author', user, 'pseudonym', pseudonym)
-    //                             if (!response.success) {
-    //                                 return {
-    //                                     color: colors.textError,
-    //                                     message: response.error,
-    //                                     success: false,
-    //                                 }
-    //                             }
-    //                             else {
-    //                                 setPseudonym(pseudonym)
-    //                                 return {
-    //                                     color: colors.textSuccess,
-    //                                     message: 'Successfully changed your pseudonym',
-    //                                     success: true,
-    //                                 }
-    //                             }
-    //                         }}
-    //                         validation={[
-    //                             {
-    //                                 test: (pseudonym) => {
-    //                                     if (!regexAuthorPseudonym.test(pseudonym)) {
-    //                                         return errorAuthorPseudonym
-    //                                     }
-    //                                     return null
-    //                                 },
-    //                                 color: colors.textError,
-    //                             }
-    //                         ]}
-    //                     />
-
-    //                     <FieldComponent
-    //                         placeholder={`Email: ${email}`}
-    //                         width='80%'
-    //                         onSubmit={async (email) => {
-    //                             const response = await edit('Author', user, 'email', email)
-    //                             if (!response.success) {
-    //                                 return {
-    //                                     color: colors.textError,
-    //                                     message: response.error,
-    //                                     success: false,
-    //                                 }
-    //                             }
-    //                             else {
-    //                                 setEmail(email)
-    //                                 return {
-    //                                     color: colors.textSuccess,
-    //                                     message: 'Successfully changed your email, please check your inbox to verify',
-    //                                     success: true,
-    //                                 }
-    //                             }
-    //                         }}
-    //                         validation={[
-    //                             {
-    //                                 test: (email) => {
-    //                                     if (!regexAuthorEmail.test(email)) {
-    //                                         return errorAuthorEmail
-    //                                     }
-    //                                     return null
-    //                                 },
-    //                                 color: colors.textError,
-    //                             }
-    //                         ]}
-    //                     />
-
-    //                     <View>
-    //                         <FieldComponent
-    //                             placeholder={`New Password`}
-    //                             width={`${0.8 * 0.9 * 100}%`}
-    //                             validation={[
-    //                                 {
-    //                                     test: (password) => {
-    //                                         if (!regexAuthorPassword.test(password)) {
-    //                                             return errorAuthorPassword
-    //                                         }
-    //                                         return null
-    //                                     },
-    //                                     color: colors.textError,
-    //                                 }
-    //                             ]}
-    //                         />
-    //                         <View height={2} />
-
-    //                         <FieldComponent
-    //                             placeholder='Confirm New Password'
-    //                             width='80%'
-    //                             onSubmit={async (password) => {
-    //                                 const response = await edit('Author', user, 'password', password)
-    //                                 if (!response.success) {
-    //                                     return {
-    //                                         color: colors.textError,
-    //                                         message: response.error,
-    //                                         success: false,
-    //                                     }
-    //                                 }
-    //                                 else {
-    //                                     return {
-    //                                         color: colors.textSuccess,
-    //                                         message: 'Successfully changed your password',
-    //                                         success: true,
-    //                                     }
-    //                                 }
-    //                             }}
-    //                             validation={[
-    //                                 {
-    //                                     test: (password) => {
-    //                                         if (!regexAuthorPassword.test(password)) {
-    //                                             return errorAuthorPassword
-    //                                         }
-    //                                         return null
-    //                                     },
-    //                                     color: colors.textError,
-    //                                 },
-    //                             ]}
-    //                         />
-    //                     </View>
-
-    //                 </View>
-    //             </KeyboardAvoidingView>
-    //         </TouchableWithoutFeedback>
-    //     )
-    // }
 }
-
 export default Settings

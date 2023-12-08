@@ -13,11 +13,15 @@ const Layout = () => {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="(authentication)/signIn"
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="(authentication)/signUp"
@@ -39,12 +43,6 @@ const Layout = () => {
         <Stack.Screen
           name="settings"
           options={{
-            gestureEnabled: false,
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name='close' color={colors.textError} size={24} />
-              </TouchableOpacity>
-            ),
             headerTitle: 'Settings',
             headerTitleStyle: {
               fontFamily: 'playBold',
@@ -52,12 +50,22 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="scrapPicker"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="(tabs)"
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="loading"
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack>
     </AppContextProvider>
