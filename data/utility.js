@@ -130,3 +130,72 @@ export async function edit(modelName, id, key, value) {
         }
     }
 }
+
+
+// REQUIRES:    nothing
+// MODIFIES:    nothing
+// EFFECTS:     Gets the current date, them parses it for the month, day, and year.
+//              Then, it formats the month as its 3-letter acronym, the day with its
+//              suffix, and the year together. Then, returns the date object consisting
+//              of month, day, year, and formatted.
+export function getDate(newDate) {
+    const currentDate = newDate.toLocaleDateString()
+    const dateParts = currentDate.split('/')
+    const month = parseInt(dateParts[0], 10)
+    const day = parseInt(dateParts[1], 10)
+    const year = parseInt(dateParts[2], 10)
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const formattedMonth = monthNames[month - 1]
+    const formattedDay = day + (day === 1 || day === 21 || day === 31 ? 'st' : day === 2 || day === 22 ? 'nd' : day === 3 || day === 23 ? 'rd' : 'th')
+    const formattedYear = year
+    const date = `${formattedMonth} ${formattedDay}, ${formattedYear}`
+
+    return { month, day, year, date }
+}
+
+// REQUIRES:    nothing
+// MODIFIES:    nothing
+// EFFECTS:     Gets the current time, then parses it for the hour, minute and second.
+//              Then, it formats HR:MN:SC<pm/am> and returns the time object consisting
+//              of hour, minute, second and formatted.
+export function getTime(newDate) {
+    const currentTime = newDate.toLocaleTimeString()
+    const timeZone = getTimeZoneSymbol(newDate)
+    const timeParts = currentTime.split(':')
+    const hour = parseInt(timeParts[0], 10)
+    const minute = parseInt(timeParts[1], 10)
+    const second = parseInt(timeParts[2], 10)
+
+    const formattedHour = hour > 12 ? hour - 12 : hour
+    const formattedMinute = minute.toString().padStart(2, '0')
+    const period = hour >= 12 ? 'pm' : 'am'
+    const time = `${formattedHour}:${formattedMinute}${period} ${timeZone}`
+
+    return { hour, minute, second, timeZone, time }
+}
+
+
+export function getTimeZoneSymbol(newDate) {
+    const timeZoneAbbreviation = moment.tz(newDate, moment.tz.guess()).format('z')
+
+    return timeZoneAbbreviation
+}
+
+
+
+// REQUIRES:    stable connection to the google API
+//              permission from the user to get location
+// MODIFIES:    nothing
+// EFFECTS:     Gets the location of the user, then returns the latitude and longitude.
+export async function getLocation() {
+    let { status } = await Location.requestForegroundPermissionsAsync()
+    if (status !== 'granted') {
+        throw new Error('Permission to access location was denied')
+    }
+
+    const location = await Location.getCurrentPositionAsync({})
+    const { latitude, longitude } = location.coords
+
+    return { latitude, longitude }
+}

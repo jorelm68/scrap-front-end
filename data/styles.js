@@ -5,19 +5,12 @@ export const dimensions = Dimensions.get('window')
 export const light = {
     background: '#FFFFFF',
     secondary: Colors.grey50,
-    header: '#2C6AD3',
-    headerTitle: '#2C6AD3',
-    headerInteraction: '#2C6AD3',
-    placeholderText: '#666666',
-    textField: '#FFFFFF',
-    button1: Colors.blue1,
-    button1Text: '#FFFFFF',
-    button2: '#2C6AD3',
-    button2Text: '#2C6AD3',
-    text: '#2C6AD3',
-    textError: Colors.red5,
-    textSuccess: Colors.green5,
-    textInteracton: '#2C6AD3',
+    default: 'black',
+    inverse: 'white',
+    button: Colors.blue1,
+    error: Colors.red5,
+    success: Colors.green5,
+    interaction: '#2C6AD3',
 }
 export const dark = {
     background: '#000000',
@@ -34,3 +27,9 @@ export const dark = {
 }
 
 export const colors = light
+
+export const styles = {
+    text1: 'itim',
+    text2: 'jockeyOne',
+    text3: 'playBold',
+}

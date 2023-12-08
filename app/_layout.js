@@ -3,7 +3,7 @@ import React from 'react'
 import { Stack, useRouter } from 'expo-router'
 import AppContextProvider from '../context/AppContextProvider'
 import { Ionicons } from '@expo/vector-icons'
-import { colors } from '../data/styles'
+import { colors, styles } from '../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
 
 const Layout = () => {
@@ -36,8 +36,9 @@ const Layout = () => {
             presentation: 'modal',
             headerTitle: 'Choose your Account',
             headerTitleStyle: {
-              fontFamily: 'playBold',
-            }
+              fontFamily: styles.text3,
+              fontSize: 24,
+            },
           }}
         />
         <Stack.Screen
@@ -45,7 +46,8 @@ const Layout = () => {
           options={{
             headerTitle: 'Settings',
             headerTitleStyle: {
-              fontFamily: 'playBold',
+              fontFamily: styles.text3,
+              fontSize: 24,
             },
           }}
         />

@@ -85,13 +85,13 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                     <View row center style={{
                     }}>
                         <Text style={{
-                            fontFamily: 'itim',
+                            fontFamily: styles.text1,
                             fontSize: 18,
                             width: '30%',
                             paddingLeft: 4,
                         }}>{title}</Text>
                         <Text style={{
-                            fontFamily: 'itim',
+                            fontFamily: styles.text1,
                             fontSize: 18,
                             width: '62.5%',
                         }}>{value}</Text>
@@ -131,7 +131,7 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
                                                 <TouchableOpacity center style={{
                                                     width: '10%',
                                                 }} onPress={handleSubmit}>
-                                                    <Ionicons color={colors.textSuccess} name='checkmark' size={32} />
+                                                    <Ionicons color={colors.success} name='checkmark' size={32} />
                                                 </TouchableOpacity>
                                             )}
                                         </View>

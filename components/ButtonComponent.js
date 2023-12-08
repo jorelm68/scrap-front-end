@@ -9,14 +9,14 @@ const ButtonComponent = ({ label, size, onPress, width, icon, iconOnRight }) => 
             <Button
                 label={`${icon && !iconOnRight ? ' ' : ''}${label}${icon && iconOnRight ? ' ' : ''}`}
                 labelStyle={{
-                    color: colors.button1Text,
-                    fontFamily: 'itim',
+                    color: colors.default,
+                    fontFamily: styles.text1,
                 }}
                 size={size === 'large' ? Button.sizes.large : size === 'medium' ? Button.sizes.medium : size === 'small' ? Button.sizes.small : Button.sizes.xSmall}
-                backgroundColor={colors.button1}
+                backgroundColor={colors.button}
                 onPress={onPress}
                 
-                iconSource={() => <Ionicons name={icon} color={colors.button1Text} size={18} />}
+                iconSource={() => <Ionicons name={icon} color={colors.default} size={18} />}
                 iconOnRight={iconOnRight}
             />
         </View>

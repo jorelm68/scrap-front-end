@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../context/AppContext'
 import useAuthor from '../../hooks/useAuthor'
-import { colors, dimensions } from '../../data/styles'
+import { colors, dimensions, styles } from '../../data/styles'
 import { useNavigation, useRouter } from 'expo-router'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import ButtonComponent from '../../components/ButtonComponent'
@@ -98,7 +98,7 @@ const Profile = () => {
           marginLeft: 8,
           fontSize: 28,
           width: dimensions.width * (1 / 2 + 1 / 8),
-          fontFamily: 'jockeyOne',
+          fontFamily: styles.text2,
         }}>{name}</Text>
       </TouchableOpacity>
 
@@ -106,7 +106,7 @@ const Profile = () => {
         width: dimensions.width / 8 - 8,
         alignItems: 'center',
       }}>
-        <Ionicons name='settings' color={colors.button1} size={24} />
+        <Ionicons name='settings' color={colors.button} size={24} />
       </TouchableOpacity>
 
     </View>
@@ -117,11 +117,11 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.button1}>
+          }} backgroundColor={colors.button}>
             <Text style={{
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 16,
-              color: colors.button1Text,
+              color: colors.default,
             }}>Books</Text>
           </View>
         </TouchableOpacity>
@@ -130,11 +130,11 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.button1}>
+          }} backgroundColor={colors.button}>
             <Text style={{
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 16,
-              color: colors.button1Text,
+              color: colors.default,
             }}>Map</Text>
           </View>
         </TouchableOpacity>
@@ -143,11 +143,11 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginVertical: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.button1}>
+          }} backgroundColor={colors.button}>
             <Text style={{
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 16,
-              color: colors.button1Text,
+              color: colors.default,
             }}>Friends</Text>
           </View>
         </TouchableOpacity>
@@ -160,7 +160,7 @@ const Profile = () => {
           }}>
             <Text style={{
               padding: 4,
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 16,
               height: '100%',
             }}>
@@ -177,14 +177,14 @@ const Profile = () => {
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
           }}>
             <Text style={{
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 20,
             }}>
               {books.length}
             </Text>
           </View>
           <Text style={{
-            fontFamily: 'itim',
+            fontFamily: styles.text1,
             fontSize: 16,
             marginRight: 8,
           }}>Books</Text>
@@ -193,14 +193,14 @@ const Profile = () => {
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
           }}>
             <Text style={{
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 20,
             }}>
               {miles}
             </Text>
           </View>
           <Text style={{
-            fontFamily: 'itim',
+            fontFamily: styles.text1,
             fontSize: 16,
             marginRight: 8,
           }}>Miles</Text>
@@ -209,14 +209,14 @@ const Profile = () => {
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
           }}>
             <Text style={{
-              fontFamily: 'itim',
+              fontFamily: styles.text1,
               fontSize: 20,
             }}>
               {friends.length}
             </Text>
           </View>
           <Text style={{
-            fontFamily: 'itim',
+            fontFamily: styles.text1,
             fontSize: 16,
           }}>Friends</Text>
         </View>

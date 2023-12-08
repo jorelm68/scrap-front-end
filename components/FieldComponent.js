@@ -22,7 +22,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                 autoComplete={autoComplete}
                 style={{
                     paddingHorizontal: 8,
-                    fontFamily: 'itim',
+                    fontFamily: styles.text1,
                     height: 40,
                 }}
                 onChangeText={onChangeText}

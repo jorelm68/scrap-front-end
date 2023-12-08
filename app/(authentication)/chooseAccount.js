@@ -5,7 +5,7 @@ import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
 import { useRouter } from 'expo-router'
-import { colors } from '../../data/styles'
+import { colors, styles } from '../../data/styles'
 
 const ChooseAccount = () => {
     const router = useRouter()
@@ -73,14 +73,14 @@ const ChooseAccount = () => {
         return (
             <Drawer
                 rightItems={[
-                    { text: 'Sign In', background: colors.textSuccess, onPress: () => handleSignIn(item) },
-                    { text: 'Forget', background: colors.textError, onPress: () => handleForget(item) },
+                    { text: 'Sign In', background: colors.success, onPress: () => handleSignIn(item) },
+                    { text: 'Forget', background: colors.error, onPress: () => handleForget(item) },
                 ]}
                 leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
             >
                 <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: 1 }}>
                     <Text style={{
-                        fontFamily: 'jockeyOne',
+                        fontFamily: styles.text2,
                         fontSize: 18,
                     }}>{item.pseudonym}</Text>
                 </View>

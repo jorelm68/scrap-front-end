@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
+import { styles } from '../../data/styles'
 
 const Layout = () => {
     return (
@@ -12,6 +13,10 @@ const Layout = () => {
                     tabBarLabel: 'Feed',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'home'} size={size} color={color} />,
                     headerTitle: 'Feed',
+                    headerTitleStyle: {
+                        fontFamily: styles.text3,
+                        fontSize: 24,
+                    }
                 }}
             />
             <Tabs.Screen
@@ -20,6 +25,10 @@ const Layout = () => {
                     tabBarLabel: 'Search',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'search'} size={size} color={color} />,
                     headerTitle: 'Search',
+                    headerTitleStyle: {
+                        fontFamily: styles.text3,
+                        fontSize: 24,
+                    }
                 }}
             />
             <Tabs.Screen
@@ -27,7 +36,11 @@ const Layout = () => {
                 options={{
                     tabBarLabel: 'Camera',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'camera'} size={size} color={color} />,
-                    headerTitle: 'Camera',
+                    headerTitle: 'Scrap',
+                    headerTitleStyle: {
+                        fontFamily: styles.text3,
+                        fontSize: 24,
+                    }
                 }}
             />
             <Tabs.Screen
@@ -36,6 +49,10 @@ const Layout = () => {
                     tabBarLabel: 'Library',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'library'} size={size} color={color} />,
                     headerTitle: 'Library',
+                    headerTitleStyle: {
+                        fontFamily: styles.text3,
+                        fontSize: 24,
+                    }
                 }}
             />
             <Tabs.Screen
@@ -45,7 +62,7 @@ const Layout = () => {
                     tabBarIcon: ({ size, color }) => <Ionicons name={'person'} size={size} color={color} />,
                     headerTitle: 'Profile',
                     headerTitleStyle: {
-                        fontFamily: 'playBold',
+                        fontFamily: styles.text3,
                         fontSize: 24,
                     }                   
                 }}
