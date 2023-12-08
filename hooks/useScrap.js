@@ -5,6 +5,7 @@ import Cache from '../data/cache'
 
 export default function useScrap(scrap, requests) {
     const { user } = useContext(AppContext)
+    const [isCanceled, setIsCanceled] = useState(false)
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -31,12 +32,10 @@ export default function useScrap(scrap, requests) {
         }
     }
 
-    const processRequest = (request, promises) => {
+    const processRequest = async (request, promises) => {
         let set = (blank) => { console.log('blank setter: ', blank) }
 
-        if (request.includes('iRetrograph')) set = setIRetrograph
-        else if (request.includes('iPrograph')) set = setIPrograph
-        else if (request === 'retrograph') set = setRetrograph
+        if (request === 'retrograph') set = setRetrograph
         else if (request === 'prograph') set = setPrograph
         else if (request === 'title') set = setTitle
         else if (request === 'description') set = setDescription
@@ -46,7 +45,19 @@ export default function useScrap(scrap, requests) {
         else if (request === 'place') set = setPlace
         else if (request === 'threads') set = setThreads
 
-        promises.push(get('Scrap', scrap, request, set))
+        if (request.includes('iRetrograph')) {
+            const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
+            const iRetrograph = await Cache.getPhoto(retrograph, request.split('->')[1])
+            setIRetrograph(iRetrograph)
+        }
+        else if (request.includes('iPrograph')) {
+            const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+            const iPrograph = await Cache.getPhoto(prograph, request.split('->')[1])
+            setIPrograph(iPrograph)
+        }
+        else {
+            promises.push(get('Scrap', scrap, request, set))
+        }
     }
 
     useEffect(() => {

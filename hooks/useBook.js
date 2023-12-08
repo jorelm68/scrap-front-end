@@ -7,6 +7,7 @@ import { showAlert } from '../data/utility'
 
 export default function useBook(book, requests) {
     const { user } = useContext(AppContext)
+    const [isCanceled, setIsCanceled] = useState(false)
 
     const [cover, setCover] = useState('')
     const [iCover, setICover] = useState(defaultImage)
@@ -22,10 +23,10 @@ export default function useBook(book, requests) {
         if (!modelName || !identifier || !field || !setResponse) return undefined
         try {
             let response = null
-            response = await Cache.get(modelName, identifier, field, user)
-            setResponse(response)
+            if (!isCanceled) response = await Cache.get(modelName, identifier, field, user)
+            if (!isCanceled) setResponse(response)
         } catch (error) {
-            handleError()
+            if (!isCanceled) handleError()
         }
     }
 

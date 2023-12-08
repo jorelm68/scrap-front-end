@@ -1,13 +1,19 @@
 import { View, Text } from 'react-native-ui-lib'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
 import { colors, dimensions, styles } from '../../data/styles'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
+import { scrapSaveScrap } from '../../data/api'
+import AppContext from '../../context/AppContext'
 
 const CameraScreen = () => {
+  const { user } = useContext(AppContext)
+
+  const router = useRouter()
   const [dateAndTimeDisplay, setDateAndTimeDisplay] = useState('')
   const [locationDisplay, setLocationDisplay] = useState('')
   const [permission, requestPermission] = Camera.useCameraPermissions()
@@ -17,6 +23,9 @@ const CameraScreen = () => {
   const [light, setLight] = useState(Camera.Constants.FlashMode.off)
   const [showButtons, setShowButtons] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0); // Initialize with 0 (no zoom)
+  const [scrap, setScrap] = useState({
+    author: user,
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,6 +34,10 @@ const CameraScreen = () => {
       const time = getTime(newDate)
 
       setDateAndTimeDisplay(`${date.date} ${time.time}`)
+      setScrap((prevScrap) => ({
+        ...prevScrap,
+        createdAt: newDate,
+      }))
     }, 1000)
 
     return () => {
@@ -36,6 +49,11 @@ const CameraScreen = () => {
     getLocation()
       .then(location => {
         setLocationDisplay(`${location.latitude}, ${location.longitude}`)
+        setScrap((prevScrap) => ({
+          ...prevScrap,
+          latitude: location.latitude,
+          longitude: location.longitude,
+        }))
       })
 
     setTimeout(() => {
@@ -49,19 +67,81 @@ const CameraScreen = () => {
     const newZoom = Math.min(zoomLevel + 0.015, 1);
     setZoomLevel(newZoom);
   };
-
   const handleZoomOut = () => {
     const newZoom = Math.max(zoomLevel - 0.015, 0);
     setZoomLevel(newZoom);
   };
-
   const handleFlipCamera = () => {
     setDirection(current => (current === CameraType.back ? CameraType.front : CameraType.back))
   }
 
   const handleTakeScrap = async () => {
-  }
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+    if (permission && permission.granted) {
+      setShowButtons(false)
+
+      if (flash) {
+        setLight(Camera.Constants.FlashMode.torch)
+      }
+      await delay(100)
+
+      let firstPicture = await camera.takePictureAsync()
+
+      handleFlipCamera()
+      await delay(1500)
+
+      let secondPicture = await camera.takePictureAsync()
+
+      await delay(100)
+
+      const firstPictureResized = await ImageManipulator.manipulateAsync(
+        firstPicture.uri,
+        [{ resize: { width: 1080 } }], // resize to width and preserve aspect ratio 
+        { compress: 0.7, format: 'jpeg' },
+      )
+      firstPicture = { uri: firstPictureResized.uri }
+
+      const secondPictureResized = await ImageManipulator.manipulateAsync(
+        secondPicture.uri,
+        [{ resize: { width: 1080 } }], // resize to width and preserve aspect ratio 
+        { compress: 0.7, format: 'jpeg' },
+      )
+      secondPicture = { uri: secondPictureResized.uri }
+
+      if (direction === CameraType.back) {
+        setScrap((prevScrap) => ({
+          ...prevScrap,
+          iPrograph: firstPicture,
+          iRetrograph: secondPicture,
+        }))
+      }
+      else if (direction === CameraType.front) {
+        setScrap((prevScrap) => ({
+          ...prevScrap,
+          iPrograph: secondPicture,
+          iRetrograph: firstPicture,
+        }))
+      }
+
+      router.push('/loading')
+
+      if (scrap.latitude !== undefined && scrap.longitude !== undefined && scrap.iPrograph !== undefined && scrap.iRetrograph !== undefined && scrap.createdAt !== undefined) {
+        scrapSaveScrap(scrap).then((response) => {
+          setScrap({
+            author: user,
+          })
+          router.back()
+        })
+      }
+      else {
+        console.log('unloaded')
+      }
+    }
+    else {
+      await requestPermission()
+    }
+  }
 
   return (
     <View center>

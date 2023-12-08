@@ -248,17 +248,15 @@ export async function scrapSaveScrap(scrap) {
     const route = `api/scraps/saveScrap`
     const data = {
         ...scrap,
-        likes: JSON.stringify(scrap.likes),
-        threads: JSON.stringify(scrap.threads),
-        prograph: {
-            uri: scrap.prograph.uri,
+        iPrograph: {
+            uri: scrap.iPrograph.uri,
             type: 'image/jpeg',
-            name: 'prograph',
+            name: 'iPrograph',
         },
-        retrograph: {
-            uri: scrap.retrograph.uri,
+        iRetrograph: {
+            uri: scrap.iRetrograph.uri,
             type: 'image/jpeg',
-            name: 'retrograph',
+            name: 'iRetrograph',
         },
     }
     return await handleResponse(route, data, 'post')
