@@ -4,14 +4,19 @@ import AppContext from './AppContext'
 const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
     const [user, setUser] = useState('bruh')
-    const [newScrap, setNewScrap] = useState({})
-    const [newBook, setNewBook] = useState({})
-    const [loading, setLoading] = useState(true)
-    const [authenticated, setAuthenticated] = useState(false)
-    const [offline, setOffline] = useState(true)
+    const [scrap, setScrap] = useState({})
     const [accounts, setAccounts] = useState([])
-    const [query, setQuery] = useState('')
-    const [results, setResults] = useState([])
+    const [isSaving, setIsSaving] = useState(false)
+    const [offline, setOffline] = useState(false)
+    const [authenticated, setAuthenticated] = useState(false)
+    const [showButtons, setShowButtons] = useState(false)
+
+    useEffect(() => {
+        setScrap((prevScrap) => ({
+            ...prevScrap,
+            author: user,
+        }))
+    }, [user])
 
     // You can also define functions or any other data that you want to share
     
@@ -19,22 +24,18 @@ const AppContextProvider = ({ children }) => {
     const sharedValues = {
         user,
         setUser,
-        newScrap,
-        setNewScrap,
-        newBook,
-        setNewBook,
-        loading,
-        setLoading,
-        authenticated,
-        setAuthenticated,
-        offline,
-        setOffline,
+        scrap,
+        setScrap,
         accounts,
         setAccounts,
-        query,
-        setQuery,
-        results,
-        setResults,
+        isSaving,
+        setIsSaving,
+        offline,
+        setOffline,
+        authenticated,
+        setAuthenticated,
+        showButtons,
+        setShowButtons,
         // ... other shared data and functions
     }
 

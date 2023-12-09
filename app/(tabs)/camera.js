@@ -11,7 +11,7 @@ import { scrapSaveScrap } from '../../data/api'
 import AppContext from '../../context/AppContext'
 
 const CameraScreen = () => {
-  const { user } = useContext(AppContext)
+  const { scrap, setScrap, isSaving, setIsSaving, showButtons, setShowButtons } = useContext(AppContext)
 
   const router = useRouter()
   const [dateAndTimeDisplay, setDateAndTimeDisplay] = useState('')
@@ -21,24 +21,13 @@ const CameraScreen = () => {
   const [camera, setCamera] = useState(null)
   const [flash, setFlash] = useState(false)
   const [light, setLight] = useState(Camera.Constants.FlashMode.off)
-  const [showButtons, setShowButtons] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0); // Initialize with 0 (no zoom)
-  const [isSending, setIsSending] = useState(false)
-  const [scrap, setScrap] = useState({
-    author: user,
-  })
+
   useEffect(() => {
-    if (!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSending) {
-      console.log('unloaded: ', scrap)
+    if (!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving) {
     } else {
-      console.log('sending')
-      setIsSending(true);
-      scrapSaveScrap(scrap).then((response) => {
-        console.log(response);
-        setScrap({ author: user });
-        setIsSending(false);
-        router.back()
-      });
+      setIsSaving(true)
+      router.push('/saveScrap')
     }
   }, [scrap]);
 
@@ -91,6 +80,7 @@ const CameraScreen = () => {
   }
 
   const handleTakeScrap = async () => {
+    setShowButtons(false)
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
     if (permission && permission.granted) {

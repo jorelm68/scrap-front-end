@@ -11,7 +11,6 @@ const Library = () => {
   } = useAuthor(user, [
     'scraps',
   ])
-  console.log(scraps)
 
   return (
     <View style={{

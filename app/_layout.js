@@ -1,10 +1,10 @@
 import { View, Text, Keyboard } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Stack, useRouter } from 'expo-router'
-import AppContextProvider from '../context/AppContextProvider'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles } from '../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
+import AppContextProvider from '../context/AppContextProvider'
 
 const Layout = () => {
   const router = useRouter()
@@ -49,6 +49,17 @@ const Layout = () => {
               fontFamily: styles.text3,
               fontSize: 24,
             },
+          }}
+        />
+        <Stack.Screen
+          name='saveScrap'
+          options={{
+            headerTitle: 'Scrap',
+            headerTitleStyle: {
+              fontfamily: styles.text3,
+              fontSize: 24,
+            },
+            headerLeft: () => {}
           }}
         />
         <Stack.Screen
