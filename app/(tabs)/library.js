@@ -11,9 +11,14 @@ const Library = () => {
   } = useAuthor(user, [
     'scraps',
   ])
+  console.log(scraps)
 
   return (
-    <View>
+    <View style={{
+      flex: 1,
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+    }}>
       {scraps && scraps.length > 0 && scraps.map((scrap) => {
         return (
           <ScrapComponent scrap={scrap} key={scrap} />

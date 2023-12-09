@@ -11,12 +11,11 @@ const ScrapComponent = ({ scrap }) => {
         'iPrograph->1080',
         'iRetrograph->1080'
     ])
-    console.log(scrap)
 
     return (
         <View center>
-            <Image width={dimensions.width / 3} height={dimensions.width / 3} source={iRetrograph} />
-            <Image width={dimensions.width} height={dimensions.width} source={iPrograph} />
+            <Image width={100} height={100} source={iRetrograph} />
+            <Image width={100} height={100} source={iPrograph} />
         </View>
     )
 }

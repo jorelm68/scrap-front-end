@@ -23,9 +23,24 @@ const CameraScreen = () => {
   const [light, setLight] = useState(Camera.Constants.FlashMode.off)
   const [showButtons, setShowButtons] = useState(false)
   const [zoomLevel, setZoomLevel] = useState(0); // Initialize with 0 (no zoom)
+  const [isSending, setIsSending] = useState(false)
   const [scrap, setScrap] = useState({
     author: user,
   })
+  useEffect(() => {
+    if (!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSending) {
+      console.log('unloaded: ', scrap)
+    } else {
+      console.log('sending')
+      setIsSending(true);
+      scrapSaveScrap(scrap).then((response) => {
+        console.log(response);
+        setScrap({ author: user });
+        setIsSending(false);
+        router.back()
+      });
+    }
+  }, [scrap]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,23 +60,23 @@ const CameraScreen = () => {
     }
   }, [])
 
-  useEffect(() => {
-    getLocation()
-      .then(location => {
-        setLocationDisplay(`${location.latitude}, ${location.longitude}`)
-        setScrap((prevScrap) => ({
-          ...prevScrap,
-          latitude: location.latitude,
-          longitude: location.longitude,
-        }))
-      })
+  const processLocation = async () => {
+    const location = await getLocation()
+    setLocationDisplay(`${location.latitude}, ${location.longitude}`)
+    setScrap((prevScrap) => ({
+      ...prevScrap,
+      latitude: location.latitude,
+      longitude: location.longitude,
+    }))
+  }
 
+  useEffect(() => {
+    processLocation()
     setTimeout(() => {
       setShowButtons(true)
       if (!permission) requestPermission()
     }, 1000)
   }, [])
-
 
   const handleZoomIn = () => {
     const newZoom = Math.min(zoomLevel + 0.015, 1);
@@ -125,18 +140,6 @@ const CameraScreen = () => {
       }
 
       router.push('/loading')
-
-      if (scrap.latitude !== undefined && scrap.longitude !== undefined && scrap.iPrograph !== undefined && scrap.iRetrograph !== undefined && scrap.createdAt !== undefined) {
-        scrapSaveScrap(scrap).then((response) => {
-          setScrap({
-            author: user,
-          })
-          router.back()
-        })
-      }
-      else {
-        console.log('unloaded')
-      }
     }
     else {
       await requestPermission()
