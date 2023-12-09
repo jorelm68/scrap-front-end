@@ -6,14 +6,16 @@ import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
-import { useRouter } from 'expo-router'
+import { useNavigation, useRouter } from 'expo-router'
 import { scrapSaveScrap } from '../../data/api'
 import AppContext from '../../context/AppContext'
 
 const CameraScreen = () => {
-  const { scrap, setScrap, isSaving, setIsSaving, showButtons, setShowButtons } = useContext(AppContext)
-
-  const router = useRouter()
+  const { user } = useContext(AppContext)
+  const navigation = useNavigation()
+  const [scrap, setScrap] = useState({
+    author: user,
+  })
   const [dateAndTimeDisplay, setDateAndTimeDisplay] = useState('')
   const [locationDisplay, setLocationDisplay] = useState('')
   const [permission, requestPermission] = Camera.useCameraPermissions()
@@ -21,15 +23,70 @@ const CameraScreen = () => {
   const [camera, setCamera] = useState(null)
   const [flash, setFlash] = useState(false)
   const [light, setLight] = useState(Camera.Constants.FlashMode.off)
-  const [zoomLevel, setZoomLevel] = useState(0); // Initialize with 0 (no zoom)
+  const [zoomLevel, setZoomLevel] = useState(0) // Initialize with 0 (no zoom)
+  const [showButtons, setShowButtons] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  console.log(scrap, isSaving)
+
+  const savingHeader = () => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={async () => {
+          setIsLoading(true)
+          const response = await scrapSaveScrap(scrap)
+          if (!response.success) {
+            Alert.alert('Error', response.error)
+          }
+          setScrap({
+            author: user,
+            latitude: scrap.latitude,
+            longitude: scrap.longitude,
+          })
+          setIsSaving(false)
+          setIsLoading(false)
+          setShowButtons(true)
+        }}>
+          <Ionicons name='checkmark' color={colors.success} size={32} />
+        </TouchableOpacity>
+      ),
+      headerLeft: () => ( // Corrected headerLeft configuration
+        <TouchableOpacity onPress={() => {
+          setScrap({
+            author: user,
+            latitude: scrap.latitude,
+            longitude: scrap.longitude,
+          })
+          setIsSaving(false)
+          setShowButtons(true)
+        }}>
+          <Ionicons name='close' color={colors.error} size={32} />
+        </TouchableOpacity>
+      ), // Don't forget the closing parenthesis for headerLeft
+    })
+  }
+  const cameraHeader = () => {
+    navigation.setOptions({
+      headerRight: () => { },
+      headerLeft: () => { }
+    })
+  }
+  useEffect(() => {
+    if (isSaving && !isLoading) {
+      savingHeader()
+    }
+    else {
+      cameraHeader()
+    }
+
+  }, [isSaving, isLoading, navigation])
 
   useEffect(() => {
-    if (!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving) {
-    } else {
+    if (!(!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving)) {
       setIsSaving(true)
-      router.push('/saveScrap')
+      setIsLoading(false)
     }
-  }, [scrap]);
+  }, [scrap])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,13 +125,13 @@ const CameraScreen = () => {
   }, [])
 
   const handleZoomIn = () => {
-    const newZoom = Math.min(zoomLevel + 0.015, 1);
-    setZoomLevel(newZoom);
-  };
+    const newZoom = Math.min(zoomLevel + 0.015, 1)
+    setZoomLevel(newZoom)
+  }
   const handleZoomOut = () => {
-    const newZoom = Math.max(zoomLevel - 0.015, 0);
-    setZoomLevel(newZoom);
-  };
+    const newZoom = Math.max(zoomLevel - 0.015, 0)
+    setZoomLevel(newZoom)
+  }
   const handleFlipCamera = () => {
     setDirection(current => (current === CameraType.back ? CameraType.front : CameraType.back))
   }
@@ -129,84 +186,103 @@ const CameraScreen = () => {
         }))
       }
 
-      router.push('/loading')
+      handleFlipCamera()
+      setIsLoading(true)
     }
     else {
       await requestPermission()
     }
   }
 
+  if (isLoading) {
+    return (
+      <View>
+        <Text>LoADING</Text>
+      </View>
+    )
+  }
+
   return (
-    <View center>
-      <View height='8%' style={{
-        justifyContent: 'center',
-      }}>
-        <Text style={{
-          color: colors.text,
-          fontFamily: styles.text2,
-          fontSize: 24,
-        }}>{dateAndTimeDisplay}</Text>
-      </View>
-
-      <View height='8%' style={{
-        justifyContent: 'center',
-      }}>
-        <Text style={{
-          color: colors.text,
-          fontFamily: styles.text2,
-          fontSize: 24,
-        }}>{locationDisplay}</Text>
-      </View>
-
-      <View height='84%'>
-        <Camera
-          style={{
-            width: dimensions.width,
-            height: dimensions.width,
-          }}
-          type={direction}
-          ref={(ref) => setCamera(ref)}
-          flashMode={light}
-          zoom={zoomLevel} // Apply the zoom level
-        />
-
-        {permission && permission.granted && showButtons && (
-          <View center>
-            <TouchableOpacity style={{
-              marginBottom: 8,
-            }} onPress={() => handleTakeScrap()}>
-              <Ionicons name='scan' color={styles.inverse} size={80} />
-            </TouchableOpacity>
-
-            <View row>
-              <View width='25%' center>
-                <TouchableOpacity onPress={handleZoomOut}>
-                  <Ionicons name='remove' size={35} />
-                </TouchableOpacity>
-              </View>
-
-              <View width='25%' center>
-                <TouchableOpacity onPress={() => setFlash(!flash)}>
-                  {flash && <Ionicons name='flash' color={styles.inverse} size={35} />}
-                  {!flash && <Ionicons name='flash-off' color={styles.inverse} size={35} />}
-                </TouchableOpacity>
-              </View>
-
-              <View width='25%' center>
-                <TouchableOpacity onPress={() => handleFlipCamera()}>
-                  <Ionicons name='refresh' color={styles.inverse} size={35} />
-                </TouchableOpacity>
-              </View>
-
-              <View width='25%' center>
-                <TouchableOpacity onPress={handleZoomIn}>
-                  <Ionicons name='add' color={styles.inverse} size={35} />
-                </TouchableOpacity>
-              </View>
-            </View>
+    <View>
+      {!isSaving && (
+        <View center>
+          <View height='8%' style={{
+            justifyContent: 'center',
+          }}>
+            <Text style={{
+              color: colors.text,
+              fontFamily: styles.text2,
+              fontSize: 24,
+            }}>{dateAndTimeDisplay}</Text>
           </View>
-        )}
-      </View>
+
+          <View height='8%' style={{
+            justifyContent: 'center',
+          }}>
+            <Text style={{
+              color: colors.text,
+              fontFamily: styles.text2,
+              fontSize: 24,
+            }}>{locationDisplay}</Text>
+          </View>
+
+          <View height='84%'>
+            <Camera
+              style={{
+                width: dimensions.width,
+                height: dimensions.width,
+              }}
+              type={direction}
+              ref={(ref) => setCamera(ref)}
+              flashMode={light}
+              zoom={zoomLevel} // Apply the zoom level
+            />
+
+            {permission && permission.granted && showButtons && (
+              <View center>
+                <TouchableOpacity style={{
+                  marginBottom: 8,
+                }} onPress={() => handleTakeScrap()}>
+                  <Ionicons name='scan' color={styles.inverse} size={80} />
+                </TouchableOpacity>
+
+                <View row>
+                  <View width='25%' center>
+                    <TouchableOpacity onPress={handleZoomOut}>
+                      <Ionicons name='remove' size={35} />
+                    </TouchableOpacity>
+                  </View>
+
+                  <View width='25%' center>
+                    <TouchableOpacity onPress={() => setFlash(!flash)}>
+                      {flash && <Ionicons name='flash' color={styles.inverse} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={styles.inverse} size={35} />}
+                    </TouchableOpacity>
+                  </View>
+
+                  <View width='25%' center>
+                    <TouchableOpacity onPress={() => handleFlipCamera()}>
+                      <Ionicons name='refresh' color={styles.inverse} size={35} />
+                    </TouchableOpacity>
+                  </View>
+
+                  <View width='25%' center>
+                    <TouchableOpacity onPress={handleZoomIn}>
+                      <Ionicons name='add' color={styles.inverse} size={35} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            )}
+          </View>
+        </View>
+      )}
+
+      {isSaving && (
+        <View>
+          <Text>SaveScrap</Text>
+        </View>
+      )}
     </View>
   )
 }

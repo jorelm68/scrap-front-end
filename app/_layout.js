@@ -52,17 +52,6 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
-          name='saveScrap'
-          options={{
-            headerTitle: 'Scrap',
-            headerTitleStyle: {
-              fontfamily: styles.text3,
-              fontSize: 24,
-            },
-            headerLeft: () => {}
-          }}
-        />
-        <Stack.Screen
           name="scrapPicker"
           options={{
             headerShown: false,
