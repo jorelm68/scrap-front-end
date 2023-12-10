@@ -68,13 +68,15 @@ export default function useAuthor(author, requests) {
         else if (request === 'actions') set = setActions
 
         if (request.includes('iHeadshot')) {
-            const headshot = await Cache.get('Author', author, 'headshot', user)
-            const iHeadshot = await Cache.getPhoto(headshot, request.split('->')[1])
+            const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
+            const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
+            const iHeadshot = await Cache.getPhoto(retrograph, request.split('->')[1])
             setIHeadshot(iHeadshot)
         }
         else if (request.includes('iCover')) {
-            const cover = await Cache.get('Author', author, 'cover', user)
-            const iCover = await Cache.getPhoto(cover, request.split('->')[1])
+            const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
+            const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+            const iCover = await Cache.getPhoto(prograph, request.split('->')[1])
             setICover(iCover)
         }
         else {

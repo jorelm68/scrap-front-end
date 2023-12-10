@@ -1,16 +1,28 @@
-import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import { Ionicons } from '@expo/vector-icons'
 import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import FieldComponent from './FieldComponent'
 import ErrorComponent from './ErrorComponent'
-import { colors } from '../data/styles'
+import { styles, colors, dimensions } from '../data/styles'
+import useScrap from '../hooks/useScrap'
+import { useRouter } from 'expo-router'
+import AppContext from '../context/AppContext'
 
-const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
+const DropDownComponent = ({ title, value, onSubmit, amount, type, boxes, options }) => {
+    const router = useRouter()
     const [isDropped, setIsDropped] = useState(false)
     const [values, setValues] = useState([])
     const [submissions, setSubmissions] = useState([])
     const [error, setError] = useState('')
+
+    const {
+        iPrograph,
+        iRetrograph,
+    } = (type === 'Scrap') ? useScrap(value, [
+        'iPrograph->1080',
+        'iRetrograph->1080',
+    ]) : {}
 
     useEffect(() => {
         let newValues = []
@@ -42,7 +54,7 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
             const { error, success } = await onSubmit(values)
             if (success) {
                 setIsDropped(false)
-                
+
                 let newValues = []
                 let newSubmissions = []
                 boxes && boxes.forEach(() => {
@@ -74,77 +86,127 @@ const DropDownComponent = ({ title, value, onSubmit, boxes }) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
+        <TouchableWithoutFeedback onPress={(type === 'Scrap') ? () => {
+            router.push({
+                pathname: '/scrapPicker', params: {
+                    scraps: JSON.stringify(options),
+                    amount: JSON.stringify(amount),
+                    functionName: onSubmit,
+                }
+            })
+        } : () => {
             setIsDropped(!isDropped)
-        }}>
+         }}>
             <KeyboardAvoidingView behavior='padding'>
-                <View centerV style={{
-                    minHeight: 48,
-                    borderBottomWidth: 1,
-                }}>
-                    <View row center style={{
+                {type === 'Scrap' && (
+                    <View centerV style={{
+                        minHeight: 48,
+                        borderBottomWidth: 1,
                     }}>
-                        <Text style={{
-                            fontFamily: styles.text1,
-                            fontSize: 18,
-                            width: '30%',
-                            paddingLeft: 4,
-                        }}>{title}</Text>
-                        <Text style={{
-                            fontFamily: styles.text1,
-                            fontSize: 18,
-                            width: '62.5%',
-                        }}>{value}</Text>
-
-                        <TouchableOpacity center style={{
-                            width: '7.5%',
-                            height: 48,
-                        }} onPress={() => {
-                            setIsDropped(!isDropped)
+                        <View row center style={{
                         }}>
-                            <Ionicons style={{
-                            }} name={isDropped ? 'chevron-down' : 'chevron-forward'} size={24} />
-                        </TouchableOpacity>
-                    </View>
+                            <Text style={{
+                                fontFamily: styles.text1,
+                                fontSize: 18, width: '30%',
+                                paddingLeft: 4,
+                            }}>{title}</Text>
 
-                    {isDropped && (
-                        <View>
-                            {boxes && boxes.length > 0 && boxes.map((box, index) => {
-                                return (
-                                    <View key={index}>
-                                        <View row style={{
-                                            paddingVertical: 8,
-                                            paddingHorizontal: 4,
-                                        }}>
-                                            <FieldComponent
-                                                placeholder={box.placeholder}
-                                                autoCapitalize={box.autoCapitalize}
-                                                autoCorrect={box.autoCorrect}
-                                                autoComplete={box.autoComplete}
-                                                width={index === boxes.length - 1 ? '90%' : '100%'}
-                                                value={values[index]}
-                                                onChangeText={(text) => {
-                                                    handleChangeField(index, text)
-                                                }}
-                                            />
-                                            {index === boxes.length - 1 && (
-                                                <TouchableOpacity center style={{
-                                                    width: '10%',
-                                                }} onPress={handleSubmit}>
-                                                    <Ionicons color={colors.success} name='checkmark' size={32} />
-                                                </TouchableOpacity>
+                            <View style={{
+                                width: '62.5%',
+                            }}>
+                                <Image source={iPrograph} style={{
+                                    width: '100%',
+                                    aspectRatio: 3,
+                                    borderRadius: 8,
+                                }} />
+                                <Image source={iRetrograph} style={{
+                                    position: 'absolute',
+                                    width: `${(1 / 3) / 2 * 100}%`,
+                                    aspectRatio: 1,
+                                    borderRadius: 100,
+                                    bottom: 0,
+                                }} />
+                            </View>
+
+                            <View center style={{
+                                width: '7.5%',
+                                height: 48,
+                            }}>
+                                <Ionicons style={{
+                                }} name='pencil' size={24} />
+                            </View>
+                        </View>
+                    </View>
+                )}
+                {type === 'Text' && (
+                    <View centerV style={{
+                        minHeight: 48,
+                        borderBottomWidth: 1,
+                    }}>
+                        <View row center style={{
+                        }}>
+                            <Text style={{
+                                fontFamily: styles.text1,
+                                fontSize: 18,
+                                width: '30%',
+                                paddingLeft: 4,
+                            }}>{title}</Text>
+                            <Text style={{
+                                fontFamily: styles.text1,
+                                fontSize: 18,
+                                width: '62.5%',
+                            }}>{value}</Text>
+
+                            <TouchableOpacity center style={{
+                                width: '7.5%',
+                                height: 48,
+                            }} onPress={() => {
+                                setIsDropped(!isDropped)
+                            }}>
+                                <Ionicons style={{
+                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} size={24} />
+                            </TouchableOpacity>
+                        </View>
+
+                        {isDropped && (
+                            <View>
+                                {boxes && boxes.length > 0 && boxes.map((box, index) => {
+                                    return (
+                                        <View key={index}>
+                                            <View row style={{
+                                                paddingVertical: 8,
+                                                paddingHorizontal: 4,
+                                            }}>
+                                                <FieldComponent
+                                                    placeholder={box.placeholder}
+                                                    autoCapitalize={box.autoCapitalize}
+                                                    autoCorrect={box.autoCorrect}
+                                                    autoComplete={box.autoComplete}
+                                                    width={index === boxes.length - 1 ? '90%' : '100%'}
+                                                    value={values[index]}
+                                                    onChangeText={(text) => {
+                                                        handleChangeField(index, text)
+                                                    }}
+                                                />
+                                                {index === boxes.length - 1 && (
+                                                    <TouchableOpacity center style={{
+                                                        width: '10%',
+                                                    }} onPress={handleSubmit}>
+                                                        <Ionicons color={colors.success} name='checkmark' size={32} />
+                                                    </TouchableOpacity>
+                                                )}
+                                            </View>
+                                            {boxes && submissions[index] && !box.regex.test(values[index]) && (
+                                                <ErrorComponent error={box.error} />
                                             )}
                                         </View>
-                                        {boxes && submissions[index] && !box.regex.test(values[index]) && (
-                                            <ErrorComponent error={box.error} />
-                                        )}
-                                    </View>
-                                )
-                            })}
-                            <ErrorComponent error={error} />
-                        </View>
-                    )}
-                </View>
+                                    )
+                                })}
+                                <ErrorComponent error={error} />
+                            </View>
+                        )}
+                    </View>
+                )}
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
     )

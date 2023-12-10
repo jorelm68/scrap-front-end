@@ -14,8 +14,20 @@ const ScrapComponent = ({ scrap }) => {
 
     return (
         <View center>
-            <Image width={100} height={100} source={iRetrograph} />
-            <Image width={100} height={100} source={iPrograph} />
+            <Image source={iPrograph} style={{
+                width: dimensions.width / 3,
+                height: dimensions.width / 3,
+            }}/>
+            <Image width={100} height={100} source={iRetrograph} style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                borderBottomLeftRadius: 8,
+                borderTopLeftRadius: 8,
+                borderBottomRightRadius: 8,
+                width: dimensions.width / 9,
+                height: dimensions.width / 9,
+            }}/>
         </View>
     )
 }

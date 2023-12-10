@@ -54,7 +54,12 @@ const Layout = () => {
         <Stack.Screen
           name="scrapPicker"
           options={{
-            headerShown: false,
+            presentation: 'modal',
+            headerTitle: 'Scrap Picker',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+            }
           }}
         />
         <Stack.Screen

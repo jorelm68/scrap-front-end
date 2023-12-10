@@ -1,5 +1,5 @@
 import { TextField, View, Text } from 'react-native-ui-lib'
-import { colors } from '../data/styles'
+import { colors, styles } from '../data/styles'
 import React from 'react'
 
 const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, maxLength, autoCapitalize, autoCorrect, autoComplete }) => {
@@ -7,7 +7,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
         <View width={width}>
             <TextField
                 placeholder={placeholder}
-                placeholderTextColor={colors.placeholderText}
+                placeholderTextColor={colors.dimmed}
                 centered={textAlign === 'center'}
                 containerStyle={{
                     width: '100%',

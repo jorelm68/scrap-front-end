@@ -7,9 +7,10 @@ const AppContextProvider = ({ children }) => {
     const [accounts, setAccounts] = useState([])
     const [offline, setOffline] = useState(false)
     const [authenticated, setAuthenticated] = useState(false)
+    const [functions, setFunctions] = useState({})
 
     // You can also define functions or any other data that you want to share
-    
+
     // Create an object with the shared variables and functions to be passed as the value
     const sharedValues = {
         user,
@@ -20,6 +21,8 @@ const AppContextProvider = ({ children }) => {
         setOffline,
         authenticated,
         setAuthenticated,
+        functions,
+        setFunctions,
         // ... other shared data and functions
     }
 

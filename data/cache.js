@@ -208,7 +208,8 @@ class Cache {
     // Filter any key that contains the string and delete it
     filter(fieldsToMatch) {
         for (const key of this.cache.keys()) {
-            if (fieldsToMatch.every(field => key.includes(field || 'actions'))) {
+            if (fieldsToMatch.every(field => key.includes(field))) {
+                console.log('filtered: ', key)
                 this.cache.delete(key)
             }
         }

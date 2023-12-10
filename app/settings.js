@@ -4,17 +4,18 @@ import FieldComponent from '../components/FieldComponent'
 import useAuthor from '../hooks/useAuthor'
 import AppContext from '../context/AppContext'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { Keyboard, KeyboardAvoidingView } from 'react-native'
+import { Alert, Keyboard, KeyboardAvoidingView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, dimensions } from '../data/styles'
 import { regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
 import { errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
 import { authorCheckCredentials, utilitySet } from '../data/api'
 import { edit } from '../data/utility'
+import cache from '../data/cache'
 import DropDownComponent from '../components/DropDownComponent'
 
 const Settings = () => {
-    const { user } = useContext(AppContext)
+    const { user, functions, setFunctions } = useContext(AppContext)
 
     const {
         firstName: initialFirstName,
@@ -25,12 +26,31 @@ const Settings = () => {
         setPseudonym: initialSetPseudonym,
         email: initialEmail,
         setEmail: initailSetEmail,
+        scraps,
+        headshotAndCover: initialHeadshotAndCover,
     } = useAuthor(user, [
         'firstName',
         'lastName',
         'pseudonym',
         'email',
+        'headshotAndCover',
+        'scraps',
     ])
+
+    useEffect(() => {
+        setFunctions((prevFunctions) => ({
+            prevFunctions,
+            setHeadshotAndCover: async (selection) => {
+                console.log(selection)
+                const response = await edit('Author', user, 'headshotAndCover', selection[0])
+                cache.filter([user, 'headshotAndCover'])
+                setHeadshotAndCover(selection[0])
+                if (!response.success) {
+                    Alert.alert('Error', 'Could not change headshot and cover')
+                }
+            },
+        }))
+    }, [])
 
     const [email, setEmail] = useState(initialEmail)
     useEffect(() => {
@@ -48,10 +68,26 @@ const Settings = () => {
     useEffect(() => {
         setPseudonym(initialPseudonym)
     }, [initialPseudonym])
+    const [headshotAndCover, setHeadshotAndCover] = useState(initialHeadshotAndCover)
+    useEffect(() => {
+        setHeadshotAndCover(initialHeadshotAndCover)
+    }, [initialHeadshotAndCover])
 
     return (
         <View>
+            {headshotAndCover && (
+                <DropDownComponent
+                    type='Scrap'
+                    title='Headshot and Cover'
+                    value={headshotAndCover}
+                    options={scraps}
+                    amount={1}
+                    onSubmit='setHeadshotAndCover'
+                />
+            )}
+
             <DropDownComponent
+                type='Text'
                 title='First Name: '
                 value={firstName}
                 boxes={[
@@ -73,6 +109,7 @@ const Settings = () => {
                 }}
             />
             <DropDownComponent
+                type='Text'
                 title='Last Name:'
                 value={lastName}
                 boxes={[
@@ -94,6 +131,7 @@ const Settings = () => {
                 }}
             />
             <DropDownComponent
+                type='Text'
                 title='Pseudonym:'
                 value={pseudonym}
                 boxes={[
@@ -116,6 +154,7 @@ const Settings = () => {
             />
 
             <DropDownComponent
+                type='Text'
                 title='Email: '
                 value={email}
                 boxes={[
