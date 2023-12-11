@@ -1,14 +1,16 @@
-import { View, Text } from 'react-native-ui-lib'
+import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
 import { colors, dimensions, styles } from '../../data/styles'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation, useRouter } from 'expo-router'
 import { scrapSaveScrap } from '../../data/api'
 import AppContext from '../../context/AppContext'
+import DropDownComponent from '../../components/DropDownComponent'
+import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../../data/regex'
+import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../../data/error'
 
 const CameraScreen = () => {
   const { user } = useContext(AppContext)
@@ -27,7 +29,7 @@ const CameraScreen = () => {
   const [showButtons, setShowButtons] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  console.log(scrap, isSaving)
+  const [reverse, setReverse] = useState(false)
 
   const savingHeader = () => {
     navigation.setOptions({
@@ -71,41 +73,6 @@ const CameraScreen = () => {
       headerLeft: () => { }
     })
   }
-  useEffect(() => {
-    if (isSaving && !isLoading) {
-      savingHeader()
-    }
-    else {
-      cameraHeader()
-    }
-
-  }, [isSaving, isLoading, navigation])
-
-  useEffect(() => {
-    if (!(!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving)) {
-      setIsSaving(true)
-      setIsLoading(false)
-    }
-  }, [scrap])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newDate = new Date()
-      const date = getDate(newDate)
-      const time = getTime(newDate)
-
-      setDateAndTimeDisplay(`${date.date} ${time.time}`)
-      setScrap((prevScrap) => ({
-        ...prevScrap,
-        createdAt: newDate,
-      }))
-    }, 1000)
-
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
-
   const processLocation = async () => {
     const location = await getLocation()
     setLocationDisplay(`${location.latitude}, ${location.longitude}`)
@@ -115,15 +82,6 @@ const CameraScreen = () => {
       longitude: location.longitude,
     }))
   }
-
-  useEffect(() => {
-    processLocation()
-    setTimeout(() => {
-      setShowButtons(true)
-      if (!permission) requestPermission()
-    }, 1000)
-  }, [])
-
   const handleZoomIn = () => {
     const newZoom = Math.min(zoomLevel + 0.015, 1)
     setZoomLevel(newZoom)
@@ -135,7 +93,6 @@ const CameraScreen = () => {
   const handleFlipCamera = () => {
     setDirection(current => (current === CameraType.back ? CameraType.front : CameraType.back))
   }
-
   const handleTakeScrap = async () => {
     setShowButtons(false)
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -194,6 +151,47 @@ const CameraScreen = () => {
       await requestPermission()
     }
   }
+  const handleToggleDirection = async () => {
+    setReverse(!reverse)
+  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newDate = new Date()
+      const date = getDate(newDate)
+      const time = getTime(newDate)
+
+      setDateAndTimeDisplay(`${date.date} ${time.time}`)
+      setScrap((prevScrap) => ({
+        ...prevScrap,
+        createdAt: newDate,
+      }))
+    }, 1000)
+
+    processLocation()
+    setTimeout(() => {
+      setShowButtons(true)
+      if (!permission) requestPermission()
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+  useEffect(() => {
+    if (isSaving && !isLoading) {
+      savingHeader()
+    }
+    else {
+      cameraHeader()
+    }
+
+  }, [isSaving, isLoading, navigation])
+  useEffect(() => {
+    if (!(!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving)) {
+      setIsSaving(true)
+      setIsLoading(false)
+    }
+  }, [scrap])
 
   if (isLoading) {
     return (
@@ -281,7 +279,95 @@ const CameraScreen = () => {
 
       {isSaving && (
         <View>
-          <Text>SaveScrap</Text>
+          <DropDownComponent
+            type='Text'
+            title='Title:'
+            value={scrap.title}
+            boxes={[
+              {
+                placeholder: 'New Title',
+                regex: regexScrapTitle,
+                error: errorScrapTitle,
+                autoCorrect: true,
+                autoCapitalize: 'words',
+              }
+            ]}
+            onSubmit={(values) => {
+              setScrap((prevScrap) => ({
+                ...prevScrap,
+                title: values[0],
+              }))
+
+              return {
+                success: true,
+              }
+            }}
+          />
+          <DropDownComponent
+            type='Text'
+            title='Description:'
+            value={scrap.description}
+            boxes={[
+              {
+                placeholder: 'New Description',
+                regex: regexScrapDescription,
+                error: errorScrapDescription,
+                autoCorrect: true,
+                autoCapitalize: 'sentences',
+              }
+            ]}
+            onSubmit={(values) => {
+              setScrap((prevScrap) => ({
+                ...prevScrap,
+                description: values[0],
+              }))
+
+              return {
+                success: true,
+              }
+            }}
+          />
+          <DropDownComponent
+            type='Text'
+            title='Place:'
+            value={scrap.place}
+            boxes={[
+              {
+                placeholder: 'New Place',
+                regex: regexScrapPlace,
+                error: errorScrapPlace,
+                autoCorrect: true,
+                autoCapitalize: 'words',
+              }
+            ]}
+            onSubmit={(values) => {
+              setScrap((prevScrap) => ({
+                ...prevScrap,
+                place: values[0],
+              }))
+
+              return {
+                success: true,
+              }
+            }}
+          />
+
+          <TouchableOpacity onPress={handleToggleDirection}>
+            <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
+              width: dimensions.width,
+              height: dimensions.width,
+              borderRadius: 8,
+            }} />
+
+            <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
+              position: 'absolute',
+              width: dimensions.width / 3,
+              height: dimensions.width / 3,
+              borderRadius: 8,
+              right: 0,
+            }} />
+          </TouchableOpacity>
+
         </View>
       )}
     </View>
