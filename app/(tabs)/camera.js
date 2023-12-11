@@ -188,6 +188,7 @@ const CameraScreen = () => {
 
       handleFlipCamera()
       setIsLoading(true)
+      setIsSaving(false)
     }
     else {
       await requestPermission()
