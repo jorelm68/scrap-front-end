@@ -1,18 +1,77 @@
-import { View, Text } from 'react-native-ui-lib'
+import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect } from 'react'
 import AppContext from '../../context/AppContext'
 import useAuthor from '../../hooks/useAuthor'
 import ScrapComponent from '../../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, colors, styles } from '../../data/styles'
+import { useRouter } from 'expo-router'
+import { scrapDeleteScraps } from '../../data/api'
+import cache from '../../data/cache'
+import { Alert } from 'react-native'
 
 const Library = () => {
-  const { user } = useContext(AppContext)
+  const { user, setFunctions } = useContext(AppContext)
+  const router = useRouter()
   const {
     scraps,
+    books,
   } = useAuthor(user, [
     'scraps',
+    'books',
   ])
+
+  const handleScraps = async () => {
+    router.push({
+      pathname: '/scraps', params: {
+        scraps: JSON.stringify(scraps),
+      }
+    })
+  }
+  const handleBooks = async () => {
+    router.push({
+      pathname: '/books', params: {
+        books: JSON.stringify(books),
+      }
+    })
+  }
+  const handleCreateBook = async () => {
+
+  }
+  const handleDeleteBooks = async () => {
+
+  }
+
+  const handleCreateScrap = async () => {
+    router.replace('/camera')
+  }
+
+  useEffect(() => {
+    setFunctions((prevFunctions) => ({
+      ...prevFunctions,
+      deleteScraps: async (selection) => {
+        const response = await scrapDeleteScraps(selection)
+        if (response.success) {
+          cache.filter([user, 'scraps'])
+          for (const scrap of selection) {
+            cache.filter([scrap])
+          }
+        }
+        else {
+          Alert.alert('Error', response.error)
+        }
+      }
+    }))
+  }, [])
+  const handleDeleteScraps = async () => {
+    router.push({
+      pathname: '/scrapPicker', params: {
+        scraps: JSON.stringify(scraps),
+        amount: JSON.stringify(scraps.length),
+        functionName: 'deleteScraps',
+      }
+    })
+  }
 
   return (
     <View>
@@ -22,63 +81,63 @@ const Library = () => {
       <View row center style={{
         height: '45%',
       }}>
-        <View center>
+        <TouchableOpacity center onPress={handleBooks}>
           <Ionicons name='library-outline' size={dimensions.width / 3} color={colors.default} />
           <Text style={{
             fontFamily: styles.text3,
             fontSize: 48,
           }}>Books</Text>
-        </View>
+        </TouchableOpacity>
 
         <View>
-          <View row center>
+          <TouchableOpacity row center onPress={handleCreateBook}>
             <Ionicons name='add' size={24} color={colors.default} />
             <Text style={{
               fontSize: 18,
               fontFamily: styles.text2,
             }}> Create</Text>
-          </View>
+          </TouchableOpacity>
           <View style={{
             height: '15%',
           }} />
-          <View row center>
+          <TouchableOpacity row center onPress={handleDeleteBooks}>
             <Ionicons name='remove' size={24} color={colors.default} />
             <Text style={{
               fontSize: 18,
               fontFamily: styles.text2,
             }}> Delete</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
 
       <View row center style={{
         height: '45%',
       }}>
-        <View center>
+        <TouchableOpacity center onPress={handleScraps}>
           <Ionicons name='image-outline' size={dimensions.width / 3} color={colors.default} />
           <Text style={{
             fontFamily: styles.text3,
             fontSize: 48,
           }}>Scraps</Text>
-        </View>
+        </TouchableOpacity>
         <View>
-          <View row center>
+          <TouchableOpacity row center onPress={handleCreateScrap}>
             <Ionicons name='add' size={24} color={colors.default} />
             <Text style={{
               fontSize: 18,
               fontFamily: styles.text2,
             }}> Create</Text>
-          </View>
+          </TouchableOpacity>
           <View style={{
             height: '15%',
           }} />
-          <View row center>
+          <TouchableOpacity row center onPress={handleDeleteScraps}>
             <Ionicons name='remove' size={24} color={colors.default} />
             <Text style={{
               fontSize: 18,
               fontFamily: styles.text2,
             }}> Delete</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={{
