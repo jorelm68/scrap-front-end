@@ -9,13 +9,13 @@ import AppContext from '../context/AppContext'
 
 const ScrapPicker = () => {
   const params = useLocalSearchParams()
+  const router = useRouter()
   const scraps = JSON.parse(params.scraps)
   const amount = JSON.parse(params.amount)
   const functionName = params.functionName
   const { functions } = useContext(AppContext)
   const onSubmit = functions[functionName]
   const [selection, setSelection] = useState([])
-  const router = useRouter()
 
   const navigation = useNavigation()
   const savingHeader = () => {

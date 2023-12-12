@@ -39,7 +39,7 @@ const Settings = () => {
 
     useEffect(() => {
         setFunctions((prevFunctions) => ({
-            prevFunctions,
+            ...prevFunctions,
             setHeadshotAndCover: async (selection) => {
                 console.log(selection)
                 const response = await edit('Author', user, 'headshotAndCover', selection[0])
@@ -82,7 +82,15 @@ const Settings = () => {
                     value={headshotAndCover}
                     options={scraps}
                     amount={1}
-                    onSubmit='setHeadshotAndCover'
+                    onSubmit={async () => {
+                        router.push({
+                            pathname: '/scrapPicker', params: {
+                                scraps: JSON.stringify(scraps),
+                                amount: JSON.stringify(1),
+                                functionName: 'setHeadshotAndCover',
+                            }
+                        })
+                    }}
                 />
             )}
 

@@ -9,7 +9,7 @@ import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
 
-const DropDownComponent = ({ title, value, onSubmit, amount, type, boxes, options }) => {
+const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, boxes, options }) => {
     const router = useRouter()
     const [isDropped, setIsDropped] = useState(false)
     const [values, setValues] = useState([])
@@ -19,10 +19,10 @@ const DropDownComponent = ({ title, value, onSubmit, amount, type, boxes, option
     const {
         iPrograph,
         iRetrograph,
-    } = (type === 'Scrap') ? useScrap(value, [
+    } = type === 'Scrap' ? value !== undefined ? useScrap(value, [
         'iPrograph->1080',
         'iRetrograph->1080',
-    ]) : {}
+    ]) : {} : {}
 
     useEffect(() => {
         let newValues = []
@@ -87,46 +87,48 @@ const DropDownComponent = ({ title, value, onSubmit, amount, type, boxes, option
 
     return (
         <TouchableWithoutFeedback onPress={(type === 'Scrap') ? () => {
-            router.push({
-                pathname: '/scrapPicker', params: {
-                    scraps: JSON.stringify(options),
-                    amount: JSON.stringify(amount),
-                    functionName: onSubmit,
-                }
-            })
+            onSubmit()
         } : () => {
             setIsDropped(!isDropped)
-         }}>
+        }}>
             <KeyboardAvoidingView behavior='padding'>
                 {type === 'Scrap' && (
                     <View centerV style={{
                         minHeight: 48,
                         borderBottomWidth: 1,
+                        borderTopWidth: topBorder ? 1 : 0,
                     }}>
                         <View row center style={{
                         }}>
                             <Text style={{
                                 fontFamily: styles.text1,
-                                fontSize: 18, width: '30%',
+                                fontSize: 12, width: '30%',
                                 paddingLeft: 4,
                             }}>{title}</Text>
 
-                            <View style={{
-                                width: '62.5%',
-                            }}>
-                                <Image source={iPrograph} style={{
-                                    width: '100%',
-                                    aspectRatio: 3,
-                                    borderRadius: 8,
+                            {value !== undefined && (
+                                <View style={{
+                                    width: '62.5%',
+                                }}>
+                                    <Image source={iPrograph} style={{
+                                        width: '100%',
+                                        aspectRatio: 3,
+                                        borderRadius: 8,
+                                    }} />
+                                    <Image source={iRetrograph} style={{
+                                        position: 'absolute',
+                                        width: `${(1 / 3) / 2 * 100}%`,
+                                        aspectRatio: 1,
+                                        borderRadius: 100,
+                                        bottom: 0,
+                                    }} />
+                                </View>
+                            )}
+                            {value !== undefined && (
+                                <View style={{
+                                    width: '62.5%',
                                 }} />
-                                <Image source={iRetrograph} style={{
-                                    position: 'absolute',
-                                    width: `${(1 / 3) / 2 * 100}%`,
-                                    aspectRatio: 1,
-                                    borderRadius: 100,
-                                    bottom: 0,
-                                }} />
-                            </View>
+                            )}
 
                             <View center style={{
                                 width: '7.5%',
@@ -142,18 +144,19 @@ const DropDownComponent = ({ title, value, onSubmit, amount, type, boxes, option
                     <View centerV style={{
                         minHeight: 48,
                         borderBottomWidth: 1,
+                        borderTopWidth: topBorder ? 1 : 0,
                     }}>
                         <View row center style={{
                         }}>
                             <Text style={{
                                 fontFamily: styles.text1,
-                                fontSize: 18,
+                                fontSize: 12,
                                 width: '30%',
                                 paddingLeft: 4,
                             }}>{title}</Text>
                             <Text style={{
                                 fontFamily: styles.text1,
-                                fontSize: 18,
+                                fontSize: 12,
                                 width: '62.5%',
                             }}>{value}</Text>
 
