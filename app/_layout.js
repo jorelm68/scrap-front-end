@@ -63,6 +63,17 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="bookPicker"
+          options={{
+            presentation: 'modal',
+            headerTitle: 'Book Picker',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+            }
+          }}
+        />
+        <Stack.Screen
           name="(tabs)"
           options={{
             headerShown: false,
@@ -88,6 +99,16 @@ const Layout = () => {
           name='books'
           options={{
             headerTitle: 'Books',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+            }
+          }}
+        />
+        <Stack.Screen 
+          name='createBook'
+          options={{
+            headerTitle: 'Create Book',
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,

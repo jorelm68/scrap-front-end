@@ -6,7 +6,7 @@ import ScrapComponent from '../../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, colors, styles } from '../../data/styles'
 import { useRouter } from 'expo-router'
-import { scrapDeleteScraps } from '../../data/api'
+import { bookDeleteBooks, scrapDeleteScraps } from '../../data/api'
 import cache from '../../data/cache'
 import { Alert } from 'react-native'
 
@@ -20,6 +20,36 @@ const Library = () => {
     'scraps',
     'books',
   ])
+
+  useEffect(() => {
+    setFunctions((prevFunctions) => ({
+      ...prevFunctions,
+      deleteScraps: async (selection) => {
+        const response = await scrapDeleteScraps(selection)
+        if (response.success) {
+          cache.filter([user, 'scraps'])
+          for (const scrap of selection) {
+            cache.filter([scrap])
+          }
+        }
+        else {
+          Alert.alert('Error', response.error)
+        }
+      },
+      deleteBooks: async (selection) => {
+        const response = await bookDeleteBooks(selection)
+        if (response.success) {
+          cache.filter([user, 'books'])
+          for (const book of books) {
+            cache.filter([book])
+          }
+        }
+        else {
+          Alert.alert('Error', response.error)
+        }
+      }
+    }))
+  }, [])
 
   const handleScraps = async () => {
     router.push({
@@ -36,33 +66,23 @@ const Library = () => {
     })
   }
   const handleCreateBook = async () => {
-
+    router.push('/createBook')
   }
-  const handleDeleteBooks = async () => {
 
+  const handleDeleteBooks = async () => {
+    router.push({
+      pathname: 'bookPicker', params: {
+        books: JSON.stringify(books),
+        amount: JSON.stringify(books.length),
+        functionName: 'deleteBooks',
+      }
+    })
   }
 
   const handleCreateScrap = async () => {
     router.replace('/camera')
   }
 
-  useEffect(() => {
-    setFunctions((prevFunctions) => ({
-      ...prevFunctions,
-      deleteScraps: async (selection) => {
-        const response = await scrapDeleteScraps(selection)
-        if (response.success) {
-          cache.filter([user, 'scraps'])
-          for (const scrap of selection) {
-            cache.filter([scrap])
-          }
-        }
-        else {
-          Alert.alert('Error', response.error)
-        }
-      }
-    }))
-  }, [])
   const handleDeleteScraps = async () => {
     router.push({
       pathname: '/scrapPicker', params: {
