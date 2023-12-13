@@ -85,7 +85,7 @@ const Layout = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='scraps'
           options={{
             headerTitle: 'Scraps',
@@ -95,7 +95,7 @@ const Layout = () => {
             }
           }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='books'
           options={{
             headerTitle: 'Books',
@@ -105,7 +105,7 @@ const Layout = () => {
             }
           }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name='createBook'
           options={{
             headerTitle: 'Create Book',
@@ -113,6 +113,17 @@ const Layout = () => {
               fontFamily: styles.text3,
               fontSize: 24,
             }
+          }}
+        />
+        <Stack.Screen
+          name='editScrap'
+          options={{
+            headerTitle: 'Edit Scrap',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+            },
+            headerBackTitleVisible: false,
           }}
         />
       </Stack>

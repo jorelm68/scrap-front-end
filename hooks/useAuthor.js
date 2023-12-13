@@ -45,7 +45,7 @@ export default function useAuthor(author, requests) {
     }
 
     const processRequest = async (request, promises) => {
-        let set = (blank) => { console.log('blank setter: ', blank)}
+        let set = (blank) => { console.log('blank setter: ', blank) }
 
         if (request === 'headshot') set = setHeadshot
         else if (request === 'cover') set = setCover
@@ -67,20 +67,22 @@ export default function useAuthor(author, requests) {
         else if (request === 'feed') set = setFeed
         else if (request === 'actions') set = setActions
 
-        if (request.includes('iHeadshot')) {
-            const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
-            const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
-            const iHeadshot = await Cache.getPhoto(retrograph, request.split('->')[1])
-            setIHeadshot(iHeadshot)
-        }
-        else if (request.includes('iCover')) {
-            const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
-            const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
-            const iCover = await Cache.getPhoto(prograph, request.split('->')[1])
-            setICover(iCover)
-        }
-        else {
-            promises.push(get('Author', author, request, set))
+        if (author !== undefined) {
+            if (request.includes('iHeadshot')) {
+                const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
+                const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
+                const iHeadshot = await Cache.getPhoto(retrograph, request.split('->')[1])
+                setIHeadshot(iHeadshot)
+            }
+            else if (request.includes('iCover')) {
+                const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
+                const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+                const iCover = await Cache.getPhoto(prograph, request.split('->')[1])
+                setICover(iCover)
+            }
+            else {
+                promises.push(get('Author', author, request, set))
+            }
         }
     }
 
