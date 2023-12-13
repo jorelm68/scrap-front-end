@@ -59,7 +59,8 @@ const CreateBook = () => {
       ...prevBook,
       scraps: prevBook.scraps.filter((value) => {
         return scrap !== value
-      })
+      }),
+      representative: scrap === prevBook.representative ? undefined : prevBook.representative,
     }))
   }
 
@@ -96,7 +97,7 @@ const CreateBook = () => {
       <View height={16} />
       <View center>
         <ButtonComponent
-          label='Edit Scraps'
+          label='Add Scraps'
           size='large'
           onPress={() => {
             router.push({
@@ -164,7 +165,7 @@ const CreateBook = () => {
         onSubmit={() => {
           router.push({
             pathname: '/scrapPicker', params: {
-              scraps: JSON.stringify(book.scraps),
+              scraps: JSON.stringify(book.scraps ? book.scraps : []),
               amount: JSON.stringify(1),
               functionName: 'setRepresentative',
             }

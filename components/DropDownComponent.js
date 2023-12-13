@@ -19,10 +19,10 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
     const {
         iPrograph,
         iRetrograph,
-    } = type === 'Scrap' ? value !== undefined ? useScrap(value, [
+    } = useScrap(type === 'Scrap' ? value : undefined, [
         'iPrograph->1080',
         'iRetrograph->1080',
-    ]) : {} : {}
+    ])
 
     useEffect(() => {
         let newValues = []
@@ -124,7 +124,8 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                     }} />
                                 </View>
                             )}
-                            {value !== undefined && (
+
+                            {value === undefined && (
                                 <View style={{
                                     width: '62.5%',
                                 }} />

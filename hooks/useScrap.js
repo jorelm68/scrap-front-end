@@ -22,7 +22,9 @@ export default function useScrap(scrap, requests) {
     const [iRetrograph, setIRetrograph] = useState(defaultHeadshot)
 
     const get = async (modelName, identifier, field, setResponse = () => { }, handleError = () => { }) => {
-        if (!modelName || !identifier || !field || !setResponse) return undefined
+        if (modelName === undefined || identifier === undefined || field === undefined || setResponse === undefined) {
+            return undefined
+        }
         try {
             let response = null
             if (!isCanceled) response = await Cache.get(modelName, identifier, field, user)
@@ -45,18 +47,20 @@ export default function useScrap(scrap, requests) {
         else if (request === 'place') set = setPlace
         else if (request === 'threads') set = setThreads
 
-        if (request.includes('iRetrograph')) {
-            const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
-            const iRetrograph = await Cache.getPhoto(retrograph, request.split('->')[1])
-            setIRetrograph(iRetrograph)
-        }
-        else if (request.includes('iPrograph')) {
-            const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
-            const iPrograph = await Cache.getPhoto(prograph, request.split('->')[1])
-            setIPrograph(iPrograph)
-        }
-        else {
-            promises.push(get('Scrap', scrap, request, set))
+        if (scrap !== undefined) {
+            if (request.includes('iRetrograph')) {
+                const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
+                const iRetrograph = await Cache.getPhoto(retrograph, request.split('->')[1])
+                setIRetrograph(iRetrograph)
+            }
+            else if (request.includes('iPrograph')) {
+                const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+                const iPrograph = await Cache.getPhoto(prograph, request.split('->')[1])
+                setIPrograph(iPrograph)
+            }
+            else {
+                promises.push(get('Scrap', scrap, request, set))
+            }
         }
     }
 
