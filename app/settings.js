@@ -13,9 +13,11 @@ import { authorCheckCredentials, utilitySet } from '../data/api'
 import { edit } from '../data/utility'
 import cache from '../data/cache'
 import DropDownComponent from '../components/DropDownComponent'
+import { useRouter } from 'expo-router'
 
 const Settings = () => {
     const { user, functions, setFunctions } = useContext(AppContext)
+    const router = useRouter()
 
     const {
         firstName: initialFirstName,

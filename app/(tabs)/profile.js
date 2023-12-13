@@ -79,14 +79,14 @@ const Profile = () => {
 
   const profileHeader = <ScrollView flex>
     <TouchableWithoutFeedback onPress={handleTogglePhotos}>
-      <Image source={photosReverse ? iCover : iHeadshot} width={dimensions.width} height={dimensions.width / 2} style={{
+      <Image source={photosReverse ? iHeadshot : iCover} width={dimensions.width} height={dimensions.width / 2} style={{
         borderBottomRightRadius: 16,
       }} />
     </TouchableWithoutFeedback>
 
     <View width='100%' flex row center>
       <TouchableWithoutFeedback onPress={handleTogglePhotos}>
-        <Image source={photosReverse ? iHeadshot : iCover} width={dimensions.width / 4} height={dimensions.width / 4} style={{
+        <Image source={photosReverse ? iCover : iHeadshot} width={dimensions.width / 4} height={dimensions.width / 4} style={{
           borderRadius: dimensions.width / 8,
           marginTop: -(dimensions.width / 8),
         }} />
