@@ -11,6 +11,7 @@ import AppContext from '../../context/AppContext'
 import DropDownComponent from '../../components/DropDownComponent'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../../data/regex'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../../data/error'
+import cache from '../../data/cache'
 
 const CameraScreen = () => {
   const { user } = useContext(AppContext)
@@ -45,6 +46,7 @@ const CameraScreen = () => {
             latitude: scrap.latitude,
             longitude: scrap.longitude,
           })
+          cache.filter([user, 'scraps'])
           setIsSaving(false)
           setIsLoading(false)
           setShowButtons(true)
