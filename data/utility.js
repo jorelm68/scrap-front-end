@@ -199,3 +199,13 @@ export async function getLocation() {
 
     return { latitude, longitude }
 }
+
+
+export async function getCoordinates(scraps, user) {
+    const coordinates = await Promise.all(scraps.map(async (scrap) => ({
+        latitude: await cache.get('Scrap', scrap, 'latitude', user),
+        longitude: await cache.get('Scrap', scrap, 'longitude', user),
+    })));
+
+    return coordinates;
+}

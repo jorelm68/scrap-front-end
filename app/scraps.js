@@ -1,12 +1,18 @@
 import { View, TouchableOpacity } from 'react-native-ui-lib'
-import React, { useEffect, useState } from 'react'
+import { ScrollView } from 'react-native'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import ScrapComponent from '../components/ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from '../components/ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles, dimensions } from '../data/styles'
+import MapView from 'react-native-maps'
+import useScrap from '../hooks/useScrap'
+import AppContext from '../context/AppContext'
+import MapComponent from '../components/MapComponent'
 
 const Scraps = () => {
+  const { currentScrap } = useContext(AppContext)
   const navigation = useNavigation()
   const params = useLocalSearchParams()
   const scraps = JSON.parse(params.scraps)
@@ -25,6 +31,10 @@ const Scraps = () => {
     })
   }, [navigation, carousel])
 
+  const clickMarker = async (marker) => {
+    console.log(marker)
+  }
+
   return (
     <View style={{
       flex: 1,
@@ -42,8 +52,17 @@ const Scraps = () => {
         )
       })}
       {carousel && scraps && (
-        
-        <ScrapCarousel scraps={scraps} initialPage={initialPage} />
+        <ScrollView style={{
+          width: '100%',
+          height: '100%',
+        }}>
+          <MapComponent
+            scraps={scraps}
+            scrap={currentScrap}
+            clickMarker={clickMarker}
+          />
+          <ScrapCarousel scraps={scraps} initialPage={initialPage} width='100%' />
+        </ScrollView>
       )}
     </View>
   )

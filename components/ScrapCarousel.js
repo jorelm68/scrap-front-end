@@ -1,15 +1,17 @@
 import { View, Text, TouchableOpacity, Carousel } from 'react-native-ui-lib'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ScrapComponent from './ScrapComponent'
 import Scrap from './Scrap'
 import { useNavigation, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles, dimensions } from '../data/styles'
+import AppContext from '../context/AppContext'
+import cache from '../data/cache'
 
-const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
+const ScrapCarousel = ({ scraps, initialPage = 0, width = '100%', height = '100%' }) => {
     const navigation = useNavigation()
     const router = useRouter()
-    const [scrap, setScrap] = useState(scraps[initialPage])
+    const { currentScrap, setCurrentScrap } = useContext(AppContext)
     const [page, setPage] = useState(initialPage)
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
                 <TouchableOpacity onPress={async () => {
                     router.push({
                         pathname: '/editScrap', params: {
-                            scrap,
+                            scrap: currentScrap,
                         }
                     })
                 }}>
@@ -26,14 +28,21 @@ const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
                 </TouchableOpacity>
             ),
         })
-    }, [navigation, scrap])
+    }, [navigation, currentScrap])
+
+    useEffect(() => {
+        setCurrentScrap(scraps[initialPage])
+    }, [])
 
     return (
-        <View>
+        <View style={{
+            width,
+            height,
+        }}>
             <Carousel
                 onChangePage={(newIndex) => {
-                    setScrap(scraps[newIndex])
                     setPage(newIndex)
+                    setCurrentScrap(scraps[newIndex])
                 }}
                 initialPage={initialPage}
             >

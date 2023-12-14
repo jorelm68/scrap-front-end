@@ -8,6 +8,7 @@ const AppContextProvider = ({ children }) => {
     const [offline, setOffline] = useState(false)
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
+    const [currentScrap, setCurrentScrap] = useState('')
 
     // You can also define functions or any other data that you want to share
 
@@ -23,6 +24,8 @@ const AppContextProvider = ({ children }) => {
         setAuthenticated,
         functions,
         setFunctions,
+        currentScrap,
+        setCurrentScrap,
         // ... other shared data and functions
     }
 
