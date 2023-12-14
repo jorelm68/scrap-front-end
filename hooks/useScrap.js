@@ -15,6 +15,7 @@ export default function useScrap(scrap, requests) {
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     const [place, setPlace] = useState('')
+    const [createdAt, setCreatedAt] = useState('')
 
     const [prograph, setPrograph] = useState('')
     const [retrograph, setRetrograph] = useState('')
@@ -46,6 +47,7 @@ export default function useScrap(scrap, requests) {
         else if (request === 'longitude') set = setLongitude
         else if (request === 'place') set = setPlace
         else if (request === 'threads') set = setThreads
+        else if (request === 'createdAt') set = setCreatedAt
 
         if (scrap !== undefined && scrap !== '') {
             if (request.includes('iRetrograph')) {
@@ -115,6 +117,8 @@ export default function useScrap(scrap, requests) {
         setIPrograph,
         iRetrograph,
         setIRetrograph,
+        createdAt,
+        setCreatedAt,
         graph,
         direction,
         toggleGraph,

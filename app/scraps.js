@@ -15,13 +15,13 @@ const Scraps = () => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: carousel ? () => ( // Corrected headerLeft configuration
+      headerLeft: carousel ? () => (
         <TouchableOpacity onPress={() => {
           setCarousel(false)
         }}>
           <Ionicons name='chevron-back' color={colors.interaction} size={32} />
         </TouchableOpacity>
-      ) : () => { }, // Don't forget the closing parenthesis for headerLeft
+      ) : () => { },
     })
   }, [navigation, carousel])
 
@@ -42,6 +42,7 @@ const Scraps = () => {
         )
       })}
       {carousel && scraps && (
+        
         <ScrapCarousel scraps={scraps} initialPage={initialPage} />
       )}
     </View>
