@@ -67,7 +67,7 @@ export default function useAuthor(author, requests) {
         else if (request === 'feed') set = setFeed
         else if (request === 'actions') set = setActions
 
-        if (author !== undefined) {
+        if (author !== undefined && author !== '') {
             if (request.includes('iHeadshot')) {
                 const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
                 const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)

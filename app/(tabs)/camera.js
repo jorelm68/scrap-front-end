@@ -32,49 +32,6 @@ const CameraScreen = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [reverse, setReverse] = useState(false)
 
-  const savingHeader = () => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={async () => {
-          setIsLoading(true)
-          const response = await scrapSaveScrap(scrap)
-          if (!response.success) {
-            Alert.alert('Error', response.error)
-          }
-          setScrap({
-            author: user,
-            latitude: scrap.latitude,
-            longitude: scrap.longitude,
-          })
-          cache.filter([user, 'scraps'])
-          setIsSaving(false)
-          setIsLoading(false)
-          setShowButtons(true)
-        }}>
-          <Ionicons name='checkmark' color={colors.success} size={32} />
-        </TouchableOpacity>
-      ),
-      headerLeft: () => ( // Corrected headerLeft configuration
-        <TouchableOpacity onPress={() => {
-          setScrap({
-            author: user,
-            latitude: scrap.latitude,
-            longitude: scrap.longitude,
-          })
-          setIsSaving(false)
-          setShowButtons(true)
-        }}>
-          <Ionicons name='close' color={colors.error} size={32} />
-        </TouchableOpacity>
-      ), // Don't forget the closing parenthesis for headerLeft
-    })
-  }
-  const cameraHeader = () => {
-    navigation.setOptions({
-      headerRight: () => { },
-      headerLeft: () => { }
-    })
-  }
   const processLocation = async () => {
     const location = await getLocation()
     setLocationDisplay(`${location.latitude}, ${location.longitude}`)
@@ -181,13 +138,50 @@ const CameraScreen = () => {
   }, [])
   useEffect(() => {
     if (isSaving && !isLoading) {
-      savingHeader()
+      navigation.setOptions({
+        headerRight: () => (
+          <TouchableOpacity onPress={async () => {
+            setIsLoading(true)
+            const response = await scrapSaveScrap(scrap)
+            if (!response.success) {
+              Alert.alert('Error', response.error)
+            }
+            setScrap({
+              author: user,
+              latitude: scrap.latitude,
+              longitude: scrap.longitude,
+            })
+            cache.filter([user, 'scraps'])
+            setIsSaving(false)
+            setIsLoading(false)
+            setShowButtons(true)
+          }}>
+            <Ionicons name='checkmark' color={colors.success} size={32} />
+          </TouchableOpacity>
+        ),
+        headerLeft: () => ( // Corrected headerLeft configuration
+          <TouchableOpacity onPress={() => {
+            setScrap({
+              author: user,
+              latitude: scrap.latitude,
+              longitude: scrap.longitude,
+            })
+            setIsSaving(false)
+            setShowButtons(true)
+          }}>
+            <Ionicons name='close' color={colors.error} size={32} />
+          </TouchableOpacity>
+        ), // Don't forget the closing parenthesis for headerLeft
+      })
     }
     else {
-      cameraHeader()
+      navigation.setOptions({
+        headerRight: () => { },
+        headerLeft: () => { }
+      })
     }
 
-  }, [isSaving, isLoading, navigation])
+  }, [isSaving, isLoading, navigation, scrap])
   useEffect(() => {
     if (!(!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving)) {
       setIsSaving(true)
