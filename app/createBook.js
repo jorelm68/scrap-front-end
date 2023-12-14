@@ -27,7 +27,17 @@ const CreateBook = () => {
     'scraps',
   ])
 
-  const savingHeader = () => {
+  const handleRemoveScrap = (scrap) => {
+    setBook((prevBook) => ({
+      ...prevBook,
+      scraps: prevBook.scraps.filter((value) => {
+        return scrap !== value
+      }),
+      representative: scrap === prevBook.representative ? undefined : prevBook.representative,
+    }))
+  }
+
+  useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={async () => {
@@ -52,20 +62,6 @@ const CreateBook = () => {
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })
-  }
-
-  const handleRemoveScrap = (scrap) => {
-    setBook((prevBook) => ({
-      ...prevBook,
-      scraps: prevBook.scraps.filter((value) => {
-        return scrap !== value
-      }),
-      representative: scrap === prevBook.representative ? undefined : prevBook.representative,
-    }))
-  }
-
-  useEffect(() => {
-    savingHeader()
   }, [navigation, book])
 
   useEffect(() => {
