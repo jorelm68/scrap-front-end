@@ -6,10 +6,11 @@ import { useNavigation, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles, dimensions } from '../data/styles'
 
-const ScrapCarousel = ({ scraps }) => {
+const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
     const navigation = useNavigation()
     const router = useRouter()
-    const [scrap, setScrap] = useState(scraps[0])
+    const [scrap, setScrap] = useState(scraps[initialPage])
+    const [page, setPage] = useState(initialPage)
 
     useEffect(() => {
         navigation.setOptions({
@@ -27,15 +28,23 @@ const ScrapCarousel = ({ scraps }) => {
         })
     }, [navigation, scrap])
 
-
     return (
         <View>
-            <Carousel onChangePage={(newIndex) => {
-                setScrap(scraps[newIndex])
-            }}>
-                {scraps && scraps.map((scrap) => {
+            <Carousel
+                onChangePage={(newIndex) => {
+                    setScrap(scraps[newIndex])
+                    setPage(newIndex)
+                }}
+                initialPage={initialPage}
+            >
+                {scraps && scraps.map((scrap, index) => {
+                    if (Math.abs(page - index) < 5) {
+                        return (
+                            <Scrap scrap={scrap} key={scrap} />
+                        )
+                    }
                     return (
-                        <Scrap scrap={scrap} key={scrap} />
+                        <View key={scrap} />
                     )
                 })}
             </Carousel>

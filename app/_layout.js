@@ -118,6 +118,7 @@ const Layout = () => {
         <Stack.Screen
           name='editScrap'
           options={{
+            presentation: 'modal',
             headerTitle: 'Edit Scrap',
             headerTitleStyle: {
               fontFamily: styles.text3,

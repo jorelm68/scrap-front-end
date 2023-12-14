@@ -13,7 +13,7 @@ const ScrapComponent = ({ scrap }) => {
     ])
 
     return (
-        <View center>
+        <View>
             <Image source={iPrograph} style={{
                 width: dimensions.width / 3,
                 height: dimensions.width / 3,
