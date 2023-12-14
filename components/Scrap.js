@@ -66,6 +66,8 @@ const Scrap = ({ scrap }) => {
                         fontFamily: styles.text1,
                         fontSize: 18,
                         paddingBottom: 4,
+                        paddingHorizontal: 2,
+                        width: dimensions.width * (2 / 3),
                     }}>{title}</Text>
                 </View>
             )}
