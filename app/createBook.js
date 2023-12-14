@@ -129,6 +129,9 @@ const CreateBook = () => {
             ...prevBook,
             title: values[0],
           }))
+          return {
+            success: true,
+          }
         }}
         topBorder
       />
@@ -150,6 +153,9 @@ const CreateBook = () => {
             ...prevBook,
             description: values[0],
           }))
+          return {
+            success: true,
+          }
         }}
       />
       <DropDownComponent
