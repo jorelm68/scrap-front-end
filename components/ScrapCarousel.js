@@ -47,7 +47,7 @@ const ScrapCarousel = ({ scraps, initialPage = 0, width = '100%', height = '100%
                 initialPage={initialPage}
             >
                 {scraps && scraps.map((scrap, index) => {
-                    if (Math.abs(page - index) < 5) {
+                    if (Math.abs(page - index) < 3) {
                         return (
                             <Scrap scrap={scrap} key={scrap} />
                         )

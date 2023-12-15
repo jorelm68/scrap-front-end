@@ -1,16 +1,16 @@
 import { useEffect, useState, useContext } from 'react'
 import AppContext from '../context/AppContext'
 import { defaultImage } from '../data/icons'
-import Cache from '../data/cache'
 import { bookRemoveLike, bookAddLike } from '../data/api'
 import { showAlert } from '../data/utility'
+import Cache from '../data/cache'
 
 export default function useBook(book, requests) {
     const { user } = useContext(AppContext)
     const [isCanceled, setIsCanceled] = useState(false)
 
-    const [cover, setCover] = useState('')
-    const [iCover, setICover] = useState(defaultImage)
+    const [iRepresentative, setIRepresentative] = useState(defaultImage)
+    const [representative, setRepresentative] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [privacy, setPrivacy] = useState('')
@@ -30,20 +30,30 @@ export default function useBook(book, requests) {
         }
     }
 
-    const processRequest = (request, promises) => {
-        let set = (blank) => { console.log('blank setter: ', blank)}
-        
-        if (request.includes('iCover')) set = setICover
-        else if (request === 'cover') set = setCover
+    const processRequest = async (request, promises) => {
+        let set = (blank) => { console.log('blank setter: ', blank) }
+
+        if (request.includes('iRepresentative')) set = setIRepresentative
+        else if (request === 'representative') set = setRepresentative
         else if (request === 'title') set = setTitle
-        else if ( request === 'description') set = setDescription
+        else if (request === 'description') set = setDescription
         else if (request === 'privacy') set = setPrivacy
         else if (request === 'author') set = setAuthor
         else if (request === 'scraps') set = setScraps
         else if (request === 'threads') set = setThreads
         else if (request === 'likes') set = setLikes
 
-        promises.push(get('Book', book, request, set))
+        if (book !== undefined) {
+            if (request.includes('iRepresentative')) {
+                const scrap = await Cache.get('Book', book, 'representative', user)
+                const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+                const iRepresentative = await Cache.getPhoto(prograph, request.split('->')[1])
+                setIRepresentative(iRepresentative)
+            }
+            else {
+                promises.push(get('Book', book, request, set))
+            }
+        }
     }
 
     useEffect(() => {
@@ -97,17 +107,25 @@ export default function useBook(book, requests) {
     }
 
     return {
-        cover,
-        iCover,
+        representative,
+        setRepresentative,
+        iRepresentative,
+        setIRepresentative,
         title,
+        setTitle,
         description,
+        setDescription,
         privacy,
+        setPrivacy,
         author,
+        setAuthor,
         scraps,
+        setScraps,
         threads,
+        setThreads,
         likes,
+        setLikes,
         toggleLike,
         isPaused,
-        mode,
     }
 }

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
+import { View, Text, TouchableOpacity, Switch } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/AppContext'
 import DropDownComponent from '../components/DropDownComponent'
@@ -11,6 +11,7 @@ import { colors } from '../data/styles'
 import ButtonComponent from '../components/ButtonComponent'
 import useAuthor from '../hooks/useAuthor'
 import ScrapComponent from '../components/ScrapComponent'
+import SwitchComponent from '../components/SwitchComponent'
 
 const CreateBook = () => {
   const navigation = useNavigation()
@@ -90,26 +91,17 @@ const CreateBook = () => {
 
   return (
     <View>
-      <View height={16} />
-      <View center>
-        <ButtonComponent
-          label='Add Scraps'
-          size='large'
-          onPress={() => {
-            router.push({
-              pathname: '/scrapPicker', params: {
-                scraps: JSON.stringify(scraps.filter((value) => {
-                  return !book.scraps || !book.scraps.includes(value)
-                })),
-                amount: JSON.stringify(10),
-                functionName: 'addScrapsToBook',
-              }
-            })
-          }}
-          width='50%'
-        />
+      <View center style={{
+        marginVertical: 16,
+      }}>
+        <SwitchComponent title={'Public? '} value={book.isPublic} onSwitch={() => {
+          setBook((prevBook) => ({
+            ...prevBook,
+            isPublic: !prevBook.isPublic,
+          }))
+        }} />
       </View>
-      <View height={16} />
+
 
       <DropDownComponent
         type='Text'
@@ -175,7 +167,26 @@ const CreateBook = () => {
         }}
       />
 
-      <View height={16} />
+      <View center style={{
+        marginVertical: 16,
+      }}>
+        <ButtonComponent
+          label='Add Scraps'
+          size='large'
+          onPress={() => {
+            router.push({
+              pathname: '/scrapPicker', params: {
+                scraps: JSON.stringify(scraps.filter((value) => {
+                  return !book.scraps || !book.scraps.includes(value)
+                })),
+                amount: JSON.stringify(10),
+                functionName: 'addScrapsToBook',
+              }
+            })
+          }}
+          width='50%'
+        />
+      </View>
 
       <View style={{
         flexWrap: 'wrap',
