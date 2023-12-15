@@ -9,11 +9,10 @@ export default function useBook(book, requests) {
     const { user } = useContext(AppContext)
     const [isCanceled, setIsCanceled] = useState(false)
 
-    const [iRepresentative, setIRepresentative] = useState(defaultImage)
     const [representative, setRepresentative] = useState('')
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [privacy, setPrivacy] = useState('')
+    const [isPublic, setIsPublic] = useState(false)
     const [author, setAuthor] = useState('')
     const [threads, setThreads] = useState('')
     const [scraps, setScraps] = useState([])
@@ -33,26 +32,17 @@ export default function useBook(book, requests) {
     const processRequest = async (request, promises) => {
         let set = (blank) => { console.log('blank setter: ', blank) }
 
-        if (request.includes('iRepresentative')) set = setIRepresentative
-        else if (request === 'representative') set = setRepresentative
+        if (request === 'representative') set = setRepresentative
         else if (request === 'title') set = setTitle
         else if (request === 'description') set = setDescription
-        else if (request === 'privacy') set = setPrivacy
+        else if (request === 'isPublic') set = setIsPublic
         else if (request === 'author') set = setAuthor
         else if (request === 'scraps') set = setScraps
         else if (request === 'threads') set = setThreads
         else if (request === 'likes') set = setLikes
 
         if (book !== undefined) {
-            if (request.includes('iRepresentative')) {
-                const scrap = await Cache.get('Book', book, 'representative', user)
-                const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
-                const iRepresentative = await Cache.getPhoto(prograph, request.split('->')[1])
-                setIRepresentative(iRepresentative)
-            }
-            else {
-                promises.push(get('Book', book, request, set))
-            }
+            promises.push(get('Book', book, request, set))
         }
     }
 
@@ -109,14 +99,12 @@ export default function useBook(book, requests) {
     return {
         representative,
         setRepresentative,
-        iRepresentative,
-        setIRepresentative,
         title,
         setTitle,
         description,
         setDescription,
-        privacy,
-        setPrivacy,
+        isPublic,
+        setIsPublic,
         author,
         setAuthor,
         scraps,

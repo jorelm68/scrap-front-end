@@ -43,7 +43,6 @@ const Settings = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             setHeadshotAndCover: async (selection) => {
-                console.log(selection)
                 const response = await edit('Author', user, 'headshotAndCover', selection[0])
                 cache.filter([user, 'headshotAndCover'])
                 setHeadshotAndCover(selection[0])

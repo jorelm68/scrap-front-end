@@ -18,7 +18,6 @@ const MapComponent = ({ scraps, scrap, clickMarker }) => {
     const [coordinates, setCoordinates] = useState([])
     useEffect(() => {
         getCoordinates(scraps, user).then((coordinates) => {
-            console.log(coordinates)
             setCoordinates(coordinates)
         }).catch(() => {
             console.log('ERROR')

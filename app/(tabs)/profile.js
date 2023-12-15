@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../../context/AppContext'
 import useAuthor from '../../hooks/useAuthor'
 import { colors, dimensions, styles } from '../../data/styles'
-import { useFocusEffect, useNavigation, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import ButtonComponent from '../../components/ButtonComponent'
 import { Ionicons } from '@expo/vector-icons'
@@ -12,6 +12,9 @@ import { Ionicons } from '@expo/vector-icons'
 const Profile = () => {
   const router = useRouter()
   const { user } = useContext(AppContext)
+  const params = useLocalSearchParams()
+  const author = params.author
+  if (!author) author = user
   const navigation = useNavigation()
   const [name, setName] = useState('')
   const [photosReverse, setPhotosReverse] = useState(false)
@@ -28,7 +31,7 @@ const Profile = () => {
     // miles,
     friends,
     relationship,
-  } = useAuthor(user, [
+  } = useAuthor(author, [
     'iHeadshot->1080',
     'iCover->1080',
     'firstName',
