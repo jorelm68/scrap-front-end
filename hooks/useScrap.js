@@ -56,7 +56,7 @@ export default function useScrap(scrap, requests) {
                     const iRetrograph = await Cache.getPhoto(retrograph, request.split('->')[1])
                     setIRetrograph(iRetrograph)
                 } catch (error) {
-                    setIRetrograph(defaultImage)
+                    setIRetrograph(defaultHeadshot)
                 }
             }
             else if (request.includes('iPrograph')) {
@@ -65,7 +65,7 @@ export default function useScrap(scrap, requests) {
                     const iPrograph = await Cache.getPhoto(prograph, request.split('->')[1])
                     setIPrograph(iPrograph)
                 } catch (error) {
-                    setIPrograph(defaultHeadshot)
+                    setIPrograph(defaultImage)
                 }
             }
             else {

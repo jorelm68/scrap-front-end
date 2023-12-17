@@ -8,6 +8,7 @@ import { styles, colors, dimensions } from '../data/styles'
 import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
+import { defaultHeadshot, defaultImage } from '../data/icons'
 
 const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, boxes, options }) => {
     const router = useRouter()
@@ -85,6 +86,9 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
         setError('')
     }
 
+    if (title === 'Representative:') console.log(value)
+
+
     return (
         <TouchableWithoutFeedback onPress={(type === 'Scrap') ? () => {
             onSubmit()
@@ -106,15 +110,18 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 paddingLeft: 4,
                             }}>{title}</Text>
 
-                            {value !== undefined && (
-                                <View style={{
-                                    width: '62.5%',
-                                }}>
+                            <View style={{
+                                width: '62.5%',
+                            }}>
+                                {iPrograph !== defaultImage && (
                                     <Image source={iPrograph} style={{
                                         width: '100%',
                                         aspectRatio: 3,
                                         borderRadius: 8,
                                     }} />
+                                )}
+
+                                {iRetrograph !== defaultHeadshot && (
                                     <Image source={iRetrograph} style={{
                                         position: 'absolute',
                                         width: `${(1 / 3) / 2 * 100}%`,
@@ -122,14 +129,8 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                         borderRadius: 100,
                                         bottom: 0,
                                     }} />
-                                </View>
-                            )}
-
-                            {value === undefined && (
-                                <View style={{
-                                    width: '62.5%',
-                                }} />
-                            )}
+                                )}
+                            </View>
 
                             <View center style={{
                                 width: '7.5%',

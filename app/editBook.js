@@ -103,12 +103,10 @@ const EditBook = () => {
             else if (firstOption && firstOption === scrap) {
                 value = secondOption
             }
-            if (value) {
-                const response = await edit('Book', book, 'representative', value)
-                if (response.success) {
-                    setRepresentative(value)
-                    cache.filter([book, 'representative'])
-                }
+            const response = await edit('Book', book, 'representative', value)
+            if (response.success) {
+                setRepresentative(value)
+                cache.filter([book, 'representative'])
             }
         }
 

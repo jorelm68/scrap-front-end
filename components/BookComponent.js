@@ -48,7 +48,7 @@ const BookComponent = ({ book, showAuthor }) => {
     ])
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
+        <TouchableOpacity onPress={() => {
             router.push({
                 pathname: '/book',
                 params: {
@@ -118,8 +118,7 @@ const BookComponent = ({ book, showAuthor }) => {
                     }}>{place}</Text>
                 </View>
             </View>
-
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
     )
 }
 
