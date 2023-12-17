@@ -5,7 +5,7 @@ import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
 import { useRouter } from 'expo-router'
-import { colors, styles } from '../../data/styles'
+import { colors, dimensions, styles } from '../../data/styles'
 
 const ChooseAccount = () => {
     const router = useRouter()
@@ -82,6 +82,7 @@ const ChooseAccount = () => {
                     <Text style={{
                         fontFamily: styles.text2,
                         fontSize: 18,
+                        color: colors.default,
                     }}>{item.pseudonym}</Text>
                 </View>
             </Drawer>
@@ -89,7 +90,11 @@ const ChooseAccount = () => {
     }
 
     return (
-        <View>
+        <View style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            backgroundColor: colors.background,
+        }}>
             <FlatList
                 data={accounts}
                 renderItem={renderItem}

@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native-ui-lib'
 import React from 'react'
-import { styles } from '../data/styles'
+import { colors, styles } from '../data/styles'
 
 const LogoComponent = () => {
     return (
@@ -8,6 +8,7 @@ const LogoComponent = () => {
             <Text style={{
                 fontFamily: styles.text2,
                 fontSize: 48,
+                color: colors.default,
             }}>Scrap</Text>
         </View>
     )

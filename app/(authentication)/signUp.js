@@ -11,6 +11,7 @@ import LogoComponent from '../../components/LogoComponent'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import ErrorComponent from '../../components/ErrorComponent'
+import { colors, dimensions } from '../../data/styles'
 
 const SignUp = () => {
   const router = useRouter()
@@ -128,7 +129,11 @@ const SignUp = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <View width='100%' flex center>
+        <View width='100%' flex center style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          backgroundColor: colors.background,
+        }}>
           <LogoComponent />
           <FieldComponent
             placeholder='Pseudonym (username)'

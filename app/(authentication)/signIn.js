@@ -8,7 +8,7 @@ import { authorSignIn } from '../../data/api'
 import { retrieveData, saveAccount, storeData } from '../../data/utility'
 import AppContext from '../../context/AppContext'
 import { IconPerson } from '../../data/icons'
-import { colors, styles } from '../../data/styles'
+import { colors, dimensions, styles } from '../../data/styles'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'
@@ -96,7 +96,11 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <View width='100%' flex center>
+        <View width='100%' flex center style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          backgroundColor: colors.background,
+        }}>
           <LogoComponent />
           {accounts && accounts.length !== 0 && (
             <ButtonComponent
