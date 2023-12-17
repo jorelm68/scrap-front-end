@@ -17,7 +17,6 @@ const BookPicker = () => {
   const { functions } = useContext(AppContext)
   const onSubmit = functions[functionName]
   const [selection, setSelection] = useState([])
-  console.log(selection)
 
   const navigation = useNavigation()
 
@@ -77,7 +76,6 @@ const BookPicker = () => {
       {books && books.length > 0 && books.map((book) => {
         return (
           <TouchableOpacity key={book} onPress={() => {
-            console.log(book)
             toggleSelect(book)
           }} >
             <View style={selection.includes(book) ? {

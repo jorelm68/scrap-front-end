@@ -7,8 +7,10 @@ import { Ionicons } from '@expo/vector-icons'
 import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest } from '../data/api'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
+import { useRouter } from 'expo-router'
 
 const AuthorComponent = ({ author }) => {
+  const router = useRouter()
   const { user } = useContext(AppContext)
   const [hidden, setHidden] = useState(false)
 
@@ -28,8 +30,6 @@ const AuthorComponent = ({ author }) => {
     'relationship',
   ])
 
-  console.log(relationship)
-
   if (hidden) {
     return null
   }
@@ -42,7 +42,14 @@ const AuthorComponent = ({ author }) => {
         width: `${(2 / 3) * 100}%`,
         height: 64,
       }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          router.push({
+            pathname: '/profile',
+            params: {
+              author,
+            }
+          })
+        }}>
           <Image source={iCover} style={{
             width: '100%',
             height: 64,
@@ -85,6 +92,7 @@ const AuthorComponent = ({ author }) => {
             if (response.success) {
               cache.filter([user, 'outgoingFriendRequests'])
               cache.filter([author, 'relationship'])
+              cache.filter([author, 'incomingFriendRequests'])
               setHidden(true)
             }
           }}>
@@ -115,6 +123,8 @@ const AuthorComponent = ({ author }) => {
                   cache.filter([user, 'incomingFriendRequests'])
                   cache.filter([author, 'relationship'])
                   cache.filter([user, 'friends'])
+                  cache.filter([author, 'outgoingFriendRequests'])
+                  cache.filter([author, 'friends'])
                   setHidden(true)
                 }
               }}>
@@ -142,6 +152,7 @@ const AuthorComponent = ({ author }) => {
                 if (response.success) {
                   cache.filter([user, 'incomingFriendRequests'])
                   cache.filter([author, 'relationship'])
+                  cache.filter([author, 'outgoingFriendRequests'])
                   setHidden(true)
                 }
               }}>
@@ -155,7 +166,7 @@ const AuthorComponent = ({ author }) => {
                     fontFamily: styles.text1,
                     fontSize: 12,
                     color: colors.default,
-                  }}>Remove Request</Text>
+                  }}>Reject Request</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -168,6 +179,7 @@ const AuthorComponent = ({ author }) => {
             if (response.success) {
               cache.filter([user, 'friends'])
               cache.filter([author, 'relationship'])
+              cache.filter([author, 'friends'])
               setHidden(true)
             }
           }}>
