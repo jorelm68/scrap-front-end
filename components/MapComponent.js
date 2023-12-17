@@ -13,7 +13,7 @@ import ScrapMarker from './ScrapMarker'
 import { getCoordinates } from '../data/utility'
 import cache from '../data/cache'
 
-const MapComponent = ({ scraps, scrap, clickMarker }) => {
+const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
     const { user } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
     useEffect(() => {
