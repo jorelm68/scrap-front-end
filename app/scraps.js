@@ -21,6 +21,9 @@ const Scraps = () => {
       flex: 1,
       flexWrap: 'wrap',
       flexDirection: 'row',
+      width: dimensions.width,
+      height: dimensions.height,
+      backgroundColor: colors.background,
     }}>
       {scraps && scraps.map((scrap) => {
         return (

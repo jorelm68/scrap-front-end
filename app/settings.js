@@ -75,7 +75,11 @@ const Settings = () => {
     }, [initialHeadshotAndCover])
 
     return (
-        <View>
+        <View style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            backgroundColor: colors.background,
+        }}>
             {headshotAndCover && (
                 <DropDownComponent
                     type='Scrap'

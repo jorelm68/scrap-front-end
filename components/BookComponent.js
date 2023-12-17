@@ -89,6 +89,7 @@ const BookComponent = ({ book, showAuthor }) => {
                                     fontFamily: styles.text2,
                                     fontSize: 18,
                                     paddingLeft: 4,
+                                    color: colors.default,
                                 }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                             </View>
                         )}
@@ -97,10 +98,12 @@ const BookComponent = ({ book, showAuthor }) => {
                     <Text style={{
                         fontFamily: styles.text1,
                         fontSize: 18,
+                        color: colors.default,
                     }}>{title}</Text>
                     <Text style={{
                         fontFamily: styles.text1,
                         fontSize: 12,
+                        color: colors.default,
                     }}>{description}</Text>
                 </View>
 
@@ -108,13 +111,13 @@ const BookComponent = ({ book, showAuthor }) => {
                     width: dimensions.width / 4,
                     height: dimensions.width / 4,
                 }}>
-                    <Ionicons name='pin' color='red' size={24} />
+                    <Ionicons name='pin' color={colors.default} size={24} />
                     <Text style={{
                         fontFamily: styles.text1,
                         fontSize: 12,
                         lineHeight: 14,
                         textAlign: 'center',
-                        color: 'red',
+                        color: colors.default,
                     }}>{place}</Text>
                 </View>
             </View>

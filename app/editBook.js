@@ -15,6 +15,7 @@ import { bookAddScrap, bookRemoveScrap } from '../data/api'
 import useAuthor from '../hooks/useAuthor'
 import cache from '../data/cache'
 import { Alert } from 'react-native'
+import { colors, dimensions } from '../data/styles'
 
 const EditBook = () => {
     const router = useRouter()
@@ -114,7 +115,11 @@ const EditBook = () => {
     }
 
     return (
-        <View>
+        <View style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            backgroundColor: colors.background,
+        }}>
             <View center style={{
                 marginVertical: 16,
             }}>

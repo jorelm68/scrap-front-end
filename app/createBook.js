@@ -90,7 +90,11 @@ const CreateBook = () => {
   }
 
   return (
-    <View>
+    <View style={{
+      width: dimensions.width,
+      height: dimensions.height,
+      backgroundColor: colors.background,
+    }}>
       <View center style={{
         marginVertical: 16,
       }}>

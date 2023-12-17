@@ -64,6 +64,7 @@ const Scrap = ({ scrap }) => {
                         fontFamily: styles.text2,
                         fontSize: 18,
                         paddingLeft: 4,
+                        color: colors.default,
                     }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
                     <TouchableOpacity style={{
@@ -77,7 +78,7 @@ const Scrap = ({ scrap }) => {
                             }
                         })
                     }}>
-                        <Ionicons name='pencil' color={colors.default} size={18} />
+                        <Ionicons name='pencil' color={colors.button} size={18} />
                     </TouchableOpacity>
                 </View>
 
@@ -91,6 +92,7 @@ const Scrap = ({ scrap }) => {
                         paddingBottom: 4,
                         paddingHorizontal: 2,
                         width: dimensions.width * (2 / 3),
+                        color: colors.default,
                     }}>{title}</Text>
                 </View>
             )}
@@ -128,6 +130,7 @@ const Scrap = ({ scrap }) => {
                             fontFamily: styles.text1,
                             fontSize: 12,
                             paddingLeft: 2,
+                            color: colors.default,
                         }}>{place}</Text>
                     </View>
 
@@ -142,6 +145,7 @@ const Scrap = ({ scrap }) => {
                                 fontFamily: styles.text1,
                                 fontSize: 12,
                                 paddingRight: 2,
+                                color: colors.default,
                             }}>{createdAt}</Text>
                             <Ionicons name='timer-outline' color={colors.default} size={18} />
                         </View>
@@ -159,6 +163,7 @@ const Scrap = ({ scrap }) => {
                         paddingLeft: 4,
                         paddingRight: 4,
                         paddingBottom: 4,
+                        color: colors.default,
                     }}>{description}</Text>
                 </View>
             )}

@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { styles } from '../../data/styles'
+import { colors, styles } from '../../data/styles'
 
 const Layout = () => {
     return (
@@ -16,6 +16,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: styles.text3,
                         fontSize: 24,
+                        color: colors.default,
                     }
                 }}
             />
@@ -28,6 +29,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: styles.text3,
                         fontSize: 24,
+                        color: colors.default,
                     }
                 }}
             />
@@ -40,6 +42,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: styles.text3,
                         fontSize: 24,
+                        color: colors.default,
                     }
                 }}
             />
@@ -52,6 +55,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: styles.text3,
                         fontSize: 24,
+                        color: colors.default,
                     }
                 }}
             />
@@ -64,6 +68,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: styles.text3,
                         fontSize: 24,
+                        color: colors.default,
                     }                   
                 }}
             />

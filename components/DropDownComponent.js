@@ -101,6 +101,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         minHeight: 48,
                         borderBottomWidth: 1,
                         borderTopWidth: topBorder ? 1 : 0,
+                        borderColor: colors.default,
                     }}>
                         <View row center style={{
                         }}>
@@ -108,6 +109,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 fontFamily: styles.text1,
                                 fontSize: 12, width: '30%',
                                 paddingLeft: 4,
+                                color: colors.default,
                             }}>{title}</Text>
 
                             <View style={{
@@ -136,8 +138,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 width: '7.5%',
                                 height: 48,
                             }}>
-                                <Ionicons style={{
-                                }} name='pencil' size={24} />
+                                <Ionicons color={colors.button} name='pencil' size={24} />
                             </View>
                         </View>
                     </View>
@@ -147,6 +148,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         minHeight: 48,
                         borderBottomWidth: 1,
                         borderTopWidth: topBorder ? 1 : 0,
+                        borderColor: colors.default,
                     }}>
                         <View row center style={{
                         }}>
@@ -155,11 +157,13 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 fontSize: 12,
                                 width: '30%',
                                 paddingLeft: 4,
+                                color: colors.default,
                             }}>{title}</Text>
                             <Text style={{
                                 fontFamily: styles.text1,
                                 fontSize: 12,
                                 width: '62.5%',
+                                color: colors.default,
                             }}>{value}</Text>
 
                             <TouchableOpacity center style={{
@@ -169,7 +173,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 setIsDropped(!isDropped)
                             }}>
                                 <Ionicons style={{
-                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} size={24} />
+                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={colors.button} size={24} />
                             </TouchableOpacity>
                         </View>
 

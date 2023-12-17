@@ -8,6 +8,7 @@ import ScrapCarousel from '../components/ScrapCarousel'
 import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import Book from '../components/Book'
+import { colors, dimensions } from '../data/styles'
 
 const BookScreen = () => {
     const params = useLocalSearchParams()
@@ -20,7 +21,13 @@ const BookScreen = () => {
     }
 
     return (
-        <Book book={book} scraps={scraps} page={page} />
+        <View style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            backgroundColor: colors.background,
+        }}>
+            <Book book={book} scraps={scraps} page={page} />
+        </View>
     )
 }
 

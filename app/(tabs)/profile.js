@@ -104,6 +104,7 @@ const Profile = () => {
           fontSize: 28,
           width: dimensions.width * (1 / 2 + 1 / 8),
           fontFamily: styles.text2,
+          color: colors.default,
         }}>{name}</Text>
       </TouchableOpacity>
 
@@ -166,8 +167,9 @@ const Profile = () => {
             <Text style={{
               padding: 4,
               fontFamily: styles.text1,
-              fontSize: 16,
+              fontSize: 14,
               height: '100%',
+              color: colors.default,
             }}>
               Hello World. This is my first description.
             </Text>
@@ -184,6 +186,7 @@ const Profile = () => {
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 20,
+              color: colors.default,
             }}>
               {publicBooks.length}
             </Text>
@@ -192,6 +195,7 @@ const Profile = () => {
             fontFamily: styles.text1,
             fontSize: 16,
             marginRight: 8,
+            color: colors.default,
           }}>Books</Text>
 
           <View backgroundColor={colors.secondary} center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
@@ -200,6 +204,7 @@ const Profile = () => {
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 20,
+              color: colors.default,
             }}>
               {miles}
             </Text>
@@ -208,6 +213,7 @@ const Profile = () => {
             fontFamily: styles.text1,
             fontSize: 16,
             marginRight: 8,
+            color: colors.default,
           }}>Miles</Text>
 
           <View backgroundColor={colors.secondary} center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
@@ -216,6 +222,7 @@ const Profile = () => {
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 20,
+              color: colors.default,
             }}>
               {friends.length}
             </Text>
@@ -223,6 +230,7 @@ const Profile = () => {
           <Text style={{
             fontFamily: styles.text1,
             fontSize: 16,
+            color: colors.default,
           }}>Friends</Text>
         </View>
       </View>
@@ -232,7 +240,11 @@ const Profile = () => {
 
   if (mode === 'books') {
     return (
-      <ScrollView>
+      <ScrollView style={{
+        backgroundColor: colors.background,
+        width: dimensions.width,
+        height: dimensions.height,
+      }}>
         {profileHeader}
 
         <View style={{

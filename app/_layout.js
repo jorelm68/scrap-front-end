@@ -38,6 +38,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             },
           }}
         />
@@ -48,6 +49,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             },
           }}
         />
@@ -59,6 +61,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             }
           }}
         />
@@ -70,6 +73,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             }
           }}
         />
@@ -92,6 +96,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             }
           }}
         />
@@ -102,6 +107,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             }
           }}
         />
@@ -112,6 +118,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             }
           }}
         />
@@ -122,6 +129,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             }
           }}
         />
@@ -133,6 +141,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             },
             headerBackTitleVisible: false,
           }}
@@ -145,12 +154,13 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
+              color: colors.default,
             },
             headerBackTitleVisible: false,
           }}
         />
       </Stack>
-      
+
     </AppContextProvider>
   )
 }

@@ -7,6 +7,7 @@ import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data/regex'
 import { edit } from '../data/utility'
 import cache from '../data/cache'
+import { colors, dimensions } from '../data/styles'
 
 const EditScrap = () => {
     const { scrap } = useLocalSearchParams()
@@ -27,7 +28,11 @@ const EditScrap = () => {
     ])
 
     return (
-        <View>
+        <View style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            backgroundColor: colors.background,
+        }}>
             <DropDownComponent
                 type='Text'
                 title='Title:'

@@ -192,14 +192,22 @@ const CameraScreen = () => {
 
   if (isLoading) {
     return (
-      <View>
+      <View style={{
+        width: dimensions.width,
+        height: dimensions.height,
+        backgroundColor: colors.background,
+      }}>
         <Text>LoADING</Text>
       </View>
     )
   }
 
   return (
-    <View>
+    <View style={{
+      width: dimensions.width,
+      height: dimensions.height,
+      backgroundColor: colors.background,
+    }}>
       {!isSaving && (
         <View center>
           <View height='8%' style={{
@@ -209,6 +217,7 @@ const CameraScreen = () => {
               color: colors.text,
               fontFamily: styles.text2,
               fontSize: 24,
+              color: colors.default,
             }}>{dateAndTimeDisplay}</Text>
           </View>
 
@@ -219,6 +228,7 @@ const CameraScreen = () => {
               color: colors.text,
               fontFamily: styles.text2,
               fontSize: 24,
+              color: colors.default,
             }}>{locationDisplay}</Text>
           </View>
 
@@ -239,32 +249,32 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={styles.inverse} size={80} />
+                  <Ionicons name='scan' color={colors.button} size={80} />
                 </TouchableOpacity>
 
                 <View row>
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomOut}>
-                      <Ionicons name='remove' size={35} />
+                      <Ionicons name='remove' color={colors.button} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => setFlash(!flash)}>
-                      {flash && <Ionicons name='flash' color={styles.inverse} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={styles.inverse} size={35} />}
+                      {flash && <Ionicons name='flash' color={colors.button} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={colors.button} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => handleFlipCamera()}>
-                      <Ionicons name='refresh' color={styles.inverse} size={35} />
+                      <Ionicons name='refresh' color={colors.button} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomIn}>
-                      <Ionicons name='add' color={styles.inverse} size={35} />
+                      <Ionicons name='add' color={colors.button} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>

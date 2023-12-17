@@ -4,7 +4,7 @@ import { router, useLocalSearchParams, useNavigation, useRouter } from 'expo-rou
 import ScrapComponent from '../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert } from 'react-native'
-import { colors, styles } from '../data/styles'
+import { colors, dimensions, styles } from '../data/styles'
 import AppContext from '../context/AppContext'
 
 const ScrapPicker = () => {
@@ -66,6 +66,9 @@ const ScrapPicker = () => {
       flex: 1,
       flexWrap: 'wrap',
       flexDirection: 'row',
+      width: dimensions.width,
+      height: dimensions.height,
+      backgroundColor: colors.background,
     }}>
       {scraps && scraps.length > 0 && scraps.map((scrap) => {
         return (
