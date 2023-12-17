@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
 
-const BookComponent = ({ book }) => {
+const BookComponent = ({ book, showAuthor }) => {
     const router = useRouter()
     const {
         author,
@@ -59,7 +59,6 @@ const BookComponent = ({ book }) => {
             <View row style={{
                 width: dimensions.width,
                 height: dimensions.width / 4,
-                borderBottomWidth: 1,
             }}>
                 <Image source={iPrograph} style={{
                     width: dimensions.width / 4,
@@ -79,18 +78,20 @@ const BookComponent = ({ book }) => {
                             }
                         })
                     }}>
-                        <View centerV row>
-                            <Image source={iHeadshot} style={{
-                                width: 48,
-                                height: 48,
-                                borderRadius: 24,
-                            }} />
-                            <Text style={{
-                                fontFamily: styles.text2,
-                                fontSize: 18,
-                                paddingLeft: 4,
-                            }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
-                        </View>
+                        {showAuthor && (
+                            <View centerV row>
+                                <Image source={iHeadshot} style={{
+                                    width: 48,
+                                    height: 48,
+                                    borderRadius: 24,
+                                }} />
+                                <Text style={{
+                                    fontFamily: styles.text2,
+                                    fontSize: 18,
+                                    paddingLeft: 4,
+                                }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                            </View>
+                        )}
                     </TouchableOpacity>
 
                     <Text style={{

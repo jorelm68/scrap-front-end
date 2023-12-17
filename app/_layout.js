@@ -106,6 +106,16 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name='book'
+          options={{
+            headerTitle: 'Book',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+            }
+          }}
+        />
+        <Stack.Screen
           name='createBook'
           options={{
             headerTitle: 'Create Book',

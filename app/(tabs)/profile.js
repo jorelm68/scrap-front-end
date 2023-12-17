@@ -8,6 +8,7 @@ import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from '
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import ButtonComponent from '../../components/ButtonComponent'
 import { Ionicons } from '@expo/vector-icons'
+import BookComponent from '../../components/BookComponent'
 
 const Profile = () => {
   const router = useRouter()
@@ -80,7 +81,7 @@ const Profile = () => {
     router.push('/settings')
   }
 
-  const profileHeader = <ScrollView flex>
+  const profileHeader = <View>
     <TouchableWithoutFeedback onPress={handleTogglePhotos}>
       <Image source={photosReverse ? iHeadshot : iCover} width={dimensions.width} height={dimensions.width / 2} style={{
         borderBottomRightRadius: 16,
@@ -226,13 +227,24 @@ const Profile = () => {
       </View>
     </View>
 
-  </ScrollView>
+  </View>
 
   if (mode === 'books') {
     return (
-      <View flex center>
+      <ScrollView>
         {profileHeader}
-      </View>
+
+        <View style={{
+          marginTop: 16,
+        }}>
+          {books && books.map((book) => {
+            return (
+              <BookComponent book={book} key={book} />
+            )
+          })}
+        </View>
+
+      </ScrollView>
     )
   }
   else if (mode === 'map') {
