@@ -9,26 +9,8 @@ import AppContext from '../context/AppContext'
 import cache from '../data/cache'
 
 const ScrapCarousel = ({ scraps, initialPage = 0, width = '100%', height = '100%' }) => {
-    const navigation = useNavigation()
-    const router = useRouter()
     const { currentScrap, setCurrentScrap } = useContext(AppContext)
     const [page, setPage] = useState(initialPage)
-
-    useEffect(() => {
-        navigation.setOptions({
-            headerRight: () => (
-                <TouchableOpacity onPress={async () => {
-                    router.push({
-                        pathname: '/editScrap', params: {
-                            scrap: currentScrap,
-                        }
-                    })
-                }}>
-                    <Ionicons name='pencil' color={colors.default} size={32} />
-                </TouchableOpacity>
-            ),
-        })
-    }, [navigation, currentScrap])
 
     useEffect(() => {
         setCurrentScrap(scraps[initialPage])

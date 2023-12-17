@@ -127,7 +127,20 @@ const Layout = () => {
             headerBackTitleVisible: false,
           }}
         />
+        <Stack.Screen
+          name='editBook'
+          options={{
+            presentation: 'modal',
+            headerTitle: 'Edit Book',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+            },
+            headerBackTitleVisible: false,
+          }}
+        />
       </Stack>
+      
     </AppContextProvider>
   )
 }

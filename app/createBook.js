@@ -167,26 +167,28 @@ const CreateBook = () => {
         }}
       />
 
-      <View center style={{
-        marginVertical: 16,
-      }}>
-        <ButtonComponent
-          label='Add Scraps'
-          size='large'
-          onPress={() => {
-            router.push({
-              pathname: '/scrapPicker', params: {
-                scraps: JSON.stringify(scraps.filter((value) => {
-                  return !book.scraps || !book.scraps.includes(value)
-                })),
-                amount: JSON.stringify(10),
-                functionName: 'addScrapsToBook',
-              }
-            })
-          }}
-          width='50%'
-        />
-      </View>
+      {scraps.length < 10 && (
+        <View center style={{
+          marginVertical: 16,
+        }}>
+          <ButtonComponent
+            label='Add Scraps'
+            size='large'
+            onPress={() => {
+              router.push({
+                pathname: '/scrapPicker', params: {
+                  scraps: JSON.stringify(scraps.filter((value) => {
+                    return !book.scraps || !book.scraps.includes(value)
+                  })),
+                  amount: JSON.stringify(10 - scraps.length),
+                  functionName: 'addScrapsToBook',
+                }
+              })
+            }}
+            width='50%'
+          />
+        </View>
+      )}
 
       <View style={{
         flexWrap: 'wrap',
