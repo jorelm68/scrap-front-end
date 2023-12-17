@@ -15,9 +15,11 @@ const BookScreen = () => {
     const book = params.book
     let scraps = []
     let page = 0
+    if (params.page) {
+        page = JSON.parse(params.page)
+    }
     if (book === undefined) {
         scraps = JSON.parse(params.scraps)
-        page = JSON.parse(params.page)
     }
 
     return (

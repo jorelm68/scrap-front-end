@@ -15,16 +15,16 @@ const BookComponent = ({ book, showAuthor }) => {
         author,
         title,
         description,
-        scraps,
         isPublic,
         representative,
+        scraps,
     } = useBook(book, [
         'author',
         'title',
         'description',
-        'scraps',
         'isPublic',
         'representative',
+        'scraps',
     ])
 
     const {
@@ -53,6 +53,7 @@ const BookComponent = ({ book, showAuthor }) => {
                 pathname: '/book',
                 params: {
                     book,
+                    page: JSON.stringify(scraps.indexOf(representative))
                 }
             })
         }}>
