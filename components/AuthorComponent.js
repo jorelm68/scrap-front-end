@@ -7,10 +7,11 @@ import { Ionicons } from '@expo/vector-icons'
 import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest } from '../data/api'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
-import { useRouter } from 'expo-router'
+import { useNavigation, useRouter, Link } from 'expo-router'
 
 const AuthorComponent = ({ author }) => {
   const router = useRouter()
+  const navigation = useNavigation()
   const { user } = useContext(AppContext)
   const [hidden, setHidden] = useState(false)
 
