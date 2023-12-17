@@ -1,12 +1,14 @@
-import { View, Text, Image } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext } from 'react'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles, dimensions } from '../data/styles'
+import { useRouter } from 'expo-router'
 
 const Scrap = ({ scrap }) => {
+    const router = useRouter()
     const { user } = useContext(AppContext)
     const {
         iPrograph,
@@ -47,17 +49,38 @@ const Scrap = ({ scrap }) => {
             width: '100%',
             height: '100%',
         }}>
-            <View centerV row>
+            <View centerV row style={{
+                width: dimensions.width * (2 / 3)
+            }}>
                 <Image source={iHeadshot} style={{
                     width: 48,
                     height: 48,
                     borderRadius: 24,
                 }} />
-                <Text style={{
-                    fontFamily: styles.text2,
-                    fontSize: 18,
-                    paddingLeft: 4,
-                }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                <View row centerV style={{
+                    width: dimensions.width * (2 / 3) - 48
+                }}>
+                    <Text style={{
+                        fontFamily: styles.text2,
+                        fontSize: 18,
+                        paddingLeft: 4,
+                    }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+
+                    <TouchableOpacity style={{
+                        position: 'absolute',
+                        right: 4,
+                    }} onPress={() => {
+                        router.push({
+                            pathname: '/editScrap',
+                            params: {
+                                scrap,
+                            }
+                        })
+                    }}>
+                        <Ionicons name='pencil' color={colors.default} size={18} />
+                    </TouchableOpacity>
+                </View>
+
             </View>
 
             {title && (
