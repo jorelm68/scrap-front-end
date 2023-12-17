@@ -12,6 +12,7 @@ import DropDownComponent from '../../components/DropDownComponent'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../../data/regex'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../../data/error'
 import cache from '../../data/cache'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 const CameraScreen = () => {
   const { user } = useContext(AppContext)
@@ -348,21 +349,23 @@ const CameraScreen = () => {
             }}
           />
 
-          <TouchableOpacity onPress={handleToggleDirection}>
-            <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
-              width: dimensions.width,
-              height: dimensions.width,
-              borderRadius: 8,
-            }} />
+          <TouchableWithoutFeedback onPress={handleToggleDirection}>
+            <View>
+              <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
+                width: dimensions.width,
+                height: dimensions.width,
+                borderRadius: 8,
+              }} />
 
-            <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
-              position: 'absolute',
-              width: dimensions.width / 3,
-              height: dimensions.width / 3,
-              borderRadius: 8,
-              right: 0,
-            }} />
-          </TouchableOpacity>
+              <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
+                position: 'absolute',
+                width: dimensions.width / 3,
+                height: dimensions.width / 3,
+                borderRadius: 8,
+                right: 0,
+              }} />
+            </View>
+          </TouchableWithoutFeedback>
 
         </View>
       )}
