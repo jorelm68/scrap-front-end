@@ -129,7 +129,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'books' ? colors.interaction : colors.background}>
+          }} backgroundColor={mode === 'books' ? colors.active : colors.background}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -142,7 +142,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'map' ? colors.interaction : colors.background}>
+          }} backgroundColor={mode === 'map' ? colors.active : colors.background}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -155,7 +155,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginVertical: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'friends' ? colors.interaction : colors.background}>
+          }} backgroundColor={mode === 'friends' ? colors.active : colors.background}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -300,7 +300,7 @@ const Profile = () => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: colors.interaction,
+              borderBottomColor: colors.active,
               borderBottomWidth: option === 'friends' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -310,7 +310,7 @@ const Profile = () => {
                   fontFamily: styles.text1,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'friends' ? colors.interaction : colors.default,
+                  color: option === 'friends' ? colors.active : colors.default,
                   textAlign: 'center',
                 }}>Friends</Text>
               </TouchableOpacity>
@@ -319,7 +319,7 @@ const Profile = () => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: colors.interaction,
+              borderBottomColor: colors.active,
               borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -329,7 +329,7 @@ const Profile = () => {
                   fontFamily: styles.text1,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'incomingFriendRequests' ? colors.interaction : colors.default,
+                  color: option === 'incomingFriendRequests' ? colors.active : colors.default,
                   textAlign: 'center',
                 }}>Incoming Requests</Text>
               </TouchableOpacity>
@@ -338,7 +338,7 @@ const Profile = () => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: colors.interaction,
+              borderBottomColor: colors.active,
               borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -348,7 +348,7 @@ const Profile = () => {
                   fontFamily: styles.text1,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'outgoingFriendRequests' ? colors.interaction : colors.default,
+                  color: option === 'outgoingFriendRequests' ? colors.active : colors.default,
                   textAlign: 'center',
                 }}>Outgoing Requests</Text>
               </TouchableOpacity>

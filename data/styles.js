@@ -7,6 +7,7 @@ export const light = {
     secondary: Colors.grey50,
     default: 'black',
     interaction: Colors.blue30,
+    active: Colors.blue60,
 
     dimmed: Colors.grey40,
     inverse: 'white',
