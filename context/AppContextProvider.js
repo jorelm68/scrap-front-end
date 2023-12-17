@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AppContext from './AppContext'
+import cache from '../data/cache'
 
 const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
@@ -9,6 +10,10 @@ const AppContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
     const [currentScrap, setCurrentScrap] = useState('')
+
+    useEffect(() => {
+        cache.filter(['relationship'])
+    }, [user])
 
     // You can also define functions or any other data that you want to share
 
