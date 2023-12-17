@@ -48,8 +48,6 @@ const Scrap = ({ scrap }) => {
 
     return (
         <View style={{
-            width: '100%',
-            height: '100%',
         }}>
             <View centerV row style={{
                 width: dimensions.width * (2 / 3)

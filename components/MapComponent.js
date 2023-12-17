@@ -22,7 +22,7 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
         }).catch(() => {
             console.log('ERROR')
         })
-    }, [])
+    }, [scraps])
 
     const {
         latitude,
@@ -53,8 +53,8 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
             ref={mapViewRef}
             region={region}
             style={{
-                width: '100%',
-                height: 200,
+                width: dimensions.width,
+                height: dimensions.width,
                 borderRadius: 8,
             }}>
             {scraps && scraps.map((scrap) => {

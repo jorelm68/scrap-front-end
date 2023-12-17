@@ -8,7 +8,7 @@ import { colors, styles, dimensions } from '../data/styles'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
 
-const ScrapCarousel = ({ scraps, initialPage = 0, width = '100%', height = '100%' }) => {
+const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
     const { currentScrap, setCurrentScrap } = useContext(AppContext)
     const [page, setPage] = useState(initialPage)
 
@@ -17,29 +17,24 @@ const ScrapCarousel = ({ scraps, initialPage = 0, width = '100%', height = '100%
     }, [])
 
     return (
-        <View style={{
-            width,
-            height,
-        }}>
-            <Carousel
-                onChangePage={(newIndex) => {
-                    setPage(newIndex)
-                    setCurrentScrap(scraps[newIndex])
-                }}
-                initialPage={initialPage}
-            >
-                {scraps && scraps.map((scrap, index) => {
-                    if (Math.abs(page - index) < 3) {
-                        return (
-                            <Scrap scrap={scrap} key={scrap} />
-                        )
-                    }
+        <Carousel
+            onChangePage={(newIndex) => {
+                setPage(newIndex)
+                setCurrentScrap(scraps[newIndex])
+            }}
+            initialPage={initialPage}
+        >
+            {scraps && scraps.map((scrap, index) => {
+                if (Math.abs(page - index) < 3) {
                     return (
-                        <View key={scrap} />
+                        <Scrap scrap={scrap} key={scrap} />
                     )
-                })}
-            </Carousel>
-        </View>
+                }
+                return (
+                    <View key={scrap} />
+                )
+            })}
+        </Carousel>
     )
 }
 

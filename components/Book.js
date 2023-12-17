@@ -60,12 +60,12 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                 width: '100%',
                 height: '100%',
             }}>
+                <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={initialPage} />
                 <MapComponent
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}
                     clickMarker={clickMarker}
                 />
-                <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={initialPage} width='100%' />
             </ScrollView>
         </View>
     )
