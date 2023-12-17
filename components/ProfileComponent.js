@@ -1,24 +1,21 @@
 import { View, Text, Image, Colors } from 'react-native-ui-lib'
 import { ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import AppContext from '../../context/AppContext'
-import useAuthor from '../../hooks/useAuthor'
-import { colors, dimensions, styles } from '../../data/styles'
+import AppContext from '../context/AppContext'
+import useAuthor from '../hooks/useAuthor'
+import { colors, dimensions, styles } from '../data/styles'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import ButtonComponent from '../../components/ButtonComponent'
+import ButtonComponent from '../components/ButtonComponent'
 import { Ionicons } from '@expo/vector-icons'
-import BookComponent from '../../components/BookComponent'
-import cache from '../../data/cache'
-import AuthorComponent from '../../components/AuthorComponent'
-import { authorSendRequest } from '../../data/api'
+import BookComponent from '../components/BookComponent'
+import cache from '../data/cache'
+import AuthorComponent from '../components/AuthorComponent'
+import { authorSendRequest } from '../data/api'
 
-const Profile = () => {
+const ProfileComponent = ({ author }) => {
   const router = useRouter()
   const { user } = useContext(AppContext)
-  const params = useLocalSearchParams()
-  let author = params.author
-  if (!author) author = user
   const navigation = useNavigation()
   const [name, setName] = useState('')
   const [photosReverse, setPhotosReverse] = useState(false)
@@ -382,4 +379,4 @@ const Profile = () => {
   }
 }
 
-export default Profile
+export default ProfileComponent

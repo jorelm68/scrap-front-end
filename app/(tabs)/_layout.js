@@ -60,7 +60,7 @@ const Layout = () => {
                 }}
             />
             <Tabs.Screen
-                name="profile"
+                name="profileInitial"
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ size, color }) => <Ionicons name={'person'} size={size} color={color} />,
