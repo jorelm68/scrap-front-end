@@ -51,14 +51,22 @@ export default function useScrap(scrap, requests) {
 
         if (scrap !== undefined && scrap !== '') {
             if (request.includes('iRetrograph')) {
-                const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
-                const iRetrograph = await Cache.getPhoto(retrograph, request.split('->')[1])
-                setIRetrograph(iRetrograph)
+                try {
+                    const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
+                    const iRetrograph = await Cache.getPhoto(retrograph, request.split('->')[1])
+                    setIRetrograph(iRetrograph)
+                } catch (error) {
+                    setIRetrograph(defaultImage)
+                }
             }
             else if (request.includes('iPrograph')) {
-                const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
-                const iPrograph = await Cache.getPhoto(prograph, request.split('->')[1])
-                setIPrograph(iPrograph)
+                try {
+                    const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+                    const iPrograph = await Cache.getPhoto(prograph, request.split('->')[1])
+                    setIPrograph(iPrograph)
+                } catch (error) {
+                    setIPrograph(defaultHeadshot)
+                }
             }
             else {
                 promises.push(get('Scrap', scrap, request, set))

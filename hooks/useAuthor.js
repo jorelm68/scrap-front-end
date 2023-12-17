@@ -66,19 +66,27 @@ export default function useAuthor(author, requests) {
         else if (request === 'likedBooks') set = setLikedBooks
         else if (request === 'feed') set = setFeed
         else if (request === 'actions') set = setActions
-
+        
         if (author !== undefined && author !== '') {
             if (request.includes('iHeadshot')) {
-                const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
-                const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
-                const iHeadshot = await Cache.getPhoto(retrograph, request.split('->')[1])
-                setIHeadshot(iHeadshot)
+                try {
+                    const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
+                    const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
+                    const iHeadshot = await Cache.getPhoto(retrograph, request.split('->')[1])
+                    setIHeadshot(iHeadshot)
+                } catch (error) {
+                    setIHeadshot(defaultHeadshot)
+                }
             }
             else if (request.includes('iCover')) {
-                const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
-                const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
-                const iCover = await Cache.getPhoto(prograph, request.split('->')[1])
-                setICover(iCover)
+                try {
+                    const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
+                    const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
+                    const iCover = await Cache.getPhoto(prograph, request.split('->')[1])
+                    setICover(iCover)
+                } catch (error) {
+                    setICover(defaultCover)
+                }
             }
             else {
                 promises.push(get('Author', author, request, set))

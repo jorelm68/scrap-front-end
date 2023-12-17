@@ -13,7 +13,7 @@ const Profile = () => {
   const router = useRouter()
   const { user } = useContext(AppContext)
   const params = useLocalSearchParams()
-  const author = params.author
+  let author = params.author
   if (!author) author = user
   const navigation = useNavigation()
   const [name, setName] = useState('')
