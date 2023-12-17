@@ -6,6 +6,7 @@ import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
 import { useRouter } from 'expo-router'
 import { colors, dimensions, styles } from '../../data/styles'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const ChooseAccount = () => {
     const router = useRouter()
@@ -71,21 +72,23 @@ const ChooseAccount = () => {
     // This is the callback function for displaying each individual drawer in the FlatList
     const renderItem = ({ item }) => {
         return (
-            <Drawer
-                rightItems={[
-                    { text: 'Sign In', background: colors.success, onPress: () => handleSignIn(item) },
-                    { text: 'Forget', background: colors.error, onPress: () => handleForget(item) },
-                ]}
-                leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
-            >
-                <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: 1 }}>
-                    <Text style={{
-                        fontFamily: styles.text2,
-                        fontSize: 18,
-                        color: colors.default,
-                    }}>{item.pseudonym}</Text>
-                </View>
-            </Drawer>
+            <GestureHandlerRootView>
+                <Drawer
+                    rightItems={[
+                        { text: 'Sign In', background: colors.success, onPress: () => handleSignIn(item) },
+                        { text: 'Forget', background: colors.error, onPress: () => handleForget(item) },
+                    ]}
+                    leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
+                >
+                    <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: 1 }}>
+                        <Text style={{
+                            fontFamily: styles.text2,
+                            fontSize: 18,
+                            color: colors.default,
+                        }}>{item.pseudonym}</Text>
+                    </View>
+                </Drawer>
+            </GestureHandlerRootView>
         )
     }
 
