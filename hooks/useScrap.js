@@ -96,10 +96,9 @@ export default function useScrap(scrap, requests) {
         else if (graph === 'retrograph') setGraph('ambigraph')
     }
 
-    const [direction, setDirection] = useState('forwards')
+    const [direction, setDirection] = useState(true)
     const toggleDirection = () => {
-        if (direction === 'forwards') setDirection('backwards')
-        else if (direction === 'backwards') setDirection('forwards')
+        setDirection(!direction)
     }
 
     return {
@@ -117,14 +116,14 @@ export default function useScrap(scrap, requests) {
         setLatitude,
         longitude,
         setLongitude,
-        prograph,
-        setPrograph,
-        retrograph,
-        setRetrograph,
-        iPrograph,
-        setIPrograph,
-        iRetrograph,
-        setIRetrograph,
+        prograph: direction ? prograph : retrograph,
+        setPrograph: direction ? setPrograph: setRetrograph,
+        retrograph: direction ? retrograph : prograph,
+        setRetrograph: direction ? setRetrograph : setPrograph,
+        iPrograph: direction ? iPrograph : iRetrograph,
+        setIPrograph: direction ? setIPrograph : setIRetrograph,
+        iRetrograph: direction ? iRetrograph : iPrograph,
+        setIRetrograph: direction ? setIRetrograph : setIPrograph,
         createdAt,
         setCreatedAt,
         graph,

@@ -6,6 +6,7 @@ import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles, dimensions } from '../data/styles'
 import { useRouter } from 'expo-router'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 const Scrap = ({ scrap }) => {
     const router = useRouter()
@@ -19,6 +20,7 @@ const Scrap = ({ scrap }) => {
         latitude,
         longitude,
         author,
+        toggleDirection,
         createdAt,
     } = useScrap(scrap, [
         'iPrograph->1080',
@@ -95,21 +97,23 @@ const Scrap = ({ scrap }) => {
                 </View>
             )}
 
-            <View center>
-                <Image source={iPrograph} style={{
-                    width: dimensions.width,
-                    height: dimensions.width,
-                    borderRadius: 8,
-                }} />
-                <Image source={iRetrograph} style={{
-                    position: 'absolute',
-                    width: dimensions.width / 3,
-                    height: dimensions.width / 3,
-                    top: -48,
-                    right: 0,
-                    borderRadius: 8,
-                }} />
-            </View>
+            <TouchableWithoutFeedback onPress={toggleDirection}>
+                <View center>
+                    <Image source={iPrograph} style={{
+                        width: dimensions.width,
+                        height: dimensions.width,
+                        borderRadius: 8,
+                    }} />
+                    <Image source={iRetrograph} style={{
+                        position: 'absolute',
+                        width: dimensions.width / 3,
+                        height: dimensions.width / 3,
+                        top: -48,
+                        right: 0,
+                        borderRadius: 8,
+                    }} />
+                </View>
+            </TouchableWithoutFeedback>
 
             <View centerV style={{
                 width: dimensions.width,
