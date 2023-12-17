@@ -23,9 +23,9 @@ const CreateBook = () => {
   })
 
   const {
-    scraps
+    unbookedScraps
   } = useAuthor(user, [
-    'scraps',
+    'unbookedScraps',
   ])
 
   const handleRemoveScrap = (scrap) => {
@@ -171,7 +171,7 @@ const CreateBook = () => {
         }}
       />
 
-      {scraps.length < 10 && (
+      {unbookedScraps.length < 10 && (
         <View center style={{
           marginVertical: 16,
         }}>
@@ -181,10 +181,10 @@ const CreateBook = () => {
             onPress={() => {
               router.push({
                 pathname: '/scrapPicker', params: {
-                  scraps: JSON.stringify(scraps.filter((value) => {
+                  scraps: JSON.stringify(unbookedScraps.filter((value) => {
                     return !book.scraps || !book.scraps.includes(value)
                   })),
-                  amount: JSON.stringify(10 - scraps.length),
+                  amount: JSON.stringify(10 - unbookedScraps.length),
                   functionName: 'addScrapsToBook',
                 }
               })

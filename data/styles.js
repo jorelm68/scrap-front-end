@@ -3,10 +3,10 @@ import { Colors } from 'react-native-ui-lib'
 export const dimensions = Dimensions.get('window')
 
 export const light = {
-    background: 'black',
+    background: Colors.grey70,
     secondary: Colors.grey50,
-    default: 'white',
-    button: Colors.blue40,
+    default: 'black',
+    button: Colors.blue30,
 
     dimmed: Colors.grey40,
     inverse: 'white',

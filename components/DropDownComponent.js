@@ -86,9 +86,6 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
         setError('')
     }
 
-    if (title === 'Representative:') console.log(value)
-
-
     return (
         <TouchableWithoutFeedback onPress={(type === 'Scrap') ? () => {
             onSubmit()

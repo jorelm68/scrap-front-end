@@ -18,6 +18,7 @@ export default function useAuthor(author, requests) {
     const [email, setEmail] = useState('')
     const [pushToken, setPushToken] = useState(undefined)
     const [publicBooks, setPublicBooks] = useState([])
+    const [unbookedScraps, setUnbookedScraps] = useState([])
 
     const [relationship, setRelationship] = useState('')
     const [friends, setFriends] = useState([])
@@ -68,7 +69,8 @@ export default function useAuthor(author, requests) {
         else if (request === 'feed') set = setFeed
         else if (request === 'actions') set = setActions
         else if (request === 'publicBooks') set = setPublicBooks
-        
+        else if (request === 'unbookedScraps') set = setUnbookedScraps
+
         if (author !== undefined && author !== '') {
             if (request.includes('iHeadshot')) {
                 try {
@@ -155,6 +157,8 @@ export default function useAuthor(author, requests) {
         setActions,
         publicBooks,
         setPublicBooks,
+        unbookedScraps,
+        setUnbookedScraps,
         showName,
         toggleName,
     }

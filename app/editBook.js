@@ -43,9 +43,9 @@ const EditBook = () => {
     ])
 
     const {
-        scraps: userScraps,
+        unbookedScraps,
     } = useAuthor(user, [
-        'scraps',
+        'unbookedScraps',
     ])
 
     useEffect(() => {
@@ -206,7 +206,7 @@ const EditBook = () => {
                         onPress={() => {
                             router.push({
                                 pathname: '/scrapPicker', params: {
-                                    scraps: JSON.stringify(userScraps.filter((value) => {
+                                    scraps: JSON.stringify(unbookedScraps.filter((value) => {
                                         return !scraps || !scraps.includes(value)
                                     })),
                                     amount: JSON.stringify(10 - scraps.length),
