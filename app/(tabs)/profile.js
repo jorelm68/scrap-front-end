@@ -129,7 +129,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.interaction}>
+          }} backgroundColor={mode === 'books' ? colors.interaction : colors.background}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -142,7 +142,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.interaction}>
+          }} backgroundColor={mode === 'map' ? colors.interaction : colors.background}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -155,7 +155,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginVertical: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.interaction}>
+          }} backgroundColor={mode === 'friends' ? colors.interaction : colors.background}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -308,7 +308,8 @@ const Profile = () => {
               }}>
                 <Text style={{
                   fontFamily: styles.text1,
-                  fontSize: 18,
+                  fontSize: 16,
+                  padding: 4,
                   color: option === 'friends' ? colors.interaction : colors.default,
                   textAlign: 'center',
                 }}>Friends</Text>
@@ -326,7 +327,8 @@ const Profile = () => {
               }}>
                 <Text style={{
                   fontFamily: styles.text1,
-                  fontSize: 18,
+                  fontSize: 16,
+                  padding: 4,
                   color: option === 'incomingFriendRequests' ? colors.interaction : colors.default,
                   textAlign: 'center',
                 }}>Incoming Requests</Text>
@@ -344,7 +346,8 @@ const Profile = () => {
               }}>
                 <Text style={{
                   fontFamily: styles.text1,
-                  fontSize: 18,
+                  fontSize: 16,
+                  padding: 4,
                   color: option === 'outgoingFriendRequests' ? colors.interaction : colors.default,
                   textAlign: 'center',
                 }}>Outgoing Requests</Text>
