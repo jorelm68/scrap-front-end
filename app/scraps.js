@@ -48,7 +48,6 @@ const Scraps = () => {
             router.push({
               pathname: '/book',
               params: {
-                book: undefined,
                 scraps: JSON.stringify(scraps)
               }
               
