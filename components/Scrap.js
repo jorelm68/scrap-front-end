@@ -49,8 +49,15 @@ const Scrap = ({ scrap }) => {
     return (
         <View style={{
         }}>
-            <View centerV row style={{
+            <TouchableOpacity centerV row style={{
                 width: dimensions.width * (2 / 3)
+            }} onPress={() => {
+                router.push({
+                    pathname: '/profile',
+                    params: {
+                        author,
+                    }
+                })
             }}>
                 <Image source={iHeadshot} style={{
                     width: 48,
@@ -82,7 +89,7 @@ const Scrap = ({ scrap }) => {
                     </TouchableOpacity>
                 </View>
 
-            </View>
+            </TouchableOpacity>
 
             {title && (
                 <View>

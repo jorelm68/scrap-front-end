@@ -5,10 +5,11 @@ export const dimensions = Dimensions.get('window')
 export const light = {
     background: 'black',
     secondary: Colors.grey50,
-    default: 'black',
+    default: 'white',
+    button: Colors.blue40,
+
     dimmed: Colors.grey40,
     inverse: 'white',
-    button: Colors.blue40,
     error: Colors.red5,
     success: Colors.green5,
     interaction: Colors.blue10,

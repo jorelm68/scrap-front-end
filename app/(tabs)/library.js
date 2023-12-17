@@ -95,8 +95,6 @@ const Library = () => {
 
   return (
     <View style={{
-      width: dimensions.width,
-      height: dimensions.height,
       backgroundColor: colors.background,
     }}>
       <View style={{
