@@ -12,6 +12,7 @@ import ButtonComponent from '../components/ButtonComponent'
 import useAuthor from '../hooks/useAuthor'
 import ScrapComponent from '../components/ScrapComponent'
 import SwitchComponent from '../components/SwitchComponent'
+import cache from '../data/cache'
 
 const CreateBook = () => {
   const navigation = useNavigation()
@@ -48,6 +49,7 @@ const CreateBook = () => {
             Alert.alert('Error', response.error)
           }
           else {
+            cache.filter([user, 'books'])
             router.back()
           }
           setIsLoading(false)
