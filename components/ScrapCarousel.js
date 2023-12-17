@@ -26,7 +26,7 @@ const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
             showCounter
         >
             {scraps && scraps.map((scrap, index) => {
-                if (Math.abs(page - index) < 3) {
+                if (Math.abs(page - index) < 2) {
                     return (
                         <Scrap scrap={scrap} key={scrap} />
                     )
