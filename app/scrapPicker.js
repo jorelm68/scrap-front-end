@@ -18,7 +18,8 @@ const ScrapPicker = () => {
   const [selection, setSelection] = useState([])
 
   const navigation = useNavigation()
-  const savingHeader = () => {
+
+  useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={async () => {
@@ -28,29 +29,30 @@ const ScrapPicker = () => {
           <Ionicons name='checkmark' color={colors.success} size={32} />
         </TouchableOpacity>
       ),
-      headerLeft: () => ( // Corrected headerLeft configuration
+      headerLeft: () => (
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
           <Ionicons name='close' color={colors.error} size={32} />
         </TouchableOpacity>
-      ), // Don't forget the closing parenthesis for headerLeft
+      ),
     })
-  }
-  useEffect(() => {
-    savingHeader()
   }, [navigation, selection])
 
   const toggleSelect = async (scrap) => {
     if (selection.includes(scrap)) {
-      setSelection(selection.filter((value) => {
-        return scrap !== value
-      }))
+      setSelection((prevSelection) => [
+        ...prevSelection.filter((value) => {
+          return value !== scrap
+        })
+      ])
     }
     else {
       if (selection.length === amount) {
-        const newSelection = [...selection.slice(1), scrap]; // Remove the first element and add the new scrap
-        setSelection(newSelection);
+        setSelection((prevSelection) => [
+          ...prevSelection.slice(1),
+          scrap,
+        ])
       }
       else {
         setSelection((prevSelection) => [
