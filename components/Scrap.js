@@ -127,7 +127,6 @@ const Scrap = ({ scrap }) => {
 
             {description && (
                 <View style={{
-                    borderBottomWidth: 1,
                 }}>
                     <Text style={{
                         fontFamily: styles.text1,
