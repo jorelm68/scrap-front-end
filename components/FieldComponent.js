@@ -13,7 +13,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                     width: '100%',
                     height: 40,
                     borderWidth: 1,
-                    borderColor: 'black',
+                    borderColor: colors.default,
                     borderRadius: 16,
                     justifyContent: 'center',
                 }}
@@ -24,6 +24,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                     paddingHorizontal: 8,
                     fontFamily: styles.text1,
                     height: 40,
+                    color: colors.default,
                 }}
                 onChangeText={onChangeText}
                 value={value}
