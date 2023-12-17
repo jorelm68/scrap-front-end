@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import AppContext from '../context/AppContext'
-import Cache from '../data/cache'
+import cache from '../data/cache'
 import { defaultHeadshot, defaultCover } from '../data/icons'
 
 export default function useAuthor(author, requests) {
@@ -22,8 +22,8 @@ export default function useAuthor(author, requests) {
 
     const [relationship, setRelationship] = useState('')
     const [friends, setFriends] = useState([])
-    const [outgoingFriendRequests, setOutgoingFriendRequests] = useState([])
     const [incomingFriendRequests, setIncomingFriendRequests] = useState([])
+    const [outgoingFriendRequests, setOutgoingFriendRequests] = useState([])
 
     const [scraps, setScraps] = useState([])
 
@@ -39,7 +39,7 @@ export default function useAuthor(author, requests) {
         if (!modelName || !identifier || !field || !setResponse) return undefined
         try {
             let response = null
-            response = await Cache.get(modelName, identifier, field, user)
+            response = await cache.get(modelName, identifier, field, user)
             setResponse(response)
         } catch (error) {
             handleError()
@@ -60,8 +60,8 @@ export default function useAuthor(author, requests) {
         else if (request === 'pushToken') set = setPushToken
         else if (request === 'relationship') set = setRelationship
         else if (request === 'friends') set = setFriends
-        else if (request === 'outgoingFriendRequests') set = setOutgoingFriendRequests
         else if (request === 'incomingFriendRequests') set = setIncomingFriendRequests
+        else if (request === 'outgoingFriendRequests') set = setOutgoingFriendRequests
         else if (request === 'scraps') set = setScraps
         else if (request === 'books') set = setBooks
         else if (request === 'likedScraps') set = setLikedScraps
@@ -74,9 +74,9 @@ export default function useAuthor(author, requests) {
         if (author !== undefined && author !== '') {
             if (request.includes('iHeadshot')) {
                 try {
-                    const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
-                    const retrograph = await Cache.get('Scrap', scrap, 'retrograph', user)
-                    const iHeadshot = await Cache.getPhoto(retrograph, request.split('->')[1])
+                    const scrap = await cache.get('Author', author, 'headshotAndCover', user)
+                    const retrograph = await cache.get('Scrap', scrap, 'retrograph', user)
+                    const iHeadshot = await cache.getPhoto(retrograph, request.split('->')[1])
                     setIHeadshot(iHeadshot)
                 } catch (error) {
                     setIHeadshot(defaultHeadshot)
@@ -84,9 +84,9 @@ export default function useAuthor(author, requests) {
             }
             else if (request.includes('iCover')) {
                 try {
-                    const scrap = await Cache.get('Author', author, 'headshotAndCover', user)
-                    const prograph = await Cache.get('Scrap', scrap, 'prograph', user)
-                    const iCover = await Cache.getPhoto(prograph, request.split('->')[1])
+                    const scrap = await cache.get('Author', author, 'headshotAndCover', user)
+                    const prograph = await cache.get('Scrap', scrap, 'prograph', user)
+                    const iCover = await cache.getPhoto(prograph, request.split('->')[1])
                     setICover(iCover)
                 } catch (error) {
                     setICover(defaultCover)
@@ -137,10 +137,10 @@ export default function useAuthor(author, requests) {
         setRelationship,
         friends,
         setFriends,
-        outgoingFriendRequests,
-        setOutgoingFriendRequests,
         incomingFriendRequests,
         setIncomingFriendRequests,
+        outgoingFriendRequests,
+        setOutgoingFriendRequests,
         scraps,
         setScraps,
         books,

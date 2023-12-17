@@ -80,24 +80,22 @@ const Settings = () => {
             height: dimensions.height,
             backgroundColor: colors.background,
         }}>
-            {headshotAndCover && (
-                <DropDownComponent
-                    type='Scrap'
-                    title='Headshot and Cover'
-                    value={headshotAndCover}
-                    options={scraps}
-                    amount={1}
-                    onSubmit={async () => {
-                        router.push({
-                            pathname: '/scrapPicker', params: {
-                                scraps: JSON.stringify(scraps),
-                                amount: JSON.stringify(1),
-                                functionName: 'setHeadshotAndCover',
-                            }
-                        })
-                    }}
-                />
-            )}
+            <DropDownComponent
+                type='Scrap'
+                title='Headshot and Cover'
+                value={headshotAndCover}
+                options={scraps}
+                amount={1}
+                onSubmit={async () => {
+                    router.push({
+                        pathname: '/scrapPicker', params: {
+                            scraps: JSON.stringify(scraps),
+                            amount: JSON.stringify(1),
+                            functionName: 'setHeadshotAndCover',
+                        }
+                    })
+                }}
+            />
 
             <DropDownComponent
                 type='Text'

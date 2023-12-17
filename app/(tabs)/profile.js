@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../../components/BookComponent'
 import cache from '../../data/cache'
 import AuthorComponent from '../../components/AuthorComponent'
+import { authorSendRequest } from '../../data/api'
 
 const Profile = () => {
   const router = useRouter()
@@ -35,7 +36,7 @@ const Profile = () => {
     // miles,
     friends,
     incomingFriendRequests,
-    outgoingFriendReqeusts,
+    outgoingFriendRequests,
     relationship,
   } = useAuthor(author, [
     'iHeadshot->1080',
@@ -48,7 +49,7 @@ const Profile = () => {
     'friends',
     'incomingFriendRequests',
     'outgoingFriendRequests',
-    'relationship'
+    'relationship',
   ])
 
   useEffect(() => {
@@ -291,8 +292,11 @@ const Profile = () => {
           <ButtonComponent
             label='friend ariel'
             size='large'
-            onPress={() => {
-              console.log('friended ariel')
+            onPress={async () => {
+              const response = await authorSendRequest(user, '657cfb37722dc66b128c3c1a')
+              if (response.success) {
+                console.log('friended ariel')
+              }
             }}
           />
 
@@ -355,10 +359,21 @@ const Profile = () => {
             </View>
           </View>
 
-
-          {friends && friends.map((friend) => {
+          {option === 'friends' && friends.map((friend) => {
             return (
               <AuthorComponent author={friend} key={friend} />
+            )
+          })}
+
+          {option === 'incomingFriendRequests' && incomingFriendRequests.map((request) => {
+            return (
+              <AuthorComponent author={request} key={request} />
+            )
+          })}
+
+          {option === 'outgoingFriendRequests' && outgoingFriendRequests.map((request) => {
+            return (
+              <AuthorComponent author={request} key={request} />
             )
           })}
         </View>
