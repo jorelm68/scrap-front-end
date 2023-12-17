@@ -108,7 +108,8 @@ const Layout = () => {
               fontFamily: styles.text3,
               fontSize: 24,
               color: colors.default,
-            }
+            },
+            headerBackTitleVisible: false,
           }}
         />
         <Stack.Screen
@@ -138,6 +139,18 @@ const Layout = () => {
           options={{
             presentation: 'modal',
             headerTitle: 'Edit Scrap',
+            headerTitleStyle: {
+              fontFamily: styles.text3,
+              fontSize: 24,
+              color: colors.default,
+            },
+            headerBackTitleVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name='profile'
+          options={{
+            headerTitle: 'Profile',
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
