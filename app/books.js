@@ -19,7 +19,7 @@ const Books = () => {
     }}>
       {books && books.map((book) => {
         return (
-          <BookComponent book={book} key={book} />
+          <BookComponent book={book} key={book} clickable />
         )
       })}
     </View>

@@ -262,9 +262,8 @@ export async function scrapSaveScrap(scrap) {
     return await handleResponse(route, data, 'post')
 }
 export async function scrapDeleteScraps(scraps) {
-    const route = `api/scraps/deleteScraps`
-    const data = { scraps: JSON.stringify(scraps) }
-    return await handleResponse(route, data, 'post')
+    const route = `api/scraps/deleteScraps/${JSON.stringify(scraps)}`
+    return await handleResponse(route, null, 'delete')
 }
 export async function scrapExists(scrap) {
     const route = `api/scraps/exists`
@@ -288,9 +287,8 @@ export async function bookSaveBook(book) {
     return await handleResponse(route, data, 'post')
 }
 export async function bookDeleteBooks(books) {
-    const route = `api/books/deleteBooks`
-    const data = { books: JSON.stringify(books) }
-    return await handleResponse(route, data, 'post')
+    const route = `api/books/deleteBooks/${JSON.stringify(books)}`
+    return await handleResponse(route, null, 'delete')
 }
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
 export async function bookAddLike(book, author) {

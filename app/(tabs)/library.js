@@ -40,6 +40,7 @@ const Library = () => {
         const response = await bookDeleteBooks(selection)
         if (response.success) {
           cache.filter([user, 'books'])
+          cache.filter([user, 'publicBooks'])
           for (const book of books) {
             cache.filter([book])
           }
