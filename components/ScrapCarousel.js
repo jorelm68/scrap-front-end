@@ -23,6 +23,7 @@ const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
                 setCurrentScrap(scraps[newIndex])
             }}
             initialPage={initialPage}
+            showCounter
         >
             {scraps && scraps.map((scrap, index) => {
                 if (Math.abs(page - index) < 3) {

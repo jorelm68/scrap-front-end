@@ -12,29 +12,9 @@ import AppContext from '../context/AppContext'
 import MapComponent from '../components/MapComponent'
 
 const Scraps = () => {
-  const { currentScrap } = useContext(AppContext)
   const router = useRouter()
-  const navigation = useNavigation()
   const params = useLocalSearchParams()
   const scraps = JSON.parse(params.scraps)
-  const [carousel, setCarousel] = useState(false)
-  const [initialPage, setInitialPage] = useState(0)
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerLeft: carousel ? () => (
-        <TouchableOpacity onPress={() => {
-          setCarousel(false)
-        }}>
-          <Ionicons name='chevron-back' color={colors.interaction} size={32} />
-        </TouchableOpacity>
-      ) : () => { },
-    })
-  }, [navigation, carousel])
-
-  const clickMarker = async (marker) => {
-    console.log(marker)
-  }
 
   return (
     <View style={{
@@ -42,18 +22,17 @@ const Scraps = () => {
       flexWrap: 'wrap',
       flexDirection: 'row',
     }}>
-      {!carousel && scraps && scraps.map((scrap) => {
+      {scraps && scraps.map((scrap) => {
         return (
           <TouchableOpacity key={scrap} onPress={() => {
             router.push({
               pathname: '/book',
               params: {
-                scraps: JSON.stringify(scraps)
+                scraps: JSON.stringify(scraps),
+                page: JSON.stringify(scraps.indexOf(scrap))
               }
               
             })
-            setInitialPage(scraps.indexOf(scrap))
-            setCarousel(true)
           }}>
             <ScrapComponent scrap={scrap} />
           </TouchableOpacity>

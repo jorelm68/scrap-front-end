@@ -13,14 +13,14 @@ const BookScreen = () => {
     const params = useLocalSearchParams()
     const book = params.book
     let scraps = []
+    let page = 0
     if (book === undefined) {
         scraps = JSON.parse(params.scraps)
+        page = JSON.parse(params.page)
     }
 
     return (
-        <View>
-            <Book book={book} scraps={scraps} />
-        </View>
+        <Book book={book} scraps={scraps} page={page} />
     )
 }
 
