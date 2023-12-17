@@ -66,6 +66,7 @@ const EditBook = () => {
                 ]))
 
                 cache.filter([book, 'scraps'])
+                cache.filter([book, 'unbookedScraps'])
                 return {
                     success: true,
                 }
@@ -93,6 +94,7 @@ const EditBook = () => {
         }
 
         cache.filter([book, 'scraps'])
+        cache.filter([book, 'unbookedScraps'])
 
         if (scrap === representative) {
             const firstOption = scraps[0]

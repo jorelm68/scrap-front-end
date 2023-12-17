@@ -51,6 +51,7 @@ const Layout = () => {
               fontSize: 24,
               color: colors.default,
             },
+            headerBackTitleVisible: false,
           }}
         />
         <Stack.Screen

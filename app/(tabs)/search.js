@@ -29,7 +29,7 @@ const Search = () => {
           autoComplete='off'
         />
 
-        <TouchableOpacity onPress={onSubmit}>
+        <TouchableOpacity>
           <Text>Submit</Text>
         </TouchableOpacity>
       </View>
