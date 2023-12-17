@@ -123,6 +123,9 @@ const EditBook = () => {
                 <SwitchComponent title={'Public? '} value={isPublic} onSwitch={async () => {
                     const response = await edit('Book', book, 'isPublic', !isPublic)
                     if (response.success) {
+                        cache.filter([book, 'isPublic'])
+                        cache.filter([user, 'books'])
+                        cache.filter([user, 'publicBooks'])
                         setIsPublic(!isPublic)
                     }
                 }} />

@@ -6,6 +6,7 @@ import useScrap from '../hooks/useScrap'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data/error'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data/regex'
 import { edit } from '../data/utility'
+import cache from '../data/cache'
 
 const EditScrap = () => {
     const { scrap } = useLocalSearchParams()
@@ -43,12 +44,13 @@ const EditScrap = () => {
                 onSubmit={async (values) => {
                     const response = await edit('Scrap', scrap, 'title', values[0])
                     if (response.success) {
+                        cache.filter([scrap, 'title'])
                         setTitle(values[0])
                     }
                     return response
                 }}
             />
-            <DropDownComponent 
+            <DropDownComponent
                 type='Text'
                 title='Description:'
                 value={description}
@@ -64,12 +66,13 @@ const EditScrap = () => {
                 onSubmit={async (values) => {
                     const response = await edit('Scrap', scrap, 'description', values[0])
                     if (response.success) {
+                        cache.filter([scrap, 'description'])
                         setDescription(values[0])
                     }
                     return response
                 }}
             />
-            <DropDownComponent 
+            <DropDownComponent
                 type='Text'
                 title='Place:'
                 value={place}
@@ -85,6 +88,7 @@ const EditScrap = () => {
                 onSubmit={async (values) => {
                     const response = await edit('Scrap', scrap, 'place', values[0])
                     if (response.success) {
+                        cache.filter([scrap, 'place'])
                         setPlace(values[0])
                     }
                     return response
