@@ -17,6 +17,7 @@ export default function useAuthor(author, requests) {
     const [pseudonym, setPseudonym] = useState('')
     const [email, setEmail] = useState('')
     const [pushToken, setPushToken] = useState(undefined)
+    const [publicBooks, setPublicBooks] = useState([])
 
     const [relationship, setRelationship] = useState('')
     const [friends, setFriends] = useState([])
@@ -66,6 +67,7 @@ export default function useAuthor(author, requests) {
         else if (request === 'likedBooks') set = setLikedBooks
         else if (request === 'feed') set = setFeed
         else if (request === 'actions') set = setActions
+        else if (request === 'publicBooks') set = setPublicBooks
         
         if (author !== undefined && author !== '') {
             if (request.includes('iHeadshot')) {
@@ -151,6 +153,8 @@ export default function useAuthor(author, requests) {
         setPushToken,
         actions,
         setActions,
+        publicBooks,
+        setPublicBooks,
         showName,
         toggleName,
     }

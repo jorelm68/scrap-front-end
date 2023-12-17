@@ -9,6 +9,7 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture
 import ButtonComponent from '../../components/ButtonComponent'
 import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../../components/BookComponent'
+import cache from '../../data/cache'
 
 const Profile = () => {
   const router = useRouter()
@@ -28,7 +29,7 @@ const Profile = () => {
     firstName,
     lastName,
     pseudonym,
-    books,
+    publicBooks,
     // miles,
     friends,
     relationship,
@@ -38,7 +39,7 @@ const Profile = () => {
     'firstName',
     'lastName',
     'pseudonym',
-    'books',
+    'publicBooks',
     // 'miles',
     'friends',
     'relationship'
@@ -184,7 +185,7 @@ const Profile = () => {
               fontFamily: styles.text1,
               fontSize: 20,
             }}>
-              {books.length}
+              {publicBooks.length}
             </Text>
           </View>
           <Text style={{
@@ -237,7 +238,7 @@ const Profile = () => {
         <View style={{
           marginTop: 16,
         }}>
-          {books && books.map((book) => {
+          {publicBooks && publicBooks.map((book) => {
             return (
               <BookComponent book={book} key={book} />
             )
