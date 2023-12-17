@@ -1,4 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
+import { TouchableWithoutFeedback } from 'react-native'
 import React, { useContext } from 'react'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
@@ -6,7 +7,6 @@ import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, styles, dimensions } from '../data/styles'
 import { useRouter } from 'expo-router'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 const Scrap = ({ scrap }) => {
     const router = useRouter()

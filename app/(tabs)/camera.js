@@ -2,6 +2,7 @@ import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
 import { colors, dimensions, styles } from '../../data/styles'
+import { TouchableWithoutFeedback } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { Ionicons } from '@expo/vector-icons'
@@ -12,7 +13,6 @@ import DropDownComponent from '../../components/DropDownComponent'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../../data/regex'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../../data/error'
 import cache from '../../data/cache'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 const CameraScreen = () => {
   const { user } = useContext(AppContext)
