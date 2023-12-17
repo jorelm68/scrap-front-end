@@ -54,7 +54,7 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
             region={region}
             style={{
                 width: dimensions.width,
-                height: dimensions.width,
+                height: 200,
                 borderRadius: 8,
             }}>
             {scraps && scraps.map((scrap) => {
