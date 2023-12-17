@@ -44,7 +44,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         }
                     })
                 }}>
-                    <Ionicons name='pencil' color={colors.button} size={32} />
+                    <Ionicons name='pencil' color={colors.interaction} size={32} />
                 </TouchableOpacity>
             ) : () => { },
         })

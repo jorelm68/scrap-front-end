@@ -249,32 +249,32 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={colors.button} size={80} />
+                  <Ionicons name='scan' color={colors.interaction} size={80} />
                 </TouchableOpacity>
 
                 <View row>
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomOut}>
-                      <Ionicons name='remove' color={colors.button} size={35} />
+                      <Ionicons name='remove' color={colors.interaction} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => setFlash(!flash)}>
-                      {flash && <Ionicons name='flash' color={colors.button} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={colors.button} size={35} />}
+                      {flash && <Ionicons name='flash' color={colors.interaction} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={colors.interaction} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => handleFlipCamera()}>
-                      <Ionicons name='refresh' color={colors.button} size={35} />
+                      <Ionicons name='refresh' color={colors.interaction} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomIn}>
-                      <Ionicons name='add' color={colors.button} size={35} />
+                      <Ionicons name='add' color={colors.interaction} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>

@@ -10,6 +10,7 @@ import ButtonComponent from '../../components/ButtonComponent'
 import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../../components/BookComponent'
 import cache from '../../data/cache'
+import AuthorComponent from '../../components/AuthorComponent'
 
 const Profile = () => {
   const router = useRouter()
@@ -21,6 +22,7 @@ const Profile = () => {
   const [name, setName] = useState('')
   const [photosReverse, setPhotosReverse] = useState(false)
   const [mode, setMode] = useState('books')
+  const [option, setOption] = useState('friends')
   const miles = 10
 
   const {
@@ -32,6 +34,8 @@ const Profile = () => {
     publicBooks,
     // miles,
     friends,
+    incomingFriendRequests,
+    outgoingFriendReqeusts,
     relationship,
   } = useAuthor(author, [
     'iHeadshot->1080',
@@ -42,6 +46,8 @@ const Profile = () => {
     'publicBooks',
     // 'miles',
     'friends',
+    'incomingFriendRequests',
+    'outgoingFriendRequests',
     'relationship'
   ])
 
@@ -112,7 +118,7 @@ const Profile = () => {
         width: dimensions.width / 8 - 8,
         alignItems: 'center',
       }}>
-        <Ionicons name='settings' color={colors.button} size={24} />
+        <Ionicons name='settings' color={colors.interaction} size={24} />
       </TouchableOpacity>
 
     </View>
@@ -123,7 +129,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.button}>
+          }} backgroundColor={colors.interaction}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -136,7 +142,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.button}>
+          }} backgroundColor={colors.interaction}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -149,7 +155,7 @@ const Profile = () => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginVertical: 4,
             borderRadius: 16,
-          }} backgroundColor={colors.button}>
+          }} backgroundColor={colors.interaction}>
             <Text style={{
               fontFamily: styles.text1,
               fontSize: 16,
@@ -193,7 +199,7 @@ const Profile = () => {
           </View>
           <Text style={{
             fontFamily: styles.text1,
-            fontSize: 16,
+            fontSize: 14,
             marginRight: 8,
             color: colors.default,
           }}>Books</Text>
@@ -211,7 +217,7 @@ const Profile = () => {
           </View>
           <Text style={{
             fontFamily: styles.text1,
-            fontSize: 16,
+            fontSize: 14,
             marginRight: 8,
             color: colors.default,
           }}>Miles</Text>
@@ -229,7 +235,7 @@ const Profile = () => {
           </View>
           <Text style={{
             fontFamily: styles.text1,
-            fontSize: 16,
+            fontSize: 14,
             color: colors.default,
           }}>Friends</Text>
         </View>
@@ -252,7 +258,7 @@ const Profile = () => {
         }}>
           {publicBooks && publicBooks.map((book) => {
             return (
-              <BookComponent book={book} key={book} clickable/>
+              <BookComponent book={book} key={book} clickable />
             )
           })}
         </View>
@@ -262,16 +268,98 @@ const Profile = () => {
   }
   else if (mode === 'map') {
     return (
-      <View flex center>
+      <ScrollView style={{
+        backgroundColor: colors.background,
+        width: dimensions.width,
+        height: dimensions.height,
+      }}>
         {profileHeader}
-      </View>
+      </ScrollView>
     )
   }
   else {
     return (
-      <View flex center>
+      <ScrollView style={{
+        backgroundColor: colors.background,
+        width: dimensions.width,
+        height: dimensions.height,
+      }}>
         {profileHeader}
-      </View>
+        <View style={{
+          marginTop: 16,
+        }}>
+          <ButtonComponent
+            label='friend ariel'
+            size='large'
+            onPress={() => {
+              console.log('friended ariel')
+            }}
+          />
+
+          <View row>
+            <View centerV style={{
+              width: dimensions.width / 3,
+              height: 64,
+              borderBottomColor: colors.interaction,
+              borderBottomWidth: option === 'friends' ? 2 : 0,
+            }}>
+              <TouchableOpacity onPress={() => {
+                setOption('friends')
+              }}>
+                <Text style={{
+                  fontFamily: styles.text1,
+                  fontSize: 18,
+                  color: option === 'friends' ? colors.interaction : colors.default,
+                  textAlign: 'center',
+                }}>Friends</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View centerV style={{
+              width: dimensions.width / 3,
+              height: 64,
+              borderBottomColor: colors.interaction,
+              borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
+            }}>
+              <TouchableOpacity onPress={() => {
+                setOption('incomingFriendRequests')
+              }}>
+                <Text style={{
+                  fontFamily: styles.text1,
+                  fontSize: 18,
+                  color: option === 'incomingFriendRequests' ? colors.interaction : colors.default,
+                  textAlign: 'center',
+                }}>Incoming Requests</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View centerV style={{
+              width: dimensions.width / 3,
+              height: 64,
+              borderBottomColor: colors.interaction,
+              borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
+            }}>
+              <TouchableOpacity onPress={() => {
+                setOption('outgoingFriendRequests')
+              }}>
+                <Text style={{
+                  fontFamily: styles.text1,
+                  fontSize: 18,
+                  color: option === 'outgoingFriendRequests' ? colors.interaction : colors.default,
+                  textAlign: 'center',
+                }}>Outgoing Requests</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+
+          {friends && friends.map((friend) => {
+            return (
+              <AuthorComponent author={friend} key={friend} />
+            )
+          })}
+        </View>
+      </ScrollView >
     )
   }
 }

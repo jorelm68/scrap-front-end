@@ -6,13 +6,12 @@ export const light = {
     background: Colors.grey70,
     secondary: Colors.grey50,
     default: 'black',
-    button: Colors.blue30,
+    interaction: Colors.blue30,
 
     dimmed: Colors.grey40,
     inverse: 'white',
     error: Colors.red5,
     success: Colors.green5,
-    interaction: Colors.blue10,
 }
 export const dark = {
     background: '#000000',

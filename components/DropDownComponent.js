@@ -135,7 +135,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 width: '7.5%',
                                 height: 48,
                             }}>
-                                <Ionicons color={colors.button} name='pencil' size={24} />
+                                <Ionicons color={colors.interaction} name='pencil' size={24} />
                             </View>
                         </View>
                     </View>
@@ -170,7 +170,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 setIsDropped(!isDropped)
                             }}>
                                 <Ionicons style={{
-                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={colors.button} size={24} />
+                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={colors.interaction} size={24} />
                             </TouchableOpacity>
                         </View>
 
