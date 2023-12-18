@@ -113,13 +113,14 @@ const ProfileComponent = ({ author }) => {
         }}>{name}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleSettings} style={{
-        width: dimensions.width / 8 - 8,
-        alignItems: 'center',
-      }}>
-        <Ionicons name='settings' color={colors.interaction} size={24} />
-      </TouchableOpacity>
-
+      {user === author && (
+        <TouchableOpacity onPress={handleSettings} style={{
+          width: dimensions.width / 8 - 8,
+          alignItems: 'center',
+        }}>
+          <Ionicons name='settings' color={colors.interaction} size={24} />
+        </TouchableOpacity>
+      )}
     </View>
 
     <View row>
@@ -307,43 +308,47 @@ const ProfileComponent = ({ author }) => {
               </TouchableOpacity>
             </View>
 
-            <View centerV style={{
-              width: dimensions.width / 3,
-              height: 64,
-              borderBottomColor: colors.active,
-              borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
-            }}>
-              <TouchableOpacity onPress={() => {
-                setOption('incomingFriendRequests')
+            {user === author && (
+              <View centerV style={{
+                width: dimensions.width / 3,
+                height: 64,
+                borderBottomColor: colors.active,
+                borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
               }}>
-                <Text style={{
-                  fontFamily: styles.text1,
-                  fontSize: 16,
-                  padding: 4,
-                  color: option === 'incomingFriendRequests' ? colors.active : colors.default,
-                  textAlign: 'center',
-                }}>Incoming Requests</Text>
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity onPress={() => {
+                  setOption('incomingFriendRequests')
+                }}>
+                  <Text style={{
+                    fontFamily: styles.text1,
+                    fontSize: 16,
+                    padding: 4,
+                    color: option === 'incomingFriendRequests' ? colors.active : colors.default,
+                    textAlign: 'center',
+                  }}>Incoming Requests</Text>
+                </TouchableOpacity>
+              </View>
+            )}
 
-            <View centerV style={{
-              width: dimensions.width / 3,
-              height: 64,
-              borderBottomColor: colors.active,
-              borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
-            }}>
-              <TouchableOpacity onPress={() => {
-                setOption('outgoingFriendRequests')
+            {user === author && (
+              <View centerV style={{
+                width: dimensions.width / 3,
+                height: 64,
+                borderBottomColor: colors.active,
+                borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
               }}>
-                <Text style={{
-                  fontFamily: styles.text1,
-                  fontSize: 16,
-                  padding: 4,
-                  color: option === 'outgoingFriendRequests' ? colors.active : colors.default,
-                  textAlign: 'center',
-                }}>Outgoing Requests</Text>
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity onPress={() => {
+                  setOption('outgoingFriendRequests')
+                }}>
+                  <Text style={{
+                    fontFamily: styles.text1,
+                    fontSize: 16,
+                    padding: 4,
+                    color: option === 'outgoingFriendRequests' ? colors.active : colors.default,
+                    textAlign: 'center',
+                  }}>Outgoing Requests</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
 
           {option === 'friends' && friends.map((friend) => {
