@@ -6,8 +6,8 @@ import AppContext from '../context/AppContext'
 import { Alert, Keyboard, KeyboardAvoidingView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { colors, dimensions } from '../data/styles'
-import { regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
-import { errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
+import { regexAuthorAutobiography, regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
+import { errorAuthorAutobiography, errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
 import { authorCheckCredentials, utilitySet } from '../data/api'
 import { edit } from '../data/utility'
 import cache from '../data/cache'
@@ -20,19 +20,17 @@ const Settings = () => {
 
     const {
         firstName: initialFirstName,
-        setFirstName: initialSetFirstName,
         lastName: initialLastName,
-        setLastName: initialSetLastName,
+        autobiography: initialAutobiography,
         pseudonym: initialPseudonym,
-        setPseudonym: initialSetPseudonym,
         email: initialEmail,
-        setEmail: initailSetEmail,
         scraps,
         headshotAndCover: initialHeadshotAndCover,
     } = useAuthor(user, [
         'firstName',
         'lastName',
         'pseudonym',
+        'auobiography',
         'email',
         'headshotAndCover',
         'scraps',
@@ -64,6 +62,10 @@ const Settings = () => {
     useEffect(() => {
         setLastName(initialLastName)
     }, [initialLastName])
+    const [autobiography, setAutobiography] = useState(initialAutobiography)
+    useEffect(() => {
+        setAutobiography(initialAutobiography)
+    }, [initialAutobiography])
     const [pseudonym, setPseudonym] = useState(initialPseudonym)
     useEffect(() => {
         setPseudonym(initialPseudonym)
@@ -140,6 +142,28 @@ const Settings = () => {
                     return response
                 }}
             />
+            <DropDownComponent 
+                type='Text'
+                title='Autobiography:'
+                value={autobiography}
+                boxes={[
+                    {
+                        placeholder: 'New Autobiography',
+                        regex: regexAuthorAutobiography,
+                        error: errorAuthorAutobiography,
+                        autoCorrect: true,
+                        autoCapitalize: 'sentences',
+                    }
+                ]}
+                onSubmit={async (values) => {
+                    const response = await edit('Author', user, 'autobiography', values[0])
+                    if (response.success) {
+                        setAutobiography(values[0])
+                    }
+                    return response
+                }}
+            />
+            
             <DropDownComponent
                 type='Text'
                 title='Pseudonym:'
