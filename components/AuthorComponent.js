@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react'
 import useAuthor from '../hooks/useAuthor'
 import { dimensions, styles, colors } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
-import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest } from '../data/api'
+import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest, authorSendRequest } from '../data/api'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
 import { useNavigation, useRouter, Link } from 'expo-router'
@@ -87,6 +87,27 @@ const AuthorComponent = ({ author }) => {
         width: `${(1 / 3) * 100}%`,
         height: 64,
       }}>
+        {relationship === 'none' && (
+          <TouchableOpacity onPress={async () => {
+            const response = await authorSendRequest(user, author)
+            if (response.success) {
+              cache.filter([user, 'outgoingFriendRequests'])
+              cache.filter([author, 'relationship'])
+              cache.filter([author, 'incomingFriendRequests'])
+              setHidden(true)
+            }
+          }}>
+            <View center row>
+              <Ionicons name='add-circle' color={colors.interaction} size={24} />
+
+              <Text style={{
+                fontFamily: styles.text1,
+                fontSize: 12,
+                color: colors.default,
+              }}>Send Request</Text>
+            </View>
+          </TouchableOpacity>
+        )}
         {relationship === 'outgoingFriendRequest' && (
           <TouchableOpacity onPress={async () => {
             const response = await authorRemoveRequest(user, author)

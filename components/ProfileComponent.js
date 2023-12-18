@@ -285,17 +285,6 @@ const ProfileComponent = ({ author }) => {
         <View style={{
           marginTop: 16,
         }}>
-          <ButtonComponent
-            label='friend ariel'
-            size='large'
-            onPress={async () => {
-              const response = await authorSendRequest(user, '657cfb37722dc66b128c3c1a')
-              if (response.success) {
-                console.log('friended ariel')
-              }
-            }}
-          />
-
           <View row>
             <View centerV style={{
               width: dimensions.width / 3,

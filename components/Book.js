@@ -20,7 +20,6 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         title,
         description,
         representative,
-        privacy,
         scraps,
         author,
     } = useBook(book, [
@@ -28,7 +27,6 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         'description',
         'representative',
         'scraps',
-        'privacy',
         'author',
     ])
 
