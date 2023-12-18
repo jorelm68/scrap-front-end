@@ -30,7 +30,7 @@ const Settings = () => {
         'firstName',
         'lastName',
         'pseudonym',
-        'auobiography',
+        'autobiography',
         'email',
         'headshotAndCover',
         'scraps',
