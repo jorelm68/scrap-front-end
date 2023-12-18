@@ -74,19 +74,22 @@ const Scrap = ({ scrap }) => {
                         color: colors.default,
                     }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
-                    <TouchableOpacity style={{
-                        position: 'absolute',
-                        right: 4,
-                    }} onPress={() => {
-                        router.push({
-                            pathname: '/editScrap',
-                            params: {
-                                scrap,
-                            }
-                        })
-                    }}>
-                        <Ionicons name='pencil' color={colors.interaction} size={18} />
-                    </TouchableOpacity>
+                    {author === user && (
+                        <TouchableOpacity style={{
+                            position: 'absolute',
+                            right: 4,
+                        }} onPress={() => {
+                            router.push({
+                                pathname: '/editScrap',
+                                params: {
+                                    scrap,
+                                }
+                            })
+                        }}>
+                            <Ionicons name='pencil' color={colors.interaction} size={18} />
+                        </TouchableOpacity>
+                    )}
+
                 </View>
 
             </TouchableOpacity>

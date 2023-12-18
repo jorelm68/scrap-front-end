@@ -13,6 +13,7 @@ import { colors, styles, dimensions } from '../data/styles'
 const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     const router = useRouter()
     const navigation = useNavigation()
+    const { user } = useContext(AppContext)
     const [initialPage, setInitialPage] = useState(page)
     const { currentScrap } = useContext(AppContext)
 
@@ -34,7 +35,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         navigation.setOptions({
             headerTitle: book ? title : 'Scrapbook',
             headerBackTitleVisible: false,
-            headerRight: book ? () => (
+            headerRight: book && (user === author) ? () => (
                 <TouchableOpacity onPress={async () => {
                     router.push({
                         pathname: '/editBook', params: {
@@ -46,7 +47,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                 </TouchableOpacity>
             ) : () => { },
         })
-    }, [navigation, title])
+    }, [navigation, title, user, author])
 
     const clickMarker = async (marker) => {
         console.log(marker)
