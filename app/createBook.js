@@ -50,6 +50,7 @@ const CreateBook = () => {
           }
           else {
             cache.filter([user, 'books'])
+            cache.filter([user, 'publicBooks'])
             router.back()
           }
           setIsLoading(false)

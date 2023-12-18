@@ -26,6 +26,7 @@ const ProfileComponent = ({ author }) => {
     iHeadshot,
     iCover,
     firstName,
+    autobiography,
     lastName,
     pseudonym,
     publicBooks,
@@ -38,6 +39,7 @@ const ProfileComponent = ({ author }) => {
     'iHeadshot->1080',
     'iCover->1080',
     'firstName',
+    'autobiography',
     'lastName',
     'pseudonym',
     'publicBooks',
@@ -174,7 +176,7 @@ const ProfileComponent = ({ author }) => {
               height: '100%',
               color: colors.default,
             }}>
-              Hello World. This is my first description.
+              {autobiography}
             </Text>
           </View>
 
