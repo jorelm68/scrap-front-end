@@ -4,7 +4,7 @@ import { router, useLocalSearchParams, useNavigation, useRouter } from 'expo-rou
 import ScrapComponent from '../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert } from 'react-native'
-import { colors, dimensions, styles } from '../data/styles'
+import { colors, dimensions, palette, styles } from '../data/styles'
 import AppContext from '../context/AppContext'
 
 const ScrapPicker = () => {
@@ -26,14 +26,14 @@ const ScrapPicker = () => {
           onSubmit(selection)
           router.back()
         }}>
-          <Ionicons name='checkmark' color={colors.success} size={32} />
+          <Ionicons name='checkmark' color={palette.primary2} size={32} />
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={colors.error} size={32} />
+          <Ionicons name='close' color={palette.complement2} size={32} />
         </TouchableOpacity>
       ),
     })
@@ -70,7 +70,7 @@ const ScrapPicker = () => {
       flexDirection: 'row',
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: colors.background,
+      backgroundColor: palette.secondary11,
     }}>
       {scraps && scraps.length > 0 && scraps.map((scrap) => {
         return (
@@ -88,7 +88,7 @@ const ScrapPicker = () => {
               <Text style={{
                 position: 'absolute',
                 fontSize: 45,
-                color: colors.interaction,
+                color: palette.secondary00,
                 fontFamily: styles.text3,
                 bottom: 4,
                 right: 4,

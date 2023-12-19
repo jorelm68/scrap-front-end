@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Text, View, Drawer, Colors, TouchableOpacity } from 'react-native-ui-lib'
+import { Text, View, Drawer, TouchableOpacity } from 'react-native-ui-lib'
 import AppContext from '../../context/AppContext'
 import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
 import { useRouter } from 'expo-router'
-import { colors, dimensions, styles } from '../../data/styles'
+import { dimensions, palette, styles } from '../../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const ChooseAccount = () => {
@@ -75,16 +75,16 @@ const ChooseAccount = () => {
             <GestureHandlerRootView>
                 <Drawer
                     rightItems={[
-                        { text: 'Sign In', background: colors.primary2, onPress: () => handleSignIn(item) },
-                        { text: 'Forget', background: colors.complement2, onPress: () => handleForget(item) },
+                        { text: 'Sign In', background: palette.primary2, onPress: () => handleSignIn(item) },
+                        { text: 'Forget', background: palette.complement2, onPress: () => handleForget(item) },
                     ]}
-                    leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
+                    leftItem={{ text: `Expires: ${item.expires}`, background: palette.black }}
                 >
                     <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: 1 }}>
                         <Text style={{
                             fontFamily: styles.text2,
                             fontSize: 18,
-                            color: colors.default,
+                            color: palette.black,
                         }}>{item.pseudonym}</Text>
                     </View>
                 </Drawer>
@@ -96,7 +96,7 @@ const ChooseAccount = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: colors.background,
+            backgroundColor: palette.secondary11,
         }}>
             <FlatList
                 data={accounts}

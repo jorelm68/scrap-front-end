@@ -1,7 +1,7 @@
 import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
-import { colors, dimensions, styles } from '../../data/styles'
+import { colors, dimensions, palette, styles } from '../../data/styles'
 import { TouchableWithoutFeedback } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
@@ -157,7 +157,7 @@ const CameraScreen = () => {
             setIsLoading(false)
             setShowButtons(true)
           }}>
-            <Ionicons name='checkmark' color={colors.success} size={32} />
+            <Ionicons name='checkmark' color={palette.primary2} size={32} />
           </TouchableOpacity>
         ),
         headerLeft: () => ( // Corrected headerLeft configuration
@@ -170,7 +170,7 @@ const CameraScreen = () => {
             setIsSaving(false)
             setShowButtons(true)
           }}>
-            <Ionicons name='close' color={colors.error} size={32} />
+            <Ionicons name='close' color={palette.complement2} size={32} />
           </TouchableOpacity>
         ), // Don't forget the closing parenthesis for headerLeft
       })
@@ -195,7 +195,7 @@ const CameraScreen = () => {
       <View style={{
         width: dimensions.width,
         height: dimensions.height,
-        backgroundColor: colors.background,
+        backgroundColor: palette.secondary11,
       }}>
         <Text>LoADING</Text>
       </View>
@@ -206,7 +206,7 @@ const CameraScreen = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: colors.background,
+      backgroundColor: palette.secondary11,
     }}>
       {!isSaving && (
         <View center>
@@ -214,10 +214,9 @@ const CameraScreen = () => {
             justifyContent: 'center',
           }}>
             <Text style={{
-              color: colors.text,
               fontFamily: styles.text2,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }}>{dateAndTimeDisplay}</Text>
           </View>
 
@@ -225,10 +224,9 @@ const CameraScreen = () => {
             justifyContent: 'center',
           }}>
             <Text style={{
-              color: colors.text,
               fontFamily: styles.text2,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }}>{locationDisplay}</Text>
           </View>
 
@@ -249,32 +247,32 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={colors.interaction} size={80} />
+                  <Ionicons name='scan' color={palette.secondary00} size={80} />
                 </TouchableOpacity>
 
                 <View row>
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomOut}>
-                      <Ionicons name='remove' color={colors.interaction} size={35} />
+                      <Ionicons name='remove' color={palette.secondary00} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => setFlash(!flash)}>
-                      {flash && <Ionicons name='flash' color={colors.interaction} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={colors.interaction} size={35} />}
+                      {flash && <Ionicons name='flash' color={palette.secondary00} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={palette.secondary00} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => handleFlipCamera()}>
-                      <Ionicons name='refresh' color={colors.interaction} size={35} />
+                      <Ionicons name='refresh' color={palette.secondary00} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomIn}>
-                      <Ionicons name='add' color={colors.interaction} size={35} />
+                      <Ionicons name='add' color={palette.secondary00} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>

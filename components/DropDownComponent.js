@@ -4,7 +4,7 @@ import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-
 import React, { useContext, useEffect, useState } from 'react'
 import FieldComponent from './FieldComponent'
 import ErrorComponent from './ErrorComponent'
-import { styles, colors, dimensions } from '../data/styles'
+import { styles, colors, dimensions, palette } from '../data/styles'
 import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
@@ -98,7 +98,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         minHeight: 48,
                         borderBottomWidth: 1,
                         borderTopWidth: topBorder ? 1 : 0,
-                        borderColor: colors.default,
+                        borderColor: palette.black,
                     }}>
                         <View row center style={{
                         }}>
@@ -106,7 +106,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 fontFamily: styles.text1,
                                 fontSize: 12, width: '30%',
                                 paddingLeft: 4,
-                                color: colors.default,
+                                color: palette.black,
                             }}>{title}</Text>
 
                             <View style={{
@@ -135,7 +135,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 width: '7.5%',
                                 height: 48,
                             }}>
-                                <Ionicons color={colors.interaction} name='pencil' size={24} />
+                                <Ionicons color={palette.secondary00} name='pencil' size={24} />
                             </View>
                         </View>
                     </View>
@@ -145,7 +145,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         minHeight: 48,
                         borderBottomWidth: 1,
                         borderTopWidth: topBorder ? 1 : 0,
-                        borderColor: colors.default,
+                        borderColor: palette.black,
                     }}>
                         <View row center style={{
                         }}>
@@ -154,13 +154,13 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 fontSize: 12,
                                 width: '30%',
                                 paddingLeft: 4,
-                                color: colors.default,
+                                color: palette.black,
                             }}>{title}</Text>
                             <Text style={{
                                 fontFamily: styles.text1,
                                 fontSize: 12,
                                 width: '62.5%',
-                                color: colors.default,
+                                color: palette.black,
                             }}>{value}</Text>
 
                             <TouchableOpacity center style={{
@@ -170,7 +170,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 setIsDropped(!isDropped)
                             }}>
                                 <Ionicons style={{
-                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={colors.interaction} size={24} />
+                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={palette.secondary00} size={24} />
                             </TouchableOpacity>
                         </View>
 
@@ -198,7 +198,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                                     <TouchableOpacity center style={{
                                                         width: '10%',
                                                     }} onPress={handleSubmit}>
-                                                        <Ionicons color={colors.success} name='checkmark' size={32} />
+                                                        <Ionicons color={palette.primary2} name='checkmark' size={32} />
                                                     </TouchableOpacity>
                                                 )}
                                             </View>

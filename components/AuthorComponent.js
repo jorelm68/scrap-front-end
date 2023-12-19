@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import { Image } from 'react-native'
 import React, { useContext, useState } from 'react'
 import useAuthor from '../hooks/useAuthor'
-import { dimensions, styles, colors } from '../data/styles'
+import { dimensions, styles, colors, palette } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest, authorSendRequest } from '../data/api'
 import AppContext from '../context/AppContext'
@@ -70,7 +70,7 @@ const AuthorComponent = ({ author }) => {
               fontFamily: styles.text2,
               fontSize: 24,
               paddingHorizontal: 4,
-              color: colors.background,
+              color: palette.secondary11,
             }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
           </View>
           <Image source={iHeadshot} style={{
@@ -98,12 +98,12 @@ const AuthorComponent = ({ author }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='add-circle' color={colors.interaction} size={24} />
+              <Ionicons name='add-circle' color={palette.secondary00} size={24} />
 
               <Text style={{
                 fontFamily: styles.text1,
                 fontSize: 12,
-                color: colors.default,
+                color: palette.black,
               }}>Send Request</Text>
             </View>
           </TouchableOpacity>
@@ -119,12 +119,12 @@ const AuthorComponent = ({ author }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={colors.interaction} size={24} />
+              <Ionicons name='remove-circle' color={palette.secondary00} size={24} />
 
               <Text style={{
                 fontFamily: styles.text1,
                 fontSize: 12,
-                color: colors.default,
+                color: palette.black,
               }}>Cancel Request</Text>
             </View>
           </TouchableOpacity>
@@ -154,12 +154,12 @@ const AuthorComponent = ({ author }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='checkmark-circle' color={colors.interaction} size={24} />
+                  <Ionicons name='checkmark-circle' color={palette.secondary00} size={24} />
 
                   <Text style={{
                     fontFamily: styles.text1,
                     fontSize: 12,
-                    color: colors.default,
+                    color: palette.black,
                   }}>Accept Request</Text>
                 </View>
               </TouchableOpacity>
@@ -182,12 +182,12 @@ const AuthorComponent = ({ author }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='remove-circle' color={colors.interaction} size={24} />
+                  <Ionicons name='remove-circle' color={palette.secondary00} size={24} />
 
                   <Text style={{
                     fontFamily: styles.text1,
                     fontSize: 12,
-                    color: colors.default,
+                    color: palette.black,
                   }}>Reject Request</Text>
                 </View>
               </TouchableOpacity>
@@ -206,12 +206,12 @@ const AuthorComponent = ({ author }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={colors.interaction} size={24} />
+              <Ionicons name='remove-circle' color={palette.secondary00} size={24} />
 
               <Text style={{
                 fontFamily: styles.text1,
                 fontSize: 12,
-                color: colors.default,
+                color: palette.black,
               }}>Remove Friend</Text>
             </View>
           </TouchableOpacity>

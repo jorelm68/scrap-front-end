@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext'
 import { deleteData, loadFonts, retrieveData } from '../data/utility'
 import { authorExists, isDeviceOffline } from '../data/api'
 import { useRouter } from 'expo-router'
+import { palette } from '../data/styles'
 
 loadFonts()
 
@@ -45,7 +46,7 @@ const Autothenticate = () => {
   }
 
   return (
-    <LoaderScreen message={'Scrap'} color={Colors.grey40} />
+    <LoaderScreen message={'Scrap'} color={palette.black} />
   )
 }
 

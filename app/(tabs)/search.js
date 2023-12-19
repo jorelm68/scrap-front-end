@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
-import { colors, dimensions, styles } from '../../data/styles'
+import { colors, dimensions, palette, styles } from '../../data/styles'
 import AppContext from '../../context/AppContext'
 import FieldComponent from '../../components/FieldComponent'
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
@@ -45,7 +45,7 @@ const Search = () => {
         <TouchableOpacity onPress={async () => {
           sendQuery()
         }}>
-          <Ionicons name='checkmark' color={colors.success} size={32} />
+          <Ionicons name='checkmark' color={palette.primary2} size={32} />
         </TouchableOpacity>
       ),
     })
@@ -66,7 +66,7 @@ const Search = () => {
       <View centerH style={{
         width: dimensions.width,
         height: dimensions.height,
-        backgroundColor: colors.background,
+        backgroundColor: palette.secondary11,
       }}>
         <View center row style={{
           width: dimensions.width * (8 / 10),
@@ -77,7 +77,7 @@ const Search = () => {
             height: 48,
           }}>
             <TouchableOpacity onPress={toggleMode}>
-              <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={colors.interaction} size={18} />
+              <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.primary2} size={18} />
             </TouchableOpacity>
           </View>
           <FieldComponent

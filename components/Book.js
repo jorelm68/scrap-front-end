@@ -8,7 +8,7 @@ import ScrapCarousel from '../components/ScrapCarousel'
 import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, styles, dimensions } from '../data/styles'
+import { colors, styles, dimensions, palette } from '../data/styles'
 
 const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     const router = useRouter()
@@ -43,7 +43,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         }
                     })
                 }}>
-                    <Ionicons name='pencil' color={colors.interaction} size={32} />
+                    <Ionicons name='pencil' color={palette.secondary00} size={32} />
                 </TouchableOpacity>
             ) : () => { },
         })

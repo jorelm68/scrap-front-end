@@ -1,10 +1,10 @@
 import { LoaderScreen, Colors } from 'react-native-ui-lib'
 import React from 'react'
-import { colors } from '../data/styles'
+import { colors, palette } from '../data/styles'
 
 const Loading = () => {
     return (
-        <LoaderScreen message={'Scrap'} color={colors.background} />
+        <LoaderScreen message={'Scrap'} color={palette.secondary11} />
     )
 }
 

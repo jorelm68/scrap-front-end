@@ -2,7 +2,7 @@ import { View, Text, Button } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
 import { deleteData } from '../../data/utility'
-import { colors, dimensions } from '../../data/styles'
+import { colors, dimensions, palette } from '../../data/styles'
 
 const Feed = () => {
     const router = useRouter()
@@ -20,7 +20,7 @@ const Feed = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: colors.background,
+            backgroundColor: palette.secondary11,
         }}>
             <Button title='Logout' onPress={() => handleLogout()} />
         </View>

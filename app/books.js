@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import { useLocalSearchParams } from 'expo-router'
 import BookComponent from '../components/BookComponent'
-import { colors, dimensions } from '../data/styles'
+import { colors, dimensions, palette } from '../data/styles'
 
 const Books = () => {
   const { user } = useContext(AppContext)
@@ -15,7 +15,7 @@ const Books = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: colors.background,
+      backgroundColor: palette.secondary11,
     }}>
       {books && books.map((book) => {
         return (

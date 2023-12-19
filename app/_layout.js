@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from 'react-native'
 import React, { useContext } from 'react'
 import { Stack, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, styles } from '../data/styles'
+import { colors, palette, styles } from '../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
 import AppContextProvider from '../context/AppContextProvider'
 
@@ -38,7 +38,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             },
           }}
         />
@@ -49,7 +49,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             },
             headerBackTitleVisible: false,
           }}
@@ -62,7 +62,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }
           }}
         />
@@ -74,7 +74,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }
           }}
         />
@@ -97,7 +97,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }
           }}
         />
@@ -108,7 +108,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             },
             headerBackTitleVisible: false,
           }}
@@ -120,7 +120,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }
           }}
         />
@@ -131,7 +131,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             }
           }}
         />
@@ -143,7 +143,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             },
             headerBackTitleVisible: false,
           }}
@@ -155,7 +155,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             },
             headerBackTitleVisible: false,
           }}
@@ -168,7 +168,7 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: styles.text3,
               fontSize: 24,
-              color: colors.default,
+              color: palette.black,
             },
             headerBackTitleVisible: false,
           }}

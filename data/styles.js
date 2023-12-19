@@ -29,7 +29,9 @@ export const dark = {
 }
 
 // https://paletton.com/#uid=73i050kllllaFw0g0qFqFg0w0aF
-export const colors = {
+export const colors = light
+
+export const palette = {
     primary0: '#226666',
     primary1: '#669999',
     primary2: '#407F7F',
@@ -53,6 +55,8 @@ export const colors = {
     complement2: '#D49A6A',
     complement3: '#804515',
     complement4: '#552600',
+
+    black: 'black',
 }
 
 export const styles = {

@@ -5,7 +5,7 @@ import ScrapComponent from '../components/ScrapComponent'
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import ScrapCarousel from '../components/ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, styles, dimensions } from '../data/styles'
+import { colors, styles, dimensions, palette } from '../data/styles'
 import MapView from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
@@ -23,7 +23,7 @@ const Scraps = () => {
       flexDirection: 'row',
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: colors.background,
+      backgroundColor: palette.secondary11,
     }}>
       {scraps && scraps.map((scrap) => {
         return (

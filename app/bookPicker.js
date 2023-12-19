@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { router, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert } from 'react-native'
-import { colors, dimensions, styles } from '../data/styles'
+import { colors, dimensions, palette, styles } from '../data/styles'
 import AppContext from '../context/AppContext'
 import BookComponent from '../components/BookComponent'
 
@@ -27,14 +27,14 @@ const BookPicker = () => {
           onSubmit(selection)
           router.back()
         }}>
-          <Ionicons name='checkmark' color={colors.success} size={32} />
+          <Ionicons name='checkmark' color={palette.primary2} size={32} />
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={colors.error} size={32} />
+          <Ionicons name='close' color={palette.complement2} size={32} />
         </TouchableOpacity>
       ),
     })
@@ -71,7 +71,7 @@ const BookPicker = () => {
       flexDirection: 'row',
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: colors.background,
+      backgroundColor: palette.secondary11,
     }}>
       {books && books.length > 0 && books.map((book) => {
         return (
@@ -88,7 +88,7 @@ const BookPicker = () => {
                 <Text style={{
                   position: 'absolute',
                   fontSize: 45,
-                  color: colors.interaction,
+                  color: palette.secondary00,
                   fontFamily: styles.text3,
                   bottom: 4,
                   right: 4,

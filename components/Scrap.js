@@ -5,7 +5,7 @@ import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, styles, dimensions } from '../data/styles'
+import { colors, styles, dimensions, palette } from '../data/styles'
 import { useRouter } from 'expo-router'
 
 const Scrap = ({ scrap }) => {
@@ -71,7 +71,7 @@ const Scrap = ({ scrap }) => {
                         fontFamily: styles.text2,
                         fontSize: 18,
                         paddingLeft: 4,
-                        color: colors.default,
+                        color: palette.black,
                     }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
                     {author === user && (
@@ -86,7 +86,7 @@ const Scrap = ({ scrap }) => {
                                 }
                             })
                         }}>
-                            <Ionicons name='pencil' color={colors.interaction} size={18} />
+                            <Ionicons name='pencil' color={palette.secondary00} size={18} />
                         </TouchableOpacity>
                     )}
 
@@ -102,7 +102,7 @@ const Scrap = ({ scrap }) => {
                         paddingBottom: 4,
                         paddingHorizontal: 2,
                         width: dimensions.width * (2 / 3),
-                        color: colors.default,
+                        color: palette.black,
                     }}>{title}</Text>
                 </View>
             )}
@@ -135,12 +135,12 @@ const Scrap = ({ scrap }) => {
                     <View centerV row style={{
                         width: '50%',
                     }}>
-                        <Ionicons name='globe-outline' color={colors.default} size={18} />
+                        <Ionicons name='globe-outline' color={palette.black} size={18} />
                         <Text style={{
                             fontFamily: styles.text1,
                             fontSize: 12,
                             paddingLeft: 2,
-                            color: colors.default,
+                            color: palette.black,
                         }}>{place}</Text>
                     </View>
 
@@ -155,9 +155,9 @@ const Scrap = ({ scrap }) => {
                                 fontFamily: styles.text1,
                                 fontSize: 12,
                                 paddingRight: 2,
-                                color: colors.default,
+                                color: palette.black,
                             }}>{createdAt}</Text>
-                            <Ionicons name='timer-outline' color={colors.default} size={18} />
+                            <Ionicons name='timer-outline' color={palette.black} size={18} />
                         </View>
 
                     </View>
@@ -173,7 +173,7 @@ const Scrap = ({ scrap }) => {
                         paddingLeft: 4,
                         paddingRight: 4,
                         paddingBottom: 4,
-                        color: colors.default,
+                        color: palette.black,
                     }}>{description}</Text>
                 </View>
             )}

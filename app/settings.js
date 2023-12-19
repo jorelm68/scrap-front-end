@@ -5,7 +5,7 @@ import useAuthor from '../hooks/useAuthor'
 import AppContext from '../context/AppContext'
 import { Alert, Keyboard, KeyboardAvoidingView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, dimensions } from '../data/styles'
+import { colors, dimensions, palette } from '../data/styles'
 import { regexAuthorAutobiography, regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
 import { errorAuthorAutobiography, errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
 import { authorCheckCredentials, utilitySet } from '../data/api'
@@ -79,7 +79,7 @@ const Settings = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: colors.background,
+            backgroundColor: palette.secondary11,
         }}>
             <DropDownComponent
                 type='Scrap'

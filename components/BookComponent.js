@@ -2,7 +2,7 @@ import { View, Text, Image, Colors } from 'react-native-ui-lib'
 import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import React from 'react'
 import useBook from '../hooks/useBook'
-import { colors, dimensions, styles } from '../data/styles'
+import { colors, dimensions, palette, styles } from '../data/styles'
 import useAuthor from '../hooks/useAuthor'
 import MapView from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -92,7 +92,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                             fontFamily: styles.text2,
                                             fontSize: 18,
                                             paddingLeft: 4,
-                                            color: colors.default,
+                                            color: palette.black,
                                         }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                                     </View>
                                 )}
@@ -101,12 +101,12 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             <Text style={{
                                 fontFamily: styles.text1,
                                 fontSize: 18,
-                                color: colors.default,
+                                color: palette.black,
                             }}>{title}</Text>
                             <Text style={{
                                 fontFamily: styles.text1,
                                 fontSize: 12,
-                                color: colors.default,
+                                color: palette.black,
                             }}>{description}</Text>
                         </View>
 
@@ -114,13 +114,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             width: dimensions.width / 4,
                             height: dimensions.width / 4,
                         }}>
-                            <Ionicons name='pin' color={colors.default} size={24} />
+                            <Ionicons name='pin' color={palette.black} size={24} />
                             <Text style={{
                                 fontFamily: styles.text1,
                                 fontSize: 12,
                                 lineHeight: 14,
                                 textAlign: 'center',
-                                color: colors.default,
+                                color: palette.black,
                             }}>{place}</Text>
                         </View>
                     </View>
@@ -152,7 +152,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     fontFamily: styles.text2,
                                     fontSize: 18,
                                     paddingLeft: 4,
-                                    color: colors.default,
+                                    color: palette.black,
                                 }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                             </View>
                         )}
@@ -160,12 +160,12 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         <Text style={{
                             fontFamily: styles.text1,
                             fontSize: 18,
-                            color: colors.default,
+                            color: palette.black,
                         }}>{title}</Text>
                         <Text style={{
                             fontFamily: styles.text1,
                             fontSize: 12,
-                            color: colors.default,
+                            color: palette.black,
                         }}>{description}</Text>
                     </View>
 
@@ -173,13 +173,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         width: dimensions.width / 4,
                         height: dimensions.width / 4,
                     }}>
-                        <Ionicons name='pin' color={colors.default} size={24} />
+                        <Ionicons name='pin' color={palette.black} size={24} />
                         <Text style={{
                             fontFamily: styles.text1,
                             fontSize: 12,
                             lineHeight: 14,
                             textAlign: 'center',
-                            color: colors.default,
+                            color: palette.black,
                         }}>{place}</Text>
                     </View>
                 </View>

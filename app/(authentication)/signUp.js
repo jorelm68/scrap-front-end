@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, Text, TextField, Button, Colors } from 'react-native-ui-lib'
+import { View, Text, TextField, Button } from 'react-native-ui-lib'
 import { regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../../data/regex'
 import { errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../../data/error'
 import { authorSignUp } from '../../data/api'
@@ -11,7 +11,7 @@ import LogoComponent from '../../components/LogoComponent'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import ErrorComponent from '../../components/ErrorComponent'
-import { colors, dimensions } from '../../data/styles'
+import { dimensions, palette } from '../../data/styles'
 
 const SignUp = () => {
   const router = useRouter()
@@ -132,7 +132,7 @@ const SignUp = () => {
         <View width='100%' flex center style={{
           width: dimensions.width,
           height: dimensions.height,
-          backgroundColor: colors.background,
+          backgroundColor: palette.secondary11,
         }}>
           <LogoComponent />
           <FieldComponent
