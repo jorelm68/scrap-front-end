@@ -172,7 +172,7 @@ const Scrap = ({ scrap }) => {
                 }}>
                     <Text style={{
                         fontFamily: fonts.itim,
-                        fontSize: 16,
+                        fontSize: 12,
                         paddingLeft: 4,
                         paddingRight: 4,
                         paddingBottom: 4,
