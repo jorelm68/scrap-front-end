@@ -7,6 +7,7 @@ import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { fonts, dimensions, palette } from '../data/styles'
 import { useRouter } from 'expo-router'
+import { getDate } from '../data/utility'
 
 const Scrap = ({ scrap }) => {
     const router = useRouter()
@@ -159,7 +160,7 @@ const Scrap = ({ scrap }) => {
                                 fontSize: 12,
                                 paddingRight: 2,
                                 color: palette.secondary14,
-                            }}>{createdAt}</Text>
+                            }}>{getDate(createdAt)}</Text>
                             <Ionicons name='timer-outline' color={palette.secondary14} size={18} />
                         </View>
 

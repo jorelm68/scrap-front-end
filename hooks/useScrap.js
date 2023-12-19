@@ -117,7 +117,7 @@ export default function useScrap(scrap, requests) {
         longitude,
         setLongitude,
         prograph: direction ? prograph : retrograph,
-        setPrograph: direction ? setPrograph: setRetrograph,
+        setPrograph: direction ? setPrograph : setRetrograph,
         retrograph: direction ? retrograph : prograph,
         setRetrograph: direction ? setRetrograph : setPrograph,
         iPrograph: direction ? iPrograph : iRetrograph,

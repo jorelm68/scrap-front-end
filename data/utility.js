@@ -139,20 +139,39 @@ export async function edit(modelName, id, key, value) {
 //              suffix, and the year together. Then, returns the date object consisting
 //              of month, day, year, and formatted.
 export function getDate(newDate) {
-    const currentDate = newDate.toLocaleDateString()
-    const dateParts = currentDate.split('/')
-    const month = parseInt(dateParts[0], 10)
-    const day = parseInt(dateParts[1], 10)
-    const year = parseInt(dateParts[2], 10)
+    const dateObj = new Date(newDate);
 
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    const formattedMonth = monthNames[month - 1]
-    const formattedDay = day + (day === 1 || day === 21 || day === 31 ? 'st' : day === 2 || day === 22 ? 'nd' : day === 3 || day === 23 ? 'rd' : 'th')
-    const formattedYear = year
-    const date = `${formattedMonth} ${formattedDay}, ${formattedYear}`
+    const month = dateObj.getMonth() + 1; // Months are zero-based
+    const day = dateObj.getDate();
+    const year = dateObj.getFullYear();
 
-    return { month, day, year, date }
+    const hours = dateObj.getHours();
+    const minutes = dateObj.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const formattedMonth = monthNames[month - 1];
+
+    // Formatting the day with the correct suffix
+    let formattedDay;
+    if (day === 1 || day === 21 || day === 31) {
+        formattedDay = day + 'st';
+    } else if (day === 2 || day === 22) {
+        formattedDay = day + 'nd';
+    } else if (day === 3 || day === 23) {
+        formattedDay = day + 'rd';
+    } else {
+        formattedDay = day + 'th';
+    }
+
+    // Convert hours from 24-hour to 12-hour format
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    const date = `${formattedMonth} ${formattedDay}, ${year} ${formattedHours}:${formattedMinutes} ${ampm}`;
+    return date;
 }
+
 
 // REQUIRES:    nothing
 // MODIFIES:    nothing
