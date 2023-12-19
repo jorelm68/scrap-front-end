@@ -51,7 +51,9 @@ const Scrap = ({ scrap }) => {
         <View style={{
         }}>
             <TouchableOpacity centerV row style={{
-                width: dimensions.width * (2 / 3)
+                width: dimensions.width * (2 / 3) - 4,
+                paddingLeft: 4,
+                paddingTop: 4,
             }} onPress={() => {
                 router.push({
                     pathname: '/profile',
@@ -66,7 +68,7 @@ const Scrap = ({ scrap }) => {
                     borderRadius: 24,
                 }} />
                 <View row centerV style={{
-                    width: dimensions.width * (2 / 3) - 48
+                    width: dimensions.width * (2 / 3) - 48,
                 }}>
                     <Text style={{
                         fontFamily: fonts.jockeyOne,
@@ -78,7 +80,7 @@ const Scrap = ({ scrap }) => {
                     {author === user && (
                         <TouchableOpacity style={{
                             position: 'absolute',
-                            right: 4,
+                            right: 8,
                         }} onPress={() => {
                             router.push({
                                 pathname: '/editScrap',
@@ -101,7 +103,7 @@ const Scrap = ({ scrap }) => {
                         fontFamily: fonts.itim,
                         fontSize: 18,
                         paddingBottom: 4,
-                        paddingHorizontal: 2,
+                        paddingHorizontal: 4,
                         width: dimensions.width * (2 / 3),
                         color: palette.secondary14,
                     }}>{title}</Text>
