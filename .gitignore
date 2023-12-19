@@ -11,5 +11,9 @@ npm-debug.*
 *.orig.*
 web-build/
 
+babel.config.js
+package-lock.json
+package.json
+
 # macOS
 .DS_Store
