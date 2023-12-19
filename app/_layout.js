@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from 'react-native'
 import React, { useContext } from 'react'
 import { Stack, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, palette, styles } from '../data/styles'
+import { palette, fonts } from '../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
 import AppContextProvider from '../context/AppContextProvider'
 
@@ -36,10 +36,18 @@ const Layout = () => {
             presentation: 'modal',
             headerTitle: 'Choose your Account',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -47,11 +55,19 @@ const Layout = () => {
           options={{
             headerTitle: 'Settings',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             },
             headerBackTitleVisible: false,
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -60,10 +76,18 @@ const Layout = () => {
             presentation: 'modal',
             headerTitle: 'Scrap Picker',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
-            }
+              color: palette.secondary14,
+            },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -72,10 +96,18 @@ const Layout = () => {
             presentation: 'modal',
             headerTitle: 'Book Picker',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
-            }
+              color: palette.secondary14,
+            },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -95,10 +127,18 @@ const Layout = () => {
           options={{
             headerTitle: 'Scraps',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
-            }
+              color: palette.secondary14,
+            },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -106,11 +146,19 @@ const Layout = () => {
           options={{
             headerTitle: 'Books',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             },
             headerBackTitleVisible: false,
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -118,10 +166,18 @@ const Layout = () => {
           options={{
             headerTitle: 'Book',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
-            }
+              color: palette.secondary14,
+            },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -129,10 +185,18 @@ const Layout = () => {
           options={{
             headerTitle: 'Create Book',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
-            }
+              color: palette.secondary14,
+            },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -141,11 +205,19 @@ const Layout = () => {
             presentation: 'modal',
             headerTitle: 'Edit Scrap',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             },
             headerBackTitleVisible: false,
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -153,11 +225,19 @@ const Layout = () => {
           options={{
             headerTitle: 'Profile',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             },
             headerBackTitleVisible: false,
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
         <Stack.Screen
@@ -166,11 +246,19 @@ const Layout = () => {
             presentation: 'modal',
             headerTitle: 'Edit Book',
             headerTitleStyle: {
-              fontFamily: styles.text3,
+              fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             },
             headerBackTitleVisible: false,
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
+              </TouchableOpacity>
+            ) : () => { },
           }}
         />
       </Stack>

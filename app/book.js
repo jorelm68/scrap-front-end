@@ -8,7 +8,7 @@ import ScrapCarousel from '../components/ScrapCarousel'
 import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import Book from '../components/Book'
-import { colors, dimensions, palette } from '../data/styles'
+import { dimensions, palette } from '../data/styles'
 
 const BookScreen = () => {
     const params = useLocalSearchParams()

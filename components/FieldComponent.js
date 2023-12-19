@@ -1,5 +1,5 @@
 import { TextField, View, Text } from 'react-native-ui-lib'
-import { colors, palette, styles } from '../data/styles'
+import { palette, fonts } from '../data/styles'
 import React from 'react'
 
 const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, maxLength, autoCapitalize, autoCorrect, autoComplete }) => {
@@ -13,7 +13,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                     width: '100%',
                     height: 40,
                     borderWidth: 1,
-                    borderColor: palette.black,
+                    borderColor: palette.secondary14,
                     borderRadius: 16,
                     justifyContent: 'center',
                 }}
@@ -22,9 +22,9 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                 autoComplete={autoComplete}
                 style={{
                     paddingHorizontal: 8,
-                    fontFamily: styles.text1,
+                    fontFamily: fonts.itim,
                     height: 40,
-                    color: palette.black,
+                    color: palette.secondary14,
                 }}
                 onChangeText={onChangeText}
                 value={value}

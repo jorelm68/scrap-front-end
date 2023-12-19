@@ -4,7 +4,7 @@ import AppContext from '../../context/AppContext'
 import useAuthor from '../../hooks/useAuthor'
 import ScrapComponent from '../../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
-import { dimensions, colors, styles, palette } from '../../data/styles'
+import { dimensions, fonts, palette } from '../../data/styles'
 import { useRouter } from 'expo-router'
 import { bookDeleteBooks, scrapDeleteScraps } from '../../data/api'
 import cache from '../../data/cache'
@@ -105,32 +105,32 @@ const Library = () => {
         height: '45%',
       }}>
         <TouchableOpacity center onPress={handleBooks}>
-          <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.secondary00} />
+          <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.complement4} />
           <Text style={{
-            fontFamily: styles.text3,
+            fontFamily: fonts.playBold,
             fontSize: 48,
-            color: palette.black,
+            color: palette.secondary14,
           }}>Books</Text>
         </TouchableOpacity>
 
         <View>
           <TouchableOpacity row center onPress={handleCreateBook}>
-            <Ionicons name='add' size={24} color={palette.secondary00} />
+            <Ionicons name='add' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
-              fontFamily: styles.text2,
-              color: palette.black,
+              fontFamily: fonts.jockeyOne,
+              color: palette.secondary14,
             }}> Create</Text>
           </TouchableOpacity>
           <View style={{
             height: '15%',
           }} />
           <TouchableOpacity row center onPress={handleDeleteBooks}>
-            <Ionicons name='remove' size={24} color={palette.secondary00} />
+            <Ionicons name='remove' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
-              fontFamily: styles.text2,
-              color: palette.black,
+              fontFamily: fonts.jockeyOne,
+              color: palette.secondary14,
             }}> Delete</Text>
           </TouchableOpacity>
         </View>
@@ -140,31 +140,31 @@ const Library = () => {
         height: '45%',
       }}>
         <TouchableOpacity center onPress={handleScraps}>
-          <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.secondary00} />
+          <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.complement4} />
           <Text style={{
-            fontFamily: styles.text3,
+            fontFamily: fonts.playBold,
             fontSize: 48,
-            color: palette.black,
+            color: palette.secondary14,
           }}>Scraps</Text>
         </TouchableOpacity>
         <View>
           <TouchableOpacity row center onPress={handleCreateScrap}>
-            <Ionicons name='add' size={24} color={palette.secondary00} />
+            <Ionicons name='add' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
-              fontFamily: styles.text2,
-              color: palette.black,
+              fontFamily: fonts.jockeyOne,
+              color: palette.secondary14,
             }}> Create</Text>
           </TouchableOpacity>
           <View style={{
             height: '15%',
           }} />
           <TouchableOpacity row center onPress={handleDeleteScraps}>
-            <Ionicons name='remove' size={24} color={palette.secondary00} />
+            <Ionicons name='remove' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
-              fontFamily: styles.text2,
-              color: palette.black,
+              fontFamily: fonts.jockeyOne,
+              color: palette.secondary14,
             }}> Delete</Text>
           </TouchableOpacity>
         </View>

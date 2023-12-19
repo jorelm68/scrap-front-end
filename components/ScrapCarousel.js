@@ -4,7 +4,7 @@ import ScrapComponent from './ScrapComponent'
 import Scrap from './Scrap'
 import { useNavigation, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, styles, dimensions } from '../data/styles'
+import { styles, dimensions } from '../data/styles'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
 

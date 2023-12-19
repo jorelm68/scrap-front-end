@@ -1,14 +1,14 @@
 import { View, Text } from 'react-native-ui-lib'
 import React from 'react'
-import { colors, palette, styles } from '../data/styles'
+import { palette, fonts } from '../data/styles'
 
 const LogoComponent = () => {
     return (
         <View style={{ marginBottom: 24 }}>
             <Text style={{
-                fontFamily: styles.text2,
+                fontFamily: fonts.jockeyOne,
                 fontSize: 48,
-                color: palette.black,
+                color: palette.secondary14,
             }}>Scrap</Text>
         </View>
     )

@@ -7,7 +7,7 @@ import { errorBookDescription, errorBookTitle } from '../data/error'
 import { useNavigation, useRouter } from 'expo-router'
 import { bookSaveBook } from '../data/api'
 import { Ionicons } from '@expo/vector-icons'
-import { colors, dimensions, palette } from '../data/styles'
+import { dimensions, palette } from '../data/styles'
 import ButtonComponent from '../components/ButtonComponent'
 import useAuthor from '../hooks/useAuthor'
 import ScrapComponent from '../components/ScrapComponent'
@@ -55,14 +55,14 @@ const CreateBook = () => {
           }
           setIsLoading(false)
         }}>
-          <Ionicons name='checkmark' color={palette.primary2} size={32} />
+          <Ionicons name='checkmark' color={palette.secondary14} size={24} />
         </TouchableOpacity>
       ),
       headerLeft: () => ( // Corrected headerLeft configuration
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={palette.complement2} size={32} />
+          <Ionicons name='close' color={palette.complement2} size={24} />
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })

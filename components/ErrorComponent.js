@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native-ui-lib'
-import { colors, palette, styles } from '../data/styles'
+import { palette, fonts } from '../data/styles'
 import React from 'react'
 
 const ErrorComponent = ({ error }) => {
@@ -9,7 +9,7 @@ const ErrorComponent = ({ error }) => {
         }}>
             <Text style={{
                 paddingVertical: 4,
-                fontFamily: styles.text1,
+                fontFamily: fonts.itim,
                 color: palette.complement2,
                 textAlign: 'center',
             }}>{error}</Text>

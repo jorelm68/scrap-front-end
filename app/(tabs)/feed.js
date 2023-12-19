@@ -2,7 +2,7 @@ import { View, Text, Button } from 'react-native'
 import React from 'react'
 import { Link, useRouter } from 'expo-router'
 import { deleteData } from '../../data/utility'
-import { colors, dimensions, palette } from '../../data/styles'
+import { dimensions, palette } from '../../data/styles'
 
 const Feed = () => {
     const router = useRouter()

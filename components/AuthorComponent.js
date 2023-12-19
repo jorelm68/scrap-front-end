@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import { Image } from 'react-native'
 import React, { useContext, useState } from 'react'
 import useAuthor from '../hooks/useAuthor'
-import { dimensions, styles, colors, palette } from '../data/styles'
+import { dimensions, fonts, palette } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest, authorSendRequest } from '../data/api'
 import AppContext from '../context/AppContext'
@@ -67,7 +67,7 @@ const AuthorComponent = ({ author }) => {
           }}>
             <Text style={{
               marginLeft: 32,
-              fontFamily: styles.text2,
+              fontFamily: fonts.jockeyOne,
               fontSize: 24,
               paddingHorizontal: 4,
               color: palette.secondary11,
@@ -98,12 +98,12 @@ const AuthorComponent = ({ author }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='add-circle' color={palette.secondary00} size={24} />
+              <Ionicons name='add-circle' color={palette.complement4} size={24} />
 
               <Text style={{
-                fontFamily: styles.text1,
+                fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.black,
+                color: palette.secondary14,
               }}>Send Request</Text>
             </View>
           </TouchableOpacity>
@@ -119,12 +119,12 @@ const AuthorComponent = ({ author }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={palette.secondary00} size={24} />
+              <Ionicons name='remove-circle' color={palette.complement4} size={24} />
 
               <Text style={{
-                fontFamily: styles.text1,
+                fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.black,
+                color: palette.secondary14,
               }}>Cancel Request</Text>
             </View>
           </TouchableOpacity>
@@ -154,12 +154,12 @@ const AuthorComponent = ({ author }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='checkmark-circle' color={palette.secondary00} size={24} />
+                  <Ionicons name='checkmark-circle' color={palette.complement4} size={24} />
 
                   <Text style={{
-                    fontFamily: styles.text1,
+                    fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.black,
+                    color: palette.secondary14,
                   }}>Accept Request</Text>
                 </View>
               </TouchableOpacity>
@@ -182,12 +182,12 @@ const AuthorComponent = ({ author }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='remove-circle' color={palette.secondary00} size={24} />
+                  <Ionicons name='remove-circle' color={palette.complement4} size={24} />
 
                   <Text style={{
-                    fontFamily: styles.text1,
+                    fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.black,
+                    color: palette.secondary14,
                   }}>Reject Request</Text>
                 </View>
               </TouchableOpacity>
@@ -206,12 +206,12 @@ const AuthorComponent = ({ author }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={palette.secondary00} size={24} />
+              <Ionicons name='remove-circle' color={palette.complement4} size={24} />
 
               <Text style={{
-                fontFamily: styles.text1,
+                fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.black,
+                color: palette.secondary14,
               }}>Remove Friend</Text>
             </View>
           </TouchableOpacity>

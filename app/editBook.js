@@ -15,7 +15,7 @@ import { bookAddScrap, bookRemoveScrap } from '../data/api'
 import useAuthor from '../hooks/useAuthor'
 import cache from '../data/cache'
 import { Alert } from 'react-native'
-import { colors, dimensions, palette } from '../data/styles'
+import { dimensions, palette } from '../data/styles'
 
 const EditBook = () => {
     const router = useRouter()

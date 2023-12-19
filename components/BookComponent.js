@@ -2,7 +2,7 @@ import { View, Text, Image, Colors } from 'react-native-ui-lib'
 import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import React from 'react'
 import useBook from '../hooks/useBook'
-import { colors, dimensions, palette, styles } from '../data/styles'
+import { dimensions, palette, fonts } from '../data/styles'
 import useAuthor from '../hooks/useAuthor'
 import MapView from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -89,24 +89,24 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                             borderRadius: 24,
                                         }} />
                                         <Text style={{
-                                            fontFamily: styles.text2,
+                                            fontFamily: fonts.jockeyOne,
                                             fontSize: 18,
                                             paddingLeft: 4,
-                                            color: palette.black,
+                                            color: palette.secondary14,
                                         }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                                     </View>
                                 )}
                             </TouchableOpacity>
 
                             <Text style={{
-                                fontFamily: styles.text1,
+                                fontFamily: fonts.itim,
                                 fontSize: 18,
-                                color: palette.black,
+                                color: palette.secondary14,
                             }}>{title}</Text>
                             <Text style={{
-                                fontFamily: styles.text1,
+                                fontFamily: fonts.itim,
                                 fontSize: 12,
-                                color: palette.black,
+                                color: palette.secondary14,
                             }}>{description}</Text>
                         </View>
 
@@ -114,13 +114,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             width: dimensions.width / 4,
                             height: dimensions.width / 4,
                         }}>
-                            <Ionicons name='pin' color={palette.black} size={24} />
+                            <Ionicons name='pin' color={palette.secondary14} size={24} />
                             <Text style={{
-                                fontFamily: styles.text1,
+                                fontFamily: fonts.itim,
                                 fontSize: 12,
                                 lineHeight: 14,
                                 textAlign: 'center',
-                                color: palette.black,
+                                color: palette.secondary14,
                             }}>{place}</Text>
                         </View>
                     </View>
@@ -149,23 +149,23 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     borderRadius: 24,
                                 }} />
                                 <Text style={{
-                                    fontFamily: styles.text2,
+                                    fontFamily: fonts.jockeyOne,
                                     fontSize: 18,
                                     paddingLeft: 4,
-                                    color: palette.black,
+                                    color: palette.secondary14,
                                 }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                             </View>
                         )}
 
                         <Text style={{
-                            fontFamily: styles.text1,
+                            fontFamily: fonts.itim,
                             fontSize: 18,
-                            color: palette.black,
+                            color: palette.secondary14,
                         }}>{title}</Text>
                         <Text style={{
-                            fontFamily: styles.text1,
+                            fontFamily: fonts.itim,
                             fontSize: 12,
-                            color: palette.black,
+                            color: palette.secondary14,
                         }}>{description}</Text>
                     </View>
 
@@ -173,13 +173,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         width: dimensions.width / 4,
                         height: dimensions.width / 4,
                     }}>
-                        <Ionicons name='pin' color={palette.black} size={24} />
+                        <Ionicons name='pin' color={palette.secondary14} size={24} />
                         <Text style={{
-                            fontFamily: styles.text1,
+                            fontFamily: fonts.itim,
                             fontSize: 12,
                             lineHeight: 14,
                             textAlign: 'center',
-                            color: palette.black,
+                            color: palette.secondary14,
                         }}>{place}</Text>
                     </View>
                 </View>

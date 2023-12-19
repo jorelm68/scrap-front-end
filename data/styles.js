@@ -59,8 +59,8 @@ export const palette = {
     black: 'black',
 }
 
-export const styles = {
-    text1: 'itim',
-    text2: 'jockeyOne',
-    text3: 'playBold',
+export const fonts = {
+    itim: 'itim',
+    jockeyOne: 'jockeyOne',
+    playBold: 'playBold',
 }

@@ -1,7 +1,7 @@
 import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
-import { colors, dimensions, palette, styles } from '../../data/styles'
+import { dimensions, palette, fonts } from '../../data/styles'
 import { TouchableWithoutFeedback } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
@@ -157,7 +157,7 @@ const CameraScreen = () => {
             setIsLoading(false)
             setShowButtons(true)
           }}>
-            <Ionicons name='checkmark' color={palette.primary2} size={32} />
+            <Ionicons name='checkmark' color={palette.secondary14} size={24} />
           </TouchableOpacity>
         ),
         headerLeft: () => ( // Corrected headerLeft configuration
@@ -170,7 +170,7 @@ const CameraScreen = () => {
             setIsSaving(false)
             setShowButtons(true)
           }}>
-            <Ionicons name='close' color={palette.complement2} size={32} />
+            <Ionicons name='close' color={palette.complement2} size={24} />
           </TouchableOpacity>
         ), // Don't forget the closing parenthesis for headerLeft
       })
@@ -214,9 +214,9 @@ const CameraScreen = () => {
             justifyContent: 'center',
           }}>
             <Text style={{
-              fontFamily: styles.text2,
+              fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             }}>{dateAndTimeDisplay}</Text>
           </View>
 
@@ -224,9 +224,9 @@ const CameraScreen = () => {
             justifyContent: 'center',
           }}>
             <Text style={{
-              fontFamily: styles.text2,
+              fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.black,
+              color: palette.secondary14,
             }}>{locationDisplay}</Text>
           </View>
 
@@ -247,32 +247,32 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={palette.secondary00} size={80} />
+                  <Ionicons name='scan' color={palette.complement4} size={80} />
                 </TouchableOpacity>
 
                 <View row>
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomOut}>
-                      <Ionicons name='remove' color={palette.secondary00} size={35} />
+                      <Ionicons name='remove' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => setFlash(!flash)}>
-                      {flash && <Ionicons name='flash' color={palette.secondary00} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={palette.secondary00} size={35} />}
+                      {flash && <Ionicons name='flash' color={palette.complement4} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={palette.complement4} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => handleFlipCamera()}>
-                      <Ionicons name='refresh' color={palette.secondary00} size={35} />
+                      <Ionicons name='refresh' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomIn}>
-                      <Ionicons name='add' color={palette.secondary00} size={35} />
+                      <Ionicons name='add' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>

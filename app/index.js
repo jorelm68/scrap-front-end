@@ -46,7 +46,7 @@ const Autothenticate = () => {
   }
 
   return (
-    <LoaderScreen message={'Scrap'} color={palette.black} />
+    <LoaderScreen message={'Scrap'} color={palette.secondary14} />
   )
 }
 

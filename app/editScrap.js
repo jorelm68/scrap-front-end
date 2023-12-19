@@ -7,7 +7,7 @@ import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data/regex'
 import { edit } from '../data/utility'
 import cache from '../data/cache'
-import { colors, dimensions, palette } from '../data/styles'
+import { dimensions, palette } from '../data/styles'
 
 const EditScrap = () => {
     const { scrap } = useLocalSearchParams()

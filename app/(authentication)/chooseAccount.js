@@ -5,7 +5,7 @@ import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
 import { useRouter } from 'expo-router'
-import { dimensions, palette, styles } from '../../data/styles'
+import { dimensions, palette, fonts } from '../../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const ChooseAccount = () => {
@@ -74,17 +74,37 @@ const ChooseAccount = () => {
         return (
             <GestureHandlerRootView>
                 <Drawer
+                    itemsTextStyle={{
+                        color: palette.secondary14,
+                        fontFamily: fonts.playBold,
+                    }}
                     rightItems={[
-                        { text: 'Sign In', background: palette.primary2, onPress: () => handleSignIn(item) },
-                        { text: 'Forget', background: palette.complement2, onPress: () => handleForget(item) },
+                        {
+                            text: 'Sign In',
+                            background: palette.secondary12,
+                            onPress: () => handleSignIn(item)
+                        },
+                        {
+                            text: 'Forget',
+                            background: palette.secondary11,
+                            onPress: () => handleForget(item),
+                        },
                     ]}
-                    leftItem={{ text: `Expires: ${item.expires}`, background: palette.black }}
+                    leftItem={{
+                        text: `Expires: ${item.expires}`,
+                        background: palette.secondary11,
+                    }}
                 >
-                    <View center padding-s4 bg-white style={{ height: 60, borderTopWidth: 1 }}>
+                    <View center padding-s4 bg-white style={{
+                        height: 60,
+                        borderTopWidth: 1,
+                        borderTopColor: palette.secondary14,
+                        backgroundColor: palette.secondary10,
+                    }}>
                         <Text style={{
-                            fontFamily: styles.text2,
+                            fontFamily: fonts.jockeyOne,
                             fontSize: 18,
-                            color: palette.black,
+                            color: palette.secondary14,
                         }}>{item.pseudonym}</Text>
                     </View>
                 </Drawer>

@@ -1,6 +1,6 @@
 import { LoaderScreen, Colors } from 'react-native-ui-lib'
 import React from 'react'
-import { colors, palette } from '../data/styles'
+import { palette } from '../data/styles'
 
 const Loading = () => {
     return (

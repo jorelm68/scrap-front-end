@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import { useLocalSearchParams } from 'expo-router'
 import BookComponent from '../components/BookComponent'
-import { colors, dimensions, palette } from '../data/styles'
+import { dimensions, palette } from '../data/styles'
 
 const Books = () => {
   const { user } = useContext(AppContext)
