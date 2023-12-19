@@ -135,12 +135,15 @@ const Scrap = ({ scrap }) => {
                     <View centerV row style={{
                         width: '50%',
                     }}>
-                        <Ionicons name='globe-outline' color={palette.secondary14} size={18} />
+                        {place && (
+                            <Ionicons name='globe-outline' color={palette.secondary14} size={18} />
+                        )}
                         <Text style={{
                             fontFamily: fonts.itim,
                             fontSize: 12,
                             paddingLeft: 2,
                             color: palette.secondary14,
+                            minHeight: 18,
                         }}>{place}</Text>
                     </View>
 
