@@ -6,7 +6,7 @@ import FieldComponent from '../../components/FieldComponent'
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import { utilityAuthorSearch, utilityBookSearch } from '../../data/api'
 import AuthorComponent from '../../components/AuthorComponent'
-import { useNavigation } from 'expo-router/build'
+import { useNavigation } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../../components/BookComponent'
 

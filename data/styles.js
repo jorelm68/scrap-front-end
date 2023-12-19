@@ -4,10 +4,10 @@ export const dimensions = Dimensions.get('window')
 
 export const light = {
     background: Colors.grey70,
-    secondary: Colors.grey50,
+    active: '#85ADB1',
     default: 'black',
-    interaction: Colors.blue30,
-    active: Colors.blue60,
+    secondary: '#BAA883',
+    interaction: '#548486',
 
     dimmed: Colors.grey40,
     inverse: 'white',
@@ -28,7 +28,32 @@ export const dark = {
     textInteracton: '#2C6AD3',
 }
 
-export const colors = light
+// https://paletton.com/#uid=73i050kllllaFw0g0qFqFg0w0aF
+export const colors = {
+    primary0: '#226666',
+    primary1: '#669999',
+    primary2: '#407F7F',
+    primary3: '#0D4D4D',
+    primary4: '#003333',
+
+    secondary00: '#255C69',
+    secondary01: '#6B949E',
+    secondary02: '#447784',
+    secondary03: '#0F434F',
+    secondary04: '#012B35',
+
+    secondary10: '#AA7139',
+    secondary11: '#FFD4AA',
+    secondary12: '#D49F6A',
+    secondary13: '#804A15',
+    secondary14: '#552A00',
+
+    complement0: '#AA6C39',
+    complement1: '#FFD1AA',
+    complement2: '#D49A6A',
+    complement3: '#804515',
+    complement4: '#552600',
+}
 
 export const styles = {
     text1: 'itim',

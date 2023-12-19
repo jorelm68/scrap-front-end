@@ -75,8 +75,8 @@ const ChooseAccount = () => {
             <GestureHandlerRootView>
                 <Drawer
                     rightItems={[
-                        { text: 'Sign In', background: colors.success, onPress: () => handleSignIn(item) },
-                        { text: 'Forget', background: colors.error, onPress: () => handleForget(item) },
+                        { text: 'Sign In', background: colors.primary2, onPress: () => handleSignIn(item) },
+                        { text: 'Forget', background: colors.complement2, onPress: () => handleForget(item) },
                     ]}
                     leftItem={{ text: `Expires: ${item.expires}`, background: Colors.black }}
                 >
