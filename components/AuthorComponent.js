@@ -9,7 +9,7 @@ import AppContext from '../context/AppContext'
 import cache from '../data/cache'
 import { useNavigation, useRouter, Link } from 'expo-router'
 
-const AuthorComponent = ({ author }) => {
+const AuthorComponent = ({ author, disappear }) => {
   const router = useRouter()
   const navigation = useNavigation()
   const { user } = useContext(AppContext)
@@ -22,6 +22,7 @@ const AuthorComponent = ({ author }) => {
     lastName,
     pseudonym,
     relationship,
+    setRelationship,
   } = useAuthor(author, [
     'iHeadshot->1080',
     'iCover->1080',
@@ -103,7 +104,8 @@ const AuthorComponent = ({ author }) => {
               cache.filter([user, 'outgoingFriendRequests'])
               cache.filter([author, 'relationship'])
               cache.filter([author, 'incomingFriendRequests'])
-              setHidden(true)
+              setRelationship('outgoingFriendRequest')
+              if (disappear) setHidden(true)
             }
           }}>
             <View center row>
@@ -124,7 +126,8 @@ const AuthorComponent = ({ author }) => {
               cache.filter([user, 'outgoingFriendRequests'])
               cache.filter([author, 'relationship'])
               cache.filter([author, 'incomingFriendRequests'])
-              setHidden(true)
+              setRelationship('none')
+              if (disappear) setHidden(true)
             }
           }}>
             <View center row>
@@ -156,7 +159,8 @@ const AuthorComponent = ({ author }) => {
                   cache.filter([user, 'friends'])
                   cache.filter([author, 'outgoingFriendRequests'])
                   cache.filter([author, 'friends'])
-                  setHidden(true)
+                  setRelationship('friend')
+                  if (disappear) setHidden(true)
                 }
               }}>
                 <View center row style={{
@@ -184,7 +188,8 @@ const AuthorComponent = ({ author }) => {
                   cache.filter([user, 'incomingFriendRequests'])
                   cache.filter([author, 'relationship'])
                   cache.filter([author, 'outgoingFriendRequests'])
-                  setHidden(true)
+                  setRelationship('none')
+                  if (disappear) setHidden(true)
                 }
               }}>
                 <View center row style={{
@@ -211,7 +216,8 @@ const AuthorComponent = ({ author }) => {
               cache.filter([user, 'friends'])
               cache.filter([author, 'relationship'])
               cache.filter([author, 'friends'])
-              setHidden(true)
+              setRelationship('none')
+              if (disappear) setHidden(true)
             }
           }}>
             <View center row>

@@ -357,19 +357,19 @@ const ProfileComponent = ({ author }) => {
 
         {option === 'friends' && friends.map((friend) => {
           return (
-            <AuthorComponent author={friend} key={friend} />
+            <AuthorComponent author={friend} key={friend} disappear />
           )
         })}
 
         {option === 'incomingFriendRequests' && incomingFriendRequests.map((request) => {
           return (
-            <AuthorComponent author={request} key={request} />
+            <AuthorComponent author={request} key={request} disappear />
           )
         })}
 
         {option === 'outgoingFriendRequests' && outgoingFriendRequests.map((request) => {
           return (
-            <AuthorComponent author={request} key={request} />
+            <AuthorComponent author={request} key={request} disappear />
           )
         })}
       </ScrollView >

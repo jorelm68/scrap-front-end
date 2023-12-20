@@ -66,7 +66,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
             setHidden(false)
         }
         else {
-            if (relationship === 'friends') {
+            if (relationship === 'friend') {
                 setHidden(false)
             }
         }

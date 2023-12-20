@@ -80,6 +80,7 @@ const Settings = () => {
     // Function for handling when you press the logout button
     const handleLogout = async () => {
         deleteData('autothenticate')
+        cache.filter(['relationship'])
         while (router.canGoBack()) {
             router.back()
         }
