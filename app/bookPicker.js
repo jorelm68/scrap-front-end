@@ -84,7 +84,7 @@ const BookPicker = () => {
             } : {
               opacity: 1,
             }}>
-              <BookComponent book={book} clickable={false} />
+              <BookComponent book={book} showAuthor />
               {selection.includes(book) && (
                 <Text style={{
                   position: 'absolute',

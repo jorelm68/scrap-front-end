@@ -194,7 +194,7 @@ const Scrap = ({ scrap }) => {
             }}>
                 {threads && threads.map((book) => {
                     return (
-                        <BookComponent book={book} clickable key={book} />
+                        <BookComponent book={book} clickable key={book} showAuthor />
                     )
                 })}
             </View>

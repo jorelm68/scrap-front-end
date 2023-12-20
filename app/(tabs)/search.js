@@ -101,7 +101,7 @@ const Search = () => {
 
         {mode === 'books' && results && results.map((book) => {
           return (
-            <BookComponent book={book} key={book} clickable />
+            <BookComponent book={book} key={book} clickable showAuthor />
           )
         })}
       </View>

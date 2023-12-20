@@ -264,7 +264,7 @@ const ProfileComponent = ({ author }) => {
         }}>
           {publicBooks && publicBooks.map((book) => {
             return (
-              <BookComponent book={book} key={book} clickable />
+              <BookComponent book={book} key={book} clickable showAuthor />
             )
           })}
         </View>

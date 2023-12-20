@@ -181,7 +181,7 @@ const EditScrap = () => {
                         <TouchableOpacity key={book} onPress={() => {
                             handleRemoveThread(book)
                         }}>
-                            <BookComponent book={book} clickable={false} />
+                            <BookComponent book={book} showAuthor />
                         </TouchableOpacity>
                     )
                 })}
