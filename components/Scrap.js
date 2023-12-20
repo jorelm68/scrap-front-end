@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { fonts, dimensions, palette } from '../data/styles'
 import { useRouter } from 'expo-router'
 import { getDate } from '../data/utility'
+import BookComponent from './BookComponent'
 
 const Scrap = ({ scrap }) => {
     const router = useRouter()
@@ -18,6 +19,7 @@ const Scrap = ({ scrap }) => {
         title,
         description,
         place,
+        threads,
         latitude,
         longitude,
         author,
@@ -29,6 +31,7 @@ const Scrap = ({ scrap }) => {
         'title',
         'description',
         'place',
+        'threads',
         'latitude',
         'longitude',
         'author',
@@ -48,8 +51,7 @@ const Scrap = ({ scrap }) => {
     ])
 
     return (
-        <View style={{
-        }}>
+        <View>
             <TouchableOpacity centerV row style={{
                 width: dimensions.width * (2 / 3) - 4,
                 padding: 4,
@@ -182,6 +184,20 @@ const Scrap = ({ scrap }) => {
                     }}>{description}</Text>
                 </View>
             )}
+
+            <View style={{
+                paddingTop: 4,
+                borderTopColor: palette.secondary14,
+                borderTopWidth: 1,
+                flexWrap: 'wrap',
+                flexDirection: 'row',
+            }}>
+                {threads && threads.map((book) => {
+                    return (
+                        <BookComponent book={book} clickable key={book} />
+                    )
+                })}
+            </View>
         </View>
     )
 }

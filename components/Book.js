@@ -9,6 +9,7 @@ import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import { Ionicons } from '@expo/vector-icons'
 import { styles, dimensions, palette } from '../data/styles'
+import BookComponent from './BookComponent'
 
 const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     const router = useRouter()
@@ -54,19 +55,15 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     }
 
     return (
-        <View>
-            <ScrollView style={{
-                width: '100%',
-                height: '100%',
-            }}>
-                <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={initialPage} />
-                <MapComponent
-                    scraps={book ? scraps : scrapsGiven}
-                    scrap={currentScrap}
-                    clickMarker={clickMarker}
-                />
-            </ScrollView>
-        </View>
+        <ScrollView>
+            <MapComponent
+                scraps={book ? scraps : scrapsGiven}
+                scrap={currentScrap}
+                clickMarker={clickMarker}
+            />
+            <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={initialPage} />
+            <View height={120} />
+        </ScrollView>
     )
 }
 

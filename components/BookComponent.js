@@ -50,6 +50,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
     return (
         <View style={{
             marginBottom: 4,
+            paddingHorizontal: 4,
         }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
@@ -62,17 +63,17 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                     })
                 }}>
                     <View row style={{
-                        width: dimensions.width,
+                        width: (dimensions.width - 8),
                         height: dimensions.width / 4,
                     }}>
                         <Image source={iPrograph} style={{
-                            width: dimensions.width / 4,
+                            width: (dimensions.width - 8) / 4,
                             height: dimensions.width / 4,
                             borderRadius: 8,
                         }} />
 
                         <View style={{
-                            width: dimensions.width / 2,
+                            width: (dimensions.width - 8) / 2,
                             padding: 4,
                         }}>
                             <TouchableOpacity centerV row onPress={() => {
@@ -113,7 +114,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         </View>
 
                         <View center style={{
-                            width: dimensions.width / 4,
+                            width: (dimensions.width - 8) / 4,
                             height: dimensions.width / 4,
                         }}>
                             <Ionicons name='pin' color={palette.secondary14} size={24} />
@@ -130,17 +131,17 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
             )}
             {!clickable && (
                 <View row style={{
-                    width: dimensions.width,
+                    width: (dimensions.width - 8),
                     height: dimensions.width / 4,
                 }}>
                     <Image source={iPrograph} style={{
-                        width: dimensions.width / 4,
+                        width: (dimensions.width - 8) / 4,
                         height: dimensions.width / 4,
                         borderRadius: 8,
                     }} />
 
                     <View style={{
-                        width: dimensions.width / 2,
+                        width: (dimensions.width - 8) / 2,
                         padding: 4,
                     }}>
                         {showAuthor && (
@@ -172,7 +173,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                     </View>
 
                     <View center style={{
-                        width: dimensions.width / 4,
+                        width: (dimensions.width - 8) / 4,
                         height: dimensions.width / 4,
                     }}>
                         <Ionicons name='pin' color={palette.secondary14} size={24} />

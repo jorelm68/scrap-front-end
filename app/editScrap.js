@@ -10,7 +10,7 @@ import { edit } from '../data/utility'
 import cache from '../data/cache'
 import { dimensions, palette } from '../data/styles'
 import AppContext from '../context/AppContext'
-import { utilityAddThread } from '../data/api'
+import { utilityAddThread, utilityRemoveThread } from '../data/api'
 import ButtonComponent from '../components/ButtonComponent'
 import { Alert } from 'react-native'
 import BookComponent from '../components/BookComponent'
@@ -55,7 +55,10 @@ const EditScrap = () => {
                 ]))
 
                 cache.filter([scrap, 'threads'])
-                cache.filter([book, 'threads'])
+
+                for (const book of selection) {
+                    cache.filter([book, 'threads'])
+                }
                 return {
                     success: true,
                 }
@@ -64,7 +67,17 @@ const EditScrap = () => {
     }, [])
 
     const handleRemoveThread = async (book) => {
-        console.log(book)
+        const response = await utilityRemoveThread(scrap, book)
+        if (response.success) {
+            setThreads((prevThreads) => ([
+                ...prevThreads.filter((value) => {
+                    return value !== book
+                })
+            ]))
+
+            cache.filter([scrap, 'threads'])
+            cache.filter([book, 'threads'])
+        }
     }
 
     return (
@@ -140,7 +153,7 @@ const EditScrap = () => {
                 }}
             />
 
-            {threads.length < 5 && (
+            {threads.length < 3 && (
                 <View center style={{
                     marginVertical: 16,
                 }}>
@@ -151,7 +164,7 @@ const EditScrap = () => {
                             router.push({
                                 pathname: '/bookFinder', params: {
                                     threads: JSON.stringify(threads),
-                                    amount: JSON.stringify(5 - threads.length),
+                                    amount: JSON.stringify(3 - threads.length),
                                     functionName: 'addThreadsToScrap',
                                 }
                             })
