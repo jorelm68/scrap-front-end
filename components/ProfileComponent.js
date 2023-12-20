@@ -14,6 +14,8 @@ import { authorSendRequest, utilityBookCoordinates } from '../data/api'
 import MapView, { Polyline } from 'react-native-maps'
 import BookMarker from './BookMarker'
 import { getBookCoordinates } from '../data/utility'
+import useBook from '../hooks/useBook'
+import useScrap from '../hooks/useScrap'
 
 const ProfileComponent = ({ author }) => {
   const router = useRouter()
@@ -51,6 +53,36 @@ const ProfileComponent = ({ author }) => {
     'incomingFriendRequests',
     'outgoingFriendRequests',
   ])
+
+  const {
+    representative,
+  } = useBook(profileBooks[0], [
+    'representative',
+  ])
+
+  const {
+    latitude,
+    longitude,
+  } = useScrap(representative, [
+    'latitude',
+    'longitude',
+  ])
+
+  const [region, setRegion] = useState({
+    latitude, // Your initial latitude
+    longitude, // Your initial longitude
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
+  })
+
+  useEffect(() => {
+    setRegion({
+      latitude, // Your initial latitude
+      longitude, // Your initial longitude
+      latitudeDelta: 0.1,
+      longitudeDelta: 0.1,
+    })
+  }, [latitude, longitude])
 
   useEffect(() => {
     navigation.setOptions({
@@ -300,6 +332,7 @@ const ProfileComponent = ({ author }) => {
         {profileHeader}
 
         <MapView
+          region={region}
           style={{
             width: dimensions.width,
             marginTop: 16,
