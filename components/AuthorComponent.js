@@ -36,7 +36,9 @@ const AuthorComponent = ({ author }) => {
   }
   return (
     <View row style={{
-      width: dimensions.width,
+      width: dimensions.width - 8,
+      paddingHorizontal: 4,
+      marginVertical: 4,
       height: 64,
     }}>
       <View style={{
@@ -51,12 +53,19 @@ const AuthorComponent = ({ author }) => {
             }
           })
         }}>
-          <Image source={iCover} style={{
+        <View style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          paddingLeft: 32,
+        }}>
+        <Image source={iCover} style={{
             width: '100%',
             height: 64,
-            borderRadius: 8,
-            position: 'absolute',
+            borderTopRightRadius: 32,
+            borderBottomRightRadius: 32,
           }} />
+        </View>
 
           <View style={{
             position: 'absolute',

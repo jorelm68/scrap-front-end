@@ -189,6 +189,7 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
             backgroundColor: palette.complement2,
+            marginRight: 2,
           }}>
             <Text style={{
               fontFamily: fonts.itim,
@@ -207,7 +208,8 @@ const ProfileComponent = ({ author }) => {
 
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2
+            backgroundColor: palette.complement2,
+            marginRight: 2,
           }}>
             <Text style={{
               fontFamily: fonts.itim,
@@ -227,6 +229,7 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
             backgroundColor: palette.complement2,
+            marginRight: 2,
           }}>
             <Text style={{
               fontFamily: fonts.itim,
@@ -297,6 +300,7 @@ const ProfileComponent = ({ author }) => {
               height: 64,
               borderBottomColor: palette.complement0,
               borderBottomWidth: option === 'friends' ? 2 : 0,
+              marginBottom: 4,
             }}>
               <TouchableOpacity onPress={() => {
                 setOption('friends')
