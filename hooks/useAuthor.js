@@ -18,6 +18,7 @@ export default function useAuthor(author, requests) {
     const [email, setEmail] = useState('')
     const [pushToken, setPushToken] = useState(undefined)
     const [publicBooks, setPublicBooks] = useState([])
+    const [profileBooks, setProfileBooks] = useState([])
     const [unbookedScraps, setUnbookedScraps] = useState([])
 
     const [relationship, setRelationship] = useState('')
@@ -58,6 +59,7 @@ export default function useAuthor(author, requests) {
         else if (request === 'pseudonym') set = setPseudonym
         else if (request === 'email') set = setEmail
         else if (request === 'pushToken') set = setPushToken
+        else if (request === 'profileBooks') set = setProfileBooks
         else if (request === 'relationship') set = setRelationship
         else if (request === 'friends') set = setFriends
         else if (request === 'incomingFriendRequests') set = setIncomingFriendRequests
@@ -127,6 +129,8 @@ export default function useAuthor(author, requests) {
         setAutobiography,
         firstName,
         setFirstName,
+        profileBooks,
+        setProfileBooks,
         lastName,
         setLastName,
         pseudonym,

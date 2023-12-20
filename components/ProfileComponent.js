@@ -29,7 +29,7 @@ const ProfileComponent = ({ author }) => {
     autobiography,
     lastName,
     pseudonym,
-    publicBooks,
+    profileBooks,
     // miles,
     friends,
     incomingFriendRequests,
@@ -42,7 +42,7 @@ const ProfileComponent = ({ author }) => {
     'autobiography',
     'lastName',
     'pseudonym',
-    'publicBooks',
+    'profileBooks',
     // 'miles',
     'friends',
     'incomingFriendRequests',
@@ -196,7 +196,7 @@ const ProfileComponent = ({ author }) => {
               fontSize: 20,
               color: palette.secondary14,
             }}>
-              {publicBooks.length}
+              {profileBooks.length}
             </Text>
           </View>
           <Text style={{
@@ -262,7 +262,7 @@ const ProfileComponent = ({ author }) => {
         <View style={{
           marginTop: 16,
         }}>
-          {publicBooks && publicBooks.map((book) => {
+          {profileBooks && profileBooks.map((book) => {
             return (
               <BookComponent book={book} key={book} clickable showAuthor />
             )
