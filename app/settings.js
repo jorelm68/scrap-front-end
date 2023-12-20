@@ -9,10 +9,11 @@ import { dimensions, palette } from '../data/styles'
 import { regexAuthorAutobiography, regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
 import { errorAuthorAutobiography, errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
 import { authorCheckCredentials, utilitySet } from '../data/api'
-import { edit } from '../data/utility'
+import { deleteData, edit } from '../data/utility'
 import cache from '../data/cache'
 import DropDownComponent from '../components/DropDownComponent'
 import { useRouter } from 'expo-router'
+import ButtonComponent from '../components/ButtonComponent'
 
 const Settings = () => {
     const { user, functions, setFunctions } = useContext(AppContext)
@@ -74,6 +75,15 @@ const Settings = () => {
     useEffect(() => {
         setHeadshotAndCover(initialHeadshotAndCover)
     }, [initialHeadshotAndCover])
+
+    // Function for handling when you press the logout button
+    const handleLogout = async () => {
+        deleteData('autothenticate')
+        while (router.canGoBack()) {
+            router.back()
+        }
+        router.replace('/signIn')
+    }
 
     return (
         <ScrollView style={{
@@ -142,7 +152,7 @@ const Settings = () => {
                     return response
                 }}
             />
-            <DropDownComponent 
+            <DropDownComponent
                 type='Text'
                 title='Autobiography:'
                 value={autobiography}
@@ -163,7 +173,7 @@ const Settings = () => {
                     return response
                 }}
             />
-            
+
             <DropDownComponent
                 type='Text'
                 title='Pseudonym:'
@@ -221,6 +231,17 @@ const Settings = () => {
                     return response
                 }}
             />
+
+            <View center style={{
+                marginVertical: 16,
+            }}>
+                <ButtonComponent
+                    label='Sign Out'
+                    size='large'
+                    onPress={handleLogout}
+                    width='50%'
+                />
+            </View>
 
             <View height={80} />
         </ScrollView>

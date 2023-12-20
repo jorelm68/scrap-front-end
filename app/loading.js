@@ -1,10 +1,19 @@
-import { LoaderScreen, Colors } from 'react-native-ui-lib'
+import { Colors, View } from 'react-native-ui-lib'
 import React from 'react'
-import { palette } from '../data/styles'
+import { dimensions, palette } from '../data/styles'
+import LogoComponent from '../components/LogoComponent'
+import { ActivityIndicator } from 'react-native'
 
 const Loading = () => {
     return (
-        <LoaderScreen message={'Scrap'} color={palette.secondary11} />
+        <View flex center style={{
+            width: dimensions.width,
+            height: dimensions.height,
+            backgroundColor: palette.secondary11,
+        }}>
+            <LogoComponent />
+            <ActivityIndicator size='large' color={palette.secondary14} />
+        </View>
     )
 }
 
