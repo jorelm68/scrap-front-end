@@ -158,6 +158,7 @@ const AuthorComponent = ({ author, disappear }) => {
                   cache.filter([author, 'relationship'])
                   cache.filter([author, 'profileScraps'])
                   cache.filter([user, 'friends'])
+                  cache.filter(['feed'])
                   cache.filter([author, 'outgoingFriendRequests'])
                   cache.filter([author, 'friends'])
                   setRelationship('friend')
@@ -218,6 +219,7 @@ const AuthorComponent = ({ author, disappear }) => {
               cache.filter([author, 'relationship'])
               cache.filter([author, 'profileBooks'])
               cache.filter([author, 'friends'])
+              cache.filter(['feed'])
               setRelationship('none')
               if (disappear) setHidden(true)
             }
