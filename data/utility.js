@@ -172,37 +172,6 @@ export function getDate(newDate) {
     return date;
 }
 
-
-// REQUIRES:    nothing
-// MODIFIES:    nothing
-// EFFECTS:     Gets the current time, then parses it for the hour, minute and second.
-//              Then, it formats HR:MN:SC<pm/am> and returns the time object consisting
-//              of hour, minute, second and formatted.
-export function getTime(newDate) {
-    const currentTime = newDate.toLocaleTimeString()
-    const timeZone = getTimeZoneSymbol(newDate)
-    const timeParts = currentTime.split(':')
-    const hour = parseInt(timeParts[0], 10)
-    const minute = parseInt(timeParts[1], 10)
-    const second = parseInt(timeParts[2], 10)
-
-    const formattedHour = hour > 12 ? hour - 12 : hour
-    const formattedMinute = minute.toString().padStart(2, '0')
-    const period = hour >= 12 ? 'pm' : 'am'
-    const time = `${formattedHour}:${formattedMinute}${period} ${timeZone}`
-
-    return { hour, minute, second, timeZone, time }
-}
-
-
-export function getTimeZoneSymbol(newDate) {
-    const timeZoneAbbreviation = moment.tz(newDate, moment.tz.guess()).format('z')
-
-    return timeZoneAbbreviation
-}
-
-
-
 // REQUIRES:    stable connection to the google API
 //              permission from the user to get location
 // MODIFIES:    nothing
