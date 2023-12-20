@@ -274,26 +274,26 @@ const Settings = () => {
                             const newPassword = values[1]
                             const newPasswordConfirm = values[2]
 
-                            const response = await authorCheckCredentials(user, password)
+                            let response = await authorCheckCredentials(user, password)
                             if (!response.success) {
                                 return {
                                     success: false,
-                                    message: response.error,
+                                    error: response.error,
                                 }
                             }
 
-                            if (newPassword === newPasswordConfirm) {
+                            if (newPassword !== newPasswordConfirm) {
                                 return {
                                     success: false,
-                                    message: 'New passwords do not match',
+                                    error: 'New passwords do not match',
                                 }
                             }
 
-                            response = await edit('Author', user, 'password', password)
+                            response = await edit('Author', user, 'password', newPassword)
                             if (!response.success) {
                                 return {
                                     success: false,
-                                    message: response.error,
+                                    error: response.error,
                                 }
                             }
 
