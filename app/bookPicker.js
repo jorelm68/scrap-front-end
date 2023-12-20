@@ -67,6 +67,7 @@ const BookPicker = () => {
   return (
     <View style={{
       flex: 1,
+      paddingTop: 4,
       flexWrap: 'wrap',
       flexDirection: 'row',
       width: dimensions.width,
