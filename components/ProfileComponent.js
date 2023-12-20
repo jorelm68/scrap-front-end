@@ -34,7 +34,6 @@ const ProfileComponent = ({ author }) => {
     friends,
     incomingFriendRequests,
     outgoingFriendRequests,
-    relationship,
   } = useAuthor(author, [
     'iHeadshot->1080',
     'iCover->1080',
@@ -47,7 +46,6 @@ const ProfileComponent = ({ author }) => {
     'friends',
     'incomingFriendRequests',
     'outgoingFriendRequests',
-    'relationship',
   ])
 
   useEffect(() => {

@@ -307,6 +307,7 @@ const Settings = () => {
                         onPress={async () => {
                             deleteData('autothenticate')
                             cache.filter(['relationship'])
+                            cache.filter(['profileBooks'])
                             while (router.canGoBack()) {
                                 router.back()
                             }
