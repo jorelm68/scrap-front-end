@@ -121,7 +121,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                         }} />
                                         <Text style={{
                                             fontFamily: fonts.jockeyOne,
-                                            fontSize: 12,
+                                            fontSize: 16,
                                             paddingLeft: 2,
                                             color: palette.secondary14,
                                         }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>

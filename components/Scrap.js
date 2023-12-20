@@ -60,16 +60,16 @@ const Scrap = ({ scrap }) => {
                 })
             }}>
                 <Image source={iHeadshot} style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 24,
+                    width: 24,
+                    height: 24,
+                    borderRadius: 12,
                 }} />
                 <View row centerV style={{
-                    width: dimensions.width * (2 / 3) - 48,
+                    width: dimensions.width * (2 / 3) - 24,
                 }}>
                     <Text style={{
                         fontFamily: fonts.jockeyOne,
-                        fontSize: 18,
+                        fontSize: 16,
                         paddingLeft: 4,
                         color: palette.secondary14,
                     }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
