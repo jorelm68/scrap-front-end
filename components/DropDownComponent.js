@@ -92,7 +92,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
         } : () => {
             setIsDropped(!isDropped)
         }}>
-            <KeyboardAvoidingView behavior='padding'>
+            <View>
                 {type === 'Scrap' && (
                     <View centerV style={{
                         minHeight: 48,
@@ -213,7 +213,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         )}
                     </View>
                 )}
-            </KeyboardAvoidingView>
+            </View>
         </TouchableWithoutFeedback>
     )
 }
