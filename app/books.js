@@ -14,6 +14,7 @@ const Books = () => {
   return (
     <View style={{
       width: dimensions.width,
+      paddingTop: 4,
       height: dimensions.height,
       backgroundColor: palette.secondary11,
     }}>
