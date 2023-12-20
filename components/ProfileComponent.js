@@ -10,7 +10,10 @@ import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../components/BookComponent'
 import cache from '../data/cache'
 import AuthorComponent from '../components/AuthorComponent'
-import { authorSendRequest } from '../data/api'
+import { authorSendRequest, utilityBookCoordinates } from '../data/api'
+import MapView, { Polyline } from 'react-native-maps'
+import BookMarker from './BookMarker'
+import { getBookCoordinates } from '../data/utility'
 
 const ProfileComponent = ({ author }) => {
   const router = useRouter()
@@ -21,6 +24,7 @@ const ProfileComponent = ({ author }) => {
   const [mode, setMode] = useState('books')
   const [option, setOption] = useState('friends')
   const miles = 10
+  const [coordinates, setCoordinates] = useState([])
 
   const {
     iHeadshot,
@@ -58,6 +62,19 @@ const ProfileComponent = ({ author }) => {
     setName(`${firstName} ${lastName}`)
   }, [firstName, lastName])
 
+  const getCoordinates = async () => {
+    const response = await utilityBookCoordinates(profileBooks)
+    if (!response.success) {
+      Alert.alert('Error', response.error)
+    }
+    else {
+      setCoordinates(response.data.coordinates)
+    }
+  }
+  useEffect(() => {
+    getCoordinates()
+  }, [profileBooks])
+
   const handleToggleName = () => {
     if (name === pseudonym) {
       setName(`${firstName} ${lastName}`)
@@ -85,14 +102,16 @@ const ProfileComponent = ({ author }) => {
     router.push('/settings')
   }
 
-  const profileHeader = <View>
+  const profileHeader = <View style={{
+    height: (dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8),
+  }}>
     <TouchableWithoutFeedback onPress={handleTogglePhotos}>
       <Image source={photosReverse ? iHeadshot : iCover} width={dimensions.width} height={dimensions.width / 2} style={{
         borderBottomRightRadius: 16,
       }} />
     </TouchableWithoutFeedback>
 
-    <View width='100%' flex row center>
+    <View width='100%' row center>
       <TouchableWithoutFeedback onPress={handleTogglePhotos}>
         <Image source={photosReverse ? iCover : iHeadshot} width={dimensions.width / 4} height={dimensions.width / 4} style={{
           borderRadius: dimensions.width / 8,
@@ -162,6 +181,7 @@ const ProfileComponent = ({ author }) => {
           </View>
         </TouchableOpacity>
       </View>
+
       <View width={dimensions.width * (3 / 4)} height={(dimensions.width / 8) * 3}>
         <View height={dimensions.width / 4} style={{ padding: 4, paddingLeft: 0 }}>
           <View style={{
@@ -272,13 +292,37 @@ const ProfileComponent = ({ author }) => {
   }
   else if (mode === 'map') {
     return (
-      <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+      <View style={{
         backgroundColor: palette.secondary11,
         width: dimensions.width,
         height: dimensions.height,
       }}>
         {profileHeader}
-      </ScrollView>
+
+        <MapView
+          style={{
+            width: dimensions.width,
+            marginTop: 16,
+            height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 170 - 16,
+          }}
+        >
+          {profileBooks && profileBooks.map((book) => {
+            return (
+              <TouchableOpacity key={book} onPress={() => {
+                console.log(profileBooks.indexOf(book))
+              }}>
+                <BookMarker book={book} />
+              </TouchableOpacity>
+            )
+          })}
+
+          <Polyline
+            coordinates={coordinates}
+            strokeColor='red' // Change this to the desired color
+            strokeWidth={2}
+          />
+        </MapView>
+      </View>
     )
   }
   else {

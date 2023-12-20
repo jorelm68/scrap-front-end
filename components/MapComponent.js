@@ -1,5 +1,5 @@
 import { View, TouchableOpacity } from 'react-native-ui-lib'
-import { ScrollView } from 'react-native'
+import { Alert, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import ScrapComponent from '../components/ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
@@ -10,18 +10,24 @@ import MapView, { Polyline } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import ScrapMarker from './ScrapMarker'
-import { getCoordinates } from '../data/utility'
 import cache from '../data/cache'
+import { utilityScrapCoordinates } from '../data/api'
 
 const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
     const { user } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
+
+    const getCoordinates = async () => {
+        const response = await utilityScrapCoordinates(scraps)
+        if (!response.success) {
+            Alert.alert('Error', response.error)
+        }
+        else {
+            setCoordinates(response.data.coordinates)
+        }
+    }
     useEffect(() => {
-        getCoordinates(scraps, user).then((coordinates) => {
-            setCoordinates(coordinates)
-        }).catch(() => {
-            console.log('ERROR')
-        })
+        getCoordinates()
     }, [scraps])
 
     const {

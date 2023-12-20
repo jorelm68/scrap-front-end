@@ -364,6 +364,16 @@ export async function utilitySet(modelName, id, key, value) {
     const data = { model: modelName, id, key, value }
     return await handleResponse(route, data, 'patch')
 }
+export async function utilityScrapCoordinates(scraps) {
+    const route = `api/utility/scrapCoordinates`
+    const data = { scraps: JSON.stringify(scraps) }
+    return await handleResponse(route, data, 'post')
+}
+export async function utilityBookCoordinates(books) {
+    const route = `api/utility/bookCoordinates`
+    const data = { books: JSON.stringify(books) }
+    return await handleResponse(route, data, 'post')
+}
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
 export async function utilityQuestion(author, question) {
     const route = `api/utility/question`
