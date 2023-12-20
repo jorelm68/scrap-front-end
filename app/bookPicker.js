@@ -95,7 +95,6 @@ const BookPicker = () => {
                 }}>{selection.indexOf(book) + 1}</Text>
               )}
             </View>
-
           </TouchableOpacity>
         )
       })}

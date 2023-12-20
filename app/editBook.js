@@ -51,7 +51,7 @@ const EditBook = () => {
     useEffect(() => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
-            changeScrapsInBook: async (selection) => {
+            addScrapsToBook: async (selection) => {
                 for (const scrap of selection) {
                     const response = await bookAddScrap(book, scrap)
                     if (!response.success) {
@@ -198,7 +198,7 @@ const EditBook = () => {
                 }}
             />
 
-            {scraps.length < 10 && (
+            {scraps.length < 5 && (
                 <View center style={{
                     marginVertical: 16,
                 }}>
@@ -211,8 +211,8 @@ const EditBook = () => {
                                     scraps: JSON.stringify(unbookedScraps.filter((value) => {
                                         return !scraps || !scraps.includes(value)
                                     })),
-                                    amount: JSON.stringify(10 - scraps.length),
-                                    functionName: 'changeScrapsInBook',
+                                    amount: JSON.stringify(5 - scraps.length),
+                                    functionName: 'addScrapsToBook',
                                 }
                             })
                         }}

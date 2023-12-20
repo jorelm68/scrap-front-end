@@ -39,18 +39,6 @@ const Search = () => {
     }
   }
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={async () => {
-          sendQuery()
-        }}>
-          <Ionicons name='checkmark' color={palette.secondary14} size={24} />
-        </TouchableOpacity>
-      ),
-    })
-  }, [navigation, query, mode])
-
   const toggleMode = async () => {
     setResults([])
     if (mode === 'authors') {
@@ -82,7 +70,7 @@ const Search = () => {
           </View>
           <FieldComponent
             placeholder='Search...'
-            width={dimensions.width * (7 / 10)}
+            width={dimensions.width * (6 / 10)}
             value={query}
             onChangeText={(value) => {
               setQuery(value)
@@ -91,6 +79,17 @@ const Search = () => {
             autoCapitalize='none'
             autoComplete='off'
           />
+          <TouchableOpacity onPress={sendQuery} style={{
+            width: dimensions.width * (1 / 10),
+            height: dimensions.width * (1 / 10),
+          }}>
+            <View center style={{
+              width: dimensions.width * (1 / 10),
+              height: dimensions.width * (1 / 10),
+            }}>
+              <Ionicons name='search' color={palette.secondary14} size={24} />
+            </View>
+          </TouchableOpacity>
         </View>
 
         {mode === 'authors' && results && results.map((author) => {

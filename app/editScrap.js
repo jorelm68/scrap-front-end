@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native-ui-lib'
-import React from 'react'
-import { useLocalSearchParams } from 'expo-router'
+import React, { useContext, useEffect } from 'react'
+import { TouchableOpacity } from 'react-native'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import DropDownComponent from '../components/DropDownComponent'
 import useScrap from '../hooks/useScrap'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data/error'
@@ -8,8 +9,15 @@ import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data
 import { edit } from '../data/utility'
 import cache from '../data/cache'
 import { dimensions, palette } from '../data/styles'
+import AppContext from '../context/AppContext'
+import { utilityAddThread } from '../data/api'
+import ButtonComponent from '../components/ButtonComponent'
+import { Alert } from 'react-native'
+import BookComponent from '../components/BookComponent'
 
 const EditScrap = () => {
+    const { user, setFunctions } = useContext(AppContext)
+    const router = useRouter()
     const { scrap } = useLocalSearchParams()
     const {
         title,
@@ -26,6 +34,38 @@ const EditScrap = () => {
         'place',
         'threads',
     ])
+    console.log(threads)
+
+    useEffect(() => {
+        setFunctions((prevFunctions) => ({
+            ...prevFunctions,
+            addThreadsToScrap: async (selection) => {
+                console.log(selection)
+                for (const book of selection) {
+                    const response = await utilityAddThread(scrap, book)
+                    if (!response.success) {
+                        Alert.alert('Error', 'Couldn\'t thread book')
+                        return response
+                    }
+                }
+
+                setThreads((prevThreads) => ([
+                    ...prevThreads,
+                    ...selection,
+                ]))
+
+                cache.filter([scrap, 'threads'])
+                cache.filter([book, 'threads'])
+                return {
+                    success: true,
+                }
+            },
+        }))
+    }, [])
+
+    const handleRemoveThread = async (book) => {
+        console.log(book)
+    }
 
     return (
         <View style={{
@@ -99,6 +139,42 @@ const EditScrap = () => {
                     return response
                 }}
             />
+
+            {threads.length < 5 && (
+                <View center style={{
+                    marginVertical: 16,
+                }}>
+                    <ButtonComponent
+                        label='Thread Books'
+                        size='large'
+                        onPress={() => {
+                            router.push({
+                                pathname: '/bookFinder', params: {
+                                    threads: JSON.stringify(threads),
+                                    amount: JSON.stringify(5 - threads.length),
+                                    functionName: 'addThreadsToScrap',
+                                }
+                            })
+                        }}
+                        width='50%'
+                    />
+                </View>
+            )}
+
+            <View style={{
+                flexWrap: 'wrap',
+                flexDirection: 'row',
+            }}>
+                {threads && threads.map((book) => {
+                    return (
+                        <TouchableOpacity key={book} onPress={() => {
+                            handleRemoveThread(book)
+                        }}>
+                            <BookComponent book={book} clickable={false} />
+                        </TouchableOpacity>
+                    )
+                })}
+            </View>
         </View>
     )
 }
