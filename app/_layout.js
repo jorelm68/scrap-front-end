@@ -31,6 +31,21 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="(authentication)/forgotPassword"
+          options={{
+            presentation: 'modal',
+            headerTitle: 'Forgot Password',
+            headerTitleStyle: {
+              fontFamily: fonts.playBold,
+              fontSize: 24,
+              color: palette.secondary14,
+            },
+            headerStyle: {
+              backgroundColor: palette.complement2, // Set your desired color here
+            },
+          }}
+        />
+        <Stack.Screen
           name="(authentication)/chooseAccount"
           options={{
             presentation: 'modal',
@@ -43,11 +58,6 @@ const Layout = () => {
             headerStyle: {
               backgroundColor: palette.complement2, // Set your desired color here
             },
-            headerLeft: router.canGoBack() ? () => (
-              <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.secondary14} />
-              </TouchableOpacity>
-            ) : () => { },
           }}
         />
         <Stack.Screen

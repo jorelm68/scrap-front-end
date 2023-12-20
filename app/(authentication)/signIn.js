@@ -11,7 +11,7 @@ import { IconPerson } from '../../data/icons'
 import { palette, dimensions, fonts } from '../../data/styles'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
-import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import LogoComponent from '../../components/LogoComponent'
 import ErrorComponent from '../../components/ErrorComponent'
 
@@ -31,64 +31,6 @@ export default function App() {
   const [passwordError, setPasswordError] = useState('')
   const [error, setError] = useState('')
 
-  // Function for handling when the user presses the Sign In button
-  const handleSignIn = async () => {
-    router.push('/loading')
-    // First set the error messages if necessary
-    if (!regexAuthorPseudonymOrEmail.test(value)) {
-      setValueError(errorAuthorPseudonymOrEmail)
-    }
-    else {
-      setValueError('')
-    }
-
-    // Make sure the password submitted makes sense
-    if (!regexAuthorPassword.test(password)) {
-      setPasswordError(errorAuthorPassword)
-    }
-    else {
-      setPasswordError('')
-    }
-
-    // Now, make sure all tests pass
-    if (regexAuthorPseudonymOrEmail.test(value) & regexAuthorPassword.test(password)) {
-      // If all tests pass, make a sign in request to the back-end
-      const response = await authorSignIn(value, password)
-      if (response.error) {
-        router.back()
-        setError(response.error)
-      }
-      else {
-        // If successfully signed in, save the account to the device for future use
-        const account = {
-          author: response.data.author,
-          pseudonym: response.data.pseudonym,
-          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        }
-
-        await storeData('autothenticate', response.data.author)
-        await saveAccount(account)
-
-        setUser(response.data.author)
-        router.back()
-        router.replace('/feed')
-      }
-    }
-    else {
-      router.back()
-    }
-  }
-
-  // Function for handling when the user switches to the sign up screen
-  const handleSignUp = async () => {
-    router.push('signUp')
-  }
-
-  // Function for handling when the user presses the Choose Account button
-  const handleChooseAccount = async () => {
-    router.push('chooseAccount')
-  }
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView behavior="padding" style={{
@@ -106,7 +48,9 @@ export default function App() {
             <ButtonComponent
               label='Choose Account'
               size='large'
-              onPress={handleChooseAccount}
+              onPress={() => {
+                router.push('chooseAccount')
+              }}
               icon='person'
             />
           )}
@@ -147,20 +91,80 @@ export default function App() {
           <ErrorComponent error={passwordError} />
           <ErrorComponent error={error} />
 
-          <ButtonComponent
-            label='Sign In'
-            size='large'
-            onPress={handleSignIn}
-            icon='checkmark'
-            iconOnRight
-          />
+          <View center>
+            <TouchableOpacity onPress={() => {
+              router.push('/forgotPassword')
+            }}>
+              <Text style={{
+                fontFamily: fonts.itim,
+                fontSize: 16,
+                color: palette.secondary14,
+              }}>Forgot Password?</Text>
+            </TouchableOpacity>
+
+            <View height={16} />
+            <ButtonComponent
+              label='Sign In'
+              size='large'
+              onPress={async () => {
+                router.push('/loading')
+                // First set the error messages if necessary
+                if (!regexAuthorPseudonymOrEmail.test(value)) {
+                  setValueError(errorAuthorPseudonymOrEmail)
+                }
+                else {
+                  setValueError('')
+                }
+
+                // Make sure the password submitted makes sense
+                if (!regexAuthorPassword.test(password)) {
+                  setPasswordError(errorAuthorPassword)
+                }
+                else {
+                  setPasswordError('')
+                }
+
+                // Now, make sure all tests pass
+                if (regexAuthorPseudonymOrEmail.test(value) & regexAuthorPassword.test(password)) {
+                  // If all tests pass, make a sign in request to the back-end
+                  const response = await authorSignIn(value, password)
+                  if (response.error) {
+                    router.back()
+                    setError(response.error)
+                  }
+                  else {
+                    // If successfully signed in, save the account to the device for future use
+                    const account = {
+                      author: response.data.author,
+                      pseudonym: response.data.pseudonym,
+                      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                    }
+
+                    await storeData('autothenticate', response.data.author)
+                    await saveAccount(account)
+
+                    setUser(response.data.author)
+                    router.back()
+                    router.replace('/feed')
+                  }
+                }
+                else {
+                  router.back()
+                }
+              }}
+              icon='checkmark'
+              iconOnRight
+            />
+          </View>
 
           <View height={24} />
 
           <ButtonComponent
             label='Sign Up'
             size='large'
-            onPress={handleSignUp}
+            onPress={() => {
+              router.push('signUp')
+            }}
             icon='person-add'
           />
         </View>

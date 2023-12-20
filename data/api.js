@@ -209,6 +209,11 @@ export async function authorCheckCredentials(author, password) {
     const data = { author, password }
     return await handleResponse(route, data, 'post')
 }
+export async function authorForgotPassword(email) {
+    const route = `api/authors/forgotPassword`
+    const data = { email }
+    return await handleResponse(route, data, 'post')
+}
 // <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
 export async function authorRemoveAction(author, action) {
     const route = `api/authors/removeAction`

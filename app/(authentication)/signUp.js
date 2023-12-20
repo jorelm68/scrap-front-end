@@ -31,97 +31,6 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('')
   const [error, setError] = useState('')
 
-  const handleSignUp = async () => {
-    router.push('/loading')
-    if (!regexAuthorPseudonym.test(pseudonym)) {
-      setPseudonymError(errorAuthorPseudonym)
-      setError('')
-    }
-    else {
-      setPseudonymError('')
-    }
-    if (!regexAuthorEmail.test(email)) {
-      setEmailError(errorAuthorEmail)
-      setError('')
-    }
-    else {
-      setEmailError('')
-    }
-    if (!regexAuthorPassword.test(password)) {
-      setPasswordError(errorAuthorPassword)
-      setError('')
-    }
-    else {
-      setPasswordError('')
-    }
-    if (!regexAuthorPassword.test(confirmPassword)) {
-      setConfirmPasswordError(errorAuthorPassword)
-      setError('')
-    }
-    else {
-      setConfirmPasswordError('')
-    }
-    if (!regexAuthorFirstName.test(firstName)) {
-      setFirstNameError(errorAuthorFirstName)
-      setError('')
-    }
-    else {
-      setFirstNameError('')
-    }
-    if (!regexAuthorLastName.test(lastName)) {
-      setLastNameError(errorAuthorLastName)
-      setError('')
-    }
-    else {
-      setLastNameError('')
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match')
-    }
-
-    if (
-      regexAuthorPseudonym.test(pseudonym) &&
-      regexAuthorEmail.test(email) &&
-      regexAuthorPassword.test(password) &&
-      regexAuthorPassword.test(confirmPassword) &&
-      password === confirmPassword &&
-      regexAuthorFirstName.test(firstName) &&
-      regexAuthorLastName.test(lastName)
-    ) {
-      const response = await authorSignUp({
-        pseudonym,
-        email,
-        password,
-        firstName,
-        lastName,
-        createdAt: new Date(),
-      })
-
-      if (!response.success) {
-        router.back()
-        setError(response.error)
-        return
-      }
-
-      const account = {
-        author: response.data.author,
-        pseudonym,
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      }
-
-      await storeData('autothenticate', response.data.author)
-      await saveAccount(account)
-
-      setUser(response.data.author)
-      router.back()
-      router.replace('/feed')
-    }
-    else {
-      router.back()
-    }
-  }
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView behavior="padding" style={{
@@ -233,7 +142,96 @@ const SignUp = () => {
             label='Sign Up'
             size='large'
             width='50%'
-            onPress={handleSignUp}
+            onPress={async () => {
+              router.push('/loading')
+              if (!regexAuthorPseudonym.test(pseudonym)) {
+                setPseudonymError(errorAuthorPseudonym)
+                setError('')
+              }
+              else {
+                setPseudonymError('')
+              }
+              if (!regexAuthorEmail.test(email)) {
+                setEmailError(errorAuthorEmail)
+                setError('')
+              }
+              else {
+                setEmailError('')
+              }
+              if (!regexAuthorPassword.test(password)) {
+                setPasswordError(errorAuthorPassword)
+                setError('')
+              }
+              else {
+                setPasswordError('')
+              }
+              if (!regexAuthorPassword.test(confirmPassword)) {
+                setConfirmPasswordError(errorAuthorPassword)
+                setError('')
+              }
+              else {
+                setConfirmPasswordError('')
+              }
+              if (!regexAuthorFirstName.test(firstName)) {
+                setFirstNameError(errorAuthorFirstName)
+                setError('')
+              }
+              else {
+                setFirstNameError('')
+              }
+              if (!regexAuthorLastName.test(lastName)) {
+                setLastNameError(errorAuthorLastName)
+                setError('')
+              }
+              else {
+                setLastNameError('')
+              }
+
+              if (password !== confirmPassword) {
+                setError('Passwords do not match')
+              }
+
+              if (
+                regexAuthorPseudonym.test(pseudonym) &&
+                regexAuthorEmail.test(email) &&
+                regexAuthorPassword.test(password) &&
+                regexAuthorPassword.test(confirmPassword) &&
+                password === confirmPassword &&
+                regexAuthorFirstName.test(firstName) &&
+                regexAuthorLastName.test(lastName)
+              ) {
+                const response = await authorSignUp({
+                  pseudonym,
+                  email,
+                  password,
+                  firstName,
+                  lastName,
+                  createdAt: new Date(),
+                })
+
+                if (!response.success) {
+                  router.back()
+                  setError(response.error)
+                  return
+                }
+
+                const account = {
+                  author: response.data.author,
+                  pseudonym,
+                  expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                }
+
+                await storeData('autothenticate', response.data.author)
+                await saveAccount(account)
+
+                setUser(response.data.author)
+                router.back()
+                router.replace('/feed')
+              }
+              else {
+                router.back()
+              }
+            }}
             iconOnRight
             icon='checkmark'
           />
