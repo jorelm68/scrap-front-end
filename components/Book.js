@@ -8,28 +8,39 @@ import ScrapCarousel from '../components/ScrapCarousel'
 import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions, palette } from '../data/styles'
+import { fonts, dimensions, palette } from '../data/styles'
 import BookComponent from './BookComponent'
+import useAuthor from '../hooks/useAuthor'
+import AuthorComponent from './AuthorComponent'
 
 const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
-    const router = useRouter()
     const navigation = useNavigation()
-    const { user } = useContext(AppContext)
-    const [initialPage, setInitialPage] = useState(page)
-    const { currentScrap } = useContext(AppContext)
+    const router = useRouter()
+    const { currentScrap, user } = useContext(AppContext)
+    const [hidden, setHidden] = useState(true)
 
     const {
-        title,
-        description,
-        representative,
         scraps,
         author,
+        isPublic,
+        title,
     } = useBook(book, [
-        'title',
-        'description',
-        'representative',
         'scraps',
         'author',
+        'isPublic',
+        'title',
+    ])
+
+    const {
+        firstName,
+        lastName,
+        pseudonym,
+        relationship,
+    } = useAuthor(author, [
+        'firstName',
+        'lastName',
+        'pseudonym',
+        'relationship',
     ])
 
     useEffect(() => {
@@ -50,21 +61,47 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         })
     }, [navigation, title, user, author])
 
-    const clickMarker = async (marker) => {
-        console.log(marker)
-    }
+    useEffect(() => {
+        if (isPublic) {
+            setHidden(false)
+        }
+        else {
+            if (relationship === 'friends') {
+                setHidden(false)
+            }
+        }
+    }, [relationship, isPublic])
 
-    return (
-        <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
-            <MapComponent
-                scraps={book ? scraps : scrapsGiven}
-                scrap={currentScrap}
-                clickMarker={clickMarker}
-            />
-            <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={initialPage} />
-            <View height={120} />
-        </ScrollView>
-    )
+    if (hidden) {
+        return (
+            <View>
+                <Text style={{
+                    marginVertical: 16,
+                    fontFamily: fonts.itim,
+                    fontSize: 16,
+                    color: palette.secondary14,
+                    textAlign: 'center',
+                }}>This book is private and you aren't friends with {firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+
+                <AuthorComponent author={author} />
+            </View>
+        )
+    }
+    else {
+        return (
+            <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
+                <MapComponent
+                    scraps={book ? scraps : scrapsGiven}
+                    scrap={currentScrap}
+                    clickMarker={async (marker) => {
+                        console.log(marker)
+                    }}
+                />
+                <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={page} />
+                <View height={120} />
+            </ScrollView>
+        )
+    }
 }
 
 export default Book

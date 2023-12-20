@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native-ui-lib'
-import { ScrollView } from 'react-native'
+import { ScrollView, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocalSearchParams, useNavigation } from 'expo-router'
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import useBook from '../hooks/useBook'
 import useScrap from '../hooks/useScrap'
 import ScrapCarousel from '../components/ScrapCarousel'
@@ -9,6 +9,8 @@ import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import Book from '../components/Book'
 import { dimensions, palette } from '../data/styles'
+import useAuthor from '../hooks/useAuthor'
+import { Ionicons } from '@expo/vector-icons'
 
 const BookScreen = () => {
     const params = useLocalSearchParams()
