@@ -2,7 +2,7 @@ import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
 import { dimensions, palette, fonts } from '../../data/styles'
-import { TouchableWithoutFeedback } from 'react-native'
+import { ActivityIndicator, TouchableWithoutFeedback } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { Ionicons } from '@expo/vector-icons'
@@ -13,6 +13,7 @@ import DropDownComponent from '../../components/DropDownComponent'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../../data/regex'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../../data/error'
 import cache from '../../data/cache'
+import LogoComponent from '../../components/LogoComponent'
 
 const CameraScreen = () => {
   const { user } = useContext(AppContext)
@@ -136,52 +137,6 @@ const CameraScreen = () => {
     }
   }, [])
   useEffect(() => {
-    if (isSaving && !isLoading) {
-      navigation.setOptions({
-        headerRight: () => (
-          <TouchableOpacity onPress={async () => {
-            setIsLoading(true)
-            const response = await scrapSaveScrap(scrap)
-            if (!response.success) {
-              Alert.alert('Error', response.error)
-            }
-            setScrap({
-              author: user,
-              latitude: scrap.latitude,
-              longitude: scrap.longitude,
-            })
-            cache.filter([user, 'scraps'])
-            setIsSaving(false)
-            setIsLoading(false)
-            setShowButtons(true)
-          }}>
-            <Ionicons name='checkmark' color={palette.secondary14} size={24} />
-          </TouchableOpacity>
-        ),
-        headerLeft: () => ( // Corrected headerLeft configuration
-          <TouchableOpacity onPress={() => {
-            setScrap({
-              author: user,
-              latitude: scrap.latitude,
-              longitude: scrap.longitude,
-            })
-            setIsSaving(false)
-            setShowButtons(true)
-          }}>
-            <Ionicons name='close' color={palette.complement2} size={24} />
-          </TouchableOpacity>
-        ), // Don't forget the closing parenthesis for headerLeft
-      })
-    }
-    else {
-      navigation.setOptions({
-        headerRight: () => { },
-        headerLeft: () => { }
-      })
-    }
-
-  }, [isSaving, isLoading, navigation, scrap])
-  useEffect(() => {
     if (!(!scrap.latitude || !scrap.longitude || !scrap.iPrograph || !scrap.iRetrograph || !scrap.createdAt || !scrap.author || isSaving)) {
       setIsSaving(true)
       setIsLoading(false)
@@ -190,12 +145,13 @@ const CameraScreen = () => {
 
   if (isLoading) {
     return (
-      <View style={{
+      <View flex center style={{
         width: dimensions.width,
         height: dimensions.height,
         backgroundColor: palette.secondary11,
       }}>
-        <Text>LoADING</Text>
+        <LogoComponent />
+        <ActivityIndicator size='large' color={palette.secondary14} />
       </View>
     )
   }
@@ -282,6 +238,85 @@ const CameraScreen = () => {
 
       {isSaving && (
         <View>
+          <View centerH row style={{
+            width: dimensions.width,
+            height: 48 + 20,
+            marginVertical: 16,
+          }}>
+            <TouchableOpacity onPress={async () => {
+              setScrap({
+                author: user,
+                latitude: scrap.latitude,
+                longitude: scrap.longitude,
+              })
+              setIsSaving(false)
+              setShowButtons(true)
+            }}>
+              <View center style={{
+                width: dimensions.width / 2,
+                height: 48,
+              }}>
+                <Ionicons name='close-circle' color={palette.secondary14} size={48} />
+              </View>
+
+              <View center>
+                <Text style={{
+                  fontFamily: fonts.itim,
+                  fontSize: 18,
+                }}>Retake</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={async () => {
+              setIsLoading(true)
+              const response = await scrapSaveScrap(scrap)
+              if (!response.success) {
+                Alert.alert('Error', response.error)
+              }
+              setScrap({
+                author: user,
+                latitude: scrap.latitude,
+                longitude: scrap.longitude,
+              })
+              cache.filter([user, 'scraps'])
+              setIsSaving(false)
+              setIsLoading(false)
+              setShowButtons(true)
+            }}>
+              <View center style={{
+                width: dimensions.width / 2,
+                height: 48,
+              }}>
+                <Ionicons name='checkmark-circle' color={palette.secondary14} size={48} />
+              </View>
+
+              <View center>
+                <Text style={{
+                  fontFamily: fonts.itim,
+                  fontSize: 18,
+                }}>Save</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableWithoutFeedback onPress={handleToggleDirection}>
+            <View>
+              <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
+                width: dimensions.width,
+                height: dimensions.width,
+                borderRadius: 8,
+              }} />
+
+              <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
+                position: 'absolute',
+                width: dimensions.width / 3,
+                height: dimensions.width / 3,
+                borderRadius: 8,
+                right: 0,
+              }} />
+            </View>
+          </TouchableWithoutFeedback>
+
           <DropDownComponent
             type='Text'
             title='Title:'
@@ -354,25 +389,6 @@ const CameraScreen = () => {
               }
             }}
           />
-
-          <TouchableWithoutFeedback onPress={handleToggleDirection}>
-            <View>
-              <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
-                width: dimensions.width,
-                height: dimensions.width,
-                borderRadius: 8,
-              }} />
-
-              <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
-                position: 'absolute',
-                width: dimensions.width / 3,
-                height: dimensions.width / 3,
-                borderRadius: 8,
-                right: 0,
-              }} />
-            </View>
-          </TouchableWithoutFeedback>
-
         </View>
       )}
     </View>
