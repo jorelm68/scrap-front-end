@@ -237,7 +237,7 @@ const CameraScreen = () => {
       )}
 
       {isSaving && (
-        <ScrollView>
+        <View>
           <View centerH row style={{
             width: dimensions.width,
             height: 48 + 20,
@@ -299,27 +299,10 @@ const CameraScreen = () => {
             </TouchableOpacity>
           </View>
 
-          <TouchableWithoutFeedback onPress={handleToggleDirection}>
-            <View>
-              <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
-                width: dimensions.width,
-                height: dimensions.width,
-                borderRadius: 8,
-              }} />
-
-              <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
-                position: 'absolute',
-                width: dimensions.width / 3,
-                height: dimensions.width / 3,
-                borderRadius: 8,
-                right: 0,
-              }} />
-            </View>
-          </TouchableWithoutFeedback>
-
           <DropDownComponent
             type='Text'
             title='Title:'
+            topBorder
             value={scrap.title}
             boxes={[
               {
@@ -389,8 +372,27 @@ const CameraScreen = () => {
               }
             }}
           />
-          <View height={200} />
-        </ScrollView>
+
+          <View height={16} />
+
+          <TouchableWithoutFeedback onPress={handleToggleDirection}>
+            <View>
+              <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
+                width: dimensions.width,
+                height: dimensions.width,
+                borderRadius: 8,
+              }} />
+
+              <Image source={reverse ? scrap.iPrograph : scrap.iRetrograph} style={{
+                position: 'absolute',
+                width: dimensions.width / 3,
+                height: dimensions.width / 3,
+                borderRadius: 8,
+                right: 0,
+              }} />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
       )}
     </View>
   )
