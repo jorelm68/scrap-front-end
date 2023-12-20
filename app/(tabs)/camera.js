@@ -2,7 +2,7 @@ import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
 import { dimensions, palette, fonts } from '../../data/styles'
-import { ActivityIndicator, TouchableWithoutFeedback } from 'react-native'
+import { ActivityIndicator, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { Ionicons } from '@expo/vector-icons'
@@ -237,7 +237,7 @@ const CameraScreen = () => {
       )}
 
       {isSaving && (
-        <View>
+        <ScrollView>
           <View centerH row style={{
             width: dimensions.width,
             height: 48 + 20,
@@ -389,7 +389,8 @@ const CameraScreen = () => {
               }
             }}
           />
-        </View>
+          <View height={200} />
+        </ScrollView>
       )}
     </View>
   )
