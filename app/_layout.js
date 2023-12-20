@@ -124,6 +124,7 @@ const Layout = () => {
           name="(tabs)"
           options={{
             headerShown: false,
+            gestureEnabled: false,
           }}
         />
         <Stack.Screen
