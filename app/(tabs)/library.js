@@ -28,6 +28,7 @@ const Library = () => {
         const response = await scrapDeleteScraps(selection)
         if (response.success) {
           cache.filter([user, 'scraps'])
+          cache.filter([user, 'miles'])
           for (const scrap of selection) {
             cache.filter([scrap])
           }

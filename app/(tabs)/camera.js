@@ -237,7 +237,7 @@ const CameraScreen = () => {
       )}
 
       {isSaving && (
-        <View>
+        <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true}>
           <View centerH row style={{
             width: dimensions.width,
             height: 48 + 20,
@@ -273,15 +273,18 @@ const CameraScreen = () => {
               if (!response.success) {
                 Alert.alert('Error', response.error)
               }
-              setScrap({
-                author: user,
-                latitude: scrap.latitude,
-                longitude: scrap.longitude,
-              })
-              cache.filter([user, 'scraps'])
-              setIsSaving(false)
-              setIsLoading(false)
-              setShowButtons(true)
+              else {
+                setScrap({
+                  author: user,
+                  latitude: scrap.latitude,
+                  longitude: scrap.longitude,
+                })
+                cache.filter([user, 'miles'])
+                cache.filter([user, 'scraps'])
+                setIsSaving(false)
+                setIsLoading(false)
+                setShowButtons(true)
+              }
             }}>
               <View center style={{
                 width: dimensions.width / 2,
@@ -392,7 +395,9 @@ const CameraScreen = () => {
               }} />
             </View>
           </TouchableWithoutFeedback>
-        </View>
+
+          <View height={200}/>
+        </ScrollView>
       )}
     </View>
   )

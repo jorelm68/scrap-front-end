@@ -25,7 +25,6 @@ const ProfileComponent = ({ author }) => {
   const [photosReverse, setPhotosReverse] = useState(false)
   const [mode, setMode] = useState('books')
   const [option, setOption] = useState('friends')
-  const miles = 10
   const [coordinates, setCoordinates] = useState([])
 
   const {
@@ -36,7 +35,7 @@ const ProfileComponent = ({ author }) => {
     lastName,
     pseudonym,
     profileBooks,
-    // miles,
+    miles,
     friends,
     incomingFriendRequests,
     outgoingFriendRequests,
@@ -48,7 +47,7 @@ const ProfileComponent = ({ author }) => {
     'lastName',
     'pseudonym',
     'profileBooks',
-    // 'miles',
+    'miles',
     'friends',
     'incomingFriendRequests',
     'outgoingFriendRequests',
