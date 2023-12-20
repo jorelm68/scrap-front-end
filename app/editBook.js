@@ -143,6 +143,7 @@ const EditBook = () => {
                 boxes={[
                     {
                         placeholder: 'New Title',
+                        initial: title,
                         regex: regexBookTitle,
                         error: errorBookTitle,
                         autoCorrect: true,

@@ -132,6 +132,7 @@ const Settings = () => {
                     onSubmit={async (values) => {
                         const response = await edit('Author', user, 'firstName', values[0])
                         if (response.success) {
+                            cache.filter([user, firstName])
                             setFirstName(values[0])
                         }
                         return response
@@ -154,6 +155,7 @@ const Settings = () => {
                     onSubmit={async (values) => {
                         const response = await edit('Author', user, 'lastName', values[0])
                         if (response.success) {
+                            cache.filter([user, 'lastName'])
                             setLastName(values[0])
                         }
                         return response
@@ -166,6 +168,7 @@ const Settings = () => {
                     boxes={[
                         {
                             placeholder: 'New Autobiography',
+                            initial: autobiography,
                             regex: regexAuthorAutobiography,
                             error: errorAuthorAutobiography,
                             autoCorrect: true,
@@ -175,6 +178,7 @@ const Settings = () => {
                     onSubmit={async (values) => {
                         const response = await edit('Author', user, 'autobiography', values[0])
                         if (response.success) {
+                            cache.filter([user, 'autobiography'])
                             setAutobiography(values[0])
                         }
                         return response
@@ -198,6 +202,7 @@ const Settings = () => {
                     onSubmit={async (values) => {
                         const response = await edit('Author', user, 'pseudonym', values[0])
                         if (response.success) {
+                            cache.filter([user, 'pseudonym'])
                             setPseudonym(values[0])
                         }
                         return response
@@ -231,6 +236,7 @@ const Settings = () => {
                         if (response.success) {
                             const response2 = await edit('Author', user, 'email', values[0])
                             if (response2.success) {
+                                cache.filter([user, 'email'])
                                 setEmail(values[0])
                             }
                             return response2

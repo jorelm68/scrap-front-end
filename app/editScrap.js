@@ -91,6 +91,7 @@ const EditScrap = () => {
                 boxes={[
                     {
                         placeholder: 'New Title',
+                        initial: title,
                         regex: regexScrapTitle,
                         error: errorScrapTitle,
                         autoCorrect: true,
@@ -113,6 +114,7 @@ const EditScrap = () => {
                 boxes={[
                     {
                         placeholder: 'New Description',
+                        initial: description,
                         regex: regexScrapDescription,
                         error: errorScrapDescription,
                         autoCorrect: true,
@@ -135,6 +137,7 @@ const EditScrap = () => {
                 boxes={[
                     {
                         placeholder: 'New Place',
+                        initial: place,
                         regex: regexScrapPlace,
                         error: errorScrapPlace,
                         autoCorrect: true,
