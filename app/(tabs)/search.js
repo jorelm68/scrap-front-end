@@ -30,7 +30,7 @@ const Search = () => {
       }
     }
     else {
-      response = await utilityBookSearch(user, query)
+      response = await utilityBookSearch(user, query, ['restrictedBooks'])
       if (!response.success) {
         Alert.alert('Error', response.error)
       }

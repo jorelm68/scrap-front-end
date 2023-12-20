@@ -14,6 +14,7 @@ const BookFinder = () => {
     const router = useRouter()
     const { functions, user } = useContext(AppContext)
     const params = useLocalSearchParams()
+    const book = params.book
     const threads = JSON.parse(params.threads)
     const amount = JSON.parse(params.amount)
     const functionName = params.functionName
@@ -24,13 +25,14 @@ const BookFinder = () => {
     const [selection, setSelection] = useState([])
     const sendQuery = async () => {
         Keyboard.dismiss()
-        response = await utilityBookSearch(user, query)
+        response = await utilityBookSearch(user, query, ['restrictedBooks'])
         if (!response.success) {
             Alert.alert('Error', response.error)
         }
         else {
-            setResults(response.data.books.filter((book) => {
-                return !threads.includes(book)
+            // Filter out the books that are already threaded and the book the scrap belongs to
+            setResults(response.data.books.filter((value) => {
+                return !threads.includes(value) && value !== book
             }))
         }
     }

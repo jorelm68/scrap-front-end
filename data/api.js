@@ -336,9 +336,13 @@ export async function utilityAuthorSearch(author, search) {
     const data = { author, search }
     return await handleResponse(route, data, 'post')
 }
-export async function utilityBookSearch(author, search) {
+export async function utilityBookSearch(author, search, remove) {
     const route = `api/utility/bookSearch`
-    const data = { author, search }
+    const data = {
+        author,
+        search,
+        remove: JSON.stringify(remove)
+    }
     return await handleResponse(route, data, 'post')
 }
 export async function utilityScrapSearch(author, search) {

@@ -11,6 +11,7 @@ export default function useScrap(scrap, requests) {
     const [description, setDescription] = useState('')
     const [author, setAuthor] = useState('')
     const [threads, setThreads] = useState('')
+    const [book, setBook] = useState('')
 
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
@@ -40,6 +41,7 @@ export default function useScrap(scrap, requests) {
 
         if (request === 'retrograph') set = setRetrograph
         else if (request === 'prograph') set = setPrograph
+        else if (request === 'book') set = setBook
         else if (request === 'title') set = setTitle
         else if (request === 'description') set = setDescription
         else if (request === 'author') set = setAuthor
@@ -116,6 +118,8 @@ export default function useScrap(scrap, requests) {
         setLatitude,
         longitude,
         setLongitude,
+        book,
+        setBook,
         prograph: direction ? prograph : retrograph,
         setPrograph: direction ? setPrograph : setRetrograph,
         retrograph: direction ? retrograph : prograph,

@@ -28,11 +28,13 @@ const EditScrap = () => {
         setPlace,
         threads,
         setThreads,
+        book,
     } = useScrap(scrap, [
         'title',
         'description',
         'place',
         'threads',
+        'book',
     ])
 
     useEffect(() => {
@@ -164,6 +166,7 @@ const EditScrap = () => {
                         onPress={() => {
                             router.push({
                                 pathname: '/bookFinder', params: {
+                                    book,
                                     threads: JSON.stringify(threads),
                                     amount: JSON.stringify(3 - threads.length),
                                     functionName: 'addThreadsToScrap',
