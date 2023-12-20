@@ -291,7 +291,7 @@ const ProfileComponent = ({ author }) => {
         height: dimensions.height,
       }}>
         {profileHeader}
-        <View row>
+        <View center row>
           <View centerV style={{
             width: dimensions.width / 3,
             height: 64,
