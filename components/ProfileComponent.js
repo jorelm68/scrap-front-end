@@ -291,91 +291,87 @@ const ProfileComponent = ({ author }) => {
         height: dimensions.height,
       }}>
         {profileHeader}
-        <View style={{
-          marginTop: 16,
-        }}>
-          <View row>
+        <View row>
+          <View centerV style={{
+            width: dimensions.width / 3,
+            height: 64,
+            borderBottomColor: palette.complement0,
+            borderBottomWidth: option === 'friends' ? 2 : 0,
+            marginBottom: 4,
+          }}>
+            <TouchableOpacity onPress={() => {
+              setOption('friends')
+            }}>
+              <Text style={{
+                fontFamily: fonts.itim,
+                fontSize: 16,
+                padding: 4,
+                color: option === 'friends' ? palette.complement0 : palette.secondary14,
+                textAlign: 'center',
+              }}>Friends</Text>
+            </TouchableOpacity>
+          </View>
+
+          {user === author && (
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
               borderBottomColor: palette.complement0,
-              borderBottomWidth: option === 'friends' ? 2 : 0,
-              marginBottom: 4,
+              borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
-                setOption('friends')
+                setOption('incomingFriendRequests')
               }}>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'friends' ? palette.complement0 : palette.secondary14,
+                  color: option === 'incomingFriendRequests' ? palette.complement0 : palette.secondary14,
                   textAlign: 'center',
-                }}>Friends</Text>
+                }}>Incoming Requests</Text>
               </TouchableOpacity>
             </View>
+          )}
 
-            {user === author && (
-              <View centerV style={{
-                width: dimensions.width / 3,
-                height: 64,
-                borderBottomColor: palette.complement0,
-                borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
+          {user === author && (
+            <View centerV style={{
+              width: dimensions.width / 3,
+              height: 64,
+              borderBottomColor: palette.complement0,
+              borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
+            }}>
+              <TouchableOpacity onPress={() => {
+                setOption('outgoingFriendRequests')
               }}>
-                <TouchableOpacity onPress={() => {
-                  setOption('incomingFriendRequests')
-                }}>
-                  <Text style={{
-                    fontFamily: fonts.itim,
-                    fontSize: 16,
-                    padding: 4,
-                    color: option === 'incomingFriendRequests' ? palette.complement0 : palette.secondary14,
-                    textAlign: 'center',
-                  }}>Incoming Requests</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-
-            {user === author && (
-              <View centerV style={{
-                width: dimensions.width / 3,
-                height: 64,
-                borderBottomColor: palette.complement0,
-                borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
-              }}>
-                <TouchableOpacity onPress={() => {
-                  setOption('outgoingFriendRequests')
-                }}>
-                  <Text style={{
-                    fontFamily: fonts.itim,
-                    fontSize: 16,
-                    padding: 4,
-                    color: option === 'outgoingFriendRequests' ? palette.complement0 : palette.secondary14,
-                    textAlign: 'center',
-                  }}>Outgoing Requests</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-
-          {option === 'friends' && friends.map((friend) => {
-            return (
-              <AuthorComponent author={friend} key={friend} />
-            )
-          })}
-
-          {option === 'incomingFriendRequests' && incomingFriendRequests.map((request) => {
-            return (
-              <AuthorComponent author={request} key={request} />
-            )
-          })}
-
-          {option === 'outgoingFriendRequests' && outgoingFriendRequests.map((request) => {
-            return (
-              <AuthorComponent author={request} key={request} />
-            )
-          })}
+                <Text style={{
+                  fontFamily: fonts.itim,
+                  fontSize: 16,
+                  padding: 4,
+                  color: option === 'outgoingFriendRequests' ? palette.complement0 : palette.secondary14,
+                  textAlign: 'center',
+                }}>Outgoing Requests</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
+
+        {option === 'friends' && friends.map((friend) => {
+          return (
+            <AuthorComponent author={friend} key={friend} />
+          )
+        })}
+
+        {option === 'incomingFriendRequests' && incomingFriendRequests.map((request) => {
+          return (
+            <AuthorComponent author={request} key={request} />
+          )
+        })}
+
+        {option === 'outgoingFriendRequests' && outgoingFriendRequests.map((request) => {
+          return (
+            <AuthorComponent author={request} key={request} />
+          )
+        })}
       </ScrollView >
     )
   }
