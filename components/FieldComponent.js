@@ -23,7 +23,6 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                 style={{
                     paddingHorizontal: 8,
                     fontFamily: fonts.itim,
-                    height: 40,
                     color: palette.secondary14,
                 }}
                 onChangeText={onChangeText}

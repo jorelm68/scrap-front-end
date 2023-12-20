@@ -165,6 +165,7 @@ const EditBook = () => {
                 boxes={[
                     {
                         placeholder: 'New Description',
+                        initial: description,
                         regex: regexBookDescription,
                         error: errorBookDescription,
                         autoCorrect: true,

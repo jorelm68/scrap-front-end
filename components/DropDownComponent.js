@@ -16,6 +16,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
     const [values, setValues] = useState([])
     const [submissions, setSubmissions] = useState([])
     const [error, setError] = useState('')
+    console.log(values)
 
     const {
         iPrograph,
@@ -28,14 +29,19 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
     useEffect(() => {
         let newValues = []
         let newSubmissions = []
-        boxes && boxes.forEach(() => {
-            newValues.push('')
+        boxes && boxes.forEach((box) => {
+            if (box.initial) {
+                newValues.push(box.initial)
+            }
+            else {
+                newValues.push('')
+            }
             newSubmissions.push(false)
         })
 
         setSubmissions(newSubmissions)
         setValues(newValues)
-    }, [])
+    }, [boxes])
 
     const handleSubmit = async () => {
         let passing = true
@@ -58,8 +64,13 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
 
                 let newValues = []
                 let newSubmissions = []
-                boxes && boxes.forEach(() => {
-                    newValues.push('')
+                boxes && boxes.forEach((box) => {
+                    if (box.initial) {
+                        newValues.push(box.initial)
+                    }
+                    else {
+                        newValues.push('')
+                    }
                     newSubmissions.push(false)
                 })
                 setValues(newValues)
