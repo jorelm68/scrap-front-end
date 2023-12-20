@@ -91,6 +91,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
             onSubmit()
         } : () => {
             setIsDropped(!isDropped)
+            Keyboard.dismiss()
         }}>
             <View>
                 {type === 'Scrap' && (

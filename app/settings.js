@@ -87,237 +87,235 @@ const Settings = () => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <KeyboardAvoidingView behavior="padding" style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
+        <KeyboardAvoidingView behavior="padding" style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}>
+            <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+                width: dimensions.width,
+                height: dimensions.height,
+                backgroundColor: palette.secondary11,
             }}>
-                <ScrollView style={{
-                    width: dimensions.width,
-                    height: dimensions.height,
-                    backgroundColor: palette.secondary11,
-                }}>
-                    <DropDownComponent
-                        type='Scrap'
-                        title='Headshot and Cover'
-                        value={headshotAndCover}
-                        options={scraps}
-                        amount={1}
-                        onSubmit={async () => {
-                            router.push({
-                                pathname: '/scrapPicker', params: {
-                                    scraps: JSON.stringify(scraps),
-                                    amount: JSON.stringify(1),
-                                    functionName: 'setHeadshotAndCover',
-                                }
-                            })
-                        }}
-                    />
+                <DropDownComponent
+                    type='Scrap'
+                    title='Headshot and Cover'
+                    value={headshotAndCover}
+                    options={scraps}
+                    amount={1}
+                    onSubmit={async () => {
+                        router.push({
+                            pathname: '/scrapPicker', params: {
+                                scraps: JSON.stringify(scraps),
+                                amount: JSON.stringify(1),
+                                functionName: 'setHeadshotAndCover',
+                            }
+                        })
+                    }}
+                />
 
-                    <DropDownComponent
-                        type='Text'
-                        title='First Name: '
-                        value={firstName}
-                        boxes={[
-                            {
-                                placeholder: 'New First Name',
-                                regex: regexAuthorFirstName,
-                                error: errorAuthorFirstName,
-                                autoCorrect: false,
-                                autoCapitalize: 'words',
-                                autoComplete: 'off',
-                            }
-                        ]}
-                        onSubmit={async (values) => {
-                            const response = await edit('Author', user, 'firstName', values[0])
-                            if (response.success) {
-                                setFirstName(values[0])
-                            }
-                            return response
-                        }}
-                    />
-                    <DropDownComponent
-                        type='Text'
-                        title='Last Name:'
-                        value={lastName}
-                        boxes={[
-                            {
-                                placeholder: 'New Last Name',
-                                regex: regexAuthorLastName,
-                                error: errorAuthorLastName,
-                                autoCorrect: false,
-                                autoCapitalize: 'words',
-                                autoComplete: 'off'
-                            }
-                        ]}
-                        onSubmit={async (values) => {
-                            const response = await edit('Author', user, 'lastName', values[0])
-                            if (response.success) {
-                                setLastName(values[0])
-                            }
-                            return response
-                        }}
-                    />
-                    <DropDownComponent
-                        type='Text'
-                        title='Autobiography:'
-                        value={autobiography}
-                        boxes={[
-                            {
-                                placeholder: 'New Autobiography',
-                                regex: regexAuthorAutobiography,
-                                error: errorAuthorAutobiography,
-                                autoCorrect: true,
-                                autoCapitalize: 'sentences',
-                            }
-                        ]}
-                        onSubmit={async (values) => {
-                            const response = await edit('Author', user, 'autobiography', values[0])
-                            if (response.success) {
-                                setAutobiography(values[0])
-                            }
-                            return response
-                        }}
-                    />
+                <DropDownComponent
+                    type='Text'
+                    title='First Name: '
+                    value={firstName}
+                    boxes={[
+                        {
+                            placeholder: 'New First Name',
+                            regex: regexAuthorFirstName,
+                            error: errorAuthorFirstName,
+                            autoCorrect: false,
+                            autoCapitalize: 'words',
+                            autoComplete: 'off',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Author', user, 'firstName', values[0])
+                        if (response.success) {
+                            setFirstName(values[0])
+                        }
+                        return response
+                    }}
+                />
+                <DropDownComponent
+                    type='Text'
+                    title='Last Name:'
+                    value={lastName}
+                    boxes={[
+                        {
+                            placeholder: 'New Last Name',
+                            regex: regexAuthorLastName,
+                            error: errorAuthorLastName,
+                            autoCorrect: false,
+                            autoCapitalize: 'words',
+                            autoComplete: 'off'
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Author', user, 'lastName', values[0])
+                        if (response.success) {
+                            setLastName(values[0])
+                        }
+                        return response
+                    }}
+                />
+                <DropDownComponent
+                    type='Text'
+                    title='Autobiography:'
+                    value={autobiography}
+                    boxes={[
+                        {
+                            placeholder: 'New Autobiography',
+                            regex: regexAuthorAutobiography,
+                            error: errorAuthorAutobiography,
+                            autoCorrect: true,
+                            autoCapitalize: 'sentences',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Author', user, 'autobiography', values[0])
+                        if (response.success) {
+                            setAutobiography(values[0])
+                        }
+                        return response
+                    }}
+                />
 
-                    <DropDownComponent
-                        type='Text'
-                        title='Pseudonym:'
-                        value={pseudonym}
-                        boxes={[
-                            {
-                                placeholder: 'New Pseudonym',
-                                regex: regexAuthorPseudonym,
-                                error: errorAuthorPseudonym,
-                                autoCorrect: false,
-                                autoCapitalize: 'none',
-                                autoComplete: 'off',
-                            }
-                        ]}
-                        onSubmit={async (values) => {
-                            const response = await edit('Author', user, 'pseudonym', values[0])
-                            if (response.success) {
-                                setPseudonym(values[0])
-                            }
-                            return response
-                        }}
-                    />
+                <DropDownComponent
+                    type='Text'
+                    title='Pseudonym:'
+                    value={pseudonym}
+                    boxes={[
+                        {
+                            placeholder: 'New Pseudonym',
+                            regex: regexAuthorPseudonym,
+                            error: errorAuthorPseudonym,
+                            autoCorrect: false,
+                            autoCapitalize: 'none',
+                            autoComplete: 'off',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Author', user, 'pseudonym', values[0])
+                        if (response.success) {
+                            setPseudonym(values[0])
+                        }
+                        return response
+                    }}
+                />
 
-                    <DropDownComponent
-                        type='Text'
-                        title='Email:'
-                        value={email}
-                        boxes={[
-                            {
-                                placeholder: 'New Email',
-                                regex: regexAuthorEmail,
-                                error: errorAuthorEmail,
-                                autoCorrect: false,
-                                autoCapitalize: 'none',
-                                autoComplete: 'off',
-                            },
-                            {
-                                placeholder: 'Password',
-                                regex: regexAuthorPassword,
-                                error: errorAuthorPassword,
-                                autoCorrect: false,
-                                autoCapitalize: 'none',
-                                autoComplete: 'off',
+                <DropDownComponent
+                    type='Text'
+                    title='Email:'
+                    value={email}
+                    boxes={[
+                        {
+                            placeholder: 'New Email',
+                            regex: regexAuthorEmail,
+                            error: errorAuthorEmail,
+                            autoCorrect: false,
+                            autoCapitalize: 'none',
+                            autoComplete: 'off',
+                        },
+                        {
+                            placeholder: 'Password',
+                            regex: regexAuthorPassword,
+                            error: errorAuthorPassword,
+                            autoCorrect: false,
+                            autoCapitalize: 'none',
+                            autoComplete: 'off',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await authorCheckCredentials(user, values[1])
+                        if (response.success) {
+                            const response2 = await edit('Author', user, 'email', values[0])
+                            if (response2.success) {
+                                setEmail(values[0])
                             }
-                        ]}
-                        onSubmit={async (values) => {
-                            const response = await authorCheckCredentials(user, values[1])
-                            if (response.success) {
-                                const response2 = await edit('Author', user, 'email', values[0])
-                                if (response2.success) {
-                                    setEmail(values[0])
-                                }
-                                return response2
-                            }
-                            return response
-                        }}
-                    />
+                            return response2
+                        }
+                        return response
+                    }}
+                />
 
-                    <DropDownComponent
-                        type='Text'
-                        title='Password:'
-                        value={'••••••••••••••••'}
-                        boxes={[
-                            {
-                                placeholder: 'Password',
-                                regex: regexAuthorPassword,
-                                error: errorAuthorPassword,
-                                autoCorrect: false,
-                                autoCapitalize: 'none',
-                                autoComplete: 'off',
-                            },
-                            {
-                                placeholder: 'New Password',
-                                regex: regexAuthorPassword,
-                                error: errorAuthorPassword,
-                                autoCorrect: false,
-                                autoCapitalize: 'none',
-                                autoComplete: 'off',
-                            },
-                            {
-                                placeholder: 'Confirm New Password',
-                                regex: regexAuthorPassword,
-                                error: errorAuthorPassword,
-                                autoCorrect: false,
-                                autoCapitalize: 'none',
-                                autoComplete: 'off',
-                            },
-                        ]}
-                        onSubmit={async (values) => {
-                            const password = values[0]
-                            const newPassword = values[1]
-                            const newPasswordConfirm = values[2]
+                <DropDownComponent
+                    type='Text'
+                    title='Password:'
+                    value={'••••••••••••••••'}
+                    boxes={[
+                        {
+                            placeholder: 'Password',
+                            regex: regexAuthorPassword,
+                            error: errorAuthorPassword,
+                            autoCorrect: false,
+                            autoCapitalize: 'none',
+                            autoComplete: 'off',
+                        },
+                        {
+                            placeholder: 'New Password',
+                            regex: regexAuthorPassword,
+                            error: errorAuthorPassword,
+                            autoCorrect: false,
+                            autoCapitalize: 'none',
+                            autoComplete: 'off',
+                        },
+                        {
+                            placeholder: 'Confirm New Password',
+                            regex: regexAuthorPassword,
+                            error: errorAuthorPassword,
+                            autoCorrect: false,
+                            autoCapitalize: 'none',
+                            autoComplete: 'off',
+                        },
+                    ]}
+                    onSubmit={async (values) => {
+                        const password = values[0]
+                        const newPassword = values[1]
+                        const newPasswordConfirm = values[2]
 
-                            let response = await authorCheckCredentials(user, password)
-                            if (!response.success) {
-                                return {
-                                    success: false,
-                                    error: response.error,
-                                }
-                            }
-
-                            if (newPassword !== newPasswordConfirm) {
-                                return {
-                                    success: false,
-                                    error: 'New passwords do not match',
-                                }
-                            }
-
-                            response = await edit('Author', user, 'password', newPassword)
-                            if (!response.success) {
-                                return {
-                                    success: false,
-                                    error: response.error,
-                                }
-                            }
-
+                        let response = await authorCheckCredentials(user, password)
+                        if (!response.success) {
                             return {
-                                success: true,
+                                success: false,
+                                error: response.error,
                             }
-                        }}
+                        }
+
+                        if (newPassword !== newPasswordConfirm) {
+                            return {
+                                success: false,
+                                error: 'New passwords do not match',
+                            }
+                        }
+
+                        response = await edit('Author', user, 'password', newPassword)
+                        if (!response.success) {
+                            return {
+                                success: false,
+                                error: response.error,
+                            }
+                        }
+
+                        return {
+                            success: true,
+                        }
+                    }}
+                />
+
+                <View height={16} />
+                <View center>
+                    <ButtonComponent
+                        label='Sign Out'
+                        size='large'
+                        onPress={handleLogout}
+                        width='50%'
                     />
+                </View>
+                <View height={16} />
 
-                    <View height={16} />
-                    <View center>
-                        <ButtonComponent
-                            label='Sign Out'
-                            size='large'
-                            onPress={handleLogout}
-                            width='50%'
-                        />
-                    </View>
-                    <View height={16} />
-
-                    <View height={200} />
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </TouchableWithoutFeedback>
+                <View height={200} />
+            </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 export default Settings

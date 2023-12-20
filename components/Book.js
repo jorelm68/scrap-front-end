@@ -55,7 +55,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
             <MapComponent
                 scraps={book ? scraps : scrapsGiven}
                 scrap={currentScrap}

@@ -252,7 +252,7 @@ const ProfileComponent = ({ author }) => {
 
   if (mode === 'books') {
     return (
-      <ScrollView style={{
+      <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
         backgroundColor: palette.secondary11,
         width: dimensions.width,
         height: dimensions.height,
@@ -274,7 +274,7 @@ const ProfileComponent = ({ author }) => {
   }
   else if (mode === 'map') {
     return (
-      <ScrollView style={{
+      <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
         backgroundColor: palette.secondary11,
         width: dimensions.width,
         height: dimensions.height,
@@ -285,7 +285,7 @@ const ProfileComponent = ({ author }) => {
   }
   else {
     return (
-      <ScrollView style={{
+      <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
         backgroundColor: palette.secondary11,
         width: dimensions.width,
         height: dimensions.height,
