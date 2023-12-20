@@ -22,7 +22,6 @@ const BookFinder = () => {
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
     const [selection, setSelection] = useState([])
-
     const sendQuery = async () => {
         Keyboard.dismiss()
         response = await utilityBookSearch(user, query)
@@ -120,7 +119,7 @@ const BookFinder = () => {
                             } : {
                                 opacity: 1,
                             }}>
-                                <BookComponent book={book} showAuthor/>
+                                <BookComponent book={book} showAuthor />
                                 {selection.includes(book) && (
                                     <Text style={{
                                         position: 'absolute',

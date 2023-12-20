@@ -68,7 +68,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
             setHidden(false)
         }
         else {
-            if (relationship === 'friend') {
+            if (['friend', 'self'].includes(relationship)) {
                 setHidden(false)
             }
         }

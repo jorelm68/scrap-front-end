@@ -16,7 +16,6 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
     const [values, setValues] = useState([])
     const [submissions, setSubmissions] = useState([])
     const [error, setError] = useState('')
-    console.log(values)
 
     const {
         iPrograph,

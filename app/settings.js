@@ -77,16 +77,6 @@ const Settings = () => {
         setHeadshotAndCover(initialHeadshotAndCover)
     }, [initialHeadshotAndCover])
 
-    // Function for handling when you press the logout button
-    const handleLogout = async () => {
-        deleteData('autothenticate')
-        cache.filter(['relationship'])
-        while (router.canGoBack()) {
-            router.back()
-        }
-        router.replace('/signIn')
-    }
-
     return (
         <KeyboardAvoidingView behavior="padding" style={{
             flex: 1,
@@ -314,7 +304,14 @@ const Settings = () => {
                     <ButtonComponent
                         label='Sign Out'
                         size='large'
-                        onPress={handleLogout}
+                        onPress={async () => {
+                            deleteData('autothenticate')
+                            cache.filter(['relationship'])
+                            while (router.canGoBack()) {
+                                router.back()
+                            }
+                            router.replace('/signIn')
+                        }}
                         width='50%'
                     />
                 </View>
