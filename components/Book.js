@@ -24,11 +24,13 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         author,
         isPublic,
         title,
+        description,
     } = useBook(book, [
         'scraps',
         'author',
         'isPublic',
         'title',
+        'description',
     ])
 
     const {
@@ -97,6 +99,18 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         console.log(marker)
                     }}
                 />
+                <View style={{
+                    borderBottomWidth: 2,
+                    borderBottomColor: palette.secondary14,
+                }}>
+                <Text style={{
+                    padding: 4,
+                    fontFamily: fonts.itim,
+                    fontSize: 16,
+                    color: palette.secondary14,
+                }}>{description}</Text>
+                </View>
+                
                 <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={page} />
                 <View height={120} />
             </ScrollView>
