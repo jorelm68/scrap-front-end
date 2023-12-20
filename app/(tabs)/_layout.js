@@ -25,7 +25,7 @@ const Layout = () => {
                         backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.primary0,
+                    tabBarActiveTintColor: palette.secondary11,
                 }}
             />
             <Tabs.Screen
@@ -46,7 +46,7 @@ const Layout = () => {
                         backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.primary0,
+                    tabBarActiveTintColor: palette.secondary11,
                 }}
             />
             <Tabs.Screen
@@ -67,7 +67,7 @@ const Layout = () => {
                         backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.primary0,
+                    tabBarActiveTintColor: palette.secondary11,
                 }}
             />
             <Tabs.Screen
@@ -88,7 +88,7 @@ const Layout = () => {
                         backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.primary0,
+                    tabBarActiveTintColor: palette.secondary11,
                 }}
             />
             <Tabs.Screen
@@ -109,7 +109,7 @@ const Layout = () => {
                         backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.primary0,
+                    tabBarActiveTintColor: palette.secondary11,
                 }}
             />
         </Tabs>

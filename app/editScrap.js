@@ -34,13 +34,11 @@ const EditScrap = () => {
         'place',
         'threads',
     ])
-    console.log(threads)
 
     useEffect(() => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             addThreadsToScrap: async (selection) => {
-                console.log(selection)
                 for (const book of selection) {
                     const response = await utilityAddThread(scrap, book)
                     if (!response.success) {
