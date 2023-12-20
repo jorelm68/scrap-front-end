@@ -20,8 +20,6 @@ const Scrap = ({ scrap }) => {
         description,
         place,
         threads,
-        latitude,
-        longitude,
         author,
         toggleDirection,
         createdAt,
@@ -32,8 +30,6 @@ const Scrap = ({ scrap }) => {
         'description',
         'place',
         'threads',
-        'latitude',
-        'longitude',
         'author',
         'createdAt',
     ])
@@ -188,7 +184,7 @@ const Scrap = ({ scrap }) => {
             <View style={{
                 paddingTop: 4,
                 borderTopColor: palette.secondary14,
-                borderTopWidth: 1,
+                borderTopWidth: 2,
                 flexWrap: 'wrap',
                 flexDirection: 'row',
             }}>
