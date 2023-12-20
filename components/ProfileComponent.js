@@ -303,13 +303,18 @@ const ProfileComponent = ({ author }) => {
           style={{
             width: dimensions.width,
             marginTop: 16,
-            height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 170 - 16,
+            height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
           }}
         >
           {profileBooks && profileBooks.map((book) => {
             return (
               <TouchableOpacity key={book} onPress={() => {
-                console.log(profileBooks.indexOf(book))
+                router.push({
+                  pathname: '/book',
+                  params: {
+                    book,
+                  }
+                })
               }}>
                 <BookMarker book={book} />
               </TouchableOpacity>

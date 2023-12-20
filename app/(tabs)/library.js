@@ -72,7 +72,7 @@ const Library = () => {
 
   const handleDeleteBooks = async () => {
     router.push({
-      pathname: 'bookPicker', params: {
+      pathname: '/bookPicker', params: {
         books: JSON.stringify(books),
         amount: JSON.stringify(books.length),
         functionName: 'deleteBooks',
