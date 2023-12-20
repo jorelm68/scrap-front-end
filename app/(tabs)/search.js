@@ -18,6 +18,7 @@ const Search = () => {
   const [mode, setMode] = useState('authors')
 
   const sendQuery = async () => {
+    Keyboard.dismiss()
     let response = []
     if (mode === 'authors') {
       response = await utilityAuthorSearch(user, query)

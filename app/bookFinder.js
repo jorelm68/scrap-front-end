@@ -24,6 +24,7 @@ const BookFinder = () => {
     const [selection, setSelection] = useState([])
 
     const sendQuery = async () => {
+        Keyboard.dismiss()
         response = await utilityBookSearch(user, query)
         if (!response.success) {
             Alert.alert('Error', response.error)
