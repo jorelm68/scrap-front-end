@@ -48,7 +48,9 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
     ])
 
     return (
-        <View>
+        <View style={{
+            marginBottom: 4,
+        }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
                     router.push({
