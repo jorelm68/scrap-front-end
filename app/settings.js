@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import FieldComponent from '../components/FieldComponent'
 import useAuthor from '../hooks/useAuthor'
 import AppContext from '../context/AppContext'
-import { Alert, Keyboard, KeyboardAvoidingView } from 'react-native'
+import { Alert, Keyboard, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, palette } from '../data/styles'
 import { regexAuthorAutobiography, regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
@@ -76,7 +76,7 @@ const Settings = () => {
     }, [initialHeadshotAndCover])
 
     return (
-        <View style={{
+        <ScrollView style={{
             width: dimensions.width,
             height: dimensions.height,
             backgroundColor: palette.secondary11,
@@ -221,7 +221,9 @@ const Settings = () => {
                     return response
                 }}
             />
-        </View>
+
+            <View height={80} />
+        </ScrollView>
     )
 }
 export default Settings
