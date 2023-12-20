@@ -52,8 +52,7 @@ const Scrap = ({ scrap }) => {
         }}>
             <TouchableOpacity centerV row style={{
                 width: dimensions.width * (2 / 3) - 4,
-                paddingLeft: 4,
-                paddingTop: 4,
+                padding: 4,
             }} onPress={() => {
                 router.push({
                     pathname: '/profile',

@@ -117,10 +117,8 @@ const CameraScreen = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       const newDate = new Date()
-      const date = getDate(newDate)
-      const time = getTime(newDate)
 
-      setDateAndTimeDisplay(`${date.date} ${time.time}`)
+      setDateAndTimeDisplay(getDate(newDate))
       setScrap((prevScrap) => ({
         ...prevScrap,
         createdAt: newDate,
