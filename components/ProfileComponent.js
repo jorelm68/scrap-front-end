@@ -265,7 +265,7 @@ const ProfileComponent = ({ author }) => {
               fontSize: 20,
               color: palette.secondary14,
             }}>
-              {miles}
+              {Math.round(miles)}
             </Text>
           </View>
           <Text style={{
