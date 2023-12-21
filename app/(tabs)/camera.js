@@ -281,6 +281,8 @@ const CameraScreen = () => {
                 })
                 cache.filter([user, 'miles'])
                 cache.filter([user, 'scraps'])
+                cache.filter([user, 'publicScraps'])
+                cache.filter([user, 'unbookedScraps'])
                 setIsSaving(false)
                 setIsLoading(false)
                 setShowButtons(true)
