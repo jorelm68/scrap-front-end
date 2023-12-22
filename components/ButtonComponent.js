@@ -8,7 +8,7 @@ const ButtonComponent = ({ label, onPress, icon }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View center row style={{
-                borderWidth: 2,
+                borderWidth: 1,
                 borderColor: palette.color6,
                 borderRadius: 24,
                 paddingHorizontal: 8,
