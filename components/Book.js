@@ -106,12 +106,12 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                 />
                 <View style={{
                     position: 'absolute',
-                    width: 36,
+                    width: 48,
                     right: 0,
                 }}>
                     <View center style={{
-                        width: 36,
-                        height: 36,
+                        width: 48,
+                        height: 48,
                         backgroundColor: 'rgba(0, 0, 0, 0.5)',
                         borderBottomLeftRadius: 8,
                         borderTopRightRadius: 8,
@@ -124,7 +124,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                                 }
                             })
                         }}>
-                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={24} />
+                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={36} />
                         </TouchableOpacity>
                     </View>
                 </View>
