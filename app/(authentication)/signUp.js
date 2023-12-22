@@ -41,7 +41,7 @@ const SignUp = () => {
         <View width='100%' flex center style={{
           width: dimensions.width,
           height: dimensions.height,
-          backgroundColor: palette.secondary11,
+          backgroundColor: palette.primary1,
         }}>
           <LogoComponent />
           <FieldComponent

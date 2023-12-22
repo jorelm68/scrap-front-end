@@ -57,7 +57,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         }
                     })
                 }}>
-                    <Ionicons name='pencil' color={palette.complement4} size={24} />
+                    <Ionicons name='pencil' color={palette.secondary4} size={24} />
                 </TouchableOpacity>
             ) : () => { },
         })
@@ -81,7 +81,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     marginVertical: 16,
                     fontFamily: fonts.itim,
                     fontSize: 16,
-                    color: palette.secondary14,
+                    color: palette.primary4,
                     textAlign: 'center',
                 }}>This book is private and you aren't friends with {firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
@@ -101,13 +101,13 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                 />
                 <View style={{
                     borderBottomWidth: 2,
-                    borderBottomColor: palette.secondary14,
+                    borderBottomColor: palette.primary4,
                 }}>
                 <Text style={{
                     padding: 4,
                     fontFamily: fonts.itim,
                     fontSize: 16,
-                    color: palette.secondary14,
+                    color: palette.primary4,
                 }}>{description}</Text>
                 </View>
                 

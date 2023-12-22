@@ -71,7 +71,7 @@ const Scrap = ({ scrap }) => {
                         fontFamily: fonts.jockeyOne,
                         fontSize: 16,
                         paddingLeft: 4,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
                     {author === user && (
@@ -86,7 +86,7 @@ const Scrap = ({ scrap }) => {
                                 }
                             })
                         }}>
-                            <Ionicons name='pencil' color={palette.complement4} size={18} />
+                            <Ionicons name='pencil' color={palette.secondary4} size={18} />
                         </TouchableOpacity>
                     )}
 
@@ -102,7 +102,7 @@ const Scrap = ({ scrap }) => {
                         paddingBottom: 4,
                         paddingHorizontal: 4,
                         width: dimensions.width * (2 / 3),
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     }}>{title}</Text>
                 </View>
             )}
@@ -136,13 +136,13 @@ const Scrap = ({ scrap }) => {
                         width: '50%',
                     }}>
                         {place && (
-                            <Ionicons name='globe-outline' color={palette.secondary14} size={18} />
+                            <Ionicons name='globe-outline' color={palette.primary4} size={18} />
                         )}
                         <Text style={{
                             fontFamily: fonts.itim,
                             fontSize: 12,
                             paddingLeft: 2,
-                            color: palette.secondary14,
+                            color: palette.primary4,
                             minHeight: 18,
                         }}>{place}</Text>
                     </View>
@@ -158,9 +158,9 @@ const Scrap = ({ scrap }) => {
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 paddingRight: 2,
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>{getDate(createdAt)}</Text>
-                            <Ionicons name='timer-outline' color={palette.secondary14} size={18} />
+                            <Ionicons name='timer-outline' color={palette.primary4} size={18} />
                         </View>
 
                     </View>
@@ -176,14 +176,14 @@ const Scrap = ({ scrap }) => {
                         paddingLeft: 4,
                         paddingRight: 4,
                         paddingBottom: 4,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     }}>{description}</Text>
                 </View>
             )}
 
             <View style={{
                 paddingTop: 4,
-                borderTopColor: palette.secondary14,
+                borderTopColor: palette.primary4,
                 borderTopWidth: 2,
                 flexWrap: 'wrap',
                 flexDirection: 'row',

@@ -28,7 +28,7 @@ const BookScreen = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.secondary11,
+            backgroundColor: palette.primary1,
         }}>
             <Book book={book} scraps={scraps} page={page} />
         </View>

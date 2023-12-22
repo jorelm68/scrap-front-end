@@ -16,7 +16,7 @@ const Books = () => {
       width: dimensions.width,
       paddingTop: 4,
       height: dimensions.height,
-      backgroundColor: palette.secondary11,
+      backgroundColor: palette.primary1,
     }}>
       {books && books.map((book) => {
         return (

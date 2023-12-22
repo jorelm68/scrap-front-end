@@ -84,7 +84,7 @@ const EditScrap = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.secondary11,
+            backgroundColor: palette.primary1,
         }}>
             <DropDownComponent
                 type='Text'

@@ -109,7 +109,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         minHeight: 48,
                         borderBottomWidth: 1,
                         borderTopWidth: topBorder ? 1 : 0,
-                        borderColor: palette.secondary14,
+                        borderColor: palette.primary4,
                     }}>
                         <View row center style={{
                         }}>
@@ -117,7 +117,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 fontFamily: fonts.itim,
                                 fontSize: 12, width: '30%',
                                 paddingLeft: 4,
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>{title}</Text>
 
                             <View style={{
@@ -146,7 +146,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 width: '7.5%',
                                 height: 48,
                             }}>
-                                <Ionicons color={palette.complement4} name='pencil' size={24} />
+                                <Ionicons color={palette.secondary4} name='pencil' size={24} />
                             </View>
                         </View>
                     </View>
@@ -156,7 +156,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                         minHeight: 48,
                         borderBottomWidth: 1,
                         borderTopWidth: topBorder ? 1 : 0,
-                        borderColor: palette.secondary14,
+                        borderColor: palette.primary4,
                     }}>
                         <View row center style={{
                         }}>
@@ -165,13 +165,13 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 fontSize: 12,
                                 width: '30%',
                                 paddingLeft: 4,
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>{title}</Text>
                             <Text style={{
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 width: '62.5%',
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>{value}</Text>
 
                             <TouchableOpacity center style={{
@@ -181,7 +181,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                 setIsDropped(!isDropped)
                             }}>
                                 <Ionicons style={{
-                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={palette.complement4} size={24} />
+                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={palette.secondary4} size={24} />
                             </TouchableOpacity>
                         </View>
 
@@ -209,7 +209,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                                     <TouchableOpacity center style={{
                                                         width: '10%',
                                                     }} onPress={handleSubmit}>
-                                                        <Ionicons color={palette.secondary14} name='checkmark' size={24} />
+                                                        <Ionicons color={palette.primary4} name='checkmark' size={24} />
                                                     </TouchableOpacity>
                                                 )}
                                             </View>

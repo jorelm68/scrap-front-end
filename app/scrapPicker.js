@@ -26,14 +26,14 @@ const ScrapPicker = () => {
           onSubmit(selection)
           router.back()
         }}>
-          <Ionicons name='checkmark' color={palette.secondary14} size={24} />
+          <Ionicons name='checkmark' color={palette.primary4} size={24} />
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={palette.complement2} size={24} />
+          <Ionicons name='close' color={palette.secondary2} size={24} />
         </TouchableOpacity>
       ),
     })
@@ -67,7 +67,7 @@ const ScrapPicker = () => {
     <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.secondary11,
+      backgroundColor: palette.primary1,
     }}>
       <View style={{
         flex: 1,
@@ -90,7 +90,7 @@ const ScrapPicker = () => {
                 <Text style={{
                   position: 'absolute',
                   fontSize: 45,
-                  color: palette.complement4,
+                  color: palette.secondary4,
                   fontFamily: fonts.playBold,
                   bottom: 4,
                   right: 4,

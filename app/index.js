@@ -1,4 +1,4 @@
-import { LoaderScreen, Colors } from 'react-native-ui-lib'
+import { LoaderScreen } from 'react-native-ui-lib'
 import React, { useContext, useEffect } from 'react'
 import AppContext from '../context/AppContext'
 import { deleteData, loadFonts, retrieveData } from '../data/utility'
@@ -46,7 +46,7 @@ const Autothenticate = () => {
   }
 
   return (
-    <LoaderScreen message={'Scrap'} color={palette.secondary14} />
+    <LoaderScreen message={'Scrap'} color={palette.primary4} />
   )
 }
 

@@ -148,10 +148,10 @@ const CameraScreen = () => {
       <View flex center style={{
         width: dimensions.width,
         height: dimensions.height,
-        backgroundColor: palette.secondary11,
+        backgroundColor: palette.primary1,
       }}>
         <LogoComponent />
-        <ActivityIndicator size='large' color={palette.secondary14} />
+        <ActivityIndicator size='large' color={palette.primary4} />
       </View>
     )
   }
@@ -160,7 +160,7 @@ const CameraScreen = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.secondary11,
+      backgroundColor: palette.primary1,
     }}>
       {!isSaving && (
         <View center>
@@ -170,7 +170,7 @@ const CameraScreen = () => {
             <Text style={{
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>{dateAndTimeDisplay}</Text>
           </View>
 
@@ -180,7 +180,7 @@ const CameraScreen = () => {
             <Text style={{
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>{locationDisplay}</Text>
           </View>
 
@@ -201,32 +201,32 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={palette.complement4} size={80} />
+                  <Ionicons name='scan' color={palette.secondary4} size={80} />
                 </TouchableOpacity>
 
                 <View row>
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomOut}>
-                      <Ionicons name='remove' color={palette.complement4} size={35} />
+                      <Ionicons name='remove' color={palette.secondary4} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => setFlash(!flash)}>
-                      {flash && <Ionicons name='flash' color={palette.complement4} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={palette.complement4} size={35} />}
+                      {flash && <Ionicons name='flash' color={palette.secondary4} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={palette.secondary4} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={() => handleFlipCamera()}>
-                      <Ionicons name='refresh' color={palette.complement4} size={35} />
+                      <Ionicons name='refresh' color={palette.secondary4} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
                     <TouchableOpacity onPress={handleZoomIn}>
-                      <Ionicons name='add' color={palette.complement4} size={35} />
+                      <Ionicons name='add' color={palette.secondary4} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -256,7 +256,7 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='close-circle' color={palette.secondary14} size={48} />
+                <Ionicons name='close-circle' color={palette.primary4} size={48} />
               </View>
 
               <View center>
@@ -292,7 +292,7 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='checkmark-circle' color={palette.secondary14} size={48} />
+                <Ionicons name='checkmark-circle' color={palette.primary4} size={48} />
               </View>
 
               <View center>

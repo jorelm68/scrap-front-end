@@ -22,13 +22,13 @@ const ForgotPassword = () => {
                 <View flex center style={{
                     width: dimensions.width,
                     height: dimensions.height,
-                    backgroundColor: palette.secondary11,
+                    backgroundColor: palette.primary1,
                 }}>
                     <View>
                         <Text style={{
                             fontFamily: fonts.itim,
                             fontSize: 16,
-                            color: palette.secondary14,
+                            color: palette.primary4,
                             marginVertical: 16,
                         }}>Please provide the email associated with your account</Text>
                     </View>

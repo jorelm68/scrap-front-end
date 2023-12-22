@@ -125,7 +125,7 @@ const EditBook = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.secondary11,
+            backgroundColor: palette.primary1,
         }}>
             <View center style={{
                 marginVertical: 16,

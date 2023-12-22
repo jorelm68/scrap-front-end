@@ -1,4 +1,4 @@
-import { View, Text, Image, Colors } from 'react-native-ui-lib'
+import { View, Text, Image } from 'react-native-ui-lib'
 import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import useBook from '../hooks/useBook'
@@ -123,7 +123,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                             fontFamily: fonts.jockeyOne,
                                             fontSize: 16,
                                             paddingLeft: 2,
-                                            color: palette.secondary14,
+                                            color: palette.primary4,
                                         }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                                     </View>
                                 </TouchableOpacity>
@@ -137,7 +137,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     <Text style={{
                                         fontFamily: fonts.itim,
                                         fontSize: 18,
-                                        color: palette.secondary14,
+                                        color: palette.primary4,
                                         paddingHorizontal: 2,
                                     }}>{title.length <= 20 ? title : `${title.slice(0, 20)}...`}</Text>
                                 </View>
@@ -152,7 +152,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     paddingHorizontal: 2,
                                     fontFamily: fonts.itim,
                                     fontSize: 12,
-                                    color: palette.secondary14,
+                                    color: palette.primary4,
                                 }}>{hidden ? `Become friends with ${firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`} to view this book!` : description.length <= 100 ? description : `${description.slice(0, 100)}...`}</Text>
                             </View>
                         </View>
@@ -162,13 +162,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 width: (dimensions.width - 8) / 4,
                                 height: dimensions.width / 4,
                             }}>
-                                <Ionicons name='pin' color={palette.secondary14} size={24} />
+                                <Ionicons name='pin' color={palette.primary4} size={24} />
                                 <Text style={{
                                     fontFamily: fonts.itim,
                                     fontSize: 12,
                                     lineHeight: 14,
                                     textAlign: 'center',
-                                    color: palette.secondary14,
+                                    color: palette.primary4,
                                 }}>{place}</Text>
                             </View>
                         )}
@@ -177,13 +177,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 width: (dimensions.width - 8) / 4,
                                 height: dimensions.width / 4,
                             }}>
-                                <Ionicons name='finger-print' color={palette.secondary14} size={24} />
+                                <Ionicons name='finger-print' color={palette.primary4} size={24} />
                                 <Text style={{
                                     fontFamily: fonts.itim,
                                     fontSize: 12,
                                     lineHeight: 14,
                                     textAlign: 'center',
-                                    color: palette.secondary14,
+                                    color: palette.primary4,
                                 }}>Private</Text>
                             </View>
                         )}
@@ -221,7 +221,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     fontFamily: fonts.jockeyOne,
                                     fontSize: 12,
                                     paddingLeft: 2,
-                                    color: palette.secondary14,
+                                    color: palette.primary4,
                                 }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
                             </View>
                         )}
@@ -234,7 +234,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 <Text style={{
                                     fontFamily: fonts.itim,
                                     fontSize: 18,
-                                    color: palette.secondary14,
+                                    color: palette.primary4,
                                     paddingHorizontal: 2,
                                 }}>{title.length <= 20 ? title : `${title.slice(0, 20)}...`}</Text>
                             </View>
@@ -249,7 +249,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 paddingHorizontal: 2,
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>{hidden ? `Become friends with ${firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`} to view this book!` : description.length <= 100 ? description : `${description.slice(0, 100)}...`}</Text>
                         </View>
                     </View>
@@ -259,13 +259,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             width: (dimensions.width - 8) / 4,
                             height: dimensions.width / 4,
                         }}>
-                            <Ionicons name='pin' color={palette.secondary14} size={24} />
+                            <Ionicons name='pin' color={palette.primary4} size={24} />
                             <Text style={{
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 lineHeight: 14,
                                 textAlign: 'center',
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>{place}</Text>
                         </View>
                     )}
@@ -274,13 +274,13 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             width: (dimensions.width - 8) / 4,
                             height: dimensions.width / 4,
                         }}>
-                            <Ionicons name='finger-print' color={palette.secondary14} size={24} />
+                            <Ionicons name='finger-print' color={palette.primary4} size={24} />
                             <Text style={{
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 lineHeight: 14,
                                 textAlign: 'center',
-                                color: palette.secondary14,
+                                color: palette.primary4,
                             }}>Private</Text>
                         </View>
                     )}

@@ -23,7 +23,7 @@ const Scraps = () => {
       flexDirection: 'row',
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.secondary11,
+      backgroundColor: palette.primary1,
     }}>
       {scraps && scraps.map((scrap) => {
         return (

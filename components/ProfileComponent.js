@@ -1,4 +1,4 @@
-import { View, Text, Image, Colors } from 'react-native-ui-lib'
+import { View, Text, Image } from 'react-native-ui-lib'
 import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/AppContext'
@@ -157,7 +157,7 @@ const ProfileComponent = ({ author }) => {
           fontSize: 28,
           width: dimensions.width * (1 / 2 + 1 / 8),
           fontFamily: fonts.jockeyOne,
-          color: palette.secondary14,
+          color: palette.primary4,
         }}>{name}</Text>
       </TouchableOpacity>
 
@@ -166,7 +166,7 @@ const ProfileComponent = ({ author }) => {
           width: dimensions.width / 8 - 8,
           alignItems: 'center',
         }}>
-          <Ionicons name='settings' color={palette.complement4} size={24} />
+          <Ionicons name='settings' color={palette.secondary4} size={24} />
         </TouchableOpacity>
       )}
     </View>
@@ -177,11 +177,11 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'books' ? palette.complement2 : palette.secondary11}>
+          }} backgroundColor={mode === 'books' ? palette.secondary2 : palette.primary1}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 16,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>Books</Text>
           </View>
         </TouchableOpacity>
@@ -190,11 +190,11 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'map' ? palette.complement2 : palette.secondary11}>
+          }} backgroundColor={mode === 'map' ? palette.secondary2 : palette.primary1}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 16,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>Map</Text>
           </View>
         </TouchableOpacity>
@@ -203,11 +203,11 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginVertical: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'friends' ? palette.complement2 : palette.secondary11}>
+          }} backgroundColor={mode === 'friends' ? palette.secondary2 : palette.primary1}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 16,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>Friends</Text>
           </View>
         </TouchableOpacity>
@@ -216,7 +216,7 @@ const ProfileComponent = ({ author }) => {
       <View width={dimensions.width * (3 / 4)} height={(dimensions.width / 8) * 3}>
         <View height={dimensions.width / 4} style={{ padding: 4, paddingLeft: 0 }}>
           <View style={{
-            backgroundColor: palette.complement2,
+            backgroundColor: palette.secondary2,
             borderRadius: 8,
           }}>
             <Text style={{
@@ -224,7 +224,7 @@ const ProfileComponent = ({ author }) => {
               fontFamily: fonts.itim,
               fontSize: 14,
               height: '100%',
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>
               {autobiography}
             </Text>
@@ -237,13 +237,13 @@ const ProfileComponent = ({ author }) => {
         }}>
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2,
+            backgroundColor: palette.secondary2,
             marginRight: 2,
           }}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 20,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>
               {profileBooks.length}
             </Text>
@@ -252,18 +252,18 @@ const ProfileComponent = ({ author }) => {
             fontFamily: fonts.itim,
             fontSize: 14,
             marginRight: 8,
-            color: palette.secondary14,
+            color: palette.primary4,
           }}>Books</Text>
 
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2,
+            backgroundColor: palette.secondary2,
             marginRight: 2,
           }}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 20,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>
               {Math.round(miles)}
             </Text>
@@ -272,18 +272,18 @@ const ProfileComponent = ({ author }) => {
             fontFamily: fonts.itim,
             fontSize: 14,
             marginRight: 8,
-            color: palette.secondary14,
+            color: palette.primary4,
           }}>Miles</Text>
 
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2,
+            backgroundColor: palette.secondary2,
             marginRight: 2,
           }}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 20,
-              color: palette.secondary14,
+              color: palette.primary4,
             }}>
               {friends.length}
             </Text>
@@ -291,7 +291,7 @@ const ProfileComponent = ({ author }) => {
           <Text style={{
             fontFamily: fonts.itim,
             fontSize: 14,
-            color: palette.secondary14,
+            color: palette.primary4,
           }}>Friends</Text>
         </View>
       </View>
@@ -302,7 +302,7 @@ const ProfileComponent = ({ author }) => {
   if (mode === 'books') {
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-        backgroundColor: palette.secondary11,
+        backgroundColor: palette.primary1,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -324,7 +324,7 @@ const ProfileComponent = ({ author }) => {
   else if (mode === 'map') {
     return (
       <View style={{
-        backgroundColor: palette.secondary11,
+        backgroundColor: palette.primary1,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -365,7 +365,7 @@ const ProfileComponent = ({ author }) => {
   else {
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-        backgroundColor: palette.secondary11,
+        backgroundColor: palette.primary1,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -374,7 +374,7 @@ const ProfileComponent = ({ author }) => {
           <View centerV style={{
             width: dimensions.width / 3,
             height: 64,
-            borderBottomColor: palette.complement0,
+            borderBottomColor: palette.secondary0,
             borderBottomWidth: option === 'friends' ? 2 : 0,
             marginBottom: 4,
           }}>
@@ -385,7 +385,7 @@ const ProfileComponent = ({ author }) => {
                 fontFamily: fonts.itim,
                 fontSize: 16,
                 padding: 4,
-                color: option === 'friends' ? palette.complement0 : palette.secondary14,
+                color: option === 'friends' ? palette.secondary0 : palette.primary4,
                 textAlign: 'center',
               }}>Friends</Text>
             </TouchableOpacity>
@@ -395,7 +395,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.complement0,
+              borderBottomColor: palette.secondary0,
               borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -405,7 +405,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'incomingFriendRequests' ? palette.complement0 : palette.secondary14,
+                  color: option === 'incomingFriendRequests' ? palette.secondary0 : palette.primary4,
                   textAlign: 'center',
                 }}>Incoming Requests</Text>
               </TouchableOpacity>
@@ -416,7 +416,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.complement0,
+              borderBottomColor: palette.secondary0,
               borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -426,7 +426,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'outgoingFriendRequests' ? palette.complement0 : palette.secondary14,
+                  color: option === 'outgoingFriendRequests' ? palette.secondary0 : palette.primary4,
                   textAlign: 'center',
                 }}>Outgoing Requests</Text>
               </TouchableOpacity>

@@ -16,16 +16,16 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
-                    tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.secondary11,
+                    tabBarInactiveTintColor: palette.primary4,
+                    tabBarActiveTintColor: palette.primary1,
                 }}
             />
             <Tabs.Screen
@@ -37,16 +37,16 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
-                    tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.secondary11,
+                    tabBarInactiveTintColor: palette.primary4,
+                    tabBarActiveTintColor: palette.primary1,
                 }}
             />
             <Tabs.Screen
@@ -58,16 +58,16 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
-                    tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.secondary11,
+                    tabBarInactiveTintColor: palette.primary4,
+                    tabBarActiveTintColor: palette.primary1,
                 }}
             />
             <Tabs.Screen
@@ -79,16 +79,16 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
-                    tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.secondary11,
+                    tabBarInactiveTintColor: palette.primary4,
+                    tabBarActiveTintColor: palette.primary1,
                 }}
             />
             <Tabs.Screen
@@ -100,16 +100,16 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.secondary14,
+                        color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.secondary2,
                     },
-                    tabBarInactiveTintColor: palette.secondary14,
-                    tabBarActiveTintColor: palette.secondary11,
+                    tabBarInactiveTintColor: palette.primary4,
+                    tabBarActiveTintColor: palette.primary1,
                 }}
             />
         </Tabs>

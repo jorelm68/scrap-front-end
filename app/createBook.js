@@ -55,14 +55,14 @@ const CreateBook = () => {
           }
           setIsLoading(false)
         }}>
-          <Ionicons name='checkmark' color={palette.secondary14} size={24} />
+          <Ionicons name='checkmark' color={palette.primary4} size={24} />
         </TouchableOpacity>
       ),
       headerLeft: () => ( // Corrected headerLeft configuration
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={palette.complement2} size={24} />
+          <Ionicons name='close' color={palette.secondary2} size={24} />
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })
@@ -96,7 +96,7 @@ const CreateBook = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.secondary11,
+      backgroundColor: palette.primary1,
     }}>
       <View center style={{
         marginVertical: 16,

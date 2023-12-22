@@ -41,7 +41,7 @@ export default function App() {
         <View width='100%' flex center style={{
           width: dimensions.width,
           height: dimensions.height,
-          backgroundColor: palette.secondary11,
+          backgroundColor: palette.primary1,
         }}>
           <LogoComponent />
           {accounts && accounts.length !== 0 && (
@@ -98,7 +98,7 @@ export default function App() {
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 16,
-                color: palette.secondary14,
+                color: palette.primary4,
               }}>Forgot Password?</Text>
             </TouchableOpacity>
 
