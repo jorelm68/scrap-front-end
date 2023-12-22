@@ -3,7 +3,7 @@ import { Text, View, Drawer, TouchableOpacity } from 'react-native-ui-lib'
 import AppContext from '../../context/AppContext'
 import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
-import { forgetAccount, retrieveData, saveAccount, storeData } from '../../data/utility'
+import { forgetAccount, retrieveData, saveAccount, storeData, getDate } from '../../data/utility'
 import { useRouter } from 'expo-router'
 import { dimensions, palette, fonts } from '../../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -86,19 +86,19 @@ const ChooseAccount = () => {
                         },
                         {
                             text: 'Forget',
-                            background: palette.primary1,
+                            background: palette.primary3,
                             onPress: () => handleForget(item),
                         },
                     ]}
                     leftItem={{
-                        text: `Expires: ${item.expires}`,
-                        background: palette.primary1,
+                        text: `Expires: ${getDate(item.expires)}`,
+                        background: palette.primary3,
                     }}
                 >
                     <View center padding-s4 bg-white style={{
                         height: 60,
-                        borderTopWidth: 1,
-                        borderTopColor: palette.primary4,
+                        borderBottomWidth: 1,
+                        borderBottomColor: palette.primary4,
                         backgroundColor: palette.primary0,
                     }}>
                         <Text style={{
@@ -116,7 +116,7 @@ const ChooseAccount = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.primary1,
+            backgroundColor: palette.primary0,
         }}>
             <FlatList
                 data={accounts}

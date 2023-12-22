@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../components/BookComponent'
 import cache from '../data/cache'
 import AuthorComponent from '../components/AuthorComponent'
-import { authorSendRequest, utilityBookCoordinates } from '../data/api'
+import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest, authorSendRequest, bookSaveBook, utilityBookCoordinates } from '../data/api'
 import MapView, { Polyline } from 'react-native-maps'
 import BookMarker from './BookMarker'
 import { getBookCoordinates } from '../data/utility'
@@ -39,6 +39,8 @@ const ProfileComponent = ({ author }) => {
     friends,
     incomingFriendRequests,
     outgoingFriendRequests,
+    relationship,
+    setRelationship,
   } = useAuthor(author, [
     'iHeadshot->1080',
     'iCover->1080',
@@ -51,6 +53,7 @@ const ProfileComponent = ({ author }) => {
     'friends',
     'incomingFriendRequests',
     'outgoingFriendRequests',
+    'relationship',
   ])
 
   const {
@@ -119,16 +122,6 @@ const ProfileComponent = ({ author }) => {
     setPhotosReverse(!photosReverse)
   }
 
-  const handleBooks = () => {
-    setMode('books')
-  }
-  const handleMap = () => {
-    setMode('map')
-  }
-  const handleFriends = () => {
-    setMode('friends')
-  }
-
   const handleSettings = () => {
     router.push('/settings')
   }
@@ -160,149 +153,216 @@ const ProfileComponent = ({ author }) => {
           color: palette.primary4,
         }}>{name}</Text>
       </TouchableOpacity>
-
-      {user === author && (
-        <TouchableOpacity onPress={handleSettings} style={{
-          width: dimensions.width / 8 - 8,
-          alignItems: 'center',
-        }}>
-          <Ionicons name='settings' color={palette.complement4} size={24} />
-        </TouchableOpacity>
-      )}
     </View>
 
-    <View row>
-      <View centerH width={dimensions.width / 4} height={(dimensions.width / 8) * 3}>
-        <TouchableOpacity onPress={handleBooks}>
-          <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
-            marginTop: 4,
-            borderRadius: 16,
-          }} backgroundColor={mode === 'books' ? palette.complement2 : palette.primary1}>
-            <Text style={{
-              fontFamily: fonts.itim,
-              fontSize: 16,
-              color: palette.primary4,
-            }}>Books</Text>
-          </View>
-        </TouchableOpacity>
+    <View style={{
+      width: dimensions.width,
+      height: 48 * 3 + 4 * 2 + 4 * 2,
+      padding: 4,
+    }}>
 
-        <TouchableOpacity onPress={handleMap}>
-          <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
-            marginTop: 4,
-            borderRadius: 16,
-          }} backgroundColor={mode === 'map' ? palette.complement2 : palette.primary1}>
-            <Text style={{
-              fontFamily: fonts.itim,
-              fontSize: 16,
-              color: palette.primary4,
-            }}>Map</Text>
-          </View>
-        </TouchableOpacity>
+      <View row style={{
+        width: dimensions.width - 8,
+        height: 48 * 3 + 4 * 2,
+      }}>
 
-        <TouchableOpacity onPress={handleFriends}>
-          <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
-            marginVertical: 4,
-            borderRadius: 16,
-          }} backgroundColor={mode === 'friends' ? palette.complement2 : palette.primary1}>
-            <Text style={{
-              fontFamily: fonts.itim,
-              fontSize: 16,
-              color: palette.primary4,
-            }}>Friends</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+        <View style={{
+          width: (dimensions.width - 8) / 3 - 2,
+          marginRight: 2,
+          height: 48 * 3 + 4 * 2,
+        }}>
+          <TouchableOpacity onPress={() => {
+            setMode('books')
+          }}>
+            <View center style={{
+              backgroundColor: mode === 'books' ? palette.primary4 : palette.primary0,
+              borderRadius: 24,
+              width: (dimensions.width - 8) / 3 - 2,
+              height: 48,
+              marginBottom: 4,
+            }}>
+              <Text style={{
+                fontFamily: fonts.itim,
+                fontSize: 16,
+                color: mode === 'books' ? palette.primary0 : palette.primary4,
+              }}>{profileBooks.length} Books</Text>
+            </View>
+          </TouchableOpacity>
 
-      <View width={dimensions.width * (3 / 4)} height={(dimensions.width / 8) * 3}>
-        <View height={dimensions.width / 4} style={{ padding: 4, paddingLeft: 0 }}>
+          <TouchableOpacity onPress={() => {
+            setMode('miles')
+          }}>
+            <View center style={{
+              backgroundColor: mode === 'miles' ? palette.primary4 : palette.primary0,
+              borderRadius: 24,
+              width: (dimensions.width - 8) / 3 - 2,
+              height: 48,
+              marginBottom: 4,
+            }}>
+              <Text style={{
+                fontFamily: fonts.itim,
+                fontSize: 16,
+                color: mode === 'miles' ? palette.primary0 : palette.primary4,
+              }}>{Math.round(miles)} Miles</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => {
+            setMode('friends')
+          }}>
+            <View center style={{
+              backgroundColor: mode === 'friends' ? palette.primary4 : palette.primary0,
+              borderRadius: 24,
+              width: (dimensions.width - 8) / 3 - 2,
+              height: 48,
+            }}>
+              <Text style={{
+                fontFamily: fonts.itim,
+                fontSize: 16,
+                color: mode === 'friends' ? palette.primary0 : palette.primary4,
+              }}>{friends.length} Friends</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{
+          width: (dimensions.width - 8) * (2 / 3) - 2,
+          height: 48 * 3 + 4 * 2,
+          marginLeft: 2,
+        }}>
+
           <View style={{
-            backgroundColor: palette.complement2,
+            backgroundColor: palette.primary1,
+            width: (dimensions.width - 8) * (2 / 3) - 2,
+            height: 48 * 2 + 4,
             borderRadius: 8,
+            marginBottom: 2,
           }}>
             <Text style={{
+              fontFamily: fonts.itim,
+              fontSize: 16,
               padding: 4,
-              fontFamily: fonts.itim,
-              fontSize: 14,
-              height: '100%',
               color: palette.primary4,
-            }}>
-              {autobiography}
-            </Text>
+            }}>{autobiography}</Text>
           </View>
 
-        </View>
-
-        <View row center height={dimensions.width / 8} style={{
-          marginRight: 4,
-        }}>
-          <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
-            borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2,
-            marginRight: 2,
+          <View center style={{
+            width: (dimensions.width - 8) * (2 / 3) - 2,
+            height: 48,
+            marginTop: 2,
           }}>
-            <Text style={{
-              fontFamily: fonts.itim,
-              fontSize: 20,
-              color: palette.primary4,
-            }}>
-              {profileBooks.length}
-            </Text>
-          </View>
-          <Text style={{
-            fontFamily: fonts.itim,
-            fontSize: 14,
-            marginRight: 8,
-            color: palette.primary4,
-          }}>Books</Text>
+            {relationship === 'incomingFriendRequest' && (
+              <View center row style={{
+                width: (dimensions.width - 8) * (2 / 3) - 2,
+                height: 48,
+              }}>
 
-          <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
-            borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2,
-            marginRight: 2,
-          }}>
-            <Text style={{
-              fontFamily: fonts.itim,
-              fontSize: 20,
-              color: palette.primary4,
-            }}>
-              {Math.round(miles)}
-            </Text>
-          </View>
-          <Text style={{
-            fontFamily: fonts.itim,
-            fontSize: 14,
-            marginRight: 8,
-            color: palette.primary4,
-          }}>Miles</Text>
+                <ButtonComponent
+                  label='Accept Request'
+                  icon='checkmark-circle'
+                  onPress={async () => {
+                    const response = await authorAcceptRequest(user, author)
+                    if (response.success) {
+                      cache.filter([user, 'incomingFriendRequests'])
+                      cache.filter([user, 'relationship'])
+                      cache.filter([author, 'relationship'])
+                      cache.filter([author, 'profileScraps'])
+                      cache.filter([user, 'friends'])
+                      cache.filter(['feed'])
+                      cache.filter([author, 'outgoingFriendRequests'])
+                      cache.filter([author, 'friends'])
+                      setRelationship('friend')
+                    }
+                  }}
+                />
 
-          <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
-            borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.complement2,
-            marginRight: 2,
-          }}>
-            <Text style={{
-              fontFamily: fonts.itim,
-              fontSize: 20,
-              color: palette.primary4,
-            }}>
-              {friends.length}
-            </Text>
+                <ButtonComponent
+                  label='Reject Request'
+                  icon='close-circle'
+                  onPress={async () => {
+                    const response = await authorRejectRequest(user, author)
+                    if (response.success) {
+                      cache.filter([user, 'incomingFriendRequests'])
+                      cache.filter([user, 'relationship'])
+                      cache.filter([author, 'relationship'])
+                      cache.filter([author, 'outgoingFriendRequests'])
+                      setRelationship('none')
+                    }
+                  }}
+                />
+              </View>
+            )}
+
+            {relationship === 'outgoingFriendRequest' && (
+              <ButtonComponent
+                label='Cancel Request'
+                icon='remove-circle'
+                onPress={async () => {
+                  const response = await authorRemoveRequest(user, author)
+                  if (response.success) {
+                    cache.filter([user, 'outgoingFriendRequests'])
+                    cache.filter([author, 'incomingFriendRequests'])
+                    cache.filter([user, 'relationship'])
+                    cache.filter([author, 'relationship'])
+                    setRelationship('none')
+                  }
+                }}
+              />
+            )}
+
+            {relationship === 'friend' && (
+              <ButtonComponent
+                label='Remove Friend'
+                icon='person-remove'
+                onPress={async () => {
+                  const response = await authorRemoveFriend(user, author)
+                  if (response.success) {
+                    cache.filter([user, 'friends'])
+                    cache.filter([author, 'friends'])
+                    cache.filter([user, 'relationship'])
+                    cache.filter([author, 'relationship'])
+                    setRelationship('none')
+                  }
+                }}
+              />
+            )}
+
+            {relationship === 'none' && (
+              <ButtonComponent
+                label='Send Request'
+                icon='person-add'
+                onPress={async () => {
+                  const response = await authorSendRequest(user, author)
+                  if (response.success) {
+                    cache.filter([user, 'outgoingFriendRequests'])
+                    cache.filter([author, 'incomingFriendRequests'])
+                    cache.filter([user, 'relationship'])
+                    cache.filter([author, 'relationship'])
+                    setRelationship('outgoingFriendRequest')
+                  }
+                }}
+              />
+            )}
+
+            {relationship === 'self' && (
+              <ButtonComponent
+                label='Settings'
+                icon='settings'
+                onPress={async () => {
+                  router.push('/settings')
+                }}
+              />
+            )}
           </View>
-          <Text style={{
-            fontFamily: fonts.itim,
-            fontSize: 14,
-            color: palette.primary4,
-          }}>Friends</Text>
         </View>
       </View>
     </View>
-
   </View>
 
   if (mode === 'books') {
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-        backgroundColor: palette.primary1,
+        backgroundColor: palette.primary0,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -321,10 +381,10 @@ const ProfileComponent = ({ author }) => {
       </ScrollView>
     )
   }
-  else if (mode === 'map') {
+  else if (mode === 'miles') {
     return (
       <View style={{
-        backgroundColor: palette.primary1,
+        backgroundColor: palette.primary0,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -365,16 +425,18 @@ const ProfileComponent = ({ author }) => {
   else {
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-        backgroundColor: palette.primary1,
+        backgroundColor: palette.primary0,
         width: dimensions.width,
         height: dimensions.height,
       }}>
         {profileHeader}
-        <View center row>
+        <View center row style={{
+          marginTop: 16,
+        }}>
           <View centerV style={{
             width: dimensions.width / 3,
             height: 64,
-            borderBottomColor: palette.complement0,
+            borderBottomColor: palette.primary2,
             borderBottomWidth: option === 'friends' ? 2 : 0,
             marginBottom: 4,
           }}>
@@ -385,7 +447,7 @@ const ProfileComponent = ({ author }) => {
                 fontFamily: fonts.itim,
                 fontSize: 16,
                 padding: 4,
-                color: option === 'friends' ? palette.complement0 : palette.primary4,
+                color: option === 'friends' ? palette.primary2 : palette.primary4,
                 textAlign: 'center',
               }}>Friends</Text>
             </TouchableOpacity>
@@ -395,7 +457,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.complement0,
+              borderBottomColor: palette.primary2,
               borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -405,7 +467,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'incomingFriendRequests' ? palette.complement0 : palette.primary4,
+                  color: option === 'incomingFriendRequests' ? palette.primary2 : palette.primary4,
                   textAlign: 'center',
                 }}>Incoming Requests</Text>
               </TouchableOpacity>
@@ -416,7 +478,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.complement0,
+              borderBottomColor: palette.primary2,
               borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -426,7 +488,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'outgoingFriendRequests' ? palette.complement0 : palette.primary4,
+                  color: option === 'outgoingFriendRequests' ? palette.primary2 : palette.primary4,
                   textAlign: 'center',
                 }}>Outgoing Requests</Text>
               </TouchableOpacity>

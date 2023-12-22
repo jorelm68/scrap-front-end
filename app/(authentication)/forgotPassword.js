@@ -22,7 +22,7 @@ const ForgotPassword = () => {
                 <View flex center style={{
                     width: dimensions.width,
                     height: dimensions.height,
-                    backgroundColor: palette.primary1,
+                    backgroundColor: palette.primary0,
                 }}>
                     <View>
                         <Text style={{
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
 
                     <ButtonComponent
                         label='Request Password Change'
-                        size='large'
+                        icon='lock-closed'
                         onPress={async () => {
                             if (!regexAuthorEmail.test(email)) {
                                 setEmailError(errorAuthorEmail)

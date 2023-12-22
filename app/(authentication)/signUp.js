@@ -41,7 +41,7 @@ const SignUp = () => {
         <View width='100%' flex center style={{
           width: dimensions.width,
           height: dimensions.height,
-          backgroundColor: palette.primary1,
+          backgroundColor: palette.primary0,
         }}>
           <LogoComponent />
           <FieldComponent
@@ -140,8 +140,7 @@ const SignUp = () => {
 
           <ButtonComponent
             label='Sign Up'
-            size='large'
-            width='50%'
+            icon='checkmark'
             onPress={async () => {
               router.push('/loading')
               if (!regexAuthorPseudonym.test(pseudonym)) {
@@ -232,8 +231,6 @@ const SignUp = () => {
                 router.back()
               }
             }}
-            iconOnRight
-            icon='checkmark'
           />
         </View>
       </KeyboardAvoidingView>

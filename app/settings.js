@@ -86,7 +86,7 @@ const Settings = () => {
             <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
                 width: dimensions.width,
                 height: dimensions.height,
-                backgroundColor: palette.primary1,
+                backgroundColor: palette.primary0,
             }}>
                 <DropDownComponent
                     type='Scrap'
@@ -313,6 +313,7 @@ const Settings = () => {
                             }
                             router.replace('/signIn')
                         }}
+                        icon='person-remove'
                         width='50%'
                     />
                 </View>

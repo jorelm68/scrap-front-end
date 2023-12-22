@@ -80,7 +80,7 @@ const AuthorComponent = ({ author, disappear }) => {
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
               paddingHorizontal: 4,
-              color: palette.primary1,
+              color: palette.primary0,
             }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
           </View>
           <Image source={iHeadshot} style={{
@@ -113,8 +113,8 @@ const AuthorComponent = ({ author, disappear }) => {
 
               <Text style={{
                 fontFamily: fonts.itim,
-                fontSize: 12,
-                color: palette.primary4,
+                fontSize: 16,
+                color: palette.complement4,
               }}>Send Request</Text>
             </View>
           </TouchableOpacity>
@@ -136,7 +136,7 @@ const AuthorComponent = ({ author, disappear }) => {
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.primary4,
+                color: palette.complement4,
               }}>Cancel Request</Text>
             </View>
           </TouchableOpacity>
@@ -174,7 +174,7 @@ const AuthorComponent = ({ author, disappear }) => {
                   <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.primary4,
+                    color: palette.complement4,
                   }}>Accept Request</Text>
                 </View>
               </TouchableOpacity>
@@ -198,12 +198,12 @@ const AuthorComponent = ({ author, disappear }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='remove-circle' color={palette.complement4} size={24} />
+                  <Ionicons name='close-circle' color={palette.complement4} size={24} />
 
                   <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.primary4,
+                    color: palette.complement4,
                   }}>Reject Request</Text>
                 </View>
               </TouchableOpacity>
@@ -230,7 +230,7 @@ const AuthorComponent = ({ author, disappear }) => {
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.primary4,
+                color: palette.complement4,
               }}>Remove Friend</Text>
             </View>
           </TouchableOpacity>

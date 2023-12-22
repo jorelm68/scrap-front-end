@@ -96,7 +96,7 @@ const CreateBook = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.primary1,
+      backgroundColor: palette.primary0,
     }}>
       <View center style={{
         marginVertical: 16,

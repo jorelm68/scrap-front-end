@@ -67,7 +67,7 @@ const ScrapPicker = () => {
     <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.primary1,
+      backgroundColor: palette.primary0,
     }}>
       <View style={{
         flex: 1,

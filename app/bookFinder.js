@@ -77,7 +77,7 @@ const BookFinder = () => {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={{
-                backgroundColor: palette.primary1,
+                backgroundColor: palette.primary0,
                 width: dimensions.width,
                 height: dimensions.height,
             }}>

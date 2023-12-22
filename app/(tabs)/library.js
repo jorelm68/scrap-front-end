@@ -97,7 +97,7 @@ const Library = () => {
 
   return (
     <View style={{
-      backgroundColor: palette.primary1,
+      backgroundColor: palette.primary0,
     }}>
       <View style={{
         height: '5%',

@@ -7,7 +7,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
         <View width={width}>
             <TextField
                 placeholder={placeholder}
-                placeholderTextColor={palette.primary0}
+                placeholderTextColor={palette.primary3}
                 centered={textAlign === 'center'}
                 containerStyle={{
                     width: '100%',

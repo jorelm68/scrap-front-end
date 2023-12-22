@@ -41,24 +41,23 @@ export default function App() {
         <View width='100%' flex center style={{
           width: dimensions.width,
           height: dimensions.height,
-          backgroundColor: palette.primary1,
+          backgroundColor: palette.primary0,
         }}>
           <LogoComponent />
           {accounts && accounts.length !== 0 && (
             <ButtonComponent
               label='Choose Account'
-              size='large'
+              icon='person'
               onPress={() => {
                 router.push('chooseAccount')
               }}
-              icon='person'
             />
           )}
 
           <View height={24} />
 
           <FieldComponent
-            placeholder={'Pseudonym or Email'}
+            placeholder='Pseudonym or Email'
             autoCorrect={false}
             autoCapitalize='none'
             autoComplete='off'
@@ -74,7 +73,7 @@ export default function App() {
           <ErrorComponent error={valueError} />
 
           <FieldComponent
-            placeholder={'Password'}
+            placeholder='Password'
             autoCapitalize='none'
             autoCorrect={false}
             autoComplete='off'
@@ -97,7 +96,7 @@ export default function App() {
             }}>
               <Text style={{
                 fontFamily: fonts.itim,
-                fontSize: 16,
+                fontSize: 12,
                 color: palette.primary4,
               }}>Forgot Password?</Text>
             </TouchableOpacity>
@@ -105,7 +104,7 @@ export default function App() {
             <View height={16} />
             <ButtonComponent
               label='Sign In'
-              size='large'
+              icon='checkmark'
               onPress={async () => {
                 router.push('/loading')
                 // First set the error messages if necessary
@@ -152,8 +151,6 @@ export default function App() {
                   router.back()
                 }
               }}
-              icon='checkmark'
-              iconOnRight
             />
           </View>
 

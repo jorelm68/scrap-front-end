@@ -72,7 +72,7 @@ const BookPicker = () => {
       flexDirection: 'row',
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.primary1,
+      backgroundColor: palette.primary0,
     }}>
       {books && books.length > 0 && books.map((book) => {
         return (
