@@ -172,6 +172,26 @@ export function getDate(newDate) {
     return date;
 }
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1; // Add 1 because getMonth() returns zero-based month
+    const day = date.getDate();
+    const year = date.getFullYear().toString().slice(-2); // Get last two digits of the year
+
+    return `${month}/${day}/${year}`;
+}
+
+export function getDateRange(date1, date2) {
+    const formattedDate1 = formatDate(date1);
+    const formattedDate2 = formatDate(date2);
+
+    if (formattedDate1 === formattedDate2) {
+        return formattedDate1
+    }
+
+    return `${formattedDate1} - ${formattedDate2}`
+}
+
 // REQUIRES:    stable connection to the google API
 //              permission from the user to get location
 // MODIFIES:    nothing

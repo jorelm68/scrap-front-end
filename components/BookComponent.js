@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons'
 import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
+import { getDateRange } from '../data/utility'
 
 const BookComponent = ({ book, showAuthor, clickable }) => {
     const router = useRouter()
@@ -23,6 +24,8 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         scraps,
         miles,
         likes,
+        beginDate,
+        endDate,
         toggleLike,
     } = useBook(book, [
         'author',
@@ -32,6 +35,8 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         'representative',
         'scraps',
         'miles',
+        'beginDate',
+        'endDate',
         'likes',
     ])
 
@@ -183,15 +188,16 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 }}>
                                     <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
                                 </TouchableOpacity>
+
                                 <View center row>
                                     <Text style={{
+                                        marginRight: 2,
                                         fontFamily: fonts.itim,
                                         fontSize: 12,
-                                        lineHeight: 14,
                                         textAlign: 'center',
                                         color: palette.color5,
-                                    }}>{place ? place : 'Somwhere'}</Text>
-                                    <Ionicons name='pin' color={palette.color6} size={12} />
+                                    }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
+                                    <Ionicons name='person' color={palette.color6} size={12} />
                                 </View>
 
                                 <View center row>
@@ -207,14 +213,27 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
 
                                 <View center row>
                                     <Text style={{
-                                        marginRight: 2,
                                         fontFamily: fonts.itim,
                                         fontSize: 12,
+                                        lineHeight: 14,
                                         textAlign: 'center',
                                         color: palette.color5,
-                                    }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
-                                    <Ionicons name='person' color={palette.color6} size={12} />
+                                    }}>{place ? place : 'Somwhere'}</Text>
+                                    <Ionicons name='pin' color={palette.color6} size={12} />
                                 </View>
+
+                                {beginDate && endDate && (
+                                    <View center row>
+                                        <Text style={{
+                                            fontFamily: fonts.itim,
+                                            fontSize: 10,
+                                            lineHeight: 14,
+                                            textAlign: 'center',
+                                            color: palette.color5,
+                                        }}>{getDateRange(beginDate, endDate)}</Text>
+                                    </View>
+                                )}
+
                             </View>
                         )}
                         {hidden && (

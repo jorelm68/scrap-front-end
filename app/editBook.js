@@ -80,6 +80,7 @@ const EditBook = () => {
                 cache.filter([book, 'scraps'])
                 cache.filter([user, 'unbookedScraps'])
                 cache.filter([book, 'miles'])
+                cache.filter([book, 'Date'])
 
                 for (const scrap of selection) {
                     cache.filter([scrap, 'book'])
@@ -114,6 +115,7 @@ const EditBook = () => {
         cache.filter([user, 'unbookedScraps'])
         cache.filter([scrap, 'book'])
         cache.filter([book, 'miles'])
+        cache.filter([book, 'Date'])
 
         if (scrap === representative) {
             const firstOption = scraps[0]

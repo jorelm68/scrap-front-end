@@ -18,6 +18,8 @@ export default function useBook(book, requests) {
     const [scraps, setScraps] = useState([])
     const [likes, setLikes] = useState([])
     const [miles, setMiles] = useState(0)
+    const [beginDate, setBeginDate] = useState('')
+    const [endDate, setEndDate] = useState('')
 
     const get = async (modelName, identifier, field, setResponse = () => { }, handleError = () => { }) => {
         if (!modelName || !identifier || !field || !setResponse) return undefined
@@ -41,6 +43,8 @@ export default function useBook(book, requests) {
         else if (request === 'author') set = setAuthor
         else if (request === 'scraps') set = setScraps
         else if (request === 'threads') set = setThreads
+        else if (request === 'beginDate') set = setBeginDate
+        else if (request === 'endDate') set = setEndDate
         else if (request === 'likes') set = setLikes
 
         if (book !== undefined) {
@@ -110,6 +114,10 @@ export default function useBook(book, requests) {
         setAuthor,
         scraps,
         setScraps,
+        beginDate,
+        setBeginDate,
+        endDate,
+        setEndDate,
         threads,
         setThreads,
         likes,
