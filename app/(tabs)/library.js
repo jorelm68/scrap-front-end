@@ -106,7 +106,7 @@ const Library = () => {
         height: '45%',
       }}>
         <TouchableOpacity center onPress={handleBooks}>
-          <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.secondary4} />
+          <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.complement4} />
           <Text style={{
             fontFamily: fonts.playBold,
             fontSize: 48,
@@ -116,7 +116,7 @@ const Library = () => {
 
         <View>
           <TouchableOpacity row center onPress={handleCreateBook}>
-            <Ionicons name='add' size={24} color={palette.secondary4} />
+            <Ionicons name='add' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
@@ -127,7 +127,7 @@ const Library = () => {
             height: '15%',
           }} />
           <TouchableOpacity row center onPress={handleDeleteBooks}>
-            <Ionicons name='remove' size={24} color={palette.secondary4} />
+            <Ionicons name='remove' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
@@ -141,7 +141,7 @@ const Library = () => {
         height: '45%',
       }}>
         <TouchableOpacity center onPress={handleScraps}>
-          <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.secondary4} />
+          <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.complement4} />
           <Text style={{
             fontFamily: fonts.playBold,
             fontSize: 48,
@@ -150,7 +150,7 @@ const Library = () => {
         </TouchableOpacity>
         <View>
           <TouchableOpacity row center onPress={handleCreateScrap}>
-            <Ionicons name='add' size={24} color={palette.secondary4} />
+            <Ionicons name='add' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
@@ -161,7 +161,7 @@ const Library = () => {
             height: '15%',
           }} />
           <TouchableOpacity row center onPress={handleDeleteScraps}>
-            <Ionicons name='remove' size={24} color={palette.secondary4} />
+            <Ionicons name='remove' size={24} color={palette.complement4} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,

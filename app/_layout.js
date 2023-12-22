@@ -41,7 +41,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
           }}
         />
@@ -56,7 +56,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
           }}
         />
@@ -71,7 +71,7 @@ const Layout = () => {
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -91,7 +91,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -111,7 +111,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -143,7 +143,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -163,7 +163,7 @@ const Layout = () => {
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -182,7 +182,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -201,7 +201,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -222,7 +222,7 @@ const Layout = () => {
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -242,7 +242,7 @@ const Layout = () => {
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -263,7 +263,7 @@ const Layout = () => {
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
@@ -283,7 +283,7 @@ const Layout = () => {
               color: palette.primary4,
             },
             headerStyle: {
-              backgroundColor: palette.secondary2, // Set your desired color here
+              backgroundColor: palette.complement2, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>

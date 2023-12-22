@@ -166,7 +166,7 @@ const ProfileComponent = ({ author }) => {
           width: dimensions.width / 8 - 8,
           alignItems: 'center',
         }}>
-          <Ionicons name='settings' color={palette.secondary4} size={24} />
+          <Ionicons name='settings' color={palette.complement4} size={24} />
         </TouchableOpacity>
       )}
     </View>
@@ -177,7 +177,7 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'books' ? palette.secondary2 : palette.primary1}>
+          }} backgroundColor={mode === 'books' ? palette.complement2 : palette.primary1}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 16,
@@ -190,7 +190,7 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginTop: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'map' ? palette.secondary2 : palette.primary1}>
+          }} backgroundColor={mode === 'map' ? palette.complement2 : palette.primary1}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 16,
@@ -203,7 +203,7 @@ const ProfileComponent = ({ author }) => {
           <View center width={dimensions.width / 4 - 8} height={dimensions.width / 8 - (16 / 3)} style={{
             marginVertical: 4,
             borderRadius: 16,
-          }} backgroundColor={mode === 'friends' ? palette.secondary2 : palette.primary1}>
+          }} backgroundColor={mode === 'friends' ? palette.complement2 : palette.primary1}>
             <Text style={{
               fontFamily: fonts.itim,
               fontSize: 16,
@@ -216,7 +216,7 @@ const ProfileComponent = ({ author }) => {
       <View width={dimensions.width * (3 / 4)} height={(dimensions.width / 8) * 3}>
         <View height={dimensions.width / 4} style={{ padding: 4, paddingLeft: 0 }}>
           <View style={{
-            backgroundColor: palette.secondary2,
+            backgroundColor: palette.complement2,
             borderRadius: 8,
           }}>
             <Text style={{
@@ -237,7 +237,7 @@ const ProfileComponent = ({ author }) => {
         }}>
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.secondary2,
+            backgroundColor: palette.complement2,
             marginRight: 2,
           }}>
             <Text style={{
@@ -257,7 +257,7 @@ const ProfileComponent = ({ author }) => {
 
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.secondary2,
+            backgroundColor: palette.complement2,
             marginRight: 2,
           }}>
             <Text style={{
@@ -277,7 +277,7 @@ const ProfileComponent = ({ author }) => {
 
           <View center width={dimensions.width / 8 - (16 / 3)} height={dimensions.width / 8 - (16 / 3)} style={{
             borderRadius: dimensions.width / 8 - (16 / 3) / 2,
-            backgroundColor: palette.secondary2,
+            backgroundColor: palette.complement2,
             marginRight: 2,
           }}>
             <Text style={{
@@ -374,7 +374,7 @@ const ProfileComponent = ({ author }) => {
           <View centerV style={{
             width: dimensions.width / 3,
             height: 64,
-            borderBottomColor: palette.secondary0,
+            borderBottomColor: palette.complement0,
             borderBottomWidth: option === 'friends' ? 2 : 0,
             marginBottom: 4,
           }}>
@@ -385,7 +385,7 @@ const ProfileComponent = ({ author }) => {
                 fontFamily: fonts.itim,
                 fontSize: 16,
                 padding: 4,
-                color: option === 'friends' ? palette.secondary0 : palette.primary4,
+                color: option === 'friends' ? palette.complement0 : palette.primary4,
                 textAlign: 'center',
               }}>Friends</Text>
             </TouchableOpacity>
@@ -395,7 +395,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.secondary0,
+              borderBottomColor: palette.complement0,
               borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -405,7 +405,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'incomingFriendRequests' ? palette.secondary0 : palette.primary4,
+                  color: option === 'incomingFriendRequests' ? palette.complement0 : palette.primary4,
                   textAlign: 'center',
                 }}>Incoming Requests</Text>
               </TouchableOpacity>
@@ -416,7 +416,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.secondary0,
+              borderBottomColor: palette.complement0,
               borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -426,7 +426,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'outgoingFriendRequests' ? palette.secondary0 : palette.primary4,
+                  color: option === 'outgoingFriendRequests' ? palette.complement0 : palette.primary4,
                   textAlign: 'center',
                 }}>Outgoing Requests</Text>
               </TouchableOpacity>

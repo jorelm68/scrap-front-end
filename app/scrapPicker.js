@@ -33,7 +33,7 @@ const ScrapPicker = () => {
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={palette.secondary2} size={24} />
+          <Ionicons name='close' color={palette.complement2} size={24} />
         </TouchableOpacity>
       ),
     })
@@ -90,7 +90,7 @@ const ScrapPicker = () => {
                 <Text style={{
                   position: 'absolute',
                   fontSize: 45,
-                  color: palette.secondary4,
+                  color: palette.complement4,
                   fontFamily: fonts.playBold,
                   bottom: 4,
                   right: 4,

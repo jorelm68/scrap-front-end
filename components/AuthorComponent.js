@@ -109,7 +109,7 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='add-circle' color={palette.secondary4} size={24} />
+              <Ionicons name='add-circle' color={palette.complement4} size={24} />
 
               <Text style={{
                 fontFamily: fonts.itim,
@@ -131,7 +131,7 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={palette.secondary4} size={24} />
+              <Ionicons name='remove-circle' color={palette.complement4} size={24} />
 
               <Text style={{
                 fontFamily: fonts.itim,
@@ -169,7 +169,7 @@ const AuthorComponent = ({ author, disappear }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='checkmark-circle' color={palette.secondary4} size={24} />
+                  <Ionicons name='checkmark-circle' color={palette.complement4} size={24} />
 
                   <Text style={{
                     fontFamily: fonts.itim,
@@ -198,7 +198,7 @@ const AuthorComponent = ({ author, disappear }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='remove-circle' color={palette.secondary4} size={24} />
+                  <Ionicons name='remove-circle' color={palette.complement4} size={24} />
 
                   <Text style={{
                     fontFamily: fonts.itim,
@@ -225,7 +225,7 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={palette.secondary4} size={24} />
+              <Ionicons name='remove-circle' color={palette.complement4} size={24} />
 
               <Text style={{
                 fontFamily: fonts.itim,

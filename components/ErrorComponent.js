@@ -10,7 +10,7 @@ const ErrorComponent = ({ error }) => {
             <Text style={{
                 paddingVertical: 4,
                 fontFamily: fonts.itim,
-                color: palette.secondary2,
+                color: palette.complement2,
                 textAlign: 'center',
             }}>{error}</Text>
         </View>

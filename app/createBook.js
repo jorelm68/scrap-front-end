@@ -62,7 +62,7 @@ const CreateBook = () => {
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close' color={palette.secondary2} size={24} />
+          <Ionicons name='close' color={palette.complement2} size={24} />
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })

@@ -19,10 +19,10 @@ const Layout = () => {
                         color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.primary4,
                     tabBarActiveTintColor: palette.primary1,
@@ -40,10 +40,10 @@ const Layout = () => {
                         color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.primary4,
                     tabBarActiveTintColor: palette.primary1,
@@ -61,10 +61,10 @@ const Layout = () => {
                         color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.primary4,
                     tabBarActiveTintColor: palette.primary1,
@@ -82,10 +82,10 @@ const Layout = () => {
                         color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.primary4,
                     tabBarActiveTintColor: palette.primary1,
@@ -103,10 +103,10 @@ const Layout = () => {
                         color: palette.primary4,
                     },
                     headerStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.secondary2,
+                        backgroundColor: palette.complement2,
                     },
                     tabBarInactiveTintColor: palette.primary4,
                     tabBarActiveTintColor: palette.primary1,

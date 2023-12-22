@@ -126,7 +126,7 @@ const BookFinder = () => {
                                     <Text style={{
                                         position: 'absolute',
                                         fontSize: 45,
-                                        color: palette.secondary4,
+                                        color: palette.complement4,
                                         fontFamily: fonts.playBold,
                                         bottom: 4,
                                         right: 4,

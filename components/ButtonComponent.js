@@ -13,7 +13,7 @@ const ButtonComponent = ({ label, size, onPress, width, icon, iconOnRight }) => 
                     fontFamily: fonts.itim,
                 }}
                 size={size === 'large' ? Button.sizes.large : size === 'medium' ? Button.sizes.medium : size === 'small' ? Button.sizes.small : Button.sizes.xSmall}
-                backgroundColor={palette.secondary4}
+                backgroundColor={palette.complement4}
                 onPress={onPress}
                 
                 iconSource={() => <Ionicons name={icon} color={palette.primary1} size={18} />}
