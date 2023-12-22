@@ -40,7 +40,7 @@ const Scrap = ({ scrap }) => {
         lastName,
         pseudonym,
     } = useAuthor(author, [
-        'iHeadshot->1080',
+        'iHeadshot->90',
         'firstName',
         'lastName',
         'pseudonym',

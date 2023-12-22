@@ -24,8 +24,8 @@ const AuthorComponent = ({ author, disappear }) => {
     relationship,
     setRelationship,
   } = useAuthor(author, [
-    'iHeadshot->1080',
-    'iCover->1080',
+    'iHeadshot->270',
+    'iCover->270',
     'firstName',
     'lastName',
     'pseudonym',

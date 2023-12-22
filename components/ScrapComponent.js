@@ -8,8 +8,8 @@ const ScrapComponent = ({ scrap }) => {
         iPrograph,
         iRetrograph,
     } = useScrap(scrap, [
-        'iPrograph->1080',
-        'iRetrograph->1080'
+        'iPrograph->270',
+        'iRetrograph->270'
     ])
 
     return (

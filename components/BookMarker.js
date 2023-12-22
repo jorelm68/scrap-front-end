@@ -29,7 +29,7 @@ const BookMarker = ({ book }) => {
     } = useScrap(representative, [
         'latitude',
         'longitude',
-        'iPrograph->1080',
+        'iPrograph->90',
     ])
 
     return (

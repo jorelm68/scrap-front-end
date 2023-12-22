@@ -40,7 +40,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         iPrograph,
         place,
     } = useScrap(representative, [
-        'iPrograph->1080',
+        'iPrograph->270',
         'place',
     ])
 
@@ -56,7 +56,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         lastName,
         pseudonym,
     } = useAuthor(author, [
-        'iHeadshot->1080',
+        'iHeadshot->90',
         'firstName',
         'lastName',
         'pseudonym',

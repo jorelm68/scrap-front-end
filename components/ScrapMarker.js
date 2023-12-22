@@ -22,7 +22,7 @@ const ScrapMarker = ({ scrap }) => {
         'longitude',
         'title',
         'description',
-        'iPrograph->1080',
+        'iPrograph->90',
     ])
 
     return (

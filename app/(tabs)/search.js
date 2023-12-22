@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { dimensions, palette, fonts } from '../../data/styles'
 import AppContext from '../../context/AppContext'
 import FieldComponent from '../../components/FieldComponent'
-import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import { utilityAuthorSearch, utilityBookCoordinates, utilityBookSearch } from '../../data/api'
 import AuthorComponent from '../../components/AuthorComponent'
-import { useNavigation } from 'expo-router'
+import { useNavigation, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../../components/BookComponent'
 import useBook from '../../hooks/useBook'
@@ -18,6 +18,7 @@ const Search = () => {
   const { user } = useContext(AppContext)
   const [query, setQuery] = useState('')
   const navigation = useNavigation()
+  const router = useRouter()
   const [results, setResults] = useState('')
   const [mode, setMode] = useState('authors')
   const [coordinates, setCoordinates] = useState([])
@@ -45,7 +46,7 @@ const Search = () => {
 
   useEffect(() => {
     setRegion({
-      latitude, 
+      latitude,
       longitude,
       latitudeDelta: 0.1,
       longitudeDelta: 0.1,
@@ -89,101 +90,108 @@ const Search = () => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View centerH style={{
-        width: dimensions.width,
-        height: dimensions.height,
-        backgroundColor: palette.primary0,
-      }}>
-        <View center row style={{
-          width: dimensions.width * (8 / 10),
-          marginVertical: 16,
+    <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+      backgroundColor: palette.primary0,
+      width: dimensions.width,
+      height: dimensions.height,
+    }}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View centerH style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          backgroundColor: palette.primary0,
         }}>
-          <View center style={{
-            width: dimensions.width * (1 / 10),
-            height: 48,
-          }}>
-            <TouchableOpacity onPress={() => {
-              setResults([])
-              if (mode === 'authors') {
-                setMode('books')
-              }
-              else {
-                setMode('authors')
-              }
-            }}>
-              <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.complement4} size={18} />
-            </TouchableOpacity>
-          </View>
-          <FieldComponent
-            placeholder='Search...'
-            width={dimensions.width * (6 / 10)}
-            value={query}
-            onChangeText={(value) => {
-              setQuery(value)
-            }}
-            autoCorrect={false}
-            autoCapitalize='none'
-            autoComplete='off'
-          />
-          <TouchableOpacity onPress={sendQuery} style={{
-            width: dimensions.width * (1 / 10),
-            height: dimensions.width * (1 / 10),
+          <View center row style={{
+            width: dimensions.width * (8 / 10),
+            marginVertical: 16,
           }}>
             <View center style={{
               width: dimensions.width * (1 / 10),
+              height: 48,
+            }}>
+              <TouchableOpacity onPress={() => {
+                setResults([])
+                if (mode === 'authors') {
+                  setMode('books')
+                }
+                else {
+                  setMode('authors')
+                }
+              }}>
+                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.complement4} size={18} />
+              </TouchableOpacity>
+            </View>
+            <FieldComponent
+              placeholder='Search...'
+              width={dimensions.width * (6 / 10)}
+              value={query}
+              onChangeText={(value) => {
+                setQuery(value)
+              }}
+              autoCorrect={false}
+              autoCapitalize='none'
+              autoComplete='off'
+            />
+            <TouchableOpacity onPress={sendQuery} style={{
+              width: dimensions.width * (1 / 10),
               height: dimensions.width * (1 / 10),
             }}>
-              <Ionicons name='search' color={palette.complement4} size={24} />
-            </View>
-          </TouchableOpacity>
+              <View center style={{
+                width: dimensions.width * (1 / 10),
+                height: dimensions.width * (1 / 10),
+              }}>
+                <Ionicons name='search' color={palette.complement4} size={24} />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          {mode === 'authors' && results && results.map((author) => {
+            return (
+              <AuthorComponent author={author} key={author} />
+            )
+          })}
+
+          {mode === 'books' && results && results.length > 0 && (
+            <MapView
+              region={region}
+              style={{
+                width: dimensions.width,
+                marginBottom: 4,
+                borderRadius: 8,
+                height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
+              }}
+            >
+              {results && results.map((book) => {
+                return (
+                  <TouchableOpacity key={book} onPress={() => {
+                    router.push({
+                      pathname: '/book',
+                      params: {
+                        book,
+                      }
+                    })
+                  }}>
+                    <BookMarker book={book} />
+                  </TouchableOpacity>
+                )
+              })}
+
+              <Polyline
+                coordinates={coordinates}
+                strokeColor={palette.primary0}
+                strokeWidth={2}
+              />
+            </MapView>
+          )}
+          {mode === 'books' && results && results.map((book) => {
+            return (
+              <BookComponent book={book} key={book} clickable showAuthor />
+            )
+          })}
         </View>
-
-        {mode === 'authors' && results && results.map((author) => {
-          return (
-            <AuthorComponent author={author} key={author} />
-          )
-        })}
-
-        {mode === 'books' && results && results.length > 0 && (
-          <MapView
-            region={region}
-            style={{
-              width: dimensions.width,
-              marginBottom: 4,
-              borderRadius: 8,
-              height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
-            }}
-          >
-            {results && results.map((book) => {
-              return (
-                <TouchableOpacity key={book} onPress={() => {
-                  router.push({
-                    pathname: '/book',
-                    params: {
-                      book,
-                    }
-                  })
-                }}>
-                  <BookMarker book={book} />
-                </TouchableOpacity>
-              )
-            })}
-
-            <Polyline
-              coordinates={coordinates}
-              strokeColor={palette.primary0}
-              strokeWidth={2}
-            />
-          </MapView>
-        )}
-        {mode === 'books' && results && results.map((book) => {
-          return (
-            <BookComponent book={book} key={book} clickable showAuthor />
-          )
-        })}
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+      <View height={80 + 4} />
+    </ScrollView>
   )
 }
 

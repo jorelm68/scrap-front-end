@@ -21,8 +21,8 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
         iPrograph,
         iRetrograph,
     } = useScrap(type === 'Scrap' ? value : undefined, [
-        'iPrograph->1080',
-        'iRetrograph->1080',
+        'iPrograph->270',
+        'iRetrograph->90',
     ])
 
     useEffect(() => {
