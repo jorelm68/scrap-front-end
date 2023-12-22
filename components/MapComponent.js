@@ -5,7 +5,7 @@ import ScrapComponent from '../components/ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from '../components/ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions } from '../data/styles'
+import { styles, dimensions, palette } from '../data/styles'
 import MapView, { Polyline } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
@@ -75,7 +75,7 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
 
             <Polyline
                 coordinates={coordinates}
-                strokeColor='red' // Change this to the desired color
+                strokeColor={palette.primary0}
                 strokeWidth={2}
             />
         </MapView>

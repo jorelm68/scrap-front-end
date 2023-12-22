@@ -266,7 +266,7 @@ const ProfileComponent = ({ author }) => {
                       cache.filter([user, 'incomingFriendRequests'])
                       cache.filter([user, 'relationship'])
                       cache.filter([author, 'relationship'])
-                      cache.filter([author, 'profileScraps'])
+                      cache.filter([author, 'profileBooks'])
                       cache.filter([user, 'friends'])
                       cache.filter(['feed'])
                       cache.filter([author, 'outgoingFriendRequests'])
@@ -415,7 +415,7 @@ const ProfileComponent = ({ author }) => {
 
           <Polyline
             coordinates={coordinates}
-            strokeColor='red' // Change this to the desired color
+            strokeColor={palette.primary0}
             strokeWidth={2}
           />
         </MapView>

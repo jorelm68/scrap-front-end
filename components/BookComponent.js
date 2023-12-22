@@ -19,6 +19,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         isPublic,
         representative,
         scraps,
+        miles,
     } = useBook(book, [
         'author',
         'title',
@@ -26,6 +27,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         'isPublic',
         'representative',
         'scraps',
+        'miles',
     ])
 
     const {
@@ -170,6 +172,12 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     textAlign: 'center',
                                     color: palette.primary4,
                                 }}>{place}</Text>
+                                <Text style={{
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    textAlign: 'center',
+                                    color: palette.primary4,
+                                }}>{Math.round(miles)} Miles</Text>
                             </View>
                         )}
                         {hidden && (

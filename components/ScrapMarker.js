@@ -5,7 +5,7 @@ import ScrapComponent from './ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from './ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions } from '../data/styles'
+import { styles, dimensions, palette } from '../data/styles'
 import MapView, { Marker } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
@@ -37,7 +37,7 @@ const ScrapMarker = ({ scrap }) => {
             <View center style={{
                 width: 30,
                 height: 30,
-                backgroundColor: 'red',
+                backgroundColor: palette.primary0,
                 borderRadius: 15,
             }}>
                 <Image

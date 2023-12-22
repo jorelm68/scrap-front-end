@@ -55,8 +55,20 @@ const EditBook = () => {
                 for (const scrap of selection) {
                     const response = await bookAddScrap(book, scrap)
                     if (!response.success) {
-                        Alert.alert('Error', 'Couldn\'t add scraps to book')
-                        return response
+                        Alert.alert('Error', response.error)
+                        return
+                    }
+                }
+
+                if (!book.scraps) {
+                    const response = await edit('Book', book, 'representative', selection[0])
+                    if (!response.success) {
+                        Alert.alert('Error', response.error)
+                        return
+                    }
+                    else {
+                        setRepresentative(selection[0])
+                        cache.filter([book, 'representative'])
                     }
                 }
 
@@ -66,7 +78,8 @@ const EditBook = () => {
                 ]))
 
                 cache.filter([book, 'scraps'])
-                cache.filter([book, 'unbookedScraps'])
+                cache.filter([user, 'unbookedScraps'])
+                cache.filter([book, 'miles'])
 
                 for (const scrap of selection) {
                     cache.filter([scrap, 'book'])
@@ -98,8 +111,9 @@ const EditBook = () => {
         }
 
         cache.filter([book, 'scraps'])
-        cache.filter([book, 'unbookedScraps'])
+        cache.filter([user, 'unbookedScraps'])
         cache.filter([scrap, 'book'])
+        cache.filter([book, 'miles'])
 
         if (scrap === representative) {
             const firstOption = scraps[0]

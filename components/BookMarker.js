@@ -5,7 +5,7 @@ import ScrapComponent from './ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from './ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions, fonts } from '../data/styles'
+import { styles, dimensions, fonts, palette } from '../data/styles'
 import MapView, { Marker, Callout } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
@@ -43,12 +43,12 @@ const BookMarker = ({ book }) => {
                 <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: 'white',
+                    color: palette.primary0,
                 }}>{title.length <= 10 ? title : title.slice(0, 10) + '...'}</Text>
                 <View center style={{
                     width: 30,
                     height: 30,
-                    backgroundColor: 'red',
+                    backgroundColor: palette.primary0,
                     borderRadius: 15,
                 }}>
                     <Image
@@ -61,6 +61,7 @@ const BookMarker = ({ book }) => {
                         resizeMode="contain"
                     />
                 </View>
+                <View height={12} />
             </View>
 
 

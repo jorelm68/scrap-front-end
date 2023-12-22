@@ -25,12 +25,14 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         isPublic,
         title,
         description,
+        miles,
     } = useBook(book, [
         'scraps',
         'author',
         'isPublic',
         'title',
         'description',
+        'miles',
     ])
 
     const {
@@ -102,18 +104,38 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         console.log(marker)
                     }}
                 />
+                <View center style={{
+                    position: 'absolute',
+                    width: dimensions.width,
+                }}>
+                    <View center style={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderRadius: 8,
+                        paddingHorizontal: 4,
+                    }}>
+                        <Text style={{
+                            padding: 4,
+                            paddingBottom: 0,
+                            fontFamily: fonts.itim,
+                            fontSize: 24,
+                            color: palette.primary0,
+                            lineHeight: 24,
+                        }}>{Math.round(miles)} Miles Traveled</Text>
+                    </View>
+
+                </View>
                 <View style={{
                     borderBottomWidth: 2,
                     borderBottomColor: palette.primary4,
                 }}>
-                <Text style={{
-                    padding: 4,
-                    fontFamily: fonts.itim,
-                    fontSize: 16,
-                    color: palette.primary4,
-                }}>{description}</Text>
+                    <Text style={{
+                        padding: 4,
+                        fontFamily: fonts.itim,
+                        fontSize: 16,
+                        color: palette.primary4,
+                    }}>{description}</Text>
                 </View>
-                
+
                 <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={page} />
                 <View height={120} />
             </ScrollView>
