@@ -21,7 +21,7 @@ const SwitchComponent = ({ title, value, onSwitch }) => {
                 paddingRight: 4,
                 color: palette.color5,
             }}>{title}</Text>
-            <Switch value={value} onValueChange={onSwitch} />
+            <Switch value={value} onValueChange={onSwitch} onColor={palette.accent} offColor={palette.color5}/>
         </View>
     )
 }

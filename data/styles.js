@@ -60,6 +60,8 @@ export const dark = {
     color5: '#AAAAAA',
     color6: '#CCCCCC',
     color7: '#FFFFFF',
+
+    accent: '#17CC5B',
 };
 
 export const light = {
@@ -71,6 +73,8 @@ export const light = {
     color5: '#333333',
     color6: '#111111',
     color7: '#000000',
+
+    accent: '#17CC5B',
 }
 
 

@@ -25,7 +25,7 @@ const Layout = () => {
                         backgroundColor: palette.color0,
                     },
                     tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.color7,
+                    tabBarActiveTintColor: palette.accent,
                 }}
             />
             <Tabs.Screen
@@ -46,7 +46,7 @@ const Layout = () => {
                         backgroundColor: palette.color0,
                     },
                     tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.color7,
+                    tabBarActiveTintColor: palette.accent,
                 }}
             />
             <Tabs.Screen
@@ -67,7 +67,7 @@ const Layout = () => {
                         backgroundColor: palette.color0,
                     },
                     tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.color7,
+                    tabBarActiveTintColor: palette.accent,
                 }}
             />
             <Tabs.Screen
@@ -88,7 +88,7 @@ const Layout = () => {
                         backgroundColor: palette.color0,
                     },
                     tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.color7,
+                    tabBarActiveTintColor: palette.accent,
                 }}
             />
             <Tabs.Screen
@@ -109,7 +109,7 @@ const Layout = () => {
                         backgroundColor: palette.color0,
                     },
                     tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.color7,
+                    tabBarActiveTintColor: palette.accent,
                 }}
             />
         </Tabs>

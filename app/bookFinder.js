@@ -122,17 +122,17 @@ const BookFinder = () => {
                                 opacity: 1,
                             }}>
                                 <BookComponent book={book} showAuthor />
-                                {selection.includes(book) && (
-                                    <Text style={{
-                                        position: 'absolute',
-                                        fontSize: 45,
-                                        color: palette.color6,
-                                        fontFamily: fonts.playBold,
-                                        bottom: 4,
-                                        right: 4,
-                                    }}>{selection.indexOf(book) + 1}</Text>
-                                )}
                             </View>
+                            {selection.includes(book) && (
+                                <Text style={{
+                                    position: 'absolute',
+                                    fontSize: 45,
+                                    color: palette.accent,
+                                    fontFamily: fonts.playBold,
+                                    bottom: 4,
+                                    right: 4,
+                                }}>{selection.indexOf(book) + 1}</Text>
+                            )}
                         </TouchableOpacity>
                     )
                 })}

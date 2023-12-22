@@ -115,7 +115,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                             paddingBottom: 0,
                             fontFamily: fonts.itim,
                             fontSize: 24,
-                            color: palette.color1,
+                            color: palette.color6,
                             lineHeight: 24,
                         }}>{Math.round(miles)} Miles Traveled</Text>
                     </View>

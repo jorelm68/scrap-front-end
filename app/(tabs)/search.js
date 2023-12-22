@@ -114,7 +114,7 @@ const Search = () => {
                   setMode('authors')
                 }
               }}>
-                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.color6} size={18} />
+                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.accent} size={18} />
               </TouchableOpacity>
             </View>
             <FieldComponent
@@ -174,7 +174,7 @@ const Search = () => {
 
               <Polyline
                 coordinates={coordinates}
-                strokeColor={palette.color6}
+                strokeColor={palette.accent}
                 strokeWidth={2}
               />
             </MapView>

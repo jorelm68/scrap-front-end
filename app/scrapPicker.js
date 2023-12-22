@@ -83,7 +83,7 @@ const ScrapPicker = () => {
               <Text style={{
                 position: 'absolute',
                 fontSize: 45,
-                color: palette.color6,
+                color: palette.accent,
                 fontFamily: fonts.playBold,
                 bottom: 4,
                 right: 4,
