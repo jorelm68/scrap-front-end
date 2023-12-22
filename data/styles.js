@@ -17,7 +17,37 @@ export const colors = {
     complement4: '#025F87',
 };
 
-export const palette = colors
+export const orangish = {
+    primary0: '#FFA500', // Orange
+    primary1: '#FF8C00', // Lighter orange
+    primary2: '#FF6347', // Light orange
+    primary3: '#FF4500', // Dark orange
+    primary4: '#FF0000', // Red
+
+    complement0: '#FF0000', // Red (matching primary4)
+    complement1: '#CD5C5C', // Darker red
+    complement2: '#B22222', // Dark red
+    complement3: '#8B0000', // Even darker red
+    complement4: '#800000', // Darkest red
+};
+
+export const greenish = {
+    primary0: '#98FB98', // Light green
+    primary1: '#7CFC00', // Lighter green
+    primary2: '#00FF00', // Green
+    primary3: '#008000', // Dark green
+    primary4: '#006400', // Darker green
+
+    complement0: '#800080', // Purple (matching primary4)
+    complement1: '#9400D3', // Darker purple
+    complement2: '#8A2BE2', // Dark purple
+    complement3: '#800080', // Purple (matching complement0)
+    complement4: '#4B0082', // Even darker purple
+};
+
+
+
+export const palette = greenish
 
 export const fonts = {
     itim: 'itim',
