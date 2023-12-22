@@ -39,10 +39,10 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
     ])
 
     const [region, setRegion] = useState({
-        latitude, // Your initial latitude
-        longitude, // Your initial longitude
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+        latitude,
+        longitude,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
     })
 
     const mapViewRef = useRef()
@@ -66,7 +66,7 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
             {scraps && scraps.map((scrap) => {
                 return (
                     <TouchableOpacity key={scrap} onPress={() => {
-                        clickMarker(scraps.indexOf(scrap))
+                        if (clickMarker) clickMarker(scraps.indexOf(scrap))
                     }}>
                         <ScrapMarker scrap={scrap} />
                     </TouchableOpacity>

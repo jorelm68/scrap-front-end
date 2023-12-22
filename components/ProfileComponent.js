@@ -71,18 +71,14 @@ const ProfileComponent = ({ author }) => {
   ])
 
   const [region, setRegion] = useState({
-    latitude, // Your initial latitude
-    longitude, // Your initial longitude
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
+    latitude,
+    longitude,
   })
 
   useEffect(() => {
     setRegion({
-      latitude, // Your initial latitude
-      longitude, // Your initial longitude
-      latitudeDelta: 0.1,
-      longitudeDelta: 0.1,
+      latitude,
+      longitude,
     })
   }, [latitude, longitude])
 

@@ -17,7 +17,6 @@ const Feed = () => {
         'feed',
     ])
 
-    console.log(feed)
     return (
         <View style={{
             paddingTop: 4,

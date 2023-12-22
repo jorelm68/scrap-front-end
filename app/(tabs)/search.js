@@ -40,16 +40,12 @@ const Search = () => {
   const [region, setRegion] = useState({
     latitude,
     longitude,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
   })
 
   useEffect(() => {
     setRegion({
       latitude,
       longitude,
-      latitudeDelta: 0.1,
-      longitudeDelta: 0.1,
     })
   }, [latitude, longitude])
 

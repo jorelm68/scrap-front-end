@@ -100,9 +100,6 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                 <MapComponent
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}
-                    clickMarker={async (marker) => {
-                        console.log(marker)
-                    }}
                 />
                 <View center style={{
                     position: 'absolute',
