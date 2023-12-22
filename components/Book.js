@@ -104,29 +104,44 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}
                 />
-                <View style={{
-                    position: 'absolute',
-                    width: 48,
-                    right: 0,
+                <View centerV style={{
+                    width: dimensions.width,
+                    height: 24,
                 }}>
-                    <View center style={{
-                        width: 48,
-                        height: 48,
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        borderBottomLeftRadius: 8,
-                        borderTopRightRadius: 8,
+                    <View row center style={{
+                        position: 'absolute',
+                        right: 0,
                     }}>
-                        <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                            router.push({
-                                pathname: '/likes',
-                                params: {
-                                    book,
-                                }
-                            })
-                        }}>
-                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={36} />
+                        <TouchableOpacity
+                            onPress={() => {
+                                router.push({
+                                    pathname: '/likes',
+                                    params: {
+                                        book,
+                                    }
+                                })
+                            }}
+                        >
+                            <Text style={{
+                                fontFamily: fonts.itim,
+                                fontSize: 12,
+                                color: palette.color6,
+                            }}>{likes.length} like{likes.length === 1 ? '' : 's'} </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={user !== author ? toggleLike : () => {
+                                router.push({
+                                    pathname: '/likes',
+                                    params: {
+                                        book,
+                                    }
+                                })
+                            }}
+                        >
+                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={24} />
                         </TouchableOpacity>
                     </View>
+
                 </View>
                 <View center style={{
                     position: 'absolute',
