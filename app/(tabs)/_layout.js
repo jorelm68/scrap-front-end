@@ -16,7 +16,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.primary4,
+                        color: palette.complement4,
                     },
                     headerStyle: {
                         backgroundColor: palette.complement2,
@@ -24,8 +24,8 @@ const Layout = () => {
                     tabBarStyle: {
                         backgroundColor: palette.complement2,
                     },
-                    tabBarInactiveTintColor: palette.primary4,
-                    tabBarActiveTintColor: palette.primary1,
+                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarActiveTintColor: palette.complement0,
                 }}
             />
             <Tabs.Screen
@@ -37,7 +37,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.primary4,
+                        color: palette.complement4,
                     },
                     headerStyle: {
                         backgroundColor: palette.complement2,
@@ -45,8 +45,8 @@ const Layout = () => {
                     tabBarStyle: {
                         backgroundColor: palette.complement2,
                     },
-                    tabBarInactiveTintColor: palette.primary4,
-                    tabBarActiveTintColor: palette.primary1,
+                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarActiveTintColor: palette.complement0,
                 }}
             />
             <Tabs.Screen
@@ -58,7 +58,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.primary4,
+                        color: palette.complement4,
                     },
                     headerStyle: {
                         backgroundColor: palette.complement2,
@@ -66,8 +66,8 @@ const Layout = () => {
                     tabBarStyle: {
                         backgroundColor: palette.complement2,
                     },
-                    tabBarInactiveTintColor: palette.primary4,
-                    tabBarActiveTintColor: palette.primary1,
+                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarActiveTintColor: palette.complement0,
                 }}
             />
             <Tabs.Screen
@@ -79,7 +79,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.primary4,
+                        color: palette.complement4,
                     },
                     headerStyle: {
                         backgroundColor: palette.complement2,
@@ -87,8 +87,8 @@ const Layout = () => {
                     tabBarStyle: {
                         backgroundColor: palette.complement2,
                     },
-                    tabBarInactiveTintColor: palette.primary4,
-                    tabBarActiveTintColor: palette.primary1,
+                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarActiveTintColor: palette.complement0,
                 }}
             />
             <Tabs.Screen
@@ -100,7 +100,7 @@ const Layout = () => {
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.primary4,
+                        color: palette.complement4,
                     },
                     headerStyle: {
                         backgroundColor: palette.complement2,
@@ -108,8 +108,8 @@ const Layout = () => {
                     tabBarStyle: {
                         backgroundColor: palette.complement2,
                     },
-                    tabBarInactiveTintColor: palette.primary4,
-                    tabBarActiveTintColor: palette.primary1,
+                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarActiveTintColor: palette.complement0,
                 }}
             />
         </Tabs>
