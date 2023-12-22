@@ -128,7 +128,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     <Text style={{
                         padding: 4,
                         fontFamily: fonts.itim,
-                        fontSize: 16,
+                        fontSize: 12,
                         color: palette.color5,
                     }}>{description}</Text>
                 </View>
