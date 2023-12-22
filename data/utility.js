@@ -1,4 +1,3 @@
-const moment = require('moment-timezone')
 import * as Font from 'expo-font'
 import { Alert } from 'react-native'
 import * as Location from 'expo-location'

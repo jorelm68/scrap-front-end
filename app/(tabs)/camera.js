@@ -45,7 +45,6 @@ const CameraScreen = () => {
     setDirection(current => (current === CameraType.back ? CameraType.front : CameraType.back))
   }
   const handleTakeScrap = async () => {
-    setShowButtons(false)
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
     if (permission && permission.granted) {
@@ -150,8 +149,9 @@ const CameraScreen = () => {
     }}>
       {!isSaving && (
         <View center>
-          <View height='8%' style={{
+          <View style={{
             justifyContent: 'center',
+            height: dimensions.width * (8 / 100),
           }}>
             <Text style={{
               fontFamily: fonts.jockeyOne,
