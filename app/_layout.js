@@ -81,6 +81,26 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="likes"
+          options={{
+            headerTitle: 'Likes',
+            headerTitleStyle: {
+              fontFamily: fonts.playBold,
+              fontSize: 24,
+              color: palette.color7,
+            },
+            headerBackTitleVisible: false,
+            headerStyle: {
+              backgroundColor: palette.color0, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.color6} />
+              </TouchableOpacity>
+            ) : () => { },
+          }}
+        />
+        <Stack.Screen
           name="scrapPicker"
           options={{
             presentation: 'modal',

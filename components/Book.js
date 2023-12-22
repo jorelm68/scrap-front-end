@@ -117,8 +117,15 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         borderBottomLeftRadius: 8,
                         borderTopRightRadius: 8,
                     }}>
-                        <TouchableOpacity onPress={toggleLike}>
-                            <Ionicons name={user === 'author' ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={36} />
+                        <TouchableOpacity onPress={user !== author ? toggleLike : () => {
+                            router.push({
+                                pathname: '/likes',
+                                params: {
+                                    book,
+                                }
+                            })
+                        }}>
+                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={36} />
                         </TouchableOpacity>
                     </View>
                 </View>
