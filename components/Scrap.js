@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import { TouchableWithoutFeedback } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
@@ -46,6 +46,8 @@ const Scrap = ({ scrap }) => {
         'pseudonym',
     ])
 
+    const [isLongPressing, setIsLongPressing] = useState(false)
+
     return (
         <View>
             <TouchableOpacity centerV row style={{
@@ -74,7 +76,7 @@ const Scrap = ({ scrap }) => {
                         color: palette.color5,
                     }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
-                    {author === user && (
+                    {author === user && !isLongPressing && (
                         <TouchableOpacity style={{
                             position: 'absolute',
                             right: 8,
@@ -107,21 +109,24 @@ const Scrap = ({ scrap }) => {
                 </View>
             )}
 
-            <TouchableWithoutFeedback onPress={toggleDirection}>
+            <TouchableWithoutFeedback onPress={toggleDirection} onLongPress={() => setIsLongPressing(true)} onPressOut={() => setIsLongPressing(false)}>
                 <View center>
                     <Image source={iPrograph} style={{
                         width: dimensions.width,
                         height: dimensions.width,
-                        borderRadius: 8,
+                        borderRadius: isLongPressing ? 0 : 8,
+
                     }} />
-                    <Image source={iRetrograph} style={{
-                        position: 'absolute',
-                        width: dimensions.width / 3,
-                        height: dimensions.width / 3,
-                        top: -48,
-                        right: 0,
-                        borderRadius: 8,
-                    }} />
+                    {!isLongPressing && (
+                        <Image source={iRetrograph} style={{
+                            position: 'absolute',
+                            width: dimensions.width / 3,
+                            height: dimensions.width / 3,
+                            top: -48,
+                            right: 0,
+                            borderRadius: 8,
+                        }} />
+                    )}
                 </View>
             </TouchableWithoutFeedback>
 
@@ -182,7 +187,7 @@ const Scrap = ({ scrap }) => {
             )}
 
             <View style={{
-                paddingTop: 4,
+                paddingTop: 8,
                 borderTopColor: palette.color5,
                 borderTopWidth: 2,
                 flexWrap: 'wrap',
