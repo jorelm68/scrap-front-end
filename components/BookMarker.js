@@ -61,7 +61,7 @@ const BookMarker = ({ book }) => {
                         resizeMode="contain"
                     />
                 </View>
-                <View height={12} />
+                <View height={14} />
             </View>
 
 
