@@ -9,6 +9,7 @@ import { fonts, dimensions, palette } from '../data/styles'
 import { useRouter } from 'expo-router'
 import { getDate } from '../data/utility'
 import BookComponent from './BookComponent'
+import useBook from '../hooks/useBook'
 
 const Scrap = ({ scrap }) => {
     const router = useRouter()
@@ -21,6 +22,7 @@ const Scrap = ({ scrap }) => {
         place,
         threads,
         author,
+        book,
         toggleDirection,
         createdAt,
     } = useScrap(scrap, [
@@ -31,6 +33,7 @@ const Scrap = ({ scrap }) => {
         'place',
         'threads',
         'author',
+        'book',
         'createdAt',
     ])
 

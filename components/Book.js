@@ -26,6 +26,8 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         title,
         description,
         miles,
+        likes,
+        toggleLike,
     } = useBook(book, [
         'scraps',
         'author',
@@ -33,6 +35,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         'title',
         'description',
         'miles',
+        'likes',
     ])
 
     const {
@@ -101,6 +104,24 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}
                 />
+                <View style={{
+                    position: 'absolute',
+                    height: 200,
+                    width: 48,
+                    right: 0,
+                }}>
+                    <View center style={{
+                        width: 48,
+                        height: 48,
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        borderBottomLeftRadius: 8,
+                        borderTopRightRadius: 8,
+                    }}>
+                        <TouchableOpacity onPress={toggleLike}>
+                            <Ionicons name={user === 'author' ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={36} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
                 <View center style={{
                     position: 'absolute',
                     width: dimensions.width,

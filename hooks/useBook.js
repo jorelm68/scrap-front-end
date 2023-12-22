@@ -3,7 +3,7 @@ import AppContext from '../context/AppContext'
 import { defaultImage } from '../data/icons'
 import { bookRemoveLike, bookAddLike } from '../data/api'
 import { showAlert } from '../data/utility'
-import Cache from '../data/cache'
+import cache from '../data/cache'
 
 export default function useBook(book, requests) {
     const { user } = useContext(AppContext)
@@ -23,7 +23,7 @@ export default function useBook(book, requests) {
         if (!modelName || !identifier || !field || !setResponse) return undefined
         try {
             let response = null
-            if (!isCanceled) response = await Cache.get(modelName, identifier, field, user)
+            if (!isCanceled) response = await cache.get(modelName, identifier, field, user)
             if (!isCanceled) setResponse(response)
         } catch (error) {
             if (!isCanceled) handleError()
@@ -65,36 +65,35 @@ export default function useBook(book, requests) {
 
     const [isPaused, setIsPaused] = useState(false)
     const toggleLike = async () => {
-        if (isPaused) return
-        if (likes.includes(user)) {
-            setIsPaused(true)
+        if (!isPaused) {
+            if (likes.includes(user)) {
+                setIsPaused(true)
 
-            try {
                 const response = await bookRemoveLike(book, user)
-                if (!response.success) throw new Error(response.error)
+                setLikes(likes.filter((like) => {
+                    return like !== user
+                }))
+                cache.filter([book, 'likes'])
+                cache.filter([user, 'likedBooks'])
+                if (!response.success) {
+                    showAlert('Error', error.message)
+                }
 
-                Cache.filter([book, 'likes'])
-                Cache.filter([user, 'likedBooks'])
-            } catch (error) {
-                showAlert('Error', error.message)
-            }
+                setIsPaused(false)
+            } else {
+                setIsPaused(true)
 
-            setIsPaused(false)
-        } else {
-            setIsPaused(true)
-
-            try {
                 const response = await bookAddLike(book, user)
-                if (!response.success) throw new Error(response.error)
+                setLikes([...likes, user])
+                cache.filter([book, 'likes'])
+                cache.filter([user, 'likedBooks'])
+                if (!response.success) {
+                    showAlert('Error', error.message)
+                }
 
-                Cache.filter([book, 'likes'])
-                Cache.filter([user, 'likedBooks'])
-            } catch (error) {
-                showAlert('Error', error.message)
+                setLikes([...likes, user])
+                setIsPaused(false)
             }
-
-            setLikes([...likes, user])
-            setIsPaused(false)
         }
     }
 
