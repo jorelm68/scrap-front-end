@@ -109,41 +109,35 @@ const ProfileComponent = ({ author }) => {
     getCoordinates()
   }, [profileBooks])
 
-  const handleToggleName = () => {
-    if (name === pseudonym) {
-      setName(`${firstName} ${lastName}`)
-    }
-    else {
-      setName(pseudonym)
-    }
-  }
-
-  const handleTogglePhotos = () => {
-    setPhotosReverse(!photosReverse)
-  }
-
-  const handleSettings = () => {
-    router.push('/settings')
-  }
-
   const profileHeader = <View style={{
     height: (dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8),
   }}>
-    <TouchableWithoutFeedback onPress={handleTogglePhotos}>
+    <TouchableWithoutFeedback onPress={() => {
+      setPhotosReverse(!photosReverse)
+    }}>
       <Image source={photosReverse ? iHeadshot : iCover} width={dimensions.width} height={dimensions.width / 2} style={{
         borderBottomRightRadius: 16,
       }} />
     </TouchableWithoutFeedback>
 
-    <View width='100%' row center>
-      <TouchableWithoutFeedback onPress={handleTogglePhotos}>
+    <View width='100%' row centerV>
+      <TouchableWithoutFeedback onPress={() => {
+        setPhotosReverse(!photosReverse)
+      }}>
         <Image source={photosReverse ? iCover : iHeadshot} width={dimensions.width / 4} height={dimensions.width / 4} style={{
           borderRadius: dimensions.width / 8,
           marginTop: -(dimensions.width / 8),
         }} />
       </TouchableWithoutFeedback>
 
-      <TouchableOpacity onPress={handleToggleName}>
+      <TouchableOpacity onPress={() => {
+        if (name === pseudonym) {
+          setName(`${firstName} ${lastName}`)
+        }
+        else {
+          setName(pseudonym)
+        }
+      }}>
         <Text style={{
           height: dimensions.width / 8,
           marginLeft: 8,
@@ -395,6 +389,7 @@ const ProfileComponent = ({ author }) => {
           style={{
             width: dimensions.width,
             marginTop: 16,
+            borderRadius: 8,
             height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
           }}
         >

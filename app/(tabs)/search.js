@@ -4,11 +4,15 @@ import { dimensions, palette, fonts } from '../../data/styles'
 import AppContext from '../../context/AppContext'
 import FieldComponent from '../../components/FieldComponent'
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
-import { utilityAuthorSearch, utilityBookSearch } from '../../data/api'
+import { utilityAuthorSearch, utilityBookCoordinates, utilityBookSearch } from '../../data/api'
 import AuthorComponent from '../../components/AuthorComponent'
 import { useNavigation } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import BookComponent from '../../components/BookComponent'
+import useBook from '../../hooks/useBook'
+import useScrap from '../../hooks/useScrap'
+import MapView, { Polyline } from 'react-native-maps'
+import BookMarker from '../../components/BookMarker'
 
 const Search = () => {
   const { user } = useContext(AppContext)
@@ -16,6 +20,50 @@ const Search = () => {
   const navigation = useNavigation()
   const [results, setResults] = useState('')
   const [mode, setMode] = useState('authors')
+  const [coordinates, setCoordinates] = useState([])
+
+  const {
+    representative,
+  } = useBook(results[0], [
+    'representative',
+  ])
+
+  const {
+    latitude,
+    longitude,
+  } = useScrap(representative, [
+    'latitude',
+    'longitude',
+  ])
+
+  const [region, setRegion] = useState({
+    latitude,
+    longitude,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
+  })
+
+  useEffect(() => {
+    setRegion({
+      latitude, 
+      longitude,
+      latitudeDelta: 0.1,
+      longitudeDelta: 0.1,
+    })
+  }, [latitude, longitude])
+
+  const getCoordinates = async () => {
+    const response = await utilityBookCoordinates(results)
+    if (!response.success) {
+      Alert.alert('Error', response.error)
+    }
+    else {
+      setCoordinates(response.data.coordinates)
+    }
+  }
+  useEffect(() => {
+    getCoordinates()
+  }, [results])
 
   const sendQuery = async () => {
     Keyboard.dismiss()
@@ -40,16 +88,6 @@ const Search = () => {
     }
   }
 
-  const toggleMode = async () => {
-    setResults([])
-    if (mode === 'authors') {
-      setMode('books')
-    }
-    else {
-      setMode('authors')
-    }
-  }
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View centerH style={{
@@ -65,7 +103,15 @@ const Search = () => {
             width: dimensions.width * (1 / 10),
             height: 48,
           }}>
-            <TouchableOpacity onPress={toggleMode}>
+            <TouchableOpacity onPress={() => {
+              setResults([])
+              if (mode === 'authors') {
+                setMode('books')
+              }
+              else {
+                setMode('authors')
+              }
+            }}>
               <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.complement4} size={18} />
             </TouchableOpacity>
           </View>
@@ -99,6 +145,38 @@ const Search = () => {
           )
         })}
 
+        {mode === 'books' && results && results.length > 0 && (
+          <MapView
+            region={region}
+            style={{
+              width: dimensions.width,
+              marginBottom: 16,
+              borderRadius: 8,
+              height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
+            }}
+          >
+            {results && results.map((book) => {
+              return (
+                <TouchableOpacity key={book} onPress={() => {
+                  router.push({
+                    pathname: '/book',
+                    params: {
+                      book,
+                    }
+                  })
+                }}>
+                  <BookMarker book={book} />
+                </TouchableOpacity>
+              )
+            })}
+
+            <Polyline
+              coordinates={coordinates}
+              strokeColor={palette.primary0}
+              strokeWidth={2}
+            />
+          </MapView>
+        )}
         {mode === 'books' && results && results.map((book) => {
           return (
             <BookComponent book={book} key={book} clickable showAuthor />
