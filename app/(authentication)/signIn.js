@@ -77,6 +77,7 @@ export default function App() {
             autoCapitalize='none'
             autoCorrect={false}
             autoComplete='off'
+            secureTextEntry={true}
             onChangeText={(password) => {
               setPassword(password)
               setPasswordError('')

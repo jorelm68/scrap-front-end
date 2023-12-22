@@ -199,6 +199,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                                     autoCapitalize={box.autoCapitalize}
                                                     autoCorrect={box.autoCorrect}
                                                     autoComplete={box.autoComplete}
+                                                    secureTextEntry={box.secureTextEntry}
                                                     width={index === boxes.length - 1 ? '90%' : '100%'}
                                                     value={values[index]}
                                                     onChangeText={(text) => {

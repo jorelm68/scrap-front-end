@@ -219,6 +219,7 @@ const Settings = () => {
                             autoCorrect: false,
                             autoCapitalize: 'none',
                             autoComplete: 'off',
+                            secureTextEntry: true,
                         }
                     ]}
                     onSubmit={async (values) => {
@@ -247,6 +248,7 @@ const Settings = () => {
                             autoCorrect: false,
                             autoCapitalize: 'none',
                             autoComplete: 'off',
+                            secureTextEntry: true,
                         },
                         {
                             placeholder: 'New Password',
@@ -255,6 +257,7 @@ const Settings = () => {
                             autoCorrect: false,
                             autoCapitalize: 'none',
                             autoComplete: 'off',
+                            secureTextEntry: true,
                         },
                         {
                             placeholder: 'Confirm New Password',
@@ -263,6 +266,7 @@ const Settings = () => {
                             autoCorrect: false,
                             autoCapitalize: 'none',
                             autoComplete: 'off',
+                            secureTextEntry: true,
                         },
                     ]}
                     onSubmit={async (values) => {

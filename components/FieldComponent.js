@@ -2,7 +2,7 @@ import { TextField, View, Text } from 'react-native-ui-lib'
 import { palette, fonts } from '../data/styles'
 import React from 'react'
 
-const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, maxLength, autoCapitalize, autoCorrect, autoComplete }) => {
+const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, maxLength, autoCapitalize, autoCorrect, autoComplete, secureTextEntry }) => {
     return (
         <View width={width}>
             <TextField
@@ -20,6 +20,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                 autoCapitalize={autoCapitalize}
                 autoCorrect={autoCorrect}
                 autoComplete={autoComplete}
+                secureTextEntry={secureTextEntry}
                 style={{
                     paddingHorizontal: 8,
                     fontFamily: fonts.itim,

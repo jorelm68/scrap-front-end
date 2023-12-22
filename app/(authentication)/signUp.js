@@ -48,6 +48,7 @@ const SignUp = () => {
             placeholder='Pseudonym (username)'
             autoCapitalize='none'
             autoCorrect={false}
+            autoComplete='off'
             onChangeText={(pseudonym) => {
               setPseudonym(pseudonym)
               setPseudonymError('')
@@ -63,6 +64,7 @@ const SignUp = () => {
             placeholder='Email Address'
             autoCapitalize='none'
             autoCorrect={false}
+            autoComplete='off'
             onChangeText={(email) => {
               setEmail(email)
               setEmailError('')
@@ -77,6 +79,8 @@ const SignUp = () => {
             placeholder='Password'
             autoCapitalize='none'
             autoCorrect={false}
+            autoComplete='off'
+            secureTextEntry={true}
             onChangeText={(password) => {
               setPassword(password)
               setPasswordError('')
@@ -92,6 +96,8 @@ const SignUp = () => {
             placeholder='Confirm Password'
             autoCapitalize='none'
             autoCorrect={false}
+            autoComplete='off'
+            secureTextEntry={true}
             onChangeText={(confirmPassword) => {
               setConfirmPassword(confirmPassword)
               setConfirmPasswordError('')
@@ -109,6 +115,7 @@ const SignUp = () => {
               placeholder="First Name"
               autoCapitalize='words'
               autoCorrect={false}
+              autoComplete='off'
               onChangeText={(firstName) => {
                 setFirstName(firstName);
                 setFirstNameError('');
@@ -124,6 +131,7 @@ const SignUp = () => {
               placeholder="Last Name"
               autoCapitalize='words'
               autoCorrect={false}
+              autoComplete='off'
               onChangeText={(lastName) => {
                 setLastName(lastName);
                 setLastNameError('');
