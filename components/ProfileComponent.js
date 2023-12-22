@@ -106,7 +106,9 @@ const ProfileComponent = ({ author }) => {
   }, [profileBooks])
 
   const profileHeader = <View style={{
+    width: dimensions.width,
     height: (dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8),
+    marginBottom: 8,
   }}>
     <TouchableWithoutFeedback onPress={() => {
       setPhotosReverse(!photosReverse)
@@ -116,7 +118,9 @@ const ProfileComponent = ({ author }) => {
       }} />
     </TouchableWithoutFeedback>
 
-    <View width='100%' row centerV>
+    <View row centerV style={{
+      width: dimensions.width,
+    }}>
       <TouchableWithoutFeedback onPress={() => {
         setPhotosReverse(!photosReverse)
       }}>
@@ -421,9 +425,7 @@ const ProfileComponent = ({ author }) => {
         height: dimensions.height,
       }}>
         {profileHeader}
-        <View center row style={{
-          marginTop: 16,
-        }}>
+        <View center row>
           <View centerV style={{
             width: dimensions.width / 3,
             height: 64,
