@@ -1,6 +1,6 @@
 import { View, Text, Image } from 'react-native-ui-lib'
 import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import useBook from '../hooks/useBook'
 import { dimensions, palette, fonts } from '../data/styles'
 import useAuthor from '../hooks/useAuthor'
@@ -8,9 +8,11 @@ import MapView from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
+import AppContext from '../context/AppContext'
 
 const BookComponent = ({ book, showAuthor, clickable }) => {
     const router = useRouter()
+    const { user } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
     const {
         author,
@@ -20,6 +22,8 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         representative,
         scraps,
         miles,
+        likes,
+        toggleLike,
     } = useBook(book, [
         'author',
         'title',
@@ -28,6 +32,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         'representative',
         'scraps',
         'miles',
+        'likes',
     ])
 
     const {
@@ -165,21 +170,51 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             <View center style={{
                                 width: (dimensions.width - 8) / 4,
                                 height: dimensions.width / 4,
+                                backgroundColor: palette.color2,
+                                borderRadius: 8,
                             }}>
-                                <Ionicons name='pin' color={palette.color5} size={24} />
-                                <Text style={{
-                                    fontFamily: fonts.itim,
-                                    fontSize: 12,
-                                    lineHeight: 14,
-                                    textAlign: 'center',
-                                    color: palette.color5,
-                                }}>{place}</Text>
-                                <Text style={{
-                                    fontFamily: fonts.itim,
-                                    fontSize: 12,
-                                    textAlign: 'center',
-                                    color: palette.color5,
-                                }}>{Math.round(miles)} Miles</Text>
+                                <TouchableOpacity onPress={user !== author ? toggleLike : () => {
+                                    router.push({
+                                        pathname: '/likes',
+                                        params: {
+                                            book,
+                                        }
+                                    })
+                                }}>
+                                    <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
+                                </TouchableOpacity>
+                                <View center row>
+                                    <Text style={{
+                                        fontFamily: fonts.itim,
+                                        fontSize: 12,
+                                        lineHeight: 14,
+                                        textAlign: 'center',
+                                        color: palette.color5,
+                                    }}>{place ? place : 'Somwhere'}</Text>
+                                    <Ionicons name='pin' color={palette.color6} size={12} />
+                                </View>
+
+                                <View center row>
+                                    <Text style={{
+                                        marginRight: 2,
+                                        fontFamily: fonts.itim,
+                                        fontSize: 12,
+                                        textAlign: 'center',
+                                        color: palette.color5,
+                                    }}>{Math.round(miles)} Miles</Text>
+                                    <Ionicons name='car' color={palette.color6} size={12} />
+                                </View>
+
+                                <View center row>
+                                    <Text style={{
+                                        marginRight: 2,
+                                        fontFamily: fonts.itim,
+                                        fontSize: 12,
+                                        textAlign: 'center',
+                                        color: palette.color5,
+                                    }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
+                                    <Ionicons name='person' color={palette.color6} size={12} />
+                                </View>
                             </View>
                         )}
                         {hidden && (
@@ -277,6 +312,18 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 textAlign: 'center',
                                 color: palette.color5,
                             }}>{place}</Text>
+                            <Text style={{
+                                fontFamily: fonts.itim,
+                                fontSize: 12,
+                                textAlign: 'center',
+                                color: palette.color5,
+                            }}>{Math.round(miles)} Miles</Text>
+                            <Text style={{
+                                fontFamily: fonts.itim,
+                                fontSize: 12,
+                                textAlign: 'center',
+                                color: palette.color5,
+                            }}>{likes.length} like{likes.length === 1 ? '' : 's'} </Text>
                         </View>
                     )}
                     {hidden && (
