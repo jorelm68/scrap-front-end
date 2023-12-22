@@ -110,7 +110,7 @@ const Library = () => {
           <Text style={{
             fontFamily: fonts.playBold,
             fontSize: 48,
-            color: palette.primary4,
+            color: palette.complement4,
           }}>Books</Text>
         </TouchableOpacity>
 
@@ -120,7 +120,7 @@ const Library = () => {
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.primary4,
+              color: palette.complement4,
             }}> Create</Text>
           </TouchableOpacity>
           <View style={{
@@ -131,7 +131,7 @@ const Library = () => {
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.primary4,
+              color: palette.complement4,
             }}> Delete</Text>
           </TouchableOpacity>
         </View>
@@ -145,7 +145,7 @@ const Library = () => {
           <Text style={{
             fontFamily: fonts.playBold,
             fontSize: 48,
-            color: palette.primary4,
+            color: palette.complement4,
           }}>Scraps</Text>
         </TouchableOpacity>
         <View>
@@ -154,7 +154,7 @@ const Library = () => {
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.primary4,
+              color: palette.complement4,
             }}> Create</Text>
           </TouchableOpacity>
           <View style={{
@@ -165,7 +165,7 @@ const Library = () => {
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.primary4,
+              color: palette.complement4,
             }}> Delete</Text>
           </TouchableOpacity>
         </View>

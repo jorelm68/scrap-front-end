@@ -209,7 +209,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
                                                     <TouchableOpacity center style={{
                                                         width: '10%',
                                                     }} onPress={handleSubmit}>
-                                                        <Ionicons color={palette.primary4} name='checkmark' size={24} />
+                                                        <Ionicons color={palette.complement4} name='checkmark-circle' size={24} />
                                                     </TouchableOpacity>
                                                 )}
                                             </View>

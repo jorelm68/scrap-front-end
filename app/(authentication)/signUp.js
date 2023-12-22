@@ -140,7 +140,7 @@ const SignUp = () => {
 
           <ButtonComponent
             label='Sign Up'
-            icon='checkmark'
+            icon='checkmark-circle'
             onPress={async () => {
               router.push('/loading')
               if (!regexAuthorPseudonym.test(pseudonym)) {

@@ -104,7 +104,7 @@ export default function App() {
             <View height={16} />
             <ButtonComponent
               label='Sign In'
-              icon='checkmark'
+              icon='checkmark-circle'
               onPress={async () => {
                 router.push('/loading')
                 // First set the error messages if necessary

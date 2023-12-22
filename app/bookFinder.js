@@ -68,7 +68,7 @@ const BookFinder = () => {
                     onSubmit(selection)
                     router.back()
                 }}>
-                    <Ionicons name='checkmark' color={palette.primary4} size={24} />
+                    <Ionicons name='checkmark-circle' color={palette.complement4} size={24} />
                 </TouchableOpacity>
             ),
         })

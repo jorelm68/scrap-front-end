@@ -256,13 +256,14 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='close-circle' color={palette.primary4} size={48} />
+                <Ionicons name='close-circle' color={palette.complement4} size={48} />
               </View>
 
               <View center>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 18,
+                  color: palette.complement4,
                 }}>Retake</Text>
               </View>
             </TouchableOpacity>
@@ -292,13 +293,14 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='checkmark-circle' color={palette.primary4} size={48} />
+                <Ionicons name='checkmark-circle' color={palette.complement4} size={48} />
               </View>
 
               <View center>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 18,
+                  color: palette.complement4,
                 }}>Save</Text>
               </View>
             </TouchableOpacity>
