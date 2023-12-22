@@ -38,6 +38,14 @@ const Scrap = ({ scrap }) => {
     ])
 
     const {
+        likes,
+        setLikes,
+        toggleLike,
+    } = useBook(book, [
+        'likes',
+    ])
+
+    const {
         iHeadshot,
         firstName,
         lastName,
@@ -50,6 +58,25 @@ const Scrap = ({ scrap }) => {
     ])
 
     const [isLongPressing, setIsLongPressing] = useState(false)
+    const [showHeart, setShowHeart] = useState(false)
+    const [lastTapTime, setLastTapTime] = useState(0);
+    const handleDoubleTap = () => {
+        const currentTime = new Date().getTime();
+        const timeSinceLastTap = currentTime - lastTapTime;
+        console.log(timeSinceLastTap)
+
+        // Check if the time since the last tap is within a reasonable interval
+        if (timeSinceLastTap < 175) {
+            if (user !== author && !likes.includes(user)) {
+                toggleLike()
+                setLikes([...likes, user])
+                setShowHeart(true)
+                setTimeout(() => setShowHeart(false), 1000)
+            }
+        }
+
+        setLastTapTime(currentTime);
+    };
 
     return (
         <View>
@@ -112,7 +139,17 @@ const Scrap = ({ scrap }) => {
                 </View>
             )}
 
-            <TouchableWithoutFeedback onPress={toggleDirection} onLongPress={() => setIsLongPressing(true)} onPressOut={() => setIsLongPressing(false)}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    toggleDirection()
+                    handleDoubleTap()
+                }}
+                onLongPress={() => {
+                    setIsLongPressing(true)
+                }}
+                onPressOut={() => {
+                    setIsLongPressing(false)
+                }}>
                 <View center>
                     <Image source={iPrograph} style={{
                         width: dimensions.width,
@@ -120,6 +157,15 @@ const Scrap = ({ scrap }) => {
                         borderRadius: isLongPressing ? 0 : 8,
 
                     }} />
+                    {showHeart && (
+                        <View center style={{
+                            position: 'absolute',
+                            width: dimensions.width,
+                            height: dimensions.width,
+                        }}>
+                            <Ionicons name='heart' color='red' size={dimensions.width / 2} />
+                        </View>
+                    )}
                     {!isLongPressing && (
                         <Image source={iRetrograph} style={{
                             position: 'absolute',
