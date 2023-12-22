@@ -17,6 +17,21 @@ export const c1 = {
     complement4: '#552600',
 }
 
+export const brighterC1 = {
+    primary0: '#C2854D', // Slightly brighter than original primary0
+    primary1: '#FFE8C6', // Slightly brighter than original primary1
+    primary2: '#E6B87A', // Slightly brighter than original primary2
+    primary3: '#A0722A', // Slightly brighter than original primary3
+    primary4: '#7E471E', // Slightly brighter than original primary4
+
+    complement0: '#C27E4D', // Slightly brighter than original complement0
+    complement1: '#FFDAA6', // Slightly brighter than original complement1
+    complement2: '#D69F6A', // Slightly brighter than original complement2
+    complement3: '#99682B', // Slightly brighter than original complement3
+    complement4: '#7E471E', // Slightly brighter than original complement4 (same as primary4)
+};
+
+
 export const c2 = {
     primary0: '#D3EBEB',
     primary1: '#9ECCCC',
@@ -35,7 +50,7 @@ export const c2 = {
 
 
 
-export const palette = c2
+export const palette = brighterC1
 
 export const fonts = {
     itim: 'itim',
