@@ -110,6 +110,8 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                             author,
                                         }
                                     })
+                                }} style={{
+                                    marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
                                 }}>
                                     <View centerV row style={{
                                         width: (dimensions.width - 8) / 2,
