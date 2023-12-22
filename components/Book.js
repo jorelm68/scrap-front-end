@@ -12,6 +12,7 @@ import { fonts, dimensions, palette } from '../data/styles'
 import BookComponent from './BookComponent'
 import useAuthor from '../hooks/useAuthor'
 import AuthorComponent from './AuthorComponent'
+import { getDateRange } from '../data/utility'
 
 const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
@@ -27,6 +28,8 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         description,
         miles,
         likes,
+        beginDate,
+        endDate,
         toggleLike,
     } = useBook(book, [
         'scraps',
@@ -36,6 +39,8 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
         'description',
         'miles',
         'likes',
+        'beginDate',
+        'endDate',
     ])
 
     const {
@@ -108,6 +113,19 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     width: dimensions.width,
                     height: 24,
                 }}>
+                    {beginDate && endDate && (
+                        <View row center style={{
+                            position: 'absolute',
+                            left: 4,
+                        }}>
+                            <Text style={{
+                                fontFamily: fonts.itim,
+                                fontSize: 12,
+                                color: palette.color6,
+                            }}>{getDateRange(beginDate, endDate)} </Text>
+                        </View>
+                    )}
+
                     <View row center style={{
                         position: 'absolute',
                         right: 0,
@@ -141,7 +159,6 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                             <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={24} />
                         </TouchableOpacity>
                     </View>
-
                 </View>
                 <View center style={{
                     position: 'absolute',
