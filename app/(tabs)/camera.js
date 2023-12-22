@@ -147,7 +147,7 @@ const CameraScreen = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.primary0,
+      backgroundColor: isSaving ? palette.primary0 : palette.complement4,
     }}>
       {!isSaving && (
         <View center>
@@ -157,7 +157,7 @@ const CameraScreen = () => {
             <Text style={{
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.primary4,
+              color: palette.complement0,
             }}>{dateAndTimeDisplay}</Text>
           </View>
 
@@ -167,7 +167,7 @@ const CameraScreen = () => {
             <Text style={{
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.primary4,
+              color: palette.complement0,
             }}>{locationDisplay}</Text>
           </View>
 
@@ -187,7 +187,7 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={palette.complement4} size={80} />
+                  <Ionicons name='scan' color={palette.complement0} size={80} />
                 </TouchableOpacity>
 
                 <View row>
@@ -195,14 +195,14 @@ const CameraScreen = () => {
                     <TouchableOpacity onPress={() => {
                       setFlash(!flash)
                     }}>
-                      {flash && <Ionicons name='flash' color={palette.complement4} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={palette.complement4} size={35} />}
+                      {flash && <Ionicons name='flash' color={palette.complement0} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={palette.complement0} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='50%' center>
                     <TouchableOpacity onPress={handleFlipCamera}>
-                      <Ionicons name='refresh' color={palette.complement4} size={35} />
+                      <Ionicons name='refresh' color={palette.complement0} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>
