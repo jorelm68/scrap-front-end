@@ -140,7 +140,7 @@ const ProfileComponent = ({ author }) => {
           fontSize: 28,
           width: dimensions.width * (1 / 2 + 1 / 8),
           fontFamily: fonts.jockeyOne,
-          color: palette.primary4,
+          color: palette.color5,
         }}>{name}</Text>
       </TouchableOpacity>
     </View>
@@ -165,7 +165,7 @@ const ProfileComponent = ({ author }) => {
             setMode('books')
           }}>
             <View center style={{
-              backgroundColor: mode === 'books' ? palette.primary4 : palette.primary0,
+              backgroundColor: mode === 'books' ? palette.color5 : palette.color1,
               borderRadius: 24,
               width: (dimensions.width - 8) / 3 - 2,
               height: 48,
@@ -174,7 +174,7 @@ const ProfileComponent = ({ author }) => {
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 16,
-                color: mode === 'books' ? palette.primary0 : palette.primary4,
+                color: mode === 'books' ? palette.color1 : palette.color5,
               }}>{profileBooks.length} Books</Text>
             </View>
           </TouchableOpacity>
@@ -183,7 +183,7 @@ const ProfileComponent = ({ author }) => {
             setMode('miles')
           }}>
             <View center style={{
-              backgroundColor: mode === 'miles' ? palette.primary4 : palette.primary0,
+              backgroundColor: mode === 'miles' ? palette.color5 : palette.color1,
               borderRadius: 24,
               width: (dimensions.width - 8) / 3 - 2,
               height: 48,
@@ -192,7 +192,7 @@ const ProfileComponent = ({ author }) => {
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 16,
-                color: mode === 'miles' ? palette.primary0 : palette.primary4,
+                color: mode === 'miles' ? palette.color1 : palette.color5,
               }}>{Math.round(miles)} Miles</Text>
             </View>
           </TouchableOpacity>
@@ -201,7 +201,7 @@ const ProfileComponent = ({ author }) => {
             setMode('friends')
           }}>
             <View center style={{
-              backgroundColor: mode === 'friends' ? palette.primary4 : palette.primary0,
+              backgroundColor: mode === 'friends' ? palette.color5 : palette.color1,
               borderRadius: 24,
               width: (dimensions.width - 8) / 3 - 2,
               height: 48,
@@ -209,7 +209,7 @@ const ProfileComponent = ({ author }) => {
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 16,
-                color: mode === 'friends' ? palette.primary0 : palette.primary4,
+                color: mode === 'friends' ? palette.color1 : palette.color5,
               }}>{friends.length} Friends</Text>
             </View>
           </TouchableOpacity>
@@ -222,7 +222,7 @@ const ProfileComponent = ({ author }) => {
         }}>
 
           <View style={{
-            backgroundColor: palette.primary1,
+            backgroundColor: palette.color2,
             width: (dimensions.width - 8) * (2 / 3) - 2,
             height: 48 * 2 + 4,
             borderRadius: 8,
@@ -232,7 +232,7 @@ const ProfileComponent = ({ author }) => {
               fontFamily: fonts.itim,
               fontSize: 16,
               padding: 4,
-              color: palette.primary4,
+              color: palette.color5,
             }}>{autobiography}</Text>
           </View>
 
@@ -352,7 +352,7 @@ const ProfileComponent = ({ author }) => {
   if (mode === 'books') {
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-        backgroundColor: palette.primary0,
+        backgroundColor: palette.color1,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -374,7 +374,7 @@ const ProfileComponent = ({ author }) => {
   else if (mode === 'miles') {
     return (
       <View style={{
-        backgroundColor: palette.primary0,
+        backgroundColor: palette.color1,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -406,7 +406,7 @@ const ProfileComponent = ({ author }) => {
 
           <Polyline
             coordinates={coordinates}
-            strokeColor={palette.primary0}
+            strokeColor={palette.color1}
             strokeWidth={2}
           />
         </MapView>
@@ -416,7 +416,7 @@ const ProfileComponent = ({ author }) => {
   else {
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-        backgroundColor: palette.primary0,
+        backgroundColor: palette.color1,
         width: dimensions.width,
         height: dimensions.height,
       }}>
@@ -427,7 +427,7 @@ const ProfileComponent = ({ author }) => {
           <View centerV style={{
             width: dimensions.width / 3,
             height: 64,
-            borderBottomColor: palette.primary2,
+            borderBottomColor: palette.color3,
             borderBottomWidth: option === 'friends' ? 2 : 0,
             marginBottom: 4,
           }}>
@@ -438,7 +438,7 @@ const ProfileComponent = ({ author }) => {
                 fontFamily: fonts.itim,
                 fontSize: 16,
                 padding: 4,
-                color: option === 'friends' ? palette.primary2 : palette.primary4,
+                color: option === 'friends' ? palette.color3 : palette.color5,
                 textAlign: 'center',
               }}>Friends</Text>
             </TouchableOpacity>
@@ -448,7 +448,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.primary2,
+              borderBottomColor: palette.color3,
               borderBottomWidth: option === 'incomingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -458,7 +458,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'incomingFriendRequests' ? palette.primary2 : palette.primary4,
+                  color: option === 'incomingFriendRequests' ? palette.color3 : palette.color5,
                   textAlign: 'center',
                 }}>Incoming Requests</Text>
               </TouchableOpacity>
@@ -469,7 +469,7 @@ const ProfileComponent = ({ author }) => {
             <View centerV style={{
               width: dimensions.width / 3,
               height: 64,
-              borderBottomColor: palette.primary2,
+              borderBottomColor: palette.color3,
               borderBottomWidth: option === 'outgoingFriendRequests' ? 2 : 0,
             }}>
               <TouchableOpacity onPress={() => {
@@ -479,7 +479,7 @@ const ProfileComponent = ({ author }) => {
                   fontFamily: fonts.itim,
                   fontSize: 16,
                   padding: 4,
-                  color: option === 'outgoingFriendRequests' ? palette.primary2 : palette.primary4,
+                  color: option === 'outgoingFriendRequests' ? palette.color3 : palette.color5,
                   textAlign: 'center',
                 }}>Outgoing Requests</Text>
               </TouchableOpacity>

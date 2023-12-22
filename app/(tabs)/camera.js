@@ -135,10 +135,10 @@ const CameraScreen = () => {
       <View flex center style={{
         width: dimensions.width,
         height: dimensions.height,
-        backgroundColor: palette.primary0,
+        backgroundColor: palette.color1,
       }}>
         <LogoComponent />
-        <ActivityIndicator size='large' color={palette.primary4} />
+        <ActivityIndicator size='large' color={palette.color5} />
       </View>
     )
   }
@@ -147,7 +147,7 @@ const CameraScreen = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.primary0,
+      backgroundColor: palette.color1,
     }}>
       {!isSaving && (
         <View center>
@@ -157,7 +157,7 @@ const CameraScreen = () => {
             <Text style={{
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.complement0,
+              color: palette.color5,
             }}>{dateAndTimeDisplay}</Text>
           </View>
 
@@ -167,7 +167,7 @@ const CameraScreen = () => {
             <Text style={{
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
-              color: palette.complement0,
+              color: palette.color5,
             }}>{locationDisplay}</Text>
           </View>
 
@@ -187,7 +187,7 @@ const CameraScreen = () => {
                 <TouchableOpacity style={{
                   marginBottom: 8,
                 }} onPress={() => handleTakeScrap()}>
-                  <Ionicons name='scan' color={palette.complement0} size={80} />
+                  <Ionicons name='scan' color={palette.color5} size={80} />
                 </TouchableOpacity>
 
                 <View row>
@@ -195,14 +195,14 @@ const CameraScreen = () => {
                     <TouchableOpacity onPress={() => {
                       setFlash(!flash)
                     }}>
-                      {flash && <Ionicons name='flash' color={palette.complement0} size={35} />}
-                      {!flash && <Ionicons name='flash-off' color={palette.complement0} size={35} />}
+                      {flash && <Ionicons name='flash' color={palette.color5} size={35} />}
+                      {!flash && <Ionicons name='flash-off' color={palette.color5} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='50%' center>
                     <TouchableOpacity onPress={handleFlipCamera}>
-                      <Ionicons name='refresh' color={palette.complement0} size={35} />
+                      <Ionicons name='refresh' color={palette.color5} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -232,14 +232,14 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='close-circle' color={palette.complement2} size={48} />
+                <Ionicons name='close-circle' color={palette.color6} size={48} />
               </View>
 
               <View center>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 18,
-                  color: palette.complement2,
+                  color: palette.color6,
                 }}>Retake</Text>
               </View>
             </TouchableOpacity>
@@ -269,14 +269,14 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='checkmark-circle' color={palette.complement2} size={48} />
+                <Ionicons name='checkmark-circle' color={palette.color6} size={48} />
               </View>
 
               <View center>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 18,
-                  color: palette.complement2,
+                  color: palette.color6,
                 }}>Save</Text>
               </View>
             </TouchableOpacity>

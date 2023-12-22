@@ -4,64 +4,74 @@ export const dimensions = Dimensions.get('window')
 // https://paletton.com/#uid=73i050kllllaFw0g0qFqFg0w0aF
 
 export const colors = {
-    primary0: '#FFFFFF',
-    primary1: '#FFFAED',
-    primary2: '#F7E6B9',
-    primary3: '#BBA15C',
-    primary4: '#72560B',
+    color1: '#FFFFFF',
+    color2: '#FFFAED',
+    color3: '#F7E6B9',
+    color4: '#BBA15C',
+    color5: '#72560B',
 
-    complement0: '#FFFFFF',
-    complement3: '#46C7FF',
-    complement2: '#025F87',
+    color7: '#FFFFFF',
+    color6: '#46C7FF',
+    color0: '#025F87',
 };
 
 export const orangish = {
-    primary0: '#FFA500', // Orange
-    primary1: '#FF8C00', // Lighter orange
-    primary2: '#FF6347', // Light orange
-    primary3: '#FF4500', // Dark orange
-    primary4: '#FF0000', // Red
+    color1: '#FFA500', // Orange
+    color2: '#FF8C00', // Lighter orange
+    color3: '#FF6347', // Light orange
+    color4: '#FF4500', // Dark orange
+    color5: '#FF0000', // Red
 
-    complement0: '#FF0000', // Red (matching primary4)
-    complement3: '#B22222', // Dark red
-    complement2: '#800000', // Darkest red
+    color7: '#FF0000', // Red (matching color5)
+    color6: '#B22222', // Dark red
+    color0: '#800000', // Darkest red
 };
 
 export const greenish = {
-    primary0: '#98FB98', // Light green
-    primary1: '#7CFC00', // Lighter green
-    primary2: '#00FF00', // Green
-    primary3: '#008000', // Dark green
-    primary4: '#006400', // Darker green
+    color1: '#98FB98', // Light green
+    color2: '#7CFC00', // Lighter green
+    color3: '#00FF00', // Green
+    color4: '#008000', // Dark green
+    color5: '#006400', // Darker green
 
-    complement0: '#800080', // Purple (matching primary4)
-    complement3: '#8A2BE2', // Dark purple
-    complement2: '#4B0082', // Even darker purple
+    color7: '#800080', // Purple (matching color5)
+    color6: '#8A2BE2', // Dark purple
+    color0: '#4B0082', // Even darker purple
 };
 
 export const umich = {
-    primary0: '#FFFFF0', // Super light maize
-    primary1: '#FFEB99', // Lighter maize
-    primary2: '#FFD700', // Maize
-    primary3: '#CCA300', // Darker maize
-    primary4: '#806000', // Dark dark maize
+    color1: '#FFFFF0', // Super light maize
+    color2: '#DDDDDD', // Lighter maize
+    color3: '#FFD700', // Maize
+    color4: '#CCA300', // Darker maize
+    color5: '#806000', // Dark dark maize
 
-    complement0: '#BFEFFF', // Super light blue
-    complement3: '#0080FF', // Blue
-    complement2: '#00274C', // Dark dark blue
+    color7: '#BFEFFF', // Super light blue
+    color6: '#0080FF', // Blue
+    color0: '#00274C', // Dark dark blue
 };
 
 export const dark = {
-    primary0: '#1A1A1A', // Darker gray
-    primary1: '#333333', // Dark gray
-    primary2: '#4D4D4D', // Slightly lighter dark gray
-    primary3: '#808080', // Lighter gray
-    primary4: '#DDDDDD', // Lightest shade of gray
-
-    complement0: '#FFFFFF',
-    complement2: '#DDDDDD',
-    complement3: '#000000',
+    color0: '#000000',
+    color1: '#1A1A1A', // Darker gray
+    color2: '#333333', // Dark gray
+    color3: '#4D4D4D', // Slightly lighter dark gray
+    color4: '#808080', // Lighter gray
+    color5: '#AAAAAA', // Lightest shade of gray
+    color6: '#DDDDDD',
+    color7: '#FFFFFF',
 };
+
+export const light = {
+    color0: '#FFFFFF',
+    color1: '#DDDDDD',
+    color2: '#AAAAAA', // Lightest shade of gray
+    color3: '#808080', // Lighter gray
+    color4: '#4D4D4D', // Slightly lighter dark gray
+    color5: '#333333', // Dark gray
+    color6: '#1A1A1A', // Darker gray
+    color7: '#000000',
+}
 
 
 

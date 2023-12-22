@@ -19,7 +19,7 @@ const SwitchComponent = ({ title, value, onSwitch }) => {
                 fontFamily: fonts.itim,
                 fontSize: 12,
                 paddingRight: 4,
-                color: palette.primary4,
+                color: palette.color5,
             }}>{title}</Text>
             <Switch value={value} onValueChange={onSwitch} />
         </View>

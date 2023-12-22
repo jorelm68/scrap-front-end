@@ -97,7 +97,7 @@ const Library = () => {
 
   return (
     <View style={{
-      backgroundColor: palette.primary0,
+      backgroundColor: palette.color1,
     }}>
       <View style={{
         height: '5%',
@@ -106,32 +106,32 @@ const Library = () => {
         height: '45%',
       }}>
         <TouchableOpacity center onPress={handleBooks}>
-          <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.complement2} />
+          <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.color6} />
           <Text style={{
             fontFamily: fonts.playBold,
             fontSize: 48,
-            color: palette.complement2,
+            color: palette.color6,
           }}>Books</Text>
         </TouchableOpacity>
 
         <View>
           <TouchableOpacity row center onPress={handleCreateBook}>
-            <Ionicons name='add' size={24} color={palette.complement2} />
+            <Ionicons name='add' size={24} color={palette.color6} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.complement2,
+              color: palette.color6,
             }}> Create</Text>
           </TouchableOpacity>
           <View style={{
             height: '15%',
           }} />
           <TouchableOpacity row center onPress={handleDeleteBooks}>
-            <Ionicons name='remove' size={24} color={palette.complement2} />
+            <Ionicons name='remove' size={24} color={palette.color6} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.complement2,
+              color: palette.color6,
             }}> Delete</Text>
           </TouchableOpacity>
         </View>
@@ -141,31 +141,31 @@ const Library = () => {
         height: '45%',
       }}>
         <TouchableOpacity center onPress={handleScraps}>
-          <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.complement2} />
+          <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.color6} />
           <Text style={{
             fontFamily: fonts.playBold,
             fontSize: 48,
-            color: palette.complement2,
+            color: palette.color6,
           }}>Scraps</Text>
         </TouchableOpacity>
         <View>
           <TouchableOpacity row center onPress={handleCreateScrap}>
-            <Ionicons name='add' size={24} color={palette.complement2} />
+            <Ionicons name='add' size={24} color={palette.color6} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.complement2,
+              color: palette.color6,
             }}> Create</Text>
           </TouchableOpacity>
           <View style={{
             height: '15%',
           }} />
           <TouchableOpacity row center onPress={handleDeleteScraps}>
-            <Ionicons name='remove' size={24} color={palette.complement2} />
+            <Ionicons name='remove' size={24} color={palette.color6} />
             <Text style={{
               fontSize: 18,
               fontFamily: fonts.jockeyOne,
-              color: palette.complement2,
+              color: palette.color6,
             }}> Delete</Text>
           </TouchableOpacity>
         </View>

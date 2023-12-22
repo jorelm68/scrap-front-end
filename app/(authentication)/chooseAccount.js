@@ -75,36 +75,36 @@ const ChooseAccount = () => {
             <GestureHandlerRootView>
                 <Drawer
                     itemsTextStyle={{
-                        color: palette.primary4,
+                        color: palette.color5,
                         fontFamily: fonts.playBold,
                     }}
                     rightItems={[
                         {
                             text: 'Sign In',
-                            background: palette.primary2,
+                            background: palette.color3,
                             onPress: () => handleSignIn(item)
                         },
                         {
                             text: 'Forget',
-                            background: palette.primary3,
+                            background: palette.color4,
                             onPress: () => handleForget(item),
                         },
                     ]}
                     leftItem={{
                         text: `Expires: ${getDate(item.expires)}`,
-                        background: palette.primary3,
+                        background: palette.color4,
                     }}
                 >
                     <View center padding-s4 bg-white style={{
                         height: 60,
                         borderBottomWidth: 1,
-                        borderBottomColor: palette.primary4,
-                        backgroundColor: palette.primary0,
+                        borderBottomColor: palette.color5,
+                        backgroundColor: palette.color1,
                     }}>
                         <Text style={{
                             fontFamily: fonts.jockeyOne,
                             fontSize: 18,
-                            color: palette.primary4,
+                            color: palette.color5,
                         }}>{item.pseudonym}</Text>
                     </View>
                 </Drawer>
@@ -116,7 +116,7 @@ const ChooseAccount = () => {
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.primary0,
+            backgroundColor: palette.color1,
         }}>
             <FlatList
                 data={accounts}

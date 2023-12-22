@@ -37,7 +37,7 @@ const ScrapMarker = ({ scrap }) => {
             <View center style={{
                 width: 30,
                 height: 30,
-                backgroundColor: palette.primary0,
+                backgroundColor: palette.color1,
                 borderRadius: 15,
             }}>
                 <Image

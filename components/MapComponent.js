@@ -75,7 +75,7 @@ const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
 
             <Polyline
                 coordinates={coordinates}
-                strokeColor={palette.primary0}
+                strokeColor={palette.color1}
                 strokeWidth={2}
             />
         </MapView>

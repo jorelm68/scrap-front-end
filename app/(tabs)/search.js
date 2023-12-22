@@ -87,7 +87,7 @@ const Search = () => {
 
   return (
     <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-      backgroundColor: palette.primary0,
+      backgroundColor: palette.color1,
       width: dimensions.width,
       height: dimensions.height,
     }}>
@@ -95,7 +95,7 @@ const Search = () => {
         <View centerH style={{
           width: dimensions.width,
           height: dimensions.height,
-          backgroundColor: palette.primary0,
+          backgroundColor: palette.color1,
         }}>
           <View center row style={{
             width: dimensions.width * (8 / 10),
@@ -114,7 +114,7 @@ const Search = () => {
                   setMode('authors')
                 }
               }}>
-                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.complement2} size={18} />
+                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.color6} size={18} />
               </TouchableOpacity>
             </View>
             <FieldComponent
@@ -136,7 +136,7 @@ const Search = () => {
                 width: dimensions.width * (1 / 10),
                 height: dimensions.width * (1 / 10),
               }}>
-                <Ionicons name='search' color={palette.complement2} size={24} />
+                <Ionicons name='search' color={palette.color6} size={24} />
               </View>
             </TouchableOpacity>
           </View>
@@ -174,7 +174,7 @@ const Search = () => {
 
               <Polyline
                 coordinates={coordinates}
-                strokeColor={palette.primary0}
+                strokeColor={palette.color1}
                 strokeWidth={2}
               />
             </MapView>

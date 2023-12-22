@@ -81,7 +81,7 @@ const AuthorComponent = ({ author, disappear }) => {
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
               paddingHorizontal: 4,
-              color: palette.primary0,
+              color: palette.color6,
             }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
           </View>
           <Image source={iHeadshot} style={{
@@ -110,12 +110,12 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='add-circle' color={palette.complement2} size={24} />
+              <Ionicons name='add-circle' color={palette.color6} size={24} />
 
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 16,
-                color: palette.complement2,
+                color: palette.color6,
               }}>Send Request</Text>
             </View>
           </TouchableOpacity>
@@ -132,12 +132,12 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={palette.complement2} size={24} />
+              <Ionicons name='remove-circle' color={palette.color6} size={24} />
 
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.complement2,
+                color: palette.color6,
               }}>Cancel Request</Text>
             </View>
           </TouchableOpacity>
@@ -170,12 +170,12 @@ const AuthorComponent = ({ author, disappear }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='checkmark-circle' color={palette.complement2} size={24} />
+                  <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
 
                   <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.complement2,
+                    color: palette.color6,
                   }}>Accept Request</Text>
                 </View>
               </TouchableOpacity>
@@ -199,12 +199,12 @@ const AuthorComponent = ({ author, disappear }) => {
                   width: '100%',
                   height: '100%',
                 }}>
-                  <Ionicons name='close-circle' color={palette.complement2} size={24} />
+                  <Ionicons name='close-circle' color={palette.color6} size={24} />
 
                   <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.complement2,
+                    color: palette.color6,
                   }}>Reject Request</Text>
                 </View>
               </TouchableOpacity>
@@ -226,12 +226,12 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           }}>
             <View center row>
-              <Ionicons name='remove-circle' color={palette.complement2} size={24} />
+              <Ionicons name='remove-circle' color={palette.color6} size={24} />
 
               <Text style={{
                 fontFamily: fonts.itim,
                 fontSize: 12,
-                color: palette.complement2,
+                color: palette.color6,
               }}>Remove Friend</Text>
             </View>
           </TouchableOpacity>

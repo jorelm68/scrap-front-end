@@ -22,7 +22,7 @@ const Feed = () => {
             paddingTop: 4,
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.primary0,
+            backgroundColor: palette.color1,
         }}>
             {feed && feed.map((book) => {
                 return (

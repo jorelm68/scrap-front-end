@@ -27,14 +27,14 @@ const BookPicker = () => {
           onSubmit(selection)
           router.back()
         }}>
-          <Ionicons name='checkmark-circle' color={palette.complement2} size={24} />
+          <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close-circle' color={palette.complement2} size={24} />
+          <Ionicons name='close-circle' color={palette.color6} size={24} />
         </TouchableOpacity>
       ),
     })
@@ -72,7 +72,7 @@ const BookPicker = () => {
       flexDirection: 'row',
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: palette.primary0,
+      backgroundColor: palette.color1,
     }}>
       {books && books.length > 0 && books.map((book) => {
         return (
@@ -89,7 +89,7 @@ const BookPicker = () => {
                 <Text style={{
                   position: 'absolute',
                   fontSize: 45,
-                  color: palette.complement2,
+                  color: palette.color6,
                   fontFamily: fonts.playBold,
                   bottom: 4,
                   right: 4,

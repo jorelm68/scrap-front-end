@@ -9,17 +9,17 @@ const ButtonComponent = ({ label, onPress, icon }) => {
         <TouchableOpacity onPress={onPress}>
             <View center row style={{
                 borderWidth: 2,
-                borderColor: palette.complement2,
+                borderColor: palette.color6,
                 borderRadius: 24,
                 paddingHorizontal: 8,
                 paddingVertical: 4,
             }}>
-                <Ionicons name={icon} color={palette.complement2} size={24} />
+                <Ionicons name={icon} color={palette.color6} size={24} />
                 <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
                     marginLeft: 2,
-                    color: palette.complement2,
+                    color: palette.color6,
                 }}>{label}</Text>
             </View>
         </TouchableOpacity>

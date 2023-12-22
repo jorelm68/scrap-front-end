@@ -8,7 +8,7 @@ const LogoComponent = () => {
             <Text style={{
                 fontFamily: fonts.jockeyOne,
                 fontSize: 48,
-                color: palette.primary4,
+                color: palette.color5,
             }}>Scrap</Text>
         </View>
     )

@@ -9,10 +9,10 @@ const Loading = () => {
         <View flex center style={{
             width: dimensions.width,
             height: dimensions.height,
-            backgroundColor: palette.primary0,
+            backgroundColor: palette.color1,
         }}>
             <LogoComponent />
-            <ActivityIndicator size='large' color={palette.primary4} />
+            <ActivityIndicator size='large' color={palette.color5} />
         </View>
     )
 }

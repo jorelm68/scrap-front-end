@@ -7,13 +7,13 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
         <View width={width}>
             <TextField
                 placeholder={placeholder}
-                placeholderTextColor={palette.primary3}
+                placeholderTextColor={palette.color4}
                 centered={textAlign === 'center'}
                 containerStyle={{
                     width: '100%',
                     height: 40,
                     borderWidth: 1,
-                    borderColor: palette.primary4,
+                    borderColor: palette.color5,
                     borderRadius: 16,
                     justifyContent: 'center',
                 }}
@@ -25,7 +25,7 @@ const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, ma
                     paddingHorizontal: 8,
                     fontFamily: fonts.itim,
                     height: 40,
-                    color: palette.primary4,
+                    color: palette.color5,
                 }}
                 onChangeText={onChangeText}
                 value={value}

@@ -68,7 +68,7 @@ const BookFinder = () => {
                     onSubmit(selection)
                     router.back()
                 }}>
-                    <Ionicons name='checkmark-circle' color={palette.complement2} size={24} />
+                    <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
                 </TouchableOpacity>
             ),
         })
@@ -77,7 +77,7 @@ const BookFinder = () => {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={{
-                backgroundColor: palette.primary0,
+                backgroundColor: palette.color1,
                 width: dimensions.width,
                 height: dimensions.height,
             }}>
@@ -106,7 +106,7 @@ const BookFinder = () => {
                             width: dimensions.width * (1 / 10),
                             height: dimensions.width * (1 / 10),
                         }}>
-                            <Ionicons name='search' color={palette.complement2} size={24} />
+                            <Ionicons name='search' color={palette.color6} size={24} />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -126,7 +126,7 @@ const BookFinder = () => {
                                     <Text style={{
                                         position: 'absolute',
                                         fontSize: 45,
-                                        color: palette.complement2,
+                                        color: palette.color6,
                                         fontFamily: fonts.playBold,
                                         bottom: 4,
                                         right: 4,

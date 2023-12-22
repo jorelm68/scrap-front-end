@@ -36,7 +36,7 @@ const ScrapList = ({ scraps, renderItem }) => {
             style={{
                 width: dimensions.width,
                 height: dimensions.height,
-                backgroundColor: palette.primary0,
+                backgroundColor: palette.color1,
             }}
         >
             <View style={{
