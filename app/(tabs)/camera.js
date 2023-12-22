@@ -17,7 +17,6 @@ import LogoComponent from '../../components/LogoComponent'
 
 const CameraScreen = () => {
   const { user } = useContext(AppContext)
-  const navigation = useNavigation()
   const [scrap, setScrap] = useState({
     author: user,
   })

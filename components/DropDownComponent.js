@@ -10,8 +10,7 @@ import { useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
 import { defaultHeadshot, defaultImage } from '../data/icons'
 
-const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, boxes, options }) => {
-    const router = useRouter()
+const DropDownComponent = ({ title, value, onSubmit, topBorder, type, boxes }) => {
     const [isDropped, setIsDropped] = useState(false)
     const [values, setValues] = useState([])
     const [submissions, setSubmissions] = useState([])
@@ -40,7 +39,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, amount, type, bo
 
         setSubmissions(newSubmissions)
         setValues(newValues)
-    }, [boxes])
+    }, [value])
 
     const handleSubmit = async () => {
         let passing = true
