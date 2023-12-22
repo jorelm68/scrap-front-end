@@ -28,7 +28,6 @@ const CameraScreen = () => {
   const [camera, setCamera] = useState(null)
   const [flash, setFlash] = useState(false)
   const [light, setLight] = useState(Camera.Constants.FlashMode.off)
-  const [zoomLevel, setZoomLevel] = useState(0) // Initialize with 0 (no zoom)
   const [showButtons, setShowButtons] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -36,7 +35,7 @@ const CameraScreen = () => {
 
   const processLocation = async () => {
     const location = await getLocation()
-    setLocationDisplay(`${location.latitude}, ${location.longitude}`)
+    setLocationDisplay(`${Math.abs(Math.round(location.latitude * 1000) / 1000)}°${location.latitude >= 0 ? 'N' : 'S'}, ${Math.abs(Math.round(location.longitude * 1000) / 1000)}°${location.longitude >= 0 ? 'E' : 'W'}`)
     setScrap((prevScrap) => ({
       ...prevScrap,
       latitude: location.latitude,
@@ -181,7 +180,6 @@ const CameraScreen = () => {
               type={direction}
               ref={(ref) => setCamera(ref)}
               flashMode={light}
-              zoom={zoomLevel} // Apply the zoom level
             />
 
             {permission && permission.granted && showButtons && (
@@ -193,16 +191,7 @@ const CameraScreen = () => {
                 </TouchableOpacity>
 
                 <View row>
-                  <View width='25%' center>
-                    <TouchableOpacity onPress={() => {
-                      const newZoom = Math.max(zoomLevel - 0.015, 0)
-                      setZoomLevel(newZoom)
-                    }}>
-                      <Ionicons name='remove' color={palette.complement4} size={35} />
-                    </TouchableOpacity>
-                  </View>
-
-                  <View width='25%' center>
+                  <View width='50%' center>
                     <TouchableOpacity onPress={() => {
                       setFlash(!flash)
                     }}>
@@ -211,18 +200,9 @@ const CameraScreen = () => {
                     </TouchableOpacity>
                   </View>
 
-                  <View width='25%' center>
+                  <View width='50%' center>
                     <TouchableOpacity onPress={handleFlipCamera}>
                       <Ionicons name='refresh' color={palette.complement4} size={35} />
-                    </TouchableOpacity>
-                  </View>
-
-                  <View width='25%' center>
-                    <TouchableOpacity onPress={() => {
-                      const newZoom = Math.min(zoomLevel + 0.015, 1)
-                      setZoomLevel(newZoom)
-                    }}>
-                      <Ionicons name='add' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
                 </View>
