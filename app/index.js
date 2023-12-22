@@ -42,11 +42,11 @@ const Autothenticate = () => {
 
     setUser(user)
     setAuthenticated(true)
-    router.replace('/feed')
+    router.replace('/offlineCamera')
   }
 
   return (
-    <LoaderScreen message={'Scrap'} color={palette.color5} />
+    <LoaderScreen message={'Scrap'} color={palette.color1} />
   )
 }
 

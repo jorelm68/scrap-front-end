@@ -148,6 +148,13 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name="(offline)"
+          options={{
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
           name="loading"
           options={{
             headerShown: false,
