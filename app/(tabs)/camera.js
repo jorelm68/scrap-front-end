@@ -43,14 +43,6 @@ const CameraScreen = () => {
       longitude: location.longitude,
     }))
   }
-  const handleZoomIn = () => {
-    const newZoom = Math.min(zoomLevel + 0.015, 1)
-    setZoomLevel(newZoom)
-  }
-  const handleZoomOut = () => {
-    const newZoom = Math.max(zoomLevel - 0.015, 0)
-    setZoomLevel(newZoom)
-  }
   const handleFlipCamera = () => {
     setDirection(current => (current === CameraType.back ? CameraType.front : CameraType.back))
   }
@@ -72,8 +64,6 @@ const CameraScreen = () => {
       await delay(1500)
 
       let secondPicture = await camera.takePictureAsync()
-
-      await delay(100)
 
       const firstPictureResized = await ImageManipulator.manipulateAsync(
         firstPicture.uri,
@@ -105,15 +95,13 @@ const CameraScreen = () => {
       }
 
       handleFlipCamera()
+      setLight(Camera.Constants.FlashMode.off)
       setIsLoading(true)
       setIsSaving(false)
     }
     else {
       await requestPermission()
     }
-  }
-  const handleToggleDirection = async () => {
-    setReverse(!reverse)
   }
   useEffect(() => {
     const interval = setInterval(() => {
@@ -206,26 +194,34 @@ const CameraScreen = () => {
 
                 <View row>
                   <View width='25%' center>
-                    <TouchableOpacity onPress={handleZoomOut}>
+                    <TouchableOpacity onPress={() => {
+                      const newZoom = Math.max(zoomLevel - 0.015, 0)
+                      setZoomLevel(newZoom)
+                    }}>
                       <Ionicons name='remove' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
-                    <TouchableOpacity onPress={() => setFlash(!flash)}>
+                    <TouchableOpacity onPress={() => {
+                      setFlash(!flash)
+                    }}>
                       {flash && <Ionicons name='flash' color={palette.complement4} size={35} />}
                       {!flash && <Ionicons name='flash-off' color={palette.complement4} size={35} />}
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
-                    <TouchableOpacity onPress={() => handleFlipCamera()}>
+                    <TouchableOpacity onPress={handleFlipCamera}>
                       <Ionicons name='refresh' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
 
                   <View width='25%' center>
-                    <TouchableOpacity onPress={handleZoomIn}>
+                    <TouchableOpacity onPress={() => {
+                      const newZoom = Math.min(zoomLevel + 0.015, 1)
+                      setZoomLevel(newZoom)
+                    }}>
                       <Ionicons name='add' color={palette.complement4} size={35} />
                     </TouchableOpacity>
                   </View>
@@ -382,7 +378,9 @@ const CameraScreen = () => {
 
           <View height={16} />
 
-          <TouchableWithoutFeedback onPress={handleToggleDirection}>
+          <TouchableWithoutFeedback onPress={() => {
+            setReverse(!reverse)
+          }}>
             <View>
               <Image source={reverse ? scrap.iRetrograph : scrap.iPrograph} style={{
                 width: dimensions.width,
@@ -400,7 +398,7 @@ const CameraScreen = () => {
             </View>
           </TouchableWithoutFeedback>
 
-          <View height={200}/>
+          <View height={200} />
         </ScrollView>
       )}
     </View>
