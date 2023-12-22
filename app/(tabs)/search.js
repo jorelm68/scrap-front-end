@@ -150,7 +150,7 @@ const Search = () => {
             region={region}
             style={{
               width: dimensions.width,
-              marginBottom: 16,
+              marginBottom: 4,
               borderRadius: 8,
               height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
             }}

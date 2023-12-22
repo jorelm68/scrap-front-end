@@ -17,10 +17,10 @@ import cache from '../data/cache'
 const CreateBook = () => {
   const navigation = useNavigation()
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
   const { user, setFunctions } = useContext(AppContext)
   const [book, setBook] = useState({
     author: user,
+    scraps: [],
   })
 
   const {
@@ -43,17 +43,19 @@ const CreateBook = () => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={async () => {
-          setIsLoading(true)
+          router.push('/loading')
           const response = await bookSaveBook(book)
           if (!response.success) {
+            router.back()
             Alert.alert('Error', response.error)
           }
           else {
             cache.filter([user, 'books'])
             cache.filter([user, 'publicBooks'])
+            cache.filter([user, 'profileBooks'])
+            router.back()
             router.back()
           }
-          setIsLoading(false)
         }}>
           <Ionicons name='checkmark-circle' color={palette.complement4} size={24} />
         </TouchableOpacity>
@@ -85,12 +87,6 @@ const CreateBook = () => {
       },
     }))
   }, [])
-
-  if (isLoading) {
-    return (
-      <Text>Loading</Text>
-    )
-  }
 
   return (
     <View style={{
@@ -174,7 +170,7 @@ const CreateBook = () => {
         }}
       />
 
-      {unbookedScraps.length < 10 && (
+      {book.scraps && book.scraps.length < 10 && (
         <View center style={{
           marginVertical: 16,
         }}>

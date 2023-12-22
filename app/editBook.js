@@ -60,7 +60,7 @@ const EditBook = () => {
                     }
                 }
 
-                if (!book.scraps) {
+                if (!scraps) {
                     const response = await edit('Book', book, 'representative', selection[0])
                     if (!response.success) {
                         Alert.alert('Error', response.error)
