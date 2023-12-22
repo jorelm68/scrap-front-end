@@ -10,6 +10,7 @@ import MapView from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import MapComponent from '../components/MapComponent'
+import ScrapList from '../components/ScrapList'
 
 const Scraps = () => {
   const router = useRouter()
@@ -17,15 +18,9 @@ const Scraps = () => {
   const scraps = JSON.parse(params.scraps)
 
   return (
-    <View style={{
-      flex: 1,
-      flexWrap: 'wrap',
-      flexDirection: 'row',
-      width: dimensions.width,
-      height: dimensions.height,
-      backgroundColor: palette.primary0,
-    }}>
-      {scraps && scraps.map((scrap) => {
+    <ScrapList
+      scraps={scraps}
+      renderItem={(scrap) => {
         return (
           <TouchableOpacity key={scrap} onPress={() => {
             router.push({
@@ -34,14 +29,14 @@ const Scraps = () => {
                 scraps: JSON.stringify(scraps),
                 page: JSON.stringify(scraps.indexOf(scrap))
               }
-              
+
             })
           }}>
             <ScrapComponent scrap={scrap} />
           </TouchableOpacity>
         )
-      })}
-    </View>
+      }}
+    />
   )
 }
 

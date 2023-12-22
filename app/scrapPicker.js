@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Alert, ScrollView } from 'react-native'
 import { dimensions, palette, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
+import ScrapList from '../components/ScrapList'
 
 const ScrapPicker = () => {
   const params = useLocalSearchParams()
@@ -64,43 +65,34 @@ const ScrapPicker = () => {
   }
 
   return (
-    <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-      width: dimensions.width,
-      height: dimensions.height,
-      backgroundColor: palette.primary0,
-    }}>
-      <View style={{
-        flex: 1,
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-      }}>
-        {scraps && scraps.length > 0 && scraps.map((scrap) => {
-          return (
-            <TouchableOpacity key={scrap} onPress={() => {
-              toggleSelect(scrap)
+    <ScrapList
+      scraps={scraps}
+      renderItem={(scrap) => {
+        return (
+          <TouchableOpacity key={scrap} onPress={() => {
+            toggleSelect(scrap)
+          }}>
+            <View style={selection.includes(scrap) ? {
+              opacity: 0.5,
+            } : {
+              opacity: 1,
             }}>
-              <View style={selection.includes(scrap) ? {
-                opacity: 0.5,
-              } : {
-                opacity: 1,
-              }}>
-                <ScrapComponent scrap={scrap} />
-              </View>
-              {selection.includes(scrap) && (
-                <Text style={{
-                  position: 'absolute',
-                  fontSize: 45,
-                  color: palette.complement4,
-                  fontFamily: fonts.playBold,
-                  bottom: 4,
-                  right: 4,
-                }}>{selection.indexOf(scrap) + 1}</Text>
-              )}
-            </TouchableOpacity>
-          )
-        })}
-      </View>
-    </ScrollView>
+              <ScrapComponent scrap={scrap} />
+            </View>
+            {selection.includes(scrap) && (
+              <Text style={{
+                position: 'absolute',
+                fontSize: 45,
+                color: palette.complement4,
+                fontFamily: fonts.playBold,
+                bottom: 4,
+                right: 4,
+              }}>{selection.indexOf(scrap) + 1}</Text>
+            )}
+          </TouchableOpacity>
+        )
+      }}
+    />
   )
 }
 

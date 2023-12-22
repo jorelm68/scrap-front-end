@@ -64,7 +64,10 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     }, [navigation, title, user, author])
 
     useEffect(() => {
-        if (isPublic) {
+        if (scrapsGiven) {
+            setHidden(false)
+        }
+        else if (isPublic) {
             setHidden(false)
         }
         else {
