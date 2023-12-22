@@ -72,7 +72,8 @@ const AuthorComponent = ({ author, disappear }) => {
             position: 'absolute',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
             marginLeft: 32,
-            borderRadius: 8,
+            paddingRight: 8,
+            borderRadius: 24,
             marginTop: 16,
           }}>
             <Text style={{
