@@ -53,23 +53,23 @@ export const umich = {
 
 export const dark = {
     color0: '#000000',
-    color1: '#1A1A1A', // Darker gray
-    color2: '#333333', // Dark gray
-    color3: '#4D4D4D', // Slightly lighter dark gray
-    color4: '#808080', // Lighter gray
-    color5: '#AAAAAA', // Lightest shade of gray
-    color6: '#DDDDDD',
+    color1: '#111111',
+    color2: '#333333',
+    color3: '#555555',
+    color4: '#888888',
+    color5: '#AAAAAA',
+    color6: '#CCCCCC',
     color7: '#FFFFFF',
 };
 
 export const light = {
     color0: '#FFFFFF',
-    color1: '#DDDDDD',
-    color2: '#AAAAAA', // Lightest shade of gray
-    color3: '#808080', // Lighter gray
-    color4: '#4D4D4D', // Slightly lighter dark gray
-    color5: '#333333', // Dark gray
-    color6: '#1A1A1A', // Darker gray
+    color1: '#CCCCCC',
+    color2: '#AAAAAA', 
+    color3: '#888888',
+    color4: '#555555',
+    color5: '#333333',
+    color6: '#111111',
     color7: '#000000',
 }
 
