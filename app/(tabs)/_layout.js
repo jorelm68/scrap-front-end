@@ -11,20 +11,20 @@ const Layout = () => {
                 name="feed"
                 options={{
                     tabBarLabel: 'Feed',
-                    tabBarIcon: ({ size, color }) => <Ionicons name={'home'} size={size} color={color} />,
+                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />,
                     headerTitle: 'Feed',
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.complement4,
+                        color: palette.complement0,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
-                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarInactiveTintColor: palette.complement2,
                     tabBarActiveTintColor: palette.complement0,
                 }}
             />
@@ -32,20 +32,20 @@ const Layout = () => {
                 name="search"
                 options={{
                     tabBarLabel: 'Search',
-                    tabBarIcon: ({ size, color }) => <Ionicons name={'search'} size={size} color={color} />,
+                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'search' : 'search-outline'} size={size} color={color} />,
                     headerTitle: 'Search',
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.complement4,
+                        color: palette.complement0,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
-                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarInactiveTintColor: palette.complement2,
                     tabBarActiveTintColor: palette.complement0,
                 }}
             />
@@ -53,20 +53,20 @@ const Layout = () => {
                 name="camera"
                 options={{
                     tabBarLabel: 'Camera',
-                    tabBarIcon: ({ size, color }) => <Ionicons name={'camera'} size={size} color={color} />,
+                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'camera' : 'camera-outline'} size={size} color={color} />,
                     headerTitle: 'Scrap',
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.complement4,
+                        color: palette.complement0,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
-                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarInactiveTintColor: palette.complement2,
                     tabBarActiveTintColor: palette.complement0,
                 }}
             />
@@ -74,20 +74,20 @@ const Layout = () => {
                 name="library"
                 options={{
                     tabBarLabel: 'Library',
-                    tabBarIcon: ({ size, color }) => <Ionicons name={'library'} size={size} color={color} />,
+                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'library' : 'library-outline'} size={size} color={color} />,
                     headerTitle: 'Library',
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.complement4,
+                        color: palette.complement0,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
-                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarInactiveTintColor: palette.complement2,
                     tabBarActiveTintColor: palette.complement0,
                 }}
             />
@@ -95,20 +95,20 @@ const Layout = () => {
                 name="profileInitial"
                 options={{
                     tabBarLabel: 'Profile',
-                    tabBarIcon: ({ size, color }) => <Ionicons name={'person'} size={size} color={color} />,
+                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />,
                     headerTitle: 'Profile',
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
-                        color: palette.complement4,
+                        color: palette.complement0,
                     },
                     headerStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
                     tabBarStyle: {
-                        backgroundColor: palette.complement2,
+                        backgroundColor: palette.complement3,
                     },
-                    tabBarInactiveTintColor: palette.complement4,
+                    tabBarInactiveTintColor: palette.complement2,
                     tabBarActiveTintColor: palette.complement0,
                 }}
             />

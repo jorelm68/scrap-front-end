@@ -86,7 +86,7 @@ const Scrap = ({ scrap }) => {
                                 }
                             })
                         }}>
-                            <Ionicons name='pencil' color={palette.complement4} size={18} />
+                            <Ionicons name='pencil' color={palette.complement2} size={18} />
                         </TouchableOpacity>
                     )}
 

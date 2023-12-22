@@ -38,10 +38,10 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
           }}
         />
@@ -53,10 +53,10 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
           }}
         />
@@ -67,15 +67,15 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -88,14 +88,14 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -108,14 +108,14 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -140,14 +140,14 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -159,15 +159,15 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -179,14 +179,14 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -198,14 +198,14 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -218,15 +218,15 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -238,15 +238,15 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -259,15 +259,15 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerBackTitleVisible: false,
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}
@@ -280,14 +280,14 @@ const Layout = () => {
             headerTitleStyle: {
               fontFamily: fonts.playBold,
               fontSize: 24,
-              color: palette.complement4,
+              color: palette.complement0,
             },
             headerStyle: {
-              backgroundColor: palette.complement2, // Set your desired color here
+              backgroundColor: palette.complement3, // Set your desired color here
             },
             headerLeft: router.canGoBack() ? () => (
               <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={24} color={palette.complement4} />
+                <Ionicons name="chevron-back" size={24} color={palette.complement2} />
               </TouchableOpacity>
             ) : () => { },
           }}

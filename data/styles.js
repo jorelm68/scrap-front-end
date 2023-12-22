@@ -11,10 +11,8 @@ export const colors = {
     primary4: '#72560B',
 
     complement0: '#FFFFFF',
-    complement1: '#91DDFE',
-    complement2: '#46C7FF',
-    complement3: '#08B3FE',
-    complement4: '#025F87',
+    complement3: '#46C7FF',
+    complement2: '#025F87',
 };
 
 export const orangish = {
@@ -25,10 +23,8 @@ export const orangish = {
     primary4: '#FF0000', // Red
 
     complement0: '#FF0000', // Red (matching primary4)
-    complement1: '#CD5C5C', // Darker red
-    complement2: '#B22222', // Dark red
-    complement3: '#8B0000', // Even darker red
-    complement4: '#800000', // Darkest red
+    complement3: '#B22222', // Dark red
+    complement2: '#800000', // Darkest red
 };
 
 export const greenish = {
@@ -39,10 +35,8 @@ export const greenish = {
     primary4: '#006400', // Darker green
 
     complement0: '#800080', // Purple (matching primary4)
-    complement1: '#9400D3', // Darker purple
-    complement2: '#8A2BE2', // Dark purple
-    complement3: '#800080', // Purple (matching complement0)
-    complement4: '#4B0082', // Even darker purple
+    complement3: '#8A2BE2', // Dark purple
+    complement2: '#4B0082', // Even darker purple
 };
 
 export const umich = {
@@ -53,10 +47,20 @@ export const umich = {
     primary4: '#806000', // Dark dark maize
 
     complement0: '#BFEFFF', // Super light blue
-    complement1: '#80C3FF', // Lighter blue
-    complement2: '#0080FF', // Blue
-    complement3: '#004C99', // Darker blue
-    complement4: '#00274C', // Dark dark blue
+    complement3: '#0080FF', // Blue
+    complement2: '#00274C', // Dark dark blue
+};
+
+export const dark = {
+    primary0: '#1A1A1A', // Darker gray
+    primary1: '#333333', // Dark gray
+    primary2: '#4D4D4D', // Slightly lighter dark gray
+    primary3: '#808080', // Lighter gray
+    primary4: '#DDDDDD', // Lightest shade of gray
+
+    complement0: '#FFFFFF',
+    complement2: '#DDDDDD',
+    complement3: '#000000',
 };
 
 
@@ -65,7 +69,7 @@ export const umich = {
 
 
 
-export const palette = umich
+export const palette = dark
 
 export const fonts = {
     itim: 'itim',

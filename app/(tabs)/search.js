@@ -114,7 +114,7 @@ const Search = () => {
                   setMode('authors')
                 }
               }}>
-                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.complement4} size={18} />
+                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.complement2} size={18} />
               </TouchableOpacity>
             </View>
             <FieldComponent
@@ -136,7 +136,7 @@ const Search = () => {
                 width: dimensions.width * (1 / 10),
                 height: dimensions.width * (1 / 10),
               }}>
-                <Ionicons name='search' color={palette.complement4} size={24} />
+                <Ionicons name='search' color={palette.complement2} size={24} />
               </View>
             </TouchableOpacity>
           </View>

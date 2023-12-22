@@ -147,7 +147,7 @@ const CameraScreen = () => {
     <View style={{
       width: dimensions.width,
       height: dimensions.height,
-      backgroundColor: isSaving ? palette.primary0 : palette.complement4,
+      backgroundColor: palette.primary0,
     }}>
       {!isSaving && (
         <View center>
@@ -232,14 +232,14 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='close-circle' color={palette.complement4} size={48} />
+                <Ionicons name='close-circle' color={palette.complement2} size={48} />
               </View>
 
               <View center>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 18,
-                  color: palette.complement4,
+                  color: palette.complement2,
                 }}>Retake</Text>
               </View>
             </TouchableOpacity>
@@ -269,14 +269,14 @@ const CameraScreen = () => {
                 width: dimensions.width / 2,
                 height: 48,
               }}>
-                <Ionicons name='checkmark-circle' color={palette.complement4} size={48} />
+                <Ionicons name='checkmark-circle' color={palette.complement2} size={48} />
               </View>
 
               <View center>
                 <Text style={{
                   fontFamily: fonts.itim,
                   fontSize: 18,
-                  color: palette.complement4,
+                  color: palette.complement2,
                 }}>Save</Text>
               </View>
             </TouchableOpacity>

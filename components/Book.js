@@ -59,7 +59,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         }
                     })
                 }}>
-                    <Ionicons name='pencil' color={palette.complement4} size={24} />
+                    <Ionicons name='pencil' color={palette.complement2} size={24} />
                 </TouchableOpacity>
             ) : () => { },
         })
