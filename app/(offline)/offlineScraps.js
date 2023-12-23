@@ -1,11 +1,13 @@
 import { View, Text, Image } from 'react-native-ui-lib'
 import { ScrollView, TouchableOpacity } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { offlineGetScraps } from '../../data/offline'
-import { dimensions, palette } from '../../data/styles'
+import { dimensions } from '../../data/styles'
 import { useFocusEffect, useRouter } from 'expo-router'
+import AppContext from '../../context/AppContext'
 
 const OfflineLibrary = () => {
+    const { palette } = useContext(AppContext)
     const [scraps, setScraps] = useState([])
     const router = useRouter()
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])

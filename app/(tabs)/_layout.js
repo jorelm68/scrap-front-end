@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { palette, fonts } from '../../data/styles'
+import { fonts } from '../../data/styles'
+import AppContext from '../../context/AppContext'
 
 const Layout = () => {
+    const { palette } = useContext(AppContext)
     return (
         <Tabs>
             <Tabs.Screen

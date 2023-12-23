@@ -2,7 +2,7 @@ import { View, Text } from 'react-native-ui-lib'
 import React, { useContext, useState } from 'react'
 import ErrorComponent from '../../components/ErrorComponent'
 import FieldComponent from '../../components/FieldComponent'
-import { dimensions, fonts, palette } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import { TouchableWithoutFeedback, KeyboardAvoidingView, Keyboard, Alert } from 'react-native'
 import ButtonComponent from '../../components/ButtonComponent'
 import { regexAuthorEmail } from '../../data/regex'
@@ -13,7 +13,7 @@ import AppContext from '../../context/AppContext'
 const ForgotPassword = () => {
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
-    const { paused, setPaused } = useContext(AppContext)
+    const { paused, setPaused, palette } = useContext(AppContext)
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <KeyboardAvoidingView behavior="padding" style={{

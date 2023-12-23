@@ -1,8 +1,10 @@
 import { View, Text } from 'react-native-ui-lib'
-import React from 'react'
-import { palette, fonts } from '../data/styles'
+import React, { useContext } from 'react'
+import { fonts } from '../data/styles'
+import AppContext from '../context/AppContext'
 
 const LogoComponent = () => {
+    const { palette } = useContext(AppContext)
     return (
         <View style={{ marginBottom: 24 }}>
             <Text style={{

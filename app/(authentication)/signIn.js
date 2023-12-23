@@ -8,7 +8,7 @@ import { authorSignIn } from '../../data/api'
 import { retrieveData, saveAccount, storeData } from '../../data/utility'
 import AppContext from '../../context/AppContext'
 import { IconPerson } from '../../data/icons'
-import { palette, dimensions, fonts } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
@@ -17,6 +17,7 @@ import ErrorComponent from '../../components/ErrorComponent'
 import { hasOfflineScraps } from '../../data/offline'
 
 export default function App() {
+  const { palette } = useContext(AppContext)
   const { setUser, paused, setPaused } = useContext(AppContext)
   const [accounts, setAccounts] = useState([])
   const router = useRouter()

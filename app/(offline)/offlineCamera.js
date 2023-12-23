@@ -1,7 +1,7 @@
 import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
-import { dimensions, palette, fonts } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import { ActivityIndicator, TouchableWithoutFeedback, ScrollView, Alert } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
@@ -17,6 +17,7 @@ import LogoComponent from '../../components/LogoComponent'
 import { offlineSaveScrap } from '../../data/offline'
 
 const OfflineCamera = () => {
+    const { palette } = useContext(AppContext)
     const [scrap, setScrap] = useState({})
 
     const [dateAndTimeDisplay, setDateAndTimeDisplay] = useState('')

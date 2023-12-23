@@ -16,11 +16,11 @@ import { bookAddScrap, bookRemoveScrap } from '../data/api'
 import useAuthor from '../hooks/useAuthor'
 import cache from '../data/cache'
 import { Alert } from 'react-native'
-import { dimensions, palette } from '../data/styles'
+import { dimensions } from '../data/styles'
 
 const EditBook = () => {
     const router = useRouter()
-    const { user, setFunctions, paused, setPaused } = useContext(AppContext)
+    const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
     const params = useLocalSearchParams()
     const book = params.book
 

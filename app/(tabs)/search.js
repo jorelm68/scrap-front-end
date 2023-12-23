@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
-import { dimensions, palette, fonts } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import AppContext from '../../context/AppContext'
 import FieldComponent from '../../components/FieldComponent'
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
@@ -15,7 +15,7 @@ import MapView, { Polyline } from 'react-native-maps'
 import BookMarker from '../../components/BookMarker'
 
 const Search = () => {
-  const { user } = useContext(AppContext)
+  const { user, palette } = useContext(AppContext)
   const [query, setQuery] = useState('')
   const navigation = useNavigation()
   const router = useRouter()

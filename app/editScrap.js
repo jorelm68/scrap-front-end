@@ -8,7 +8,7 @@ import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data/regex'
 import { edit } from '../data/utility'
 import cache from '../data/cache'
-import { dimensions, palette } from '../data/styles'
+import { dimensions } from '../data/styles'
 import AppContext from '../context/AppContext'
 import { utilityAddThread, utilityRemoveThread } from '../data/api'
 import ButtonComponent from '../components/ButtonComponent'
@@ -16,7 +16,7 @@ import { Alert } from 'react-native'
 import BookComponent from '../components/BookComponent'
 
 const EditScrap = () => {
-    const { user, setFunctions, paused, setPaused } = useContext(AppContext)
+    const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
     const router = useRouter()
     const { scrap } = useLocalSearchParams()
     const {

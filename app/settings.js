@@ -5,19 +5,20 @@ import useAuthor from '../hooks/useAuthor'
 import AppContext from '../context/AppContext'
 import { Alert, Keyboard, KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { dimensions, palette } from '../data/styles'
+import { dark, dimensions, light } from '../data/styles'
 import { regexAuthorAutobiography, regexAuthorEmail, regexAuthorFirstName, regexAuthorLastName, regexAuthorPassword, regexAuthorPseudonym } from '../data/regex'
 import { errorAuthorAutobiography, errorAuthorEmail, errorAuthorFirstName, errorAuthorLastName, errorAuthorPassword, errorAuthorPseudonym } from '../data/error'
 import { authorCheckCredentials, utilitySet } from '../data/api'
-import { deleteData, edit } from '../data/utility'
+import { deleteData, edit, storeData } from '../data/utility'
 import cache from '../data/cache'
 import DropDownComponent from '../components/DropDownComponent'
 import { useRouter } from 'expo-router'
 import ButtonComponent from '../components/ButtonComponent'
 import ErrorComponent from '../components/ErrorComponent'
+import SwitchComponent from '../components/SwitchComponent'
 
 const Settings = () => {
-    const { user, functions, setFunctions, paused, setPaused } = useContext(AppContext)
+    const { user, functions, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
     const router = useRouter()
 
     const {
@@ -86,7 +87,7 @@ const Settings = () => {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+            <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
                 width: dimensions.width,
                 height: dimensions.height,
                 backgroundColor: palette.color1,
@@ -288,12 +289,15 @@ const Settings = () => {
                         },
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
+                        setPaused(true)
                         const password = values[0]
                         const newPassword = values[1]
                         const newPasswordConfirm = values[2]
 
                         let response = await authorCheckCredentials(user, password)
                         if (!response.success) {
+                            setPaused(false)
                             return {
                                 success: false,
                                 error: response.error,
@@ -301,6 +305,7 @@ const Settings = () => {
                         }
 
                         if (newPassword !== newPasswordConfirm) {
+                            setPaused(false)
                             return {
                                 success: false,
                                 error: 'New passwords do not match',
@@ -309,20 +314,40 @@ const Settings = () => {
 
                         response = await edit('Author', user, 'password', newPassword)
                         if (!response.success) {
+                            setPaused(false)
                             return {
                                 success: false,
                                 error: response.error,
                             }
                         }
 
+                        setPaused(false)
                         return {
                             success: true,
                         }
                     }}
                 />
 
-                <View height={16} />
-                <View center>
+                <View center style={{
+                    marginTop: 16,
+                }}>
+                    <SwitchComponent
+                        title='Dark Mode?'
+                        value={darkMode}
+                        onSwitch={async () => {
+                            if (paused) return { success: false, error: 'Please don\'t click too fast' }
+                            setPaused(true)
+                            setDarkMode(!darkMode)
+                            setPalette(!darkMode ? dark : light)
+                            await storeData('darkMode', JSON.stringify(!darkMode))
+                            setPaused(false)
+                        }}
+                    />
+                </View>
+
+                <View center style={{
+                    marginVertical: 16,
+                }}>
                     <ButtonComponent
                         label='Sign Out'
                         size='large'
@@ -339,7 +364,6 @@ const Settings = () => {
                         width='50%'
                     />
                 </View>
-                <View height={16} />
 
                 <View height={200} />
             </ScrollView>

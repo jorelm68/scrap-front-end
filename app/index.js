@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext'
 import { deleteData, loadFonts, retrieveData } from '../data/utility'
 import { authorExists, isDeviceOffline } from '../data/api'
 import { useRouter } from 'expo-router'
-import { dimensions, palette } from '../data/styles'
+import { dark, dimensions, light, palette } from '../data/styles'
 import { ActivityIndicator } from 'react-native'
 import LogoComponent from '../components/LogoComponent'
 import { hasOfflineScraps, onlineSaveScraps } from '../data/offline'
@@ -13,10 +13,15 @@ loadFonts()
 
 const Autothenticate = () => {
   const router = useRouter()
-  const { setUser, setAuthenticated } = useContext(AppContext)
+  const { setUser, setAuthenticated, setDarkMode, setPalette } = useContext(AppContext)
   const [savingScraps, setSavingScraps] = useState(false)
 
   useEffect(() => {
+    retrieveData('darkMode').then((darkModeRaw) => {
+      const darkMode = JSON.parse(darkModeRaw)
+      setDarkMode(darkMode)
+      setPalette(darkMode ? dark : light)
+    })
     loadFonts().then(() => {
       isDeviceOffline().then(offline => {
         if (offline) {

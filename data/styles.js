@@ -77,12 +77,6 @@ export const light = {
     accent: '#17CC5B',
 }
 
-
-
-
-
-
-
 export const palette = dark
 
 export const fonts = {

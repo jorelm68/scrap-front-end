@@ -5,13 +5,14 @@ import ScrapComponent from './ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from './ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions, fonts, palette } from '../data/styles'
+import { styles, dimensions, fonts } from '../data/styles'
 import MapView, { Marker, Callout } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import useBook from '../hooks/useBook'
 
 const BookMarker = ({ book }) => {
+    const { palette } = useContext(AppContext)
     const {
         representative,
         title,

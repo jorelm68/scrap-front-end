@@ -3,7 +3,7 @@ import { Alert, Image, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { offlineDeleteScrap, offlineEdit, offlineGetScraps } from '../data/offline'
-import { dimensions, palette } from '../data/styles'
+import { dimensions } from '../data/styles'
 import DropDownComponent from '../components/DropDownComponent'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data/regex'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data/error'
@@ -14,7 +14,7 @@ const OfflineEditScrap = () => {
     const params = useLocalSearchParams()
     const index = JSON.parse(params.index)
     const router = useRouter()
-    const { paused, setPaused } = useContext(AppContext)
+    const { paused, setPaused, palette } = useContext(AppContext)
 
     const [scraps, setScraps] = useState([])
 

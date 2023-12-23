@@ -1,8 +1,10 @@
 import { TextField, View, Text } from 'react-native-ui-lib'
-import { palette, fonts } from '../data/styles'
-import React from 'react'
+import { fonts } from '../data/styles'
+import React, { useContext } from 'react'
+import AppContext from '../context/AppContext'
 
 const FieldComponent = ({ placeholder, onChangeText, width, textAlign, value, maxLength, autoCapitalize, autoCorrect, autoComplete, secureTextEntry }) => {
+    const { palette } = useContext(AppContext)
     return (
         <View width={width}>
             <TextField

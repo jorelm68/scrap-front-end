@@ -5,12 +5,13 @@ import ScrapComponent from './ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from './ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions, palette } from '../data/styles'
+import { styles, dimensions } from '../data/styles'
 import MapView, { Marker } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 
 const ScrapMarker = ({ scrap }) => {
+    const { palette } = useContext(AppContext)
     const {
         latitude,
         longitude,

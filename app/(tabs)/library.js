@@ -4,14 +4,14 @@ import AppContext from '../../context/AppContext'
 import useAuthor from '../../hooks/useAuthor'
 import ScrapComponent from '../../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
-import { dimensions, fonts, palette } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import { useRouter } from 'expo-router'
 import { bookDeleteBooks, scrapDeleteScraps } from '../../data/api'
 import cache from '../../data/cache'
 import { Alert } from 'react-native'
 
 const Library = () => {
-  const { user, setFunctions, paused, setPaused } = useContext(AppContext)
+  const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
   const router = useRouter()
   const {
     scraps,

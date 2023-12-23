@@ -5,7 +5,7 @@ import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
-import { fonts, dimensions, palette } from '../data/styles'
+import { fonts, dimensions } from '../data/styles'
 import { useRouter } from 'expo-router'
 import { getDate } from '../data/utility'
 import BookComponent from './BookComponent'
@@ -13,7 +13,7 @@ import useBook from '../hooks/useBook'
 
 const Scrap = ({ scrap }) => {
     const router = useRouter()
-    const { user } = useContext(AppContext)
+    const { user, palette } = useContext(AppContext)
     const {
         iPrograph,
         iRetrograph,

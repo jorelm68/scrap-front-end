@@ -8,7 +8,7 @@ import { errorBookDescription, errorBookTitle } from '../data/error'
 import { useNavigation, useRouter } from 'expo-router'
 import { bookSaveBook } from '../data/api'
 import { Ionicons } from '@expo/vector-icons'
-import { dimensions, palette } from '../data/styles'
+import { dimensions } from '../data/styles'
 import ButtonComponent from '../components/ButtonComponent'
 import useAuthor from '../hooks/useAuthor'
 import ScrapComponent from '../components/ScrapComponent'
@@ -18,7 +18,7 @@ import cache from '../data/cache'
 const CreateBook = () => {
   const navigation = useNavigation()
   const router = useRouter()
-  const { user, setFunctions, paused, setPaused } = useContext(AppContext)
+  const { user, setFunctions, palette, paused, setPaused } = useContext(AppContext)
   const [book, setBook] = useState({
     author: user,
     scraps: [],

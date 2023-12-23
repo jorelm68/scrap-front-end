@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native-ui-lib'
 import { ScrollView, Image } from 'react-native'
-import React, { useState, useEffect, useRef } from 'react'
-import { dimensions, palette } from '../data/styles'
+import React, { useState, useEffect, useRef, useContext } from 'react'
+import { dimensions } from '../data/styles'
 import defaultImage from '../assets/icons/defaultImage.jpg'
+import AppContext from '../context/AppContext'
 
 const AuthorList = ({ authors, renderItem }) => {
+    const { palette } = useContext(AppContext)
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)
 

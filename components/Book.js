@@ -8,7 +8,7 @@ import ScrapCarousel from '../components/ScrapCarousel'
 import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import { Ionicons } from '@expo/vector-icons'
-import { fonts, dimensions, palette } from '../data/styles'
+import { fonts, dimensions } from '../data/styles'
 import BookComponent from './BookComponent'
 import useAuthor from '../hooks/useAuthor'
 import AuthorComponent from './AuthorComponent'
@@ -17,7 +17,7 @@ import { getDateRange } from '../data/utility'
 const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
     const router = useRouter()
-    const { currentScrap, user } = useContext(AppContext)
+    const { currentScrap, user, palette } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
 
     const {

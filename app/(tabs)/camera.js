@@ -1,7 +1,7 @@
 import { View, Image, TouchableOpacity, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { getDate, getLocation, getTime } from '../../data/utility'
-import { dimensions, palette, fonts } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import { ActivityIndicator, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
@@ -16,7 +16,7 @@ import cache from '../../data/cache'
 import LogoComponent from '../../components/LogoComponent'
 
 const CameraScreen = () => {
-  const { user } = useContext(AppContext)
+  const { user, palette } = useContext(AppContext)
   const [scrap, setScrap] = useState({
     author: user,
   })

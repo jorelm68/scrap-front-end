@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from 'react-native'
 import React, { useContext } from 'react'
 import { Stack, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { palette, fonts } from '../data/styles'
+import { fonts, palette } from '../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
 import AppContextProvider from '../context/AppContextProvider'
 

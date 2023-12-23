@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import { Image } from 'react-native'
 import React, { useContext, useState } from 'react'
 import useAuthor from '../hooks/useAuthor'
-import { dimensions, fonts, palette } from '../data/styles'
+import { dimensions, fonts } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 import { authorAcceptRequest, authorRejectRequest, authorRemoveFriend, authorRemoveRequest, authorSendRequest } from '../data/api'
 import AppContext from '../context/AppContext'
@@ -12,7 +12,7 @@ import { useNavigation, useRouter, Link } from 'expo-router'
 const AuthorComponent = ({ author, disappear }) => {
   const router = useRouter()
   const navigation = useNavigation()
-  const { user, paused, setPaused } = useContext(AppContext)
+  const { user, paused, setPaused, palette } = useContext(AppContext)
   const [hidden, setHidden] = useState(false)
 
   const {

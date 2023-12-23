@@ -3,7 +3,7 @@ import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-na
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
-import { dimensions, palette, fonts } from '../data/styles'
+import { dimensions, fonts } from '../data/styles'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import ButtonComponent from '../components/ButtonComponent'
 import { Ionicons } from '@expo/vector-icons'
@@ -20,7 +20,7 @@ import BookList from './BookList'
 
 const ProfileComponent = ({ author }) => {
   const router = useRouter()
-  const { user, paused, setPaused } = useContext(AppContext)
+  const { user, paused, setPaused, palette } = useContext(AppContext)
   const navigation = useNavigation()
   const [name, setName] = useState('')
   const [photosReverse, setPhotosReverse] = useState(false)

@@ -5,6 +5,8 @@ import cache from '../data/cache'
 const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
     const [user, setUser] = useState('bruh')
+    const [darkMode, setDarkMode] = useState(true)
+    const [palette, setPalette] = useState({})
     const [accounts, setAccounts] = useState([])
     const [paused, setPaused] = useState(false)
     const [authenticated, setAuthenticated] = useState(false)
@@ -25,6 +27,10 @@ const AppContextProvider = ({ children }) => {
         setAccounts,
         authenticated,
         setAuthenticated,
+        palette,
+        setPalette,
+        darkMode,
+        setDarkMode,
         functions,
         setFunctions,
         paused,

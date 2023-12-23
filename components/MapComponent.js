@@ -5,7 +5,7 @@ import ScrapComponent from '../components/ScrapComponent'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import ScrapCarousel from '../components/ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions, palette } from '../data/styles'
+import { styles, dimensions } from '../data/styles'
 import MapView, { Polyline } from 'react-native-maps'
 import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
@@ -14,7 +14,7 @@ import cache from '../data/cache'
 import { utilityScrapCoordinates } from '../data/api'
 
 const MapComponent = ({ scraps, scrap = scraps[0], clickMarker }) => {
-    const { user } = useContext(AppContext)
+    const { user, palette } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
     const getCoordinates = async () => {

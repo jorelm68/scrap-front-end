@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native-ui-lib'
 import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import useBook from '../hooks/useBook'
-import { dimensions, palette, fonts } from '../data/styles'
+import { dimensions, fonts } from '../data/styles'
 import useAuthor from '../hooks/useAuthor'
 import MapView from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -13,7 +13,7 @@ import { getDateRange } from '../data/utility'
 
 const BookComponent = ({ book, showAuthor, clickable }) => {
     const router = useRouter()
-    const { user } = useContext(AppContext)
+    const { user, palette } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
     const {
         author,

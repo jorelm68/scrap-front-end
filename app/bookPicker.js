@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { router, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert } from 'react-native'
-import { dimensions, palette, fonts } from '../data/styles'
+import { dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
 import BookComponent from '../components/BookComponent'
 import BookList from '../components/BookList'
@@ -15,7 +15,7 @@ const BookPicker = () => {
   const books = JSON.parse(params.books)
   const amount = JSON.parse(params.amount)
   const functionName = params.functionName
-  const { functions } = useContext(AppContext)
+  const { functions, palette } = useContext(AppContext)
   const onSubmit = functions[functionName]
   const [selection, setSelection] = useState([])
 

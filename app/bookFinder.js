@@ -3,7 +3,7 @@ import { TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'rea
 import React, { useContext, useState, useEffect } from 'react'
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
-import { dimensions, fonts, palette } from '../data/styles'
+import { dimensions, fonts } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 import FieldComponent from '../components/FieldComponent'
 import BookComponent from '../components/BookComponent'
@@ -13,7 +13,7 @@ import BookList from '../components/BookList'
 const BookFinder = () => {
     const navigation = useNavigation()
     const router = useRouter()
-    const { functions, user, paused, setPaused } = useContext(AppContext)
+    const { functions, user, paused, setPaused, palette } = useContext(AppContext)
     const params = useLocalSearchParams()
     const book = params.book
     const threads = JSON.parse(params.threads)

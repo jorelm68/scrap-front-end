@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native-ui-lib'
 import { TouchableOpacity, ActivityIndicator } from 'react-native'
-import React from 'react'
-import { dimensions, palette } from '../data/styles'
+import React, { useContext } from 'react'
+import { dimensions } from '../data/styles'
 import { useRouter } from 'expo-router'
+import AppContext from '../context/AppContext'
 
 const BlankBookComponent = ({ book }) => {
+    const { palette } = useContext(AppContext)
     const router = useRouter()
     return (
         <View style={{

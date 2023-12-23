@@ -4,13 +4,14 @@ import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-
 import React, { useContext, useEffect, useState } from 'react'
 import FieldComponent from './FieldComponent'
 import ErrorComponent from './ErrorComponent'
-import { fonts, dimensions, palette } from '../data/styles'
+import { fonts, dimensions } from '../data/styles'
 import useScrap from '../hooks/useScrap'
 import { useRouter } from 'expo-router'
 import AppContext from '../context/AppContext'
 import { defaultHeadshot, defaultImage } from '../data/icons'
 
 const DropDownComponent = ({ title, value, onSubmit, topBorder, type, boxes }) => {
+    const { palette } = useContext(AppContext)
     const [isDropped, setIsDropped] = useState(false)
     const [values, setValues] = useState([])
     const [submissions, setSubmissions] = useState([])

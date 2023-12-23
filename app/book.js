@@ -8,11 +8,12 @@ import ScrapCarousel from '../components/ScrapCarousel'
 import MapComponent from '../components/MapComponent'
 import AppContext from '../context/AppContext'
 import Book from '../components/Book'
-import { dimensions, palette } from '../data/styles'
+import { dimensions } from '../data/styles'
 import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 
 const BookScreen = () => {
+    const { palette } = useContext(AppContext)
     const params = useLocalSearchParams()
     const book = params.book
     let scraps = []

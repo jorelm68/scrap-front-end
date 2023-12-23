@@ -1,10 +1,12 @@
 import { View } from 'react-native-ui-lib'
-import React from 'react'
-import { dimensions, palette } from '../data/styles'
+import React, { useContext } from 'react'
+import { dimensions } from '../data/styles'
 import LogoComponent from '../components/LogoComponent'
 import { ActivityIndicator } from 'react-native'
+import AppContext from '../context/AppContext'
 
 const Loading = () => {
+    const { palette } = useContext(AppContext)
     return (
         <View flex center style={{
             width: dimensions.width,

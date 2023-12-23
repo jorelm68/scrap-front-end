@@ -1,8 +1,10 @@
 import { View, Text } from 'react-native-ui-lib'
-import { palette, fonts } from '../data/styles'
-import React from 'react'
+import { fonts } from '../data/styles'
+import React, { useContext } from 'react'
+import AppContext from '../context/AppContext'
 
 const ErrorComponent = ({ error }) => {
+    const { palette } = useContext(AppContext)
     return (
         <View style={{
             justifyContent: 'center',

@@ -4,7 +4,7 @@ import { router, useLocalSearchParams, useNavigation, useRouter } from 'expo-rou
 import ScrapComponent from '../components/ScrapComponent'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert, ScrollView } from 'react-native'
-import { dimensions, palette, fonts } from '../data/styles'
+import { dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
 import ScrapList from '../components/ScrapList'
 
@@ -14,7 +14,7 @@ const ScrapPicker = () => {
   const scraps = JSON.parse(params.scraps)
   const amount = JSON.parse(params.amount)
   const functionName = params.functionName
-  const { functions } = useContext(AppContext)
+  const { functions, palette } = useContext(AppContext)
   const onSubmit = functions[functionName]
   const [selection, setSelection] = useState([])
 

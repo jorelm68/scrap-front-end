@@ -11,12 +11,12 @@ import LogoComponent from '../../components/LogoComponent'
 import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import ErrorComponent from '../../components/ErrorComponent'
-import { dimensions, palette } from '../../data/styles'
+import { dimensions } from '../../data/styles'
 import { hasOfflineScraps } from '../../data/offline'
 
 const SignUp = () => {
   const router = useRouter()
-  const { setUser, paused, setPaused } = useContext(AppContext)
+  const { setUser, paused, setPaused, palette } = useContext(AppContext)
 
   const [pseudonym, setPseudonym] = useState('')
   const [pseudonymError, setPseudonymError] = useState('')

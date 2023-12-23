@@ -1,12 +1,14 @@
 import { View, Text } from 'react-native-ui-lib'
-import React from 'react'
-import { dimensions, palette } from '../data/styles'
+import React, { useContext } from 'react'
+import { dimensions } from '../data/styles'
 import AuthorList from '../components/AuthorList'
 import { useLocalSearchParams } from 'expo-router'
 import useBook from '../hooks/useBook'
 import AuthorComponent from '../components/AuthorComponent'
+import AppContext from '../context/AppContext'
 
 const Likes = () => {
+    const { palette } = useContext(AppContext)
     const params = useLocalSearchParams()
     const book = params.book
 

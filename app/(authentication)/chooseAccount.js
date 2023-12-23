@@ -5,13 +5,13 @@ import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
 import { forgetAccount, retrieveData, saveAccount, storeData, getDate } from '../../data/utility'
 import { useRouter } from 'expo-router'
-import { dimensions, palette, fonts } from '../../data/styles'
+import { dimensions, fonts } from '../../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { hasOfflineScraps, onlineSaveScraps } from '../../data/offline'
 
 const ChooseAccount = () => {
     const router = useRouter()
-    const { setUser, paused, setPaused } = useContext(AppContext)
+    const { setUser, paused, setPaused, palette } = useContext(AppContext)
     const [accounts, setAccounts] = useState([])
     useEffect(() => {
         retrieveData('accounts').then((accounts) => {

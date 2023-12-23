@@ -7,12 +7,13 @@ import { errorBookDescription, errorBookTitle } from '../data/error'
 import { useNavigation, useRouter } from 'expo-router'
 import { bookSaveBook } from '../data/api'
 import { Ionicons } from '@expo/vector-icons'
-import { fonts, dimensions, palette } from '../data/styles'
+import { fonts, dimensions } from '../data/styles'
 import ButtonComponent from '../components/ButtonComponent'
 import useAuthor from '../hooks/useAuthor'
 import ScrapComponent from '../components/ScrapComponent'
 
 const SwitchComponent = ({ title, value, onSwitch }) => {
+    const { palette } = useContext(AppContext)
     return (
         <View centerV row>
             <Text style={{

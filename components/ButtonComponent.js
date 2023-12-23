@@ -1,10 +1,12 @@
 import { Button, Text, View } from 'react-native-ui-lib'
-import { fonts, palette } from '../data/styles'
+import { fonts } from '../data/styles'
 import { TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Ionicons } from '@expo/vector-icons'
+import AppContext from '../context/AppContext'
 
 const ButtonComponent = ({ label, onPress, icon }) => {
+    const { palette } = useContext(AppContext)
     return (
         <TouchableOpacity onPress={onPress}>
             <View center row style={{

@@ -2,7 +2,7 @@ import { View, Text, Button, Alert } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useRouter } from 'expo-router'
 import { deleteData } from '../../data/utility'
-import { dimensions, palette } from '../../data/styles'
+import { dimensions } from '../../data/styles'
 import { utilityFeed } from '../../data/api'
 import AppContext from '../../context/AppContext'
 import BookComponent from '../../components/BookComponent'
@@ -10,7 +10,7 @@ import useAuthor from '../../hooks/useAuthor'
 import BookList from '../../components/BookList'
 
 const Feed = () => {
-    const { user } = useContext(AppContext)
+    const { user, palette } = useContext(AppContext)
 
     const {
         feed,
