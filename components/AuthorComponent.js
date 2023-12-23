@@ -81,7 +81,7 @@ const AuthorComponent = ({ author, disappear }) => {
               fontFamily: fonts.jockeyOne,
               fontSize: 24,
               paddingHorizontal: 4,
-              color: palette.color6,
+              color: '#CCCCCC',
             }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
           </View>
           <Image source={iHeadshot} style={{
