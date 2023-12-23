@@ -7,6 +7,7 @@ import { utilityFeed } from '../../data/api'
 import AppContext from '../../context/AppContext'
 import BookComponent from '../../components/BookComponent'
 import useAuthor from '../../hooks/useAuthor'
+import BookList from '../../components/BookList'
 
 const Feed = () => {
     const { user } = useContext(AppContext)
@@ -24,11 +25,14 @@ const Feed = () => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            {feed && feed.map((book) => {
-                return (
-                    <BookComponent book={book} clickable key={book} showAuthor />
-                )
-            })}
+            <BookList
+                books={feed}
+                renderItem={(book) => {
+                    return (
+                        <BookComponent book={book} clickable key={book} showAuthor />
+                    )
+                }}
+            />
         </View>
     )
 }

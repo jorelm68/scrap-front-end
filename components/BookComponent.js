@@ -174,7 +174,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         {!hidden && (
                             <View center style={{
                                 width: (dimensions.width - 8) / 4,
-                                height: dimensions.width / 4,
+                                height: (dimensions.width - 8) / 4,
                                 backgroundColor: palette.color2,
                                 borderRadius: 8,
                             }}>
@@ -239,7 +239,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         {hidden && (
                             <View center style={{
                                 width: (dimensions.width - 8) / 4,
-                                height: dimensions.width / 4,
+                                height: (dimensions.width - 8) / 4,
                             }}>
                                 <Ionicons name='finger-print' color={palette.color5} size={24} />
                                 <Text style={{
@@ -321,34 +321,72 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                     {!hidden && (
                         <View center style={{
                             width: (dimensions.width - 8) / 4,
-                            height: dimensions.width / 4,
+                            height: (dimensions.width - 8) / 4,
+                            backgroundColor: palette.color2,
+                            borderRadius: 8,
                         }}>
-                            <Ionicons name='pin' color={palette.color5} size={24} />
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 12,
-                                lineHeight: 14,
-                                textAlign: 'center',
-                                color: palette.color5,
-                            }}>{place}</Text>
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 12,
-                                textAlign: 'center',
-                                color: palette.color5,
-                            }}>{Math.round(miles)} Miles</Text>
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 12,
-                                textAlign: 'center',
-                                color: palette.color5,
-                            }}>{likes.length} like{likes.length === 1 ? '' : 's'} </Text>
+                            <TouchableOpacity onPress={user !== author ? toggleLike : () => {
+                                router.push({
+                                    pathname: '/likes',
+                                    params: {
+                                        book,
+                                    }
+                                })
+                            }}>
+                                <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
+                            </TouchableOpacity>
+
+                            <View center row>
+                                <Text style={{
+                                    marginRight: 2,
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    textAlign: 'center',
+                                    color: palette.color5,
+                                }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
+                                <Ionicons name='person' color={palette.color6} size={12} />
+                            </View>
+
+                            <View center row>
+                                <Text style={{
+                                    marginRight: 2,
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    textAlign: 'center',
+                                    color: palette.color5,
+                                }}>{Math.round(miles)} Miles</Text>
+                                <Ionicons name='car' color={palette.color6} size={12} />
+                            </View>
+
+                            <View center row>
+                                <Text style={{
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    lineHeight: 14,
+                                    textAlign: 'center',
+                                    color: palette.color5,
+                                }}>{place ? place : 'Somwhere'}</Text>
+                                <Ionicons name='pin' color={palette.color6} size={12} />
+                            </View>
+
+                            {beginDate && endDate && (
+                                <View center row>
+                                    <Text style={{
+                                        fontFamily: fonts.itim,
+                                        fontSize: 10,
+                                        lineHeight: 14,
+                                        textAlign: 'center',
+                                        color: palette.color5,
+                                    }}>{getDateRange(beginDate, endDate)}</Text>
+                                </View>
+                            )}
+
                         </View>
                     )}
                     {hidden && (
                         <View center style={{
                             width: (dimensions.width - 8) / 4,
-                            height: dimensions.width / 4,
+                            height: (dimensions.width - 8) / 4,
                         }}>
                             <Ionicons name='finger-print' color={palette.color5} size={24} />
                             <Text style={{
