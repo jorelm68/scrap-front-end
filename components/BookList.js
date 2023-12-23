@@ -4,14 +4,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import { dimensions, palette } from '../data/styles'
 import BlankBookComponent from './BlankBookComponent'
 
-const BookList = ({ books, renderItem }) => {
+const BookList = ({ header, headerHeight, books, renderItem }) => {
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y
-        const visibleRange = visibleOffset + layoutMeasurement.height
+        const visibleOffset = contentOffset.y - headerHeight; // Consider the header height
+        const visibleRange = visibleOffset + layoutMeasurement.height + headerHeight; // Subtract header height
 
         if (books && books.length > 0) {
             const visibleItems = books.reduce((acc, _, index) => {
@@ -39,6 +39,7 @@ const BookList = ({ books, renderItem }) => {
                 backgroundColor: palette.color1,
             }}
         >
+            {header()}
             <View style={{
                 flex: 1,
                 flexWrap: 'wrap',
