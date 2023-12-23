@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
+import { View, Text } from 'react-native-ui-lib'
+import { TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React, { useContext, useEffect } from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import DropDownComponent from '../components/DropDownComponent'
@@ -138,129 +139,133 @@ const EditBook = () => {
     }
 
     return (
-        <View style={{
-            width: dimensions.width,
-            height: dimensions.height,
-            backgroundColor: palette.color1,
+        <KeyboardAvoidingView behavior="padding" style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
         }}>
-            <View center style={{
-                marginVertical: 16,
+            <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+                width: dimensions.width,
+                height: dimensions.height,
+                backgroundColor: palette.color1,
             }}>
-                <SwitchComponent title={'Public? '} value={isPublic} onSwitch={async () => {
-                    const response = await edit('Book', book, 'isPublic', !isPublic)
-                    if (response.success) {
-                        cache.filter([book, 'isPublic'])
-                        cache.filter([user, 'books'])
-                        cache.filter([user, 'publicBooks'])
-                        setIsPublic(!isPublic)
-                    }
-                }} />
-            </View>
-
-            <DropDownComponent
-                type='Text'
-                title='Title:'
-                value={title}
-                boxes={[
-                    {
-                        placeholder: 'New Title',
-                        initial: title,
-                        regex: regexBookTitle,
-                        error: errorBookTitle,
-                        autoCorrect: true,
-                        autoCapitalize: 'words',
-                    }
-                ]}
-                onSubmit={async (values) => {
-                    const response = await edit('Book', book, 'title', values[0])
-                    if (response.success) {
-                        cache.filter([book, 'title'])
-                        setTitle(values[0])
-                    }
-                    return response
-                }}
-            />
-            <DropDownComponent
-                type='Text'
-                title='Description:'
-                value={description}
-                boxes={[
-                    {
-                        placeholder: 'New Description',
-                        initial: description,
-                        regex: regexBookDescription,
-                        error: errorBookDescription,
-                        autoCorrect: true,
-                        autoCapitalize: 'sentences',
-                    }
-                ]}
-                onSubmit={async (values) => {
-                    const response = await edit('Book', book, 'description', values[0])
-                    if (response.success) {
-                        cache.filter([book, 'description'])
-                        setDescription(values[0])
-                    }
-                    return response
-                }}
-            />
-
-            <DropDownComponent
-                type='Scrap'
-                title='Representative:'
-                value={representative}
-                options={scraps}
-                amount={1}
-                onSubmit={() => {
-                    router.push({
-                        pathname: '/scrapPicker', params: {
-                            scraps: JSON.stringify(scraps ? scraps : []),
-                            amount: JSON.stringify(1),
-                            functionName: 'changeRepresentative',
-                        }
-                    })
-                }}
-            />
-
-            {scraps.length < 5 && (
                 <View center style={{
                     marginVertical: 16,
                 }}>
-                    <ButtonComponent
-                        label='Add Scraps'
-                        size='large'
-                        onPress={() => {
-                            router.push({
-                                pathname: '/scrapPicker', params: {
-                                    scraps: JSON.stringify(unbookedScraps.filter((value) => {
-                                        return !scraps || !scraps.includes(value)
-                                    })),
-                                    amount: JSON.stringify(5 - scraps.length),
-                                    functionName: 'addScrapsToBook',
-                                }
-                            })
-                        }}
-                        width='50%'
-                    />
+                    <SwitchComponent title={'Public? '} value={isPublic} onSwitch={async () => {
+                        const response = await edit('Book', book, 'isPublic', !isPublic)
+                        if (response.success) {
+                            cache.filter([book, 'isPublic'])
+                            cache.filter([user, 'books'])
+                            cache.filter([user, 'publicBooks'])
+                            setIsPublic(!isPublic)
+                        }
+                    }} />
                 </View>
-            )}
 
-            <View style={{
-                flexWrap: 'wrap',
-                flexDirection: 'row',
-            }}>
-                {scraps && scraps.map((scrap) => {
-                    return (
-                        <TouchableOpacity key={scrap} onPress={() => {
-                            handleRemoveScrap(scrap)
-                        }}>
-                            <ScrapComponent scrap={scrap} />
-                        </TouchableOpacity>
-                    )
-                })}
-            </View>
+                <DropDownComponent
+                    type='Text'
+                    title='Title:'
+                    value={title}
+                    boxes={[
+                        {
+                            placeholder: 'New Title',
+                            initial: title,
+                            regex: regexBookTitle,
+                            error: errorBookTitle,
+                            autoCorrect: true,
+                            autoCapitalize: 'words',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Book', book, 'title', values[0])
+                        if (response.success) {
+                            cache.filter([book, 'title'])
+                            setTitle(values[0])
+                        }
+                        return response
+                    }}
+                />
+                <DropDownComponent
+                    type='Text'
+                    title='Description:'
+                    value={description}
+                    boxes={[
+                        {
+                            placeholder: 'New Description',
+                            initial: description,
+                            regex: regexBookDescription,
+                            error: errorBookDescription,
+                            autoCorrect: true,
+                            autoCapitalize: 'sentences',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Book', book, 'description', values[0])
+                        if (response.success) {
+                            cache.filter([book, 'description'])
+                            setDescription(values[0])
+                        }
+                        return response
+                    }}
+                />
 
-        </View>
+                <DropDownComponent
+                    type='Scrap'
+                    title='Representative:'
+                    value={representative}
+                    options={scraps}
+                    amount={1}
+                    onSubmit={() => {
+                        router.push({
+                            pathname: '/scrapPicker', params: {
+                                scraps: JSON.stringify(scraps ? scraps : []),
+                                amount: JSON.stringify(1),
+                                functionName: 'changeRepresentative',
+                            }
+                        })
+                    }}
+                />
 
+                {scraps.length < 5 && (
+                    <View center style={{
+                        marginVertical: 16,
+                    }}>
+                        <ButtonComponent
+                            label='Add Scraps'
+                            size='large'
+                            onPress={() => {
+                                router.push({
+                                    pathname: '/scrapPicker', params: {
+                                        scraps: JSON.stringify(unbookedScraps.filter((value) => {
+                                            return !scraps || !scraps.includes(value)
+                                        })),
+                                        amount: JSON.stringify(5 - scraps.length),
+                                        functionName: 'addScrapsToBook',
+                                    }
+                                })
+                            }}
+                            width='50%'
+                        />
+                    </View>
+                )}
+
+                <View style={{
+                    flexWrap: 'wrap',
+                    flexDirection: 'row',
+                }}>
+                    {scraps && scraps.map((scrap) => {
+                        return (
+                            <TouchableOpacity key={scrap} onPress={() => {
+                                handleRemoveScrap(scrap)
+                            }}>
+                                <ScrapComponent scrap={scrap} />
+                            </TouchableOpacity>
+                        )
+                    })}
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 

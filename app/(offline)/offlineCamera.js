@@ -244,9 +244,12 @@ const OfflineCamera = () => {
 
                         <TouchableOpacity onPress={async () => {
                             setIsLoading(true)
-                            const success = await offlineSaveScrap(scrap)
+                            const response = await offlineSaveScrap(scrap)
 
-                            if (success) {
+                            if (!response.success) {
+                                Alert.alert('Error', response.error)
+                            }
+                            else {
                                 setScrap((prevScrap) => ({
                                     latitude: prevScrap.latitude,
                                     longitude: prevScrap.longitude,
@@ -254,8 +257,8 @@ const OfflineCamera = () => {
 
                                 setIsSaving(false)
                                 setShowButtons(true)
+                                setIsLoading(false)
                             }
-                            setIsLoading(false)
                         }}>
                             <View center style={{
                                 width: dimensions.width / 2,

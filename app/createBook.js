@@ -1,5 +1,6 @@
-import { View, Text, TouchableOpacity, Switch } from 'react-native-ui-lib'
+import { View, Text, Switch } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
+import { KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native'
 import AppContext from '../context/AppContext'
 import DropDownComponent from '../components/DropDownComponent'
 import { regexBookDescription, regexBookTitle } from '../data/regex'
@@ -89,11 +90,16 @@ const CreateBook = () => {
   }, [])
 
   return (
-    <View style={{
-      width: dimensions.width,
-      height: dimensions.height,
-      backgroundColor: palette.color1,
-    }}>
+    <KeyboardAvoidingView behavior="padding" style={{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+  }}>
+      <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+          width: dimensions.width,
+          height: dimensions.height,
+          backgroundColor: palette.color1,
+      }}>
       <View center style={{
         marginVertical: 16,
       }}>
@@ -176,7 +182,7 @@ const CreateBook = () => {
         }}>
           <ButtonComponent
             label='Add Scraps'
-            size='large'
+            icon='image'
             onPress={() => {
               router.push({
                 pathname: '/scrapPicker', params: {
@@ -188,7 +194,6 @@ const CreateBook = () => {
                 }
               })
             }}
-            width='50%'
           />
         </View>
       )}
@@ -208,7 +213,8 @@ const CreateBook = () => {
         })}
       </View>
 
-    </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 

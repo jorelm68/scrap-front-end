@@ -18,7 +18,7 @@ const ScrapComponent = ({ scrap }) => {
                 width: dimensions.width / 3,
                 height: dimensions.width / 3,
             }}/>
-            <Image width={100} height={100} source={iRetrograph} style={{
+            <Image width={dimensions.width / 9} height={dimensions.width / 9} source={iRetrograph} style={{
                 position: 'absolute',
                 right: 0,
                 top: 0,

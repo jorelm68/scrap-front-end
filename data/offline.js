@@ -19,7 +19,9 @@ export async function offlineSaveScrap(scrap) {
     scraps.push(scrap)
     await storeData('scraps', JSON.stringify(scraps))
 
-    return true
+    return {
+        success: true,
+    }
 }
 
 export async function offlineGetScraps() {
@@ -41,4 +43,36 @@ export async function onlineSaveScraps() {
         }
     }
     await deleteData('scraps')
+
+    return {
+        success: true,
+    }
+}
+
+export async function offlineEdit(index, key, value) {
+    const data = await retrieveData('scraps')
+    let scraps = JSON.parse(data)
+
+    let scrap = scraps[index]
+    scrap[key] = value
+    scraps[index] = scrap
+
+    await storeData('scraps', JSON.stringify(scraps))
+
+    return {
+        success: true,
+    }
+}
+
+export async function offlineDeleteScrap(index) {
+    const data = await retrieveData('scraps')
+    let scraps = JSON.parse(data)
+
+    scraps = [...scraps.slice(0, index), ...scraps.slice(index + 1, scraps.length)];
+
+    await storeData('scraps', JSON.stringify(scraps))
+
+    return {
+        success: true,
+    }
 }

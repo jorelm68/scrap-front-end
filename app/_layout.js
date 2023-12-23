@@ -219,6 +219,25 @@ const Layout = () => {
           }}
         />
         <Stack.Screen
+          name='offlineEditScrap'
+          options={{
+            headerTitle: 'Edit Scrap',
+            headerTitleStyle: {
+              fontFamily: fonts.playBold,
+              fontSize: 24,
+              color: palette.color7,
+            },
+            headerStyle: {
+              backgroundColor: palette.color0, // Set your desired color here
+            },
+            headerLeft: router.canGoBack() ? () => (
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={24} color={palette.color6} />
+              </TouchableOpacity>
+            ) : () => { },
+          }}
+        />
+        <Stack.Screen
           name='createBook'
           options={{
             headerTitle: 'Create Book',

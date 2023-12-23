@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native-ui-lib'
 import React, { useContext, useEffect } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import DropDownComponent from '../components/DropDownComponent'
 import useScrap from '../hooks/useScrap'
@@ -81,118 +81,124 @@ const EditScrap = () => {
     }
 
     return (
-        <View style={{
-            width: dimensions.width,
-            height: dimensions.height,
-            backgroundColor: palette.color1,
+        <KeyboardAvoidingView behavior="padding" style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
         }}>
-            <DropDownComponent
-                type='Text'
-                title='Title:'
-                value={title}
-                boxes={[
-                    {
-                        placeholder: 'New Title',
-                        initial: title,
-                        regex: regexScrapTitle,
-                        error: errorScrapTitle,
-                        autoCorrect: true,
-                        autoCapitalize: 'words',
-                    }
-                ]}
-                onSubmit={async (values) => {
-                    const response = await edit('Scrap', scrap, 'title', values[0])
-                    if (response.success) {
-                        cache.filter([scrap, 'title'])
-                        setTitle(values[0])
-                    }
-                    return response
-                }}
-            />
-            <DropDownComponent
-                type='Text'
-                title='Description:'
-                value={description}
-                boxes={[
-                    {
-                        placeholder: 'New Description',
-                        initial: description,
-                        regex: regexScrapDescription,
-                        error: errorScrapDescription,
-                        autoCorrect: true,
-                        autoCapitalize: 'sentences',
-                    }
-                ]}
-                onSubmit={async (values) => {
-                    const response = await edit('Scrap', scrap, 'description', values[0])
-                    if (response.success) {
-                        cache.filter([scrap, 'description'])
-                        setDescription(values[0])
-                    }
-                    return response
-                }}
-            />
-            <DropDownComponent
-                type='Text'
-                title='Place:'
-                value={place}
-                boxes={[
-                    {
-                        placeholder: 'New Place',
-                        initial: place,
-                        regex: regexScrapPlace,
-                        error: errorScrapPlace,
-                        autoCorrect: true,
-                        autoCapitalize: 'words',
-                    }
-                ]}
-                onSubmit={async (values) => {
-                    const response = await edit('Scrap', scrap, 'place', values[0])
-                    if (response.success) {
-                        cache.filter([scrap, 'place'])
-                        setPlace(values[0])
-                    }
-                    return response
-                }}
-            />
-
-            {threads.length < 3 && (
-                <View center style={{
-                    marginVertical: 16,
-                }}>
-                    <ButtonComponent
-                        label='Thread Books'
-                        size='large'
-                        onPress={() => {
-                            router.push({
-                                pathname: '/bookFinder', params: {
-                                    book,
-                                    threads: JSON.stringify(threads),
-                                    amount: JSON.stringify(3 - threads.length),
-                                    functionName: 'addThreadsToScrap',
-                                }
-                            })
-                        }}
-                        width='50%'
-                    />
-                </View>
-            )}
-
-            <View style={{
-                flexWrap: 'wrap',
-                flexDirection: 'row',
+            <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+                width: dimensions.width,
+                height: dimensions.height,
+                backgroundColor: palette.color1,
             }}>
-                {threads && threads.map((book) => {
-                    return (
-                        <TouchableOpacity key={book} onPress={() => {
-                            handleRemoveThread(book)
-                        }}>
-                            <BookComponent book={book} showAuthor />
-                        </TouchableOpacity>
-                    )
-                })}
-            </View>
-        </View>
+                <DropDownComponent
+                    type='Text'
+                    title='Title:'
+                    value={title}
+                    boxes={[
+                        {
+                            placeholder: 'New Title',
+                            initial: title,
+                            regex: regexScrapTitle,
+                            error: errorScrapTitle,
+                            autoCorrect: true,
+                            autoCapitalize: 'words',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Scrap', scrap, 'title', values[0])
+                        if (response.success) {
+                            cache.filter([scrap, 'title'])
+                            setTitle(values[0])
+                        }
+                        return response
+                    }}
+                />
+                <DropDownComponent
+                    type='Text'
+                    title='Description:'
+                    value={description}
+                    boxes={[
+                        {
+                            placeholder: 'New Description',
+                            initial: description,
+                            regex: regexScrapDescription,
+                            error: errorScrapDescription,
+                            autoCorrect: true,
+                            autoCapitalize: 'sentences',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Scrap', scrap, 'description', values[0])
+                        if (response.success) {
+                            cache.filter([scrap, 'description'])
+                            setDescription(values[0])
+                        }
+                        return response
+                    }}
+                />
+                <DropDownComponent
+                    type='Text'
+                    title='Place:'
+                    value={place}
+                    boxes={[
+                        {
+                            placeholder: 'New Place',
+                            initial: place,
+                            regex: regexScrapPlace,
+                            error: errorScrapPlace,
+                            autoCorrect: true,
+                            autoCapitalize: 'words',
+                        }
+                    ]}
+                    onSubmit={async (values) => {
+                        const response = await edit('Scrap', scrap, 'place', values[0])
+                        if (response.success) {
+                            cache.filter([scrap, 'place'])
+                            setPlace(values[0])
+                        }
+                        return response
+                    }}
+                />
+
+                {threads.length < 3 && (
+                    <View center style={{
+                        marginVertical: 16,
+                    }}>
+                        <ButtonComponent
+                            label='Thread Books'
+                            size='large'
+                            onPress={() => {
+                                router.push({
+                                    pathname: '/bookFinder', params: {
+                                        book,
+                                        threads: JSON.stringify(threads),
+                                        amount: JSON.stringify(3 - threads.length),
+                                        functionName: 'addThreadsToScrap',
+                                    }
+                                })
+                            }}
+                            width='50%'
+                        />
+                    </View>
+                )}
+
+                <View style={{
+                    flexWrap: 'wrap',
+                    flexDirection: 'row',
+                }}>
+                    {threads && threads.map((book) => {
+                        return (
+                            <TouchableOpacity key={book} onPress={() => {
+                                handleRemoveThread(book)
+                            }}>
+                                <BookComponent book={book} showAuthor />
+                            </TouchableOpacity>
+                        )
+                    })}
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
