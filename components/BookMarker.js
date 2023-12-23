@@ -44,7 +44,7 @@ const BookMarker = ({ book }) => {
                 <Text style={{
                     fontFamily: fonts.itim,
                     fontSize: 12,
-                    color: palette.color7,
+                    color: palette.accent,
                 }}>{title.length <= 10 ? title : title.slice(0, 10) + '...'}</Text>
                 <View center style={{
                     width: 30,
