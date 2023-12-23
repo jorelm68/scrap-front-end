@@ -216,7 +216,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                         fontSize: 12,
                                         textAlign: 'center',
                                         color: palette.color5,
-                                    }}>{Math.round(miles)} Miles</Text>
+                                    }}>{Math.round(miles)} Mile{Math.round(miles) === 1 ? '' : 's'}</Text>
                                     <Ionicons name='car' color={palette.color6} size={12} />
                                 </View>
 
@@ -380,7 +380,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     fontSize: 12,
                                     textAlign: 'center',
                                     color: palette.color5,
-                                }}>{Math.round(miles)} Miles</Text>
+                                }}>{Math.round(miles)} Mile{Math.round(miles) === 1 ? '' : 's'}</Text>
                                 <Ionicons name='car' color={palette.color6} size={12} />
                             </View>
 

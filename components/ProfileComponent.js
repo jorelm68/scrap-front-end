@@ -204,7 +204,7 @@ const ProfileComponent = ({ author }) => {
                     fontFamily: fonts.itim,
                     fontSize: 16,
                     color: mode === 'miles' ? palette.accent : palette.color5,
-                  }}>{Math.round(miles)} Miles</Text>
+                  }}>{Math.round(miles)} Mile{Math.round(miles) === 1 ? '' : 's'}</Text>
                 </View>
               </TouchableOpacity>
 
