@@ -7,6 +7,7 @@ import { forgetAccount, retrieveData, saveAccount, storeData, getDate } from '..
 import { useRouter } from 'expo-router'
 import { dimensions, palette, fonts } from '../../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { hasOfflineScraps, onlineSaveScraps } from '../../data/offline'
 
 const ChooseAccount = () => {
     const router = useRouter()
@@ -64,8 +65,15 @@ const ChooseAccount = () => {
 
             await storeData('autothenticate', account.author)
             setUser(account.author)
+            const yes = await hasOfflineScraps()
+            if (yes) {
+                const response1 = await onlineSaveScraps(account.author)
+                if (response1.success) {
+                    console.log('successfully saved scraps')
+                }
+            }
             router.back()
-            router.replace('/feed')
+            router.replace('/camera')
         }
     }
 
