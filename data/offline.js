@@ -31,18 +31,22 @@ export async function offlineGetScraps() {
     return scraps
 }
 
-export async function onlineSaveScraps() {
+export async function onlineSaveScraps(user) {
     const data = await retrieveData('scraps')
     const scraps = JSON.parse(data)
 
-    for (const scrap of scraps) {
-        const response = await scrapSaveScrap(scrap)
-        if (!response.success) {
-            Alert.alert('Error', response.error)
-            return
+    if (scraps && scraps.length > 0) {
+        for (const scrap of scraps) {
+            scrap.author = user
+            console.log('saving: ', scrap)
+            const response = await scrapSaveScrap(scrap)
+            if (!response.success) {
+                Alert.alert('Error', response.error)
+                return
+            }
         }
+        await deleteData('scraps')
     }
-    await deleteData('scraps')
 
     return {
         success: true,

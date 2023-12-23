@@ -145,7 +145,11 @@ export default function App() {
 
                     setUser(response.data.author)
                     router.back()
-                    router.replace('/feed')
+                    const response1 = await onlineSaveScraps(response.data.author)
+                    if (response1.success) {
+                      console.log('successfully saved scraps')
+                      router.replace('/camera')
+                    }
                   }
                 }
                 else {
