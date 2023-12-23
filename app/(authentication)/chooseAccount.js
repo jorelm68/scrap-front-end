@@ -11,7 +11,7 @@ import { hasOfflineScraps, onlineSaveScraps } from '../../data/offline'
 
 const ChooseAccount = () => {
     const router = useRouter()
-    const { setUser } = useContext(AppContext)
+    const { setUser, paused, setPaused } = useContext(AppContext)
     const [accounts, setAccounts] = useState([])
     useEffect(() => {
         retrieveData('accounts').then((accounts) => {
@@ -36,18 +36,22 @@ const ChooseAccount = () => {
     }
     // Function that handles when the user clicks the Sign In button on the drawer
     const handleSignIn = async (account) => {
+        if (paused) return
+        setPaused(true)
         router.push('/loading')
         // First, make sure the author exists on the back end
         const response = await authorExists(account.author)
         // If there is some sort of error, forget the account
         if (response.error) {
             router.back()
+            setPaused(false)
             Alert.alert('Error', 'Error signing into your account. Please try manually')
             await forgetAccount(account)
             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
         }
         else if (!response.data.exists) {
             router.back()
+            setPaused(false)
             Alert.alert('Error', 'Error signing into your account. Please try manually')
             await forgetAccount(account)
             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
@@ -74,6 +78,7 @@ const ChooseAccount = () => {
             }
             router.back()
             router.replace('/camera')
+            setPaused(false)
         }
     }
 

@@ -84,7 +84,7 @@ const Scrap = ({ scrap }) => {
                 width: dimensions.width * (2 / 3) - 4,
                 padding: 4,
             }} onPress={() => {
-                router.push({
+                router.navigate({
                     pathname: '/profile',
                     params: {
                         author,
@@ -111,7 +111,7 @@ const Scrap = ({ scrap }) => {
                             position: 'absolute',
                             right: 8,
                         }} onPress={() => {
-                            router.push({
+                            router.navigate({
                                 pathname: '/editScrap',
                                 params: {
                                     scrap,

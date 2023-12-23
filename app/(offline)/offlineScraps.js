@@ -64,7 +64,7 @@ const OfflineLibrary = () => {
                                 width: dimensions.width / 3,
                                 height: dimensions.width / 3,
                             }} onPress={() => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/offlineEditScrap',
                                     params: {
                                         index: JSON.stringify(index),

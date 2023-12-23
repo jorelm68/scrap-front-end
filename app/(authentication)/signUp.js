@@ -16,7 +16,7 @@ import { hasOfflineScraps } from '../../data/offline'
 
 const SignUp = () => {
   const router = useRouter()
-  const { setUser } = useContext(AppContext)
+  const { setUser, paused, setPaused } = useContext(AppContext)
 
   const [pseudonym, setPseudonym] = useState('')
   const [pseudonymError, setPseudonymError] = useState('')
@@ -151,6 +151,8 @@ const SignUp = () => {
             label='Sign Up'
             icon='checkmark-circle'
             onPress={async () => {
+              if (paused) return
+              setPaused(true)
               router.push('/loading')
               if (!regexAuthorPseudonym.test(pseudonym)) {
                 setPseudonymError(errorAuthorPseudonym)
@@ -219,6 +221,7 @@ const SignUp = () => {
 
                 if (!response.success) {
                   router.back()
+                  setPaused(false)
                   setError(response.error)
                   return
                 }
@@ -242,9 +245,11 @@ const SignUp = () => {
                 }
                 router.back()
                 router.replace('/camera')
+                setPaused(false)
               }
               else {
                 router.back()
+                setPaused(false)
               }
             }}
           />

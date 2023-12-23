@@ -17,7 +17,7 @@ import ErrorComponent from '../../components/ErrorComponent'
 import { hasOfflineScraps } from '../../data/offline'
 
 export default function App() {
-  const { setUser } = useContext(AppContext)
+  const { setUser, paused, setPaused } = useContext(AppContext)
   const [accounts, setAccounts] = useState([])
   const router = useRouter()
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function App() {
               label='Choose Account'
               icon='person'
               onPress={() => {
-                router.push('chooseAccount')
+                router.navigate('chooseAccount')
               }}
             />
           )}
@@ -94,7 +94,7 @@ export default function App() {
 
           <View center>
             <TouchableOpacity onPress={() => {
-              router.push('/forgotPassword')
+              router.navigate('/forgotPassword')
             }}>
               <Text style={{
                 fontFamily: fonts.itim,
@@ -108,6 +108,8 @@ export default function App() {
               label='Sign In'
               icon='checkmark-circle'
               onPress={async () => {
+                if (paused) return
+                setPaused(true)
                 router.push('/loading')
                 // First set the error messages if necessary
                 if (!regexAuthorPseudonymOrEmail.test(value)) {
@@ -131,6 +133,7 @@ export default function App() {
                   const response = await authorSignIn(value, password)
                   if (response.error) {
                     router.back()
+                    setPaused(false)
                     setError(response.error)
                   }
                   else {
@@ -154,6 +157,7 @@ export default function App() {
                     }
                     router.back()
                     router.replace('/camera')
+                    setPaused(false)
                   }
                 }
                 else {
@@ -169,7 +173,7 @@ export default function App() {
             label='Sign Up'
             size='large'
             onPress={() => {
-              router.push('signUp')
+              router.navigate('signUp')
             }}
             icon='person-add'
           />

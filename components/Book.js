@@ -61,7 +61,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
             headerBackTitleVisible: false,
             headerRight: book && (user === author) ? () => (
                 <TouchableOpacity onPress={async () => {
-                    router.push({
+                    router.navigate({
                         pathname: '/editBook', params: {
                             book,
                         }
@@ -132,7 +132,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     }}>
                         <TouchableOpacity
                             onPress={() => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -148,7 +148,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={user !== author ? toggleLike : () => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,

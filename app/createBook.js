@@ -18,7 +18,7 @@ import cache from '../data/cache'
 const CreateBook = () => {
   const navigation = useNavigation()
   const router = useRouter()
-  const { user, setFunctions } = useContext(AppContext)
+  const { user, setFunctions, paused, setPaused } = useContext(AppContext)
   const [book, setBook] = useState({
     author: user,
     scraps: [],
@@ -44,6 +44,8 @@ const CreateBook = () => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={async () => {
+          if (paused) return
+          setPaused(true)
           router.push('/loading')
           const response = await bookSaveBook(book)
           if (!response.success) {
@@ -57,6 +59,8 @@ const CreateBook = () => {
             router.back()
             router.back()
           }
+          router.back()
+          setPaused(false)
         }}>
           <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
         </TouchableOpacity>
@@ -166,7 +170,7 @@ const CreateBook = () => {
         options={book.scraps}
         amount={1}
         onSubmit={() => {
-          router.push({
+          router.navigate({
             pathname: '/scrapPicker', params: {
               scraps: JSON.stringify(book.scraps ? book.scraps : []),
               amount: JSON.stringify(1),
@@ -184,7 +188,7 @@ const CreateBook = () => {
             label='Add Scraps'
             icon='image'
             onPress={() => {
-              router.push({
+              router.navigate({
                 pathname: '/scrapPicker', params: {
                   scraps: JSON.stringify(unbookedScraps.filter((value) => {
                     return !book.scraps || !book.scraps.includes(value)

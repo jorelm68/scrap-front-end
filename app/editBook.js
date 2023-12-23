@@ -221,7 +221,7 @@ const EditBook = () => {
                     options={scraps}
                     amount={1}
                     onSubmit={() => {
-                        router.push({
+                        router.navigate({
                             pathname: '/scrapPicker', params: {
                                 scraps: JSON.stringify(scraps ? scraps : []),
                                 amount: JSON.stringify(1),
@@ -239,7 +239,7 @@ const EditBook = () => {
                             label='Add Scraps'
                             size='large'
                             onPress={() => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/scrapPicker', params: {
                                         scraps: JSON.stringify(unbookedScraps.filter((value) => {
                                             return !scraps || !scraps.includes(value)

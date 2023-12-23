@@ -29,6 +29,7 @@ const Library = () => {
       deleteScraps: async (selection) => {
         if (paused) return
         setPaused(true)
+        router.push('/loading')
         const response = await scrapDeleteScraps(selection)
         if (response.success) {
           cache.filter([user, 'miles'])
@@ -47,11 +48,13 @@ const Library = () => {
             cache.filter([scrap])
           }
         }
+        router.back()
         setPaused(false)
       },
       deleteBooks: async (selection) => {
         if (paused) return
         setPaused(true)
+        router.push('/loading')
         const response = await bookDeleteBooks(selection)
         if (response.success) {
           cache.filter([user, 'profileBooks'])
@@ -67,6 +70,7 @@ const Library = () => {
             cache.filter([book])
           }
         }
+        router.back()
         setPaused(false)
       }
     }))
@@ -105,7 +109,7 @@ const Library = () => {
   }
 
   const handleDeleteScraps = async () => {
-    router.push({
+    router.navigate({
       pathname: '/scrapPicker', params: {
         scraps: JSON.stringify(scraps),
         amount: JSON.stringify(scraps.length),

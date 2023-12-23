@@ -23,7 +23,7 @@ const Scraps = () => {
       renderItem={(scrap) => {
         return (
           <TouchableOpacity key={scrap} onPress={() => {
-            router.push({
+            router.navigate({
               pathname: '/book',
               params: {
                 scraps: JSON.stringify(scraps),

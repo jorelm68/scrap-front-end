@@ -171,7 +171,7 @@ const EditScrap = () => {
                             label='Thread Books'
                             size='large'
                             onPress={() => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/bookFinder', params: {
                                         book,
                                         threads: JSON.stringify(threads),

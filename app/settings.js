@@ -95,7 +95,7 @@ const Settings = () => {
                     options={scraps}
                     amount={1}
                     onSubmit={async () => {
-                        router.push({
+                        router.navigate({
                             pathname: '/scrapPicker', params: {
                                 scraps: JSON.stringify(scraps),
                                 amount: JSON.stringify(1),

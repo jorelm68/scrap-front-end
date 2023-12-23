@@ -352,7 +352,7 @@ const ProfileComponent = ({ author }) => {
                     label='Settings'
                     icon='settings'
                     onPress={async () => {
-                      router.push('/settings')
+                      router.navigate('/settings')
                     }}
                   />
                 )}
@@ -398,7 +398,7 @@ const ProfileComponent = ({ author }) => {
           {profileBooks && profileBooks.map((book) => {
             return (
               <TouchableOpacity key={book} onPress={() => {
-                router.push({
+                router.navigate({
                   pathname: '/book',
                   params: {
                     book,

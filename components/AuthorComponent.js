@@ -47,7 +47,7 @@ const AuthorComponent = ({ author, disappear }) => {
         height: 64,
       }}>
         <TouchableOpacity onPress={() => {
-          router.push({
+          router.navigate({
             pathname: '/profile',
             params: {
               author,

@@ -90,7 +90,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
-                    router.push({
+                    router.navigate({
                         pathname: '/book',
                         params: {
                             book,
@@ -114,7 +114,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         }}>
                             {showAuthor && (
                                 <TouchableOpacity centerV row onPress={() => {
-                                    router.push({
+                                    router.navigate({
                                         pathname: '/profile',
                                         params: {
                                             author,
@@ -179,7 +179,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 borderRadius: 8,
                             }}>
                                 <TouchableOpacity onPress={() => {
-                                    router.push({
+                                    router.navigate({
                                         pathname: '/likes',
                                         params: {
                                             book,
@@ -248,7 +248,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
 
                         {!hidden && (
                             <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -352,7 +352,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                             borderRadius: 8,
                         }}>
                             <TouchableOpacity onPress={() => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -421,7 +421,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
 
                     {!hidden && (
                         <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                            router.push({
+                            router.navigate({
                                 pathname: '/likes',
                                 params: {
                                     book,
