@@ -56,6 +56,7 @@ const CreateBook = () => {
             cache.filter([user, 'books'])
             cache.filter([user, 'publicBooks'])
             cache.filter([user, 'profileBooks'])
+            cache.filter([user, 'unbookedScraps'])
             router.back()
           }
           router.back()
@@ -81,6 +82,7 @@ const CreateBook = () => {
         setBook((prevBook) => ({
           ...prevBook,
           scraps: [...(prevBook.scraps ? prevBook.scraps : []), ...selection],
+          representative: prevBook.representative ? prevBook.representative : selection[0],
         }))
       },
       setRepresentative: async (selection) => {

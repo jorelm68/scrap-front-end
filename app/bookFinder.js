@@ -13,7 +13,7 @@ import BookList from '../components/BookList'
 const BookFinder = () => {
     const navigation = useNavigation()
     const router = useRouter()
-    const { functions, user } = useContext(AppContext)
+    const { functions, user, paused, setPaused } = useContext(AppContext)
     const params = useLocalSearchParams()
     const book = params.book
     const threads = JSON.parse(params.threads)
@@ -25,6 +25,8 @@ const BookFinder = () => {
     const [results, setResults] = useState([])
     const [selection, setSelection] = useState([])
     const sendQuery = async () => {
+        if (paused) return
+        setPaused(true)
         Keyboard.dismiss()
         response = await utilityBookSearch(user, query, ['restrictedBooks'])
         if (!response.success) {
@@ -36,6 +38,7 @@ const BookFinder = () => {
                 return !threads.includes(value) && value !== book
             }))
         }
+        setPaused(false)
     }
 
     const toggleSelect = async (book) => {

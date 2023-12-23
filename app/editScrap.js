@@ -16,9 +16,9 @@ import { Alert } from 'react-native'
 import BookComponent from '../components/BookComponent'
 
 const EditScrap = () => {
-    const { user, setFunctions } = useContext(AppContext)
+    const { user, setFunctions, paused, setPaused } = useContext(AppContext)
     const router = useRouter()
-    const { scrap, paused, setPaused } = useLocalSearchParams()
+    const { scrap } = useLocalSearchParams()
     const {
         title,
         setTitle,
@@ -210,6 +210,7 @@ const EditScrap = () => {
                 <View style={{
                     flexWrap: 'wrap',
                     flexDirection: 'row',
+                    marginTop: threads && threads.length === 3 ? 8 : 0,
                 }}>
                     {threads && threads.map((book) => {
                         return (
