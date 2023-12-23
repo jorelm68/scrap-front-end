@@ -5,6 +5,7 @@ import useAuthor from '../hooks/useAuthor'
 import { useLocalSearchParams } from 'expo-router'
 import BookComponent from '../components/BookComponent'
 import { dimensions, palette } from '../data/styles'
+import BookList from '../components/BookList'
 
 const Books = () => {
   const { user } = useContext(AppContext)
@@ -12,18 +13,14 @@ const Books = () => {
   const books = JSON.parse(params.books)
 
   return (
-    <View style={{
-      width: dimensions.width,
-      paddingTop: 4,
-      height: dimensions.height,
-      backgroundColor: palette.color1,
-    }}>
-      {books && books.map((book) => {
+    <BookList 
+      books={books}
+      renderItem={(book) => {
         return (
-          <BookComponent book={book} key={book} clickable />
+          <BookComponent book={book} key={book}/>
         )
-      })}
-    </View>
+      }}
+    />
   )
 }
 

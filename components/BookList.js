@@ -44,6 +44,7 @@ const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) =
                 flex: 1,
                 flexWrap: 'wrap',
                 flexDirection: 'row',
+                marginTop: 4,
             }}>
                 {books && books.length > 0 && books.map((book, index) => {
                     if (rows.includes(index)) {
