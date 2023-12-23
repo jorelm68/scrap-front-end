@@ -13,11 +13,11 @@ const Books = () => {
   const books = JSON.parse(params.books)
 
   return (
-    <BookList 
+    <BookList
       books={books}
       renderItem={(book) => {
         return (
-          <BookComponent book={book} key={book}/>
+          <BookComponent book={book} key={book} clickable />
         )
       }}
     />

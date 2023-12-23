@@ -27,8 +27,12 @@ const Library = () => {
       deleteScraps: async (selection) => {
         const response = await scrapDeleteScraps(selection)
         if (response.success) {
-          cache.filter([user, 'scraps'])
           cache.filter([user, 'miles'])
+          cache.filter([user, 'books'])
+          cache.filter([user, 'profileBooks'])
+          cache.filter([user, 'publicBooks'])
+          cache.filter([user, 'unbookedScraps'])
+          cache.filter(['scraps'])
           for (const scrap of selection) {
             cache.filter([scrap])
           }
@@ -40,8 +44,9 @@ const Library = () => {
       deleteBooks: async (selection) => {
         const response = await bookDeleteBooks(selection)
         if (response.success) {
-          cache.filter([user, 'books'])
+          cache.filter([user, 'profileBooks'])
           cache.filter([user, 'publicBooks'])
+          cache.filter(['books'])
           for (const book of books) {
             cache.filter([book])
           }
