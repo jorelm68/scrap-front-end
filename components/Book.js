@@ -104,7 +104,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     }
     else {
         return (
-            <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
+            <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
                 <MapComponent
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}

@@ -27,7 +27,7 @@ const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) =
     }
 
     return (
-        <ScrollView
+        <ScrollView showsVerticalScrollIndicator={false} 
             ref={scrollViewRef}
             onScroll={handleScroll}
             scrollEventThrottle={16} // Adjust the frequency of onScroll event

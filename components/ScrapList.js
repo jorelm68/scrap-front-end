@@ -27,7 +27,7 @@ const ScrapList = ({ scraps, renderItem }) => {
     }
 
     return (
-        <ScrollView
+        <ScrollView showsVerticalScrollIndicator={false} 
             ref={scrollViewRef}
             onScroll={handleScroll}
             scrollEventThrottle={16} // Adjust the frequency of onScroll event

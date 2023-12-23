@@ -86,7 +86,7 @@ const Search = () => {
   }
 
   return (
-    <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+    <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
       backgroundColor: palette.color1,
       width: dimensions.width,
       height: dimensions.height,

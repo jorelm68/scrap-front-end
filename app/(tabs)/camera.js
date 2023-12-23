@@ -212,7 +212,7 @@ const CameraScreen = () => {
       )}
 
       {isSaving && (
-        <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true}>
+        <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true}>
           <View centerH row style={{
             width: dimensions.width,
             height: 48 + 20,

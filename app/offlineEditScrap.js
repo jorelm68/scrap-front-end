@@ -31,7 +31,7 @@ const OfflineEditScrap = () => {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <ScrollView keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+            <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
                 width: dimensions.width,
                 height: dimensions.height,
                 backgroundColor: palette.color1,
