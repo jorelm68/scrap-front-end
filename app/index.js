@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native-ui-lib'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/AppContext'
 import { deleteData, loadFonts, retrieveData } from '../data/utility'
 import { authorExists, isDeviceOffline } from '../data/api'
@@ -7,13 +7,14 @@ import { useRouter } from 'expo-router'
 import { dimensions, palette } from '../data/styles'
 import { ActivityIndicator } from 'react-native'
 import LogoComponent from '../components/LogoComponent'
-import { onlineSaveScraps } from '../data/offline'
+import { hasOfflineScraps, onlineSaveScraps } from '../data/offline'
 
 loadFonts()
 
 const Autothenticate = () => {
   const router = useRouter()
   const { setUser, setAuthenticated } = useContext(AppContext)
+  const [savingScraps, setSavingScraps] = useState(false)
 
   useEffect(() => {
     loadFonts().then(() => {
@@ -47,11 +48,14 @@ const Autothenticate = () => {
 
     setUser(user)
     setAuthenticated(true)
-    const response1 = await onlineSaveScraps(user)
-    if (response1.success) {
-      console.log('successfully saved scraps')
-      router.replace('/camera')
+    const yes = await hasOfflineScraps()
+    if (yes) {
+      const response1 = await onlineSaveScraps(response.data.author)
+      if (response1.success) {
+        console.log('Successfully saved offline scraps!')
+      }
     }
+    router.replace('/camera')
   }
 
   return (
@@ -62,6 +66,13 @@ const Autothenticate = () => {
     }}>
       <LogoComponent />
       <ActivityIndicator size='large' color={palette.color5} />
+      {savingScraps && (
+        <Text style={{
+          fontFamily: fonts.itim,
+          fontSize: 16,
+          color: palette.color6,
+        }}>Saving the scraps you took while offline...</Text>
+      )}
     </View>
   )
 }

@@ -14,6 +14,7 @@ import ButtonComponent from '../../components/ButtonComponent'
 import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import LogoComponent from '../../components/LogoComponent'
 import ErrorComponent from '../../components/ErrorComponent'
+import { hasOfflineScraps } from '../../data/offline'
 
 export default function App() {
   const { setUser } = useContext(AppContext)
@@ -144,12 +145,15 @@ export default function App() {
                     await saveAccount(account)
 
                     setUser(response.data.author)
-                    router.back()
-                    const response1 = await onlineSaveScraps(response.data.author)
-                    if (response1.success) {
-                      console.log('successfully saved scraps')
-                      router.replace('/camera')
+                    const yes = await hasOfflineScraps()
+                    if (yes) {
+                      const response1 = await onlineSaveScraps(response.data.author)
+                      if (response1.success) {
+                        console.log('successfully saved scraps')
+                      }
                     }
+                    router.back()
+                    router.replace('/camera')
                   }
                 }
                 else {

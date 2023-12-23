@@ -12,6 +12,7 @@ import FieldComponent from '../../components/FieldComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import ErrorComponent from '../../components/ErrorComponent'
 import { dimensions, palette } from '../../data/styles'
+import { hasOfflineScraps } from '../../data/offline'
 
 const SignUp = () => {
   const router = useRouter()
@@ -232,12 +233,15 @@ const SignUp = () => {
                 await saveAccount(account)
 
                 setUser(response.data.author)
-                router.back()
-                const response1 = await onlineSaveScraps(response.data.author)
-                if (response1.success) {
-                  console.log('successfully saved scraps')
-                  router.replace('/camera')
+                const yes = await hasOfflineScraps()
+                if (yes) {
+                  const response1 = await onlineSaveScraps(response.data.author)
+                  if (response1.success) {
+                    console.log('successfully saved scraps')
+                  }
                 }
+                router.back()
+                router.replace('/camera')
               }
               else {
                 router.back()

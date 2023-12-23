@@ -31,6 +31,13 @@ export async function offlineGetScraps() {
     return scraps
 }
 
+export async function hasOfflineScraps() {
+    const data = await retrieveData('scraps')
+    const scraps = JSON.parse(data)
+
+    return scraps && scraps.length > 0
+}
+
 export async function onlineSaveScraps(user) {
     const data = await retrieveData('scraps')
     const scraps = JSON.parse(data)
