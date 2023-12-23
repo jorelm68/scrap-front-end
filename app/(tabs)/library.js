@@ -11,7 +11,7 @@ import cache from '../../data/cache'
 import { Alert } from 'react-native'
 
 const Library = () => {
-  const { user, setFunctions } = useContext(AppContext)
+  const { user, setFunctions, paused, setPaused } = useContext(AppContext)
   const router = useRouter()
   const {
     scraps,
@@ -27,6 +27,8 @@ const Library = () => {
     setFunctions((prevFunctions) => ({
       ...prevFunctions,
       deleteScraps: async (selection) => {
+        if (paused) return
+        setPaused(true)
         const response = await scrapDeleteScraps(selection)
         if (response.success) {
           cache.filter([user, 'miles'])
@@ -45,8 +47,11 @@ const Library = () => {
             cache.filter([scrap])
           }
         }
+        setPaused(false)
       },
       deleteBooks: async (selection) => {
+        if (paused) return
+        setPaused(true)
         const response = await bookDeleteBooks(selection)
         if (response.success) {
           cache.filter([user, 'profileBooks'])
@@ -57,35 +62,36 @@ const Library = () => {
               return !selection.includes(book)
             })
           ])
-          
+
           for (const book of books) {
             cache.filter([book])
           }
         }
+        setPaused(false)
       }
     }))
   }, [])
 
   const handleScraps = async () => {
-    router.push({
+    router.navigate({
       pathname: '/scraps', params: {
         scraps: JSON.stringify(scraps),
       }
     })
   }
   const handleBooks = async () => {
-    router.push({
+    router.navigate({
       pathname: '/books', params: {
         books: JSON.stringify(books),
       }
     })
   }
   const handleCreateBook = async () => {
-    router.push('/createBook')
+    router.navigate('/createBook')
   }
 
   const handleDeleteBooks = async () => {
-    router.push({
+    router.navigate({
       pathname: '/bookPicker', params: {
         books: JSON.stringify(books),
         amount: JSON.stringify(books.length),

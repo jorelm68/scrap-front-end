@@ -6,6 +6,7 @@ const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
     const [user, setUser] = useState('bruh')
     const [accounts, setAccounts] = useState([])
+    const [paused, setPaused] = useState(false)
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
     const [currentScrap, setCurrentScrap] = useState('')
@@ -26,6 +27,8 @@ const AppContextProvider = ({ children }) => {
         setAuthenticated,
         functions,
         setFunctions,
+        paused,
+        setPaused,
         currentScrap,
         setCurrentScrap,
         // ... other shared data and functions

@@ -26,14 +26,12 @@ const Layout = () => {
         <Stack.Screen
           name="(authentication)/signUp"
           options={{
-            presentation: 'modal',
             headerShown: false
           }}
         />
         <Stack.Screen
           name="(authentication)/forgotPassword"
           options={{
-            presentation: 'modal',
             headerTitle: 'Forgot Password',
             headerTitleStyle: {
               fontFamily: fonts.playBold,
@@ -48,7 +46,6 @@ const Layout = () => {
         <Stack.Screen
           name="(authentication)/chooseAccount"
           options={{
-            presentation: 'modal',
             headerTitle: 'Choose your Account',
             headerTitleStyle: {
               fontFamily: fonts.playBold,
@@ -103,7 +100,6 @@ const Layout = () => {
         <Stack.Screen
           name="scrapPicker"
           options={{
-            presentation: 'modal',
             headerTitle: 'Scrap Picker',
             headerTitleStyle: {
               fontFamily: fonts.playBold,
@@ -123,7 +119,6 @@ const Layout = () => {
         <Stack.Screen
           name="bookPicker"
           options={{
-            presentation: 'modal',
             headerTitle: 'Book Picker',
             headerTitleStyle: {
               fontFamily: fonts.playBold,
@@ -259,7 +254,6 @@ const Layout = () => {
         <Stack.Screen
           name='editScrap'
           options={{
-            presentation: 'modal',
             headerTitle: 'Edit Scrap',
             headerTitleStyle: {
               fontFamily: fonts.playBold,
@@ -300,7 +294,6 @@ const Layout = () => {
         <Stack.Screen
           name='editBook'
           options={{
-            presentation: 'modal',
             headerTitle: 'Edit Book',
             headerTitleStyle: {
               fontFamily: fonts.playBold,
@@ -321,7 +314,6 @@ const Layout = () => {
         <Stack.Screen
           name="bookFinder"
           options={{
-            presentation: 'modal',
             headerTitle: 'Book Finder',
             headerTitleStyle: {
               fontFamily: fonts.playBold,

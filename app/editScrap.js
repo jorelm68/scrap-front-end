@@ -86,11 +86,13 @@ const EditScrap = () => {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+            <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
                 width: dimensions.width,
                 height: dimensions.height,
                 backgroundColor: palette.color1,
+                paddingTop: 4,
             }}>
+                <BookComponent clickable book={book} />
                 <DropDownComponent
                     type='Text'
                     title='Title:'
