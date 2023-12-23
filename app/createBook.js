@@ -57,7 +57,6 @@ const CreateBook = () => {
             cache.filter([user, 'publicBooks'])
             cache.filter([user, 'profileBooks'])
             router.back()
-            router.back()
           }
           router.back()
           setPaused(false)

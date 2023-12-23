@@ -20,7 +20,7 @@ import { dimensions, palette } from '../data/styles'
 
 const EditBook = () => {
     const router = useRouter()
-    const { user, setFunctions } = useContext(AppContext)
+    const { user, setFunctions, paused, setPaused } = useContext(AppContext)
     const params = useLocalSearchParams()
     const book = params.book
 
@@ -53,6 +53,8 @@ const EditBook = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             addScrapsToBook: async (selection) => {
+                if (paused) return
+                setPaused(true)
                 for (const scrap of selection) {
                     const response = await bookAddScrap(book, scrap)
                     if (!response.success) {
@@ -61,13 +63,9 @@ const EditBook = () => {
                     }
                 }
 
-                if (!scraps) {
+                if (!representative) {
                     const response = await edit('Book', book, 'representative', selection[0])
-                    if (!response.success) {
-                        Alert.alert('Error', response.error)
-                        return
-                    }
-                    else {
+                    if (response.success) {
                         setRepresentative(selection[0])
                         cache.filter([book, 'representative'])
                     }
@@ -88,23 +86,31 @@ const EditBook = () => {
                 for (const scrap of selection) {
                     cache.filter([scrap, 'book'])
                 }
+
+                setPaused(false)
                 return {
                     success: true,
                 }
             },
             changeRepresentative: async (selection) => {
+                if (paused) return
+                setPaused(true)
                 const response = await edit('Book', book, 'representative', selection[0])
                 if (response.success) {
                     setRepresentative(selection[0])
                 }
 
                 cache.filter([book, 'scraps'])
+
+                setPaused(false)
                 return response
             },
         }))
     }, [])
 
     const handleRemoveScrap = async (scrap) => {
+        if (paused) return
+        setPaused(true)
         const response = await bookRemoveScrap(book, scrap)
         if (response.success) {
             setScraps((prevScraps) => ([
@@ -139,6 +145,7 @@ const EditBook = () => {
             }
         }
 
+        setPaused(false)
         return response
     }
 

@@ -90,9 +90,11 @@ const EditScrap = () => {
                 width: dimensions.width,
                 height: dimensions.height,
                 backgroundColor: palette.color1,
-                paddingTop: 4,
+                paddingTop: book ? 4 : 0,
             }}>
-                <BookComponent book={book} />
+                {book && (
+                    <BookComponent book={book} />
+                )}
                 <DropDownComponent
                     type='Text'
                     title='Title:'

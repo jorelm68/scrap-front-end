@@ -59,7 +59,7 @@ const Library = () => {
         if (response.success) {
           cache.filter([user, 'profileBooks'])
           cache.filter([user, 'publicBooks'])
-          cache.filter(['books'])
+          cache.filter(['book'])
           setBooks((prevBooks) => [
             ...prevBooks.filter((book) => {
               return !selection.includes(book)
