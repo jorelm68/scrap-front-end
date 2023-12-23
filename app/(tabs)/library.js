@@ -17,6 +17,7 @@ const Library = () => {
     scraps,
     setScraps,
     books,
+    setBooks,
   } = useAuthor(user, [
     'scraps',
     'books',
@@ -34,17 +35,15 @@ const Library = () => {
           cache.filter([user, 'publicBooks'])
           cache.filter([user, 'unbookedScraps'])
           cache.filter(['scraps'])
-          setScraps((prevScraps) => ({
+          setScraps((prevScraps) => [
             ...prevScraps.filter((scrap) => {
               return !selection.includes(scrap)
             })
-          }))
+          ])
+
           for (const scrap of selection) {
             cache.filter([scrap])
           }
-        }
-        else {
-          Alert.alert('Error', response.error)
         }
       },
       deleteBooks: async (selection) => {
@@ -53,12 +52,15 @@ const Library = () => {
           cache.filter([user, 'profileBooks'])
           cache.filter([user, 'publicBooks'])
           cache.filter(['books'])
+          setBooks((prevBooks) => [
+            ...prevBooks.filter((book) => {
+              return !selection.includes(book)
+            })
+          ])
+          
           for (const book of books) {
             cache.filter([book])
           }
-        }
-        else {
-          Alert.alert('Error', response.error)
         }
       }
     }))
