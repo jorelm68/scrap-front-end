@@ -13,6 +13,7 @@ const ScrapPicker = () => {
   const router = useRouter()
   const scraps = JSON.parse(params.scraps)
   const amount = JSON.parse(params.amount)
+  console.log(amount)
   const functionName = params.functionName
   const { functions } = useContext(AppContext)
   const onSubmit = functions[functionName]

@@ -89,6 +89,8 @@ const CreateBook = () => {
     }))
   }, [])
 
+  console.log('scraps length:', book.scraps.length)
+
   return (
     <KeyboardAvoidingView behavior="padding" style={{
       flex: 1,
@@ -189,7 +191,7 @@ const CreateBook = () => {
                   scraps: JSON.stringify(unbookedScraps.filter((value) => {
                     return !book.scraps || !book.scraps.includes(value)
                   })),
-                  amount: JSON.stringify(10 - unbookedScraps.length),
+                  amount: JSON.stringify(book.scraps ? 10 - book.scraps.length : 10),
                   functionName: 'addScrapsToBook',
                 }
               })
