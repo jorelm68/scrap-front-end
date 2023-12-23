@@ -108,7 +108,7 @@ export default function App() {
               label='Sign In'
               icon='checkmark-circle'
               onPress={async () => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 router.push('/loading')
                 // First set the error messages if necessary

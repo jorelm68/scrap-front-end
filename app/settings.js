@@ -42,7 +42,7 @@ const Settings = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             setHeadshotAndCover: async (selection) => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 const response = await edit('Author', user, 'headshotAndCover', selection[0])
                 cache.filter([user, 'headshotAndCover'])
@@ -123,7 +123,7 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Author', user, 'firstName', values[0])
                         if (response.success) {
@@ -149,7 +149,7 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Author', user, 'lastName', values[0])
                         if (response.success) {
@@ -175,7 +175,7 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Author', user, 'autobiography', values[0])
                         if (response.success) {
@@ -202,7 +202,7 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Author', user, 'pseudonym', values[0])
                         if (response.success) {
@@ -238,7 +238,7 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await authorCheckCredentials(user, values[1])
                         if (response.success) {

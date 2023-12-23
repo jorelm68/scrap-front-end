@@ -100,7 +100,7 @@ const AuthorComponent = ({ author, disappear }) => {
       }}>
         {relationship === 'none' && (
           <TouchableOpacity onPress={async () => {
-            if (paused) return
+            if (paused) return { success: false, error: 'Please don\'t click too fast' }
             setPaused(true)
             const response = await authorSendRequest(user, author)
             if (response.success) {
@@ -125,7 +125,7 @@ const AuthorComponent = ({ author, disappear }) => {
         )}
         {relationship === 'outgoingFriendRequest' && (
           <TouchableOpacity onPress={async () => {
-            if (paused) return
+            if (paused) return { success: false, error: 'Please don\'t click too fast' }
             setPaused(true)
             const response = await authorRemoveRequest(user, author)
             if (response.success) {
@@ -159,7 +159,7 @@ const AuthorComponent = ({ author, disappear }) => {
               height: '50%',
             }}>
               <TouchableOpacity onPress={async () => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 const response = await authorAcceptRequest(user, author)
                 if (response.success) {
@@ -195,7 +195,7 @@ const AuthorComponent = ({ author, disappear }) => {
               height: '50%',
             }}>
               <TouchableOpacity onPress={async () => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 const response = await authorRejectRequest(user, author)
                 if (response.success) {
@@ -226,7 +226,7 @@ const AuthorComponent = ({ author, disappear }) => {
 
         {relationship === 'friend' && (
           <TouchableOpacity onPress={async () => {
-            if (paused) return
+            if (paused) return { success: false, error: 'Please don\'t click too fast' }
             setPaused(true)
             const response = await authorRemoveFriend(user, author)
             if (response.success) {

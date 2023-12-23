@@ -54,7 +54,7 @@ const OfflineEditScrap = () => {
                                 }
                             ]}
                             onSubmit={async (values) => {
-                                if (paused) return
+                                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                 setPaused(true)
                                 const response = await offlineEdit(index, 'title', values[0])
                                 if (response.success) {
@@ -79,7 +79,7 @@ const OfflineEditScrap = () => {
                                 }
                             ]}
                             onSubmit={async (values) => {
-                                if (paused) return
+                                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                 setPaused(true)
                                 const response = await offlineEdit(index, 'description', values[0])
                                 if (response.success) {
@@ -104,7 +104,7 @@ const OfflineEditScrap = () => {
                                 }
                             ]}
                             onSubmit={async (values) => {
-                                if (paused) return
+                                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                 setPaused(true)
                                 const response = await offlineEdit(index, 'place', values[0])
                                 if (response.success) {
@@ -122,7 +122,7 @@ const OfflineEditScrap = () => {
                                 label='Delete Scrap'
                                 icon='trash'
                                 onPress={async () => {
-                                    if (paused) return
+                                    if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                     setPaused(true)
                                     const response = await offlineDeleteScrap(index)
                                     if (response.success) {

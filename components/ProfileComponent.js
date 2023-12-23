@@ -264,7 +264,7 @@ const ProfileComponent = ({ author }) => {
                       label='Accept Request'
                       icon='checkmark-circle'
                       onPress={async () => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await authorAcceptRequest(user, author)
                         if (response.success) {
@@ -286,7 +286,7 @@ const ProfileComponent = ({ author }) => {
                       label='Reject Request'
                       icon='close-circle'
                       onPress={async () => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await authorRejectRequest(user, author)
                         if (response.success) {
@@ -307,7 +307,7 @@ const ProfileComponent = ({ author }) => {
                     label='Cancel Request'
                     icon='remove-circle'
                     onPress={async () => {
-                      if (paused) return
+                      if (paused) return { success: false, error: 'Please don\'t click too fast' }
                       setPaused(true)
                       const response = await authorRemoveRequest(user, author)
                       if (response.success) {
@@ -327,7 +327,7 @@ const ProfileComponent = ({ author }) => {
                     label='Remove Friend'
                     icon='person-remove'
                     onPress={async () => {
-                      if (paused) return
+                      if (paused) return { success: false, error: 'Please don\'t click too fast' }
                       setPaused(true)
                       const response = await authorRemoveFriend(user, author)
                       if (response.success) {
@@ -347,7 +347,7 @@ const ProfileComponent = ({ author }) => {
                     label='Send Request'
                     icon='person-add'
                     onPress={async () => {
-                      if (paused) return
+                      if (paused) return { success: false, error: 'Please don\'t click too fast' }
                       setPaused(true)
                       const response = await authorSendRequest(user, author)
                       if (response.success) {

@@ -25,7 +25,7 @@ const BookFinder = () => {
     const [results, setResults] = useState([])
     const [selection, setSelection] = useState([])
     const sendQuery = async () => {
-        if (paused) return
+        if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
         Keyboard.dismiss()
         response = await utilityBookSearch(user, query, ['restrictedBooks'])

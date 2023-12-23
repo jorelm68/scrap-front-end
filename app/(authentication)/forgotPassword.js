@@ -54,7 +54,7 @@ const ForgotPassword = () => {
                         label='Request Password Change'
                         icon='lock-closed'
                         onPress={async () => {
-                            if (paused) return
+                            if (paused) return { success: false, error: 'Please don\'t click too fast' }
                             setPaused(true)
                             if (!regexAuthorEmail.test(email)) {
                                 setEmailError(errorAuthorEmail)

@@ -44,7 +44,7 @@ const CreateBook = () => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={async () => {
-          if (paused) return
+          if (paused) return { success: false, error: 'Please don\'t click too fast' }
           setPaused(true)
           router.push('/loading')
           const response = await bookSaveBook(book)

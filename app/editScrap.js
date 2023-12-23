@@ -41,7 +41,7 @@ const EditScrap = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             addThreadsToScrap: async (selection) => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 for (const book of selection) {
                     const response = await utilityAddThread(scrap, book)
@@ -71,7 +71,7 @@ const EditScrap = () => {
     }, [])
 
     const handleRemoveThread = async (book) => {
-        if (paused) return
+        if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
         const response = await utilityRemoveThread(scrap, book)
         if (response.success) {
@@ -118,7 +118,7 @@ const EditScrap = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Scrap', scrap, 'title', values[0])
                         if (response.success) {
@@ -145,7 +145,7 @@ const EditScrap = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Scrap', scrap, 'description', values[0])
                         if (response.success) {
@@ -153,7 +153,7 @@ const EditScrap = () => {
                             setDescription(values[0])
                         }
 
-                        setPaused(true)
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -172,7 +172,7 @@ const EditScrap = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Scrap', scrap, 'place', values[0])
                         if (response.success) {
@@ -180,7 +180,7 @@ const EditScrap = () => {
                             setPlace(values[0])
                         }
 
-                        setPaused(true)
+                        setPaused(false)
                         return response
                     }}
                 />

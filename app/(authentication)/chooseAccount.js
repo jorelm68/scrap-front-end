@@ -36,7 +36,7 @@ const ChooseAccount = () => {
     }
     // Function that handles when the user clicks the Sign In button on the drawer
     const handleSignIn = async (account) => {
-        if (paused) return
+        if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
         router.push('/loading')
         // First, make sure the author exists on the back end

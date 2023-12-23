@@ -27,7 +27,7 @@ const Library = () => {
     setFunctions((prevFunctions) => ({
       ...prevFunctions,
       deleteScraps: async (selection) => {
-        if (paused) return
+        if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
         router.push('/loading')
         const response = await scrapDeleteScraps(selection)
@@ -52,7 +52,7 @@ const Library = () => {
         setPaused(false)
       },
       deleteBooks: async (selection) => {
-        if (paused) return
+        if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
         router.push('/loading')
         const response = await bookDeleteBooks(selection)

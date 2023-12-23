@@ -53,7 +53,7 @@ const EditBook = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             addScrapsToBook: async (selection) => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 for (const scrap of selection) {
                     const response = await bookAddScrap(book, scrap)
@@ -93,7 +93,7 @@ const EditBook = () => {
                 }
             },
             changeRepresentative: async (selection) => {
-                if (paused) return
+                if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 const response = await edit('Book', book, 'representative', selection[0])
                 if (response.success) {
@@ -109,7 +109,7 @@ const EditBook = () => {
     }, [])
 
     const handleRemoveScrap = async (scrap) => {
-        if (paused) return
+        if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
         const response = await bookRemoveScrap(book, scrap)
         if (response.success) {
@@ -164,7 +164,7 @@ const EditBook = () => {
                     marginVertical: 16,
                 }}>
                     <SwitchComponent title={'Public? '} value={isPublic} onSwitch={async () => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Book', book, 'isPublic', !isPublic)
                         if (response.success) {
@@ -192,7 +192,7 @@ const EditBook = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Book', book, 'title', values[0])
                         if (response.success) {
@@ -219,7 +219,7 @@ const EditBook = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
-                        if (paused) return
+                        if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
                         const response = await edit('Book', book, 'description', values[0])
                         if (response.success) {
