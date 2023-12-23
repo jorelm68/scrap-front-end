@@ -15,6 +15,7 @@ const Library = () => {
   const router = useRouter()
   const {
     scraps,
+    setScraps,
     books,
   } = useAuthor(user, [
     'scraps',
@@ -33,6 +34,11 @@ const Library = () => {
           cache.filter([user, 'publicBooks'])
           cache.filter([user, 'unbookedScraps'])
           cache.filter(['scraps'])
+          setScraps((prevScraps) => ({
+            ...prevScraps.filter((scrap) => {
+              return !selection.includes(scrap)
+            })
+          }))
           for (const scrap of selection) {
             cache.filter([scrap])
           }

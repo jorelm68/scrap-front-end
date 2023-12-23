@@ -89,8 +89,6 @@ const CreateBook = () => {
     }))
   }, [])
 
-  console.log('scraps length:', book.scraps.length)
-
   return (
     <KeyboardAvoidingView behavior="padding" style={{
       flex: 1,
