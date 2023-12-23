@@ -56,11 +56,7 @@ const EditBook = () => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 for (const scrap of selection) {
-                    const response = await bookAddScrap(book, scrap)
-                    if (!response.success) {
-                        Alert.alert('Error', response.error)
-                        return
-                    }
+                    await bookAddScrap(book, scrap)
                 }
 
                 if (!representative) {
@@ -98,6 +94,7 @@ const EditBook = () => {
                 const response = await edit('Book', book, 'representative', selection[0])
                 if (response.success) {
                     setRepresentative(selection[0])
+                    cache.filter([book, 'representative'])
                 }
 
                 cache.filter([book, 'scraps'])
