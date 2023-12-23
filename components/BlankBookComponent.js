@@ -12,7 +12,7 @@ const BlankBookComponent = ({ book }) => {
             paddingHorizontal: 4,
         }}>
             <TouchableOpacity onPress={() => {
-                router.navigate({
+                router.push({
                     pathname: '/book',
                     params: {
                         book,

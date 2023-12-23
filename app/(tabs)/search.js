@@ -160,7 +160,7 @@ const Search = () => {
               {results && results.map((book) => {
                 return (
                   <TouchableOpacity key={book} onPress={() => {
-                    router.navigate({
+                    router.push({
                       pathname: '/book',
                       params: {
                         book,

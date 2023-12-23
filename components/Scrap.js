@@ -84,7 +84,7 @@ const Scrap = ({ scrap }) => {
                 width: dimensions.width * (2 / 3) - 4,
                 padding: 4,
             }} onPress={() => {
-                router.navigate({
+                router.push({
                     pathname: '/profile',
                     params: {
                         author,

@@ -90,7 +90,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
         }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
-                    router.navigate({
+                    router.push({
                         pathname: '/book',
                         params: {
                             book,
@@ -114,7 +114,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                         }}>
                             {showAuthor && (
                                 <TouchableOpacity centerV row onPress={() => {
-                                    router.navigate({
+                                    router.push({
                                         pathname: '/profile',
                                         params: {
                                             author,

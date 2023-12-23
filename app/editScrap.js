@@ -92,7 +92,7 @@ const EditScrap = () => {
                 backgroundColor: palette.color1,
                 paddingTop: 4,
             }}>
-                <BookComponent clickable book={book} />
+                <BookComponent book={book} />
                 <DropDownComponent
                     type='Text'
                     title='Title:'
