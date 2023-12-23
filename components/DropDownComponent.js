@@ -39,7 +39,7 @@ const DropDownComponent = ({ title, value, onSubmit, topBorder, type, boxes }) =
 
         setSubmissions(newSubmissions)
         setValues(newValues)
-    }, [value])
+    }, [boxes, value])
 
     const handleSubmit = async () => {
         let passing = true
