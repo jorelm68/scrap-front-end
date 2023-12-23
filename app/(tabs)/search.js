@@ -186,7 +186,7 @@ const Search = () => {
           })}
         </View>
       </TouchableWithoutFeedback>
-      <View height={80 + 4} />
+      <View height={200} />
     </ScrollView>
   )
 }

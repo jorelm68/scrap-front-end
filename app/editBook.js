@@ -79,6 +79,8 @@ const EditBook = () => {
                 ]))
 
                 cache.filter([book, 'scraps'])
+                cache.filter([user, 'books'])
+                cache.filter([user, 'profileBooks'])
                 cache.filter([user, 'unbookedScraps'])
                 cache.filter([book, 'miles'])
                 cache.filter([book, 'Date'])
@@ -114,6 +116,8 @@ const EditBook = () => {
 
         cache.filter([book, 'scraps'])
         cache.filter([user, 'unbookedScraps'])
+        cache.filter([user, 'books'])
+        cache.filter([user, 'profileBooks'])
         cache.filter([scrap, 'book'])
         cache.filter([book, 'miles'])
         cache.filter([book, 'Date'])
@@ -144,7 +148,7 @@ const EditBook = () => {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+            <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
                 width: dimensions.width,
                 height: dimensions.height,
                 backgroundColor: palette.color1,
