@@ -7,6 +7,7 @@ import { Alert } from 'react-native'
 import { dimensions, palette, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
 import BookComponent from '../components/BookComponent'
+import BookList from '../components/BookList'
 
 const BookPicker = () => {
   const params = useLocalSearchParams()
@@ -65,16 +66,9 @@ const BookPicker = () => {
   }
 
   return (
-    <View style={{
-      flex: 1,
-      paddingTop: 4,
-      flexWrap: 'wrap',
-      flexDirection: 'row',
-      width: dimensions.width,
-      height: dimensions.height,
-      backgroundColor: palette.color1,
-    }}>
-      {books && books.length > 0 && books.map((book) => {
+    <BookList
+      books={books}
+      renderItem={(book) => {
         return (
           <TouchableOpacity key={book} onPress={() => {
             toggleSelect(book)
@@ -98,8 +92,8 @@ const BookPicker = () => {
             )}
           </TouchableOpacity>
         )
-      })}
-    </View>
+      }}
+    />
   )
 }
 

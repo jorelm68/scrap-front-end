@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons'
 import FieldComponent from '../components/FieldComponent'
 import BookComponent from '../components/BookComponent'
 import { utilityBookSearch } from '../data/api'
+import BookList from '../components/BookList'
 
 const BookFinder = () => {
     const navigation = useNavigation()
@@ -81,61 +82,68 @@ const BookFinder = () => {
                 width: dimensions.width,
                 height: dimensions.height,
             }}>
-                <View centerH row style={{
-                    marginVertical: 16,
-                    width: dimensions.width,
-                    height: 48,
-                }}>
-                    <FieldComponent
-                        placeholder='Search...'
-                        width={dimensions.width * (7 / 10)}
-                        value={query}
-                        onChangeText={(value) => {
-                            setQuery(value)
-                        }}
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        autoComplete='off'
-                    />
-
-                    <TouchableOpacity onPress={sendQuery} style={{
-                        width: dimensions.width * (1 / 10),
-                        height: dimensions.width * (1 / 10),
-                    }}>
-                        <View center style={{
-                            width: dimensions.width * (1 / 10),
-                            height: dimensions.width * (1 / 10),
-                        }}>
-                            <Ionicons name='search' color={palette.color6} size={24} />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-
-                {results && results.map((book) => {
-                    return (
-                        <TouchableOpacity key={book} onPress={() => {
-                            toggleSelect(book)
-                        }} >
-                            <View style={selection.includes(book) ? {
-                                opacity: 0.5,
-                            } : {
-                                opacity: 1,
+                <BookList
+                    header={() => {
+                        return (
+                            <View centerH row style={{
+                                marginVertical: 16,
+                                width: dimensions.width,
+                                height: 48,
                             }}>
-                                <BookComponent book={book} showAuthor />
+                                <FieldComponent
+                                    placeholder='Search...'
+                                    width={dimensions.width * (7 / 10)}
+                                    value={query}
+                                    onChangeText={(value) => {
+                                        setQuery(value)
+                                    }}
+                                    autoCorrect={false}
+                                    autoCapitalize='none'
+                                    autoComplete='off'
+                                />
+
+                                <TouchableOpacity onPress={sendQuery} style={{
+                                    width: dimensions.width * (1 / 10),
+                                    height: dimensions.width * (1 / 10),
+                                }}>
+                                    <View center style={{
+                                        width: dimensions.width * (1 / 10),
+                                        height: dimensions.width * (1 / 10),
+                                    }}>
+                                        <Ionicons name='search' color={palette.color6} size={24} />
+                                    </View>
+                                </TouchableOpacity>
                             </View>
-                            {selection.includes(book) && (
-                                <Text style={{
-                                    position: 'absolute',
-                                    fontSize: 45,
-                                    color: palette.accent,
-                                    fontFamily: fonts.playBold,
-                                    bottom: 4,
-                                    right: 4,
-                                }}>{selection.indexOf(book) + 1}</Text>
-                            )}
-                        </TouchableOpacity>
-                    )
-                })}
+                        )
+                    }}
+                    headerHeight={48}
+                    books={results}
+                    renderItem={(book) => {
+                        return (
+                            <TouchableOpacity key={book} onPress={() => {
+                                toggleSelect(book)
+                            }} >
+                                <View style={selection.includes(book) ? {
+                                    opacity: 0.5,
+                                } : {
+                                    opacity: 1,
+                                }}>
+                                    <BookComponent book={book} showAuthor />
+                                </View>
+                                {selection.includes(book) && (
+                                    <Text style={{
+                                        position: 'absolute',
+                                        fontSize: 45,
+                                        color: palette.accent,
+                                        fontFamily: fonts.playBold,
+                                        bottom: 4,
+                                        right: 4,
+                                    }}>{selection.indexOf(book) + 1}</Text>
+                                )}
+                            </TouchableOpacity>
+                        )
+                    }}
+                />
             </View>
         </TouchableWithoutFeedback>
     )
