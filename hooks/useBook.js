@@ -4,6 +4,7 @@ import { defaultImage } from '../data/icons'
 import { bookRemoveLike, bookAddLike } from '../data/api'
 import { showAlert } from '../data/utility'
 import cache from '../data/cache'
+import { Alert } from 'react-native'
 
 export default function useBook(book, requests) {
     const { user } = useContext(AppContext)
@@ -80,7 +81,7 @@ export default function useBook(book, requests) {
                 cache.filter([book, 'likes'])
                 cache.filter([user, 'likedBooks'])
                 if (!response.success) {
-                    showAlert('Error', error.message)
+                    Alert.alert('Error', response.error)
                 }
 
                 setIsPaused(false)
@@ -92,7 +93,7 @@ export default function useBook(book, requests) {
                 cache.filter([book, 'likes'])
                 cache.filter([user, 'likedBooks'])
                 if (!response.success) {
-                    showAlert('Error', error.message)
+                    Alert.alert('Error', response.error)
                 }
 
                 setLikes([...likes, user])

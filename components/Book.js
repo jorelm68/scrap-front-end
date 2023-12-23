@@ -144,7 +144,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 color: palette.color6,
-                            }}>{likes.length} like{likes.length === 1 ? '' : 's'} </Text>
+                            }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={user !== author ? toggleLike : () => {
