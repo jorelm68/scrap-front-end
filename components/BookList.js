@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { dimensions, palette } from '../data/styles'
 import BlankBookComponent from './BlankBookComponent'
 
-const BookList = ({ header, headerHeight, books, renderItem }) => {
+const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)
 

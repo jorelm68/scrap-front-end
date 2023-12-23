@@ -111,7 +111,6 @@ const ProfileComponent = ({ author }) => {
       <View style={{
         width: dimensions.width,
         height: (dimensions.width / 2) + (dimensions.width / 4 / 2) + (48 * 3 + 4 * 2 + 4 * 2),
-        backgroundColor: 'yellow',
         marginBottom: 8,
       }}>
         <TouchableWithoutFeedback onPress={() => {
