@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native-ui-lib'
 import { Alert, Image, KeyboardAvoidingView, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { offlineDeleteScrap, offlineEdit, offlineGetScraps } from '../data/offline'
 import { dimensions, palette } from '../data/styles'
@@ -8,11 +8,13 @@ import DropDownComponent from '../components/DropDownComponent'
 import { regexScrapDescription, regexScrapPlace, regexScrapTitle } from '../data/regex'
 import { errorScrapDescription, errorScrapPlace, errorScrapTitle } from '../data/error'
 import ButtonComponent from '../components/ButtonComponent'
+import AppContext from '../context/AppContext'
 
 const OfflineEditScrap = () => {
     const params = useLocalSearchParams()
     const index = JSON.parse(params.index)
     const router = useRouter()
+    const { paused, setPaused } = useContext(AppContext)
 
     const [scraps, setScraps] = useState([])
 
@@ -52,10 +54,13 @@ const OfflineEditScrap = () => {
                                 }
                             ]}
                             onSubmit={async (values) => {
+                                if (paused) return
+                                setPaused(true)
                                 const response = await offlineEdit(index, 'title', values[0])
                                 if (response.success) {
                                     getScraps()
                                 }
+                                setPaused(false)
                                 return response
                             }}
                         />
@@ -74,10 +79,13 @@ const OfflineEditScrap = () => {
                                 }
                             ]}
                             onSubmit={async (values) => {
+                                if (paused) return
+                                setPaused(true)
                                 const response = await offlineEdit(index, 'description', values[0])
                                 if (response.success) {
                                     getScraps()
                                 }
+                                setPaused(false)
                                 return response
                             }}
                         />
@@ -96,10 +104,13 @@ const OfflineEditScrap = () => {
                                 }
                             ]}
                             onSubmit={async (values) => {
+                                if (paused) return
+                                setPaused(true)
                                 const response = await offlineEdit(index, 'place', values[0])
                                 if (response.success) {
                                     getScraps()
                                 }
+                                setPaused(false)
                                 return response
                             }}
                         />
@@ -111,10 +122,13 @@ const OfflineEditScrap = () => {
                                 label='Delete Scrap'
                                 icon='trash'
                                 onPress={async () => {
+                                    if (paused) return
+                                    setPaused(true)
                                     const response = await offlineDeleteScrap(index)
                                     if (response.success) {
                                         router.back()
                                     }
+                                    setPaused(false)
                                     return response
                                 }}
                             />

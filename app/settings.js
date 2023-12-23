@@ -17,7 +17,7 @@ import ButtonComponent from '../components/ButtonComponent'
 import ErrorComponent from '../components/ErrorComponent'
 
 const Settings = () => {
-    const { user, functions, setFunctions } = useContext(AppContext)
+    const { user, functions, setFunctions, paused, setPaused } = useContext(AppContext)
     const router = useRouter()
 
     const {
@@ -42,12 +42,15 @@ const Settings = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             setHeadshotAndCover: async (selection) => {
+                if (paused) return
+                setPaused(true)
                 const response = await edit('Author', user, 'headshotAndCover', selection[0])
                 cache.filter([user, 'headshotAndCover'])
                 setHeadshotAndCover(selection[0])
                 if (!response.success) {
                     Alert.alert('Error', 'Could not change headshot and cover')
                 }
+                setPaused(false)
             },
         }))
     }, [])
@@ -120,11 +123,14 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Author', user, 'firstName', values[0])
                         if (response.success) {
                             cache.filter([user, firstName])
                             setFirstName(values[0])
                         }
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -143,11 +149,14 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Author', user, 'lastName', values[0])
                         if (response.success) {
                             cache.filter([user, 'lastName'])
                             setLastName(values[0])
                         }
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -166,11 +175,14 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Author', user, 'autobiography', values[0])
                         if (response.success) {
                             cache.filter([user, 'autobiography'])
                             setAutobiography(values[0])
                         }
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -190,11 +202,14 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Author', user, 'pseudonym', values[0])
                         if (response.success) {
                             cache.filter([user, 'pseudonym'])
                             setPseudonym(values[0])
                         }
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -223,6 +238,8 @@ const Settings = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await authorCheckCredentials(user, values[1])
                         if (response.success) {
                             const response2 = await edit('Author', user, 'email', values[0])
@@ -232,6 +249,7 @@ const Settings = () => {
                             }
                             return response2
                         }
+                        setPaused(false)
                         return response
                     }}
                 />

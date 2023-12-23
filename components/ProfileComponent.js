@@ -20,7 +20,7 @@ import BookList from './BookList'
 
 const ProfileComponent = ({ author }) => {
   const router = useRouter()
-  const { user } = useContext(AppContext)
+  const { user, paused, setPaused } = useContext(AppContext)
   const navigation = useNavigation()
   const [name, setName] = useState('')
   const [photosReverse, setPhotosReverse] = useState(false)
@@ -264,6 +264,8 @@ const ProfileComponent = ({ author }) => {
                       label='Accept Request'
                       icon='checkmark-circle'
                       onPress={async () => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await authorAcceptRequest(user, author)
                         if (response.success) {
                           cache.filter([user, 'incomingFriendRequests'])
@@ -276,6 +278,7 @@ const ProfileComponent = ({ author }) => {
                           cache.filter([author, 'friends'])
                           setRelationship('friend')
                         }
+                        setPaused(false)
                       }}
                     />
 
@@ -283,6 +286,8 @@ const ProfileComponent = ({ author }) => {
                       label='Reject Request'
                       icon='close-circle'
                       onPress={async () => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await authorRejectRequest(user, author)
                         if (response.success) {
                           cache.filter([user, 'incomingFriendRequests'])
@@ -291,6 +296,7 @@ const ProfileComponent = ({ author }) => {
                           cache.filter([author, 'outgoingFriendRequests'])
                           setRelationship('none')
                         }
+                        setPaused(false)
                       }}
                     />
                   </View>
@@ -301,6 +307,8 @@ const ProfileComponent = ({ author }) => {
                     label='Cancel Request'
                     icon='remove-circle'
                     onPress={async () => {
+                      if (paused) return
+                      setPaused(true)
                       const response = await authorRemoveRequest(user, author)
                       if (response.success) {
                         cache.filter([user, 'outgoingFriendRequests'])
@@ -309,6 +317,7 @@ const ProfileComponent = ({ author }) => {
                         cache.filter([author, 'relationship'])
                         setRelationship('none')
                       }
+                      setPaused(false)
                     }}
                   />
                 )}
@@ -318,6 +327,8 @@ const ProfileComponent = ({ author }) => {
                     label='Remove Friend'
                     icon='person-remove'
                     onPress={async () => {
+                      if (paused) return
+                      setPaused(true)
                       const response = await authorRemoveFriend(user, author)
                       if (response.success) {
                         cache.filter([user, 'friends'])
@@ -326,6 +337,7 @@ const ProfileComponent = ({ author }) => {
                         cache.filter([author, 'relationship'])
                         setRelationship('none')
                       }
+                      setPaused(false)
                     }}
                   />
                 )}
@@ -335,6 +347,8 @@ const ProfileComponent = ({ author }) => {
                     label='Send Request'
                     icon='person-add'
                     onPress={async () => {
+                      if (paused) return
+                      setPaused(true)
                       const response = await authorSendRequest(user, author)
                       if (response.success) {
                         cache.filter([user, 'outgoingFriendRequests'])
@@ -343,6 +357,7 @@ const ProfileComponent = ({ author }) => {
                         cache.filter([author, 'relationship'])
                         setRelationship('outgoingFriendRequest')
                       }
+                      setPaused(false)
                     }}
                   />
                 )}
@@ -421,7 +436,7 @@ const ProfileComponent = ({ author }) => {
   }
   else {
     return (
-      <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
+      <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
         backgroundColor: palette.color1,
         width: dimensions.width,
         height: dimensions.height,

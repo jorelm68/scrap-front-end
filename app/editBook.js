@@ -164,6 +164,8 @@ const EditBook = () => {
                     marginVertical: 16,
                 }}>
                     <SwitchComponent title={'Public? '} value={isPublic} onSwitch={async () => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Book', book, 'isPublic', !isPublic)
                         if (response.success) {
                             cache.filter([book, 'isPublic'])
@@ -171,6 +173,7 @@ const EditBook = () => {
                             cache.filter([user, 'publicBooks'])
                             setIsPublic(!isPublic)
                         }
+                        setPaused(false)
                     }} />
                 </View>
 
@@ -189,11 +192,15 @@ const EditBook = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Book', book, 'title', values[0])
                         if (response.success) {
                             cache.filter([book, 'title'])
                             setTitle(values[0])
                         }
+
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -212,11 +219,15 @@ const EditBook = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Book', book, 'description', values[0])
                         if (response.success) {
                             cache.filter([book, 'description'])
                             setDescription(values[0])
                         }
+
+                        setPaused(false)
                         return response
                     }}
                 />

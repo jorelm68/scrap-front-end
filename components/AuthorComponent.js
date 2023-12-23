@@ -12,7 +12,7 @@ import { useNavigation, useRouter, Link } from 'expo-router'
 const AuthorComponent = ({ author, disappear }) => {
   const router = useRouter()
   const navigation = useNavigation()
-  const { user } = useContext(AppContext)
+  const { user, paused, setPaused } = useContext(AppContext)
   const [hidden, setHidden] = useState(false)
 
   const {
@@ -54,19 +54,19 @@ const AuthorComponent = ({ author, disappear }) => {
             }
           })
         }}>
-        <View style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          paddingLeft: 32,
-        }}>
-        <Image source={iCover} style={{
+          <View style={{
             width: '100%',
-            height: 64,
-            borderTopRightRadius: 32,
-            borderBottomRightRadius: 32,
-          }} />
-        </View>
+            height: '100%',
+            position: 'absolute',
+            paddingLeft: 32,
+          }}>
+            <Image source={iCover} style={{
+              width: '100%',
+              height: 64,
+              borderTopRightRadius: 32,
+              borderBottomRightRadius: 32,
+            }} />
+          </View>
 
           <View style={{
             position: 'absolute',
@@ -100,6 +100,8 @@ const AuthorComponent = ({ author, disappear }) => {
       }}>
         {relationship === 'none' && (
           <TouchableOpacity onPress={async () => {
+            if (paused) return
+            setPaused(true)
             const response = await authorSendRequest(user, author)
             if (response.success) {
               cache.filter([user, 'outgoingFriendRequests'])
@@ -108,6 +110,7 @@ const AuthorComponent = ({ author, disappear }) => {
               setRelationship('outgoingFriendRequest')
               if (disappear) setHidden(true)
             }
+            setPaused(false)
           }}>
             <View center row>
               <Ionicons name='add-circle' color={palette.color6} size={24} />
@@ -122,6 +125,8 @@ const AuthorComponent = ({ author, disappear }) => {
         )}
         {relationship === 'outgoingFriendRequest' && (
           <TouchableOpacity onPress={async () => {
+            if (paused) return
+            setPaused(true)
             const response = await authorRemoveRequest(user, author)
             if (response.success) {
               cache.filter([user, 'outgoingFriendRequests'])
@@ -130,6 +135,7 @@ const AuthorComponent = ({ author, disappear }) => {
               setRelationship('none')
               if (disappear) setHidden(true)
             }
+            setPaused(false)
           }}>
             <View center row>
               <Ionicons name='remove-circle' color={palette.color6} size={24} />
@@ -153,6 +159,8 @@ const AuthorComponent = ({ author, disappear }) => {
               height: '50%',
             }}>
               <TouchableOpacity onPress={async () => {
+                if (paused) return
+                setPaused(true)
                 const response = await authorAcceptRequest(user, author)
                 if (response.success) {
                   cache.filter([user, 'incomingFriendRequests'])
@@ -165,6 +173,7 @@ const AuthorComponent = ({ author, disappear }) => {
                   setRelationship('friend')
                   if (disappear) setHidden(true)
                 }
+                setPaused(false)
               }}>
                 <View center row style={{
                   width: '100%',
@@ -186,6 +195,8 @@ const AuthorComponent = ({ author, disappear }) => {
               height: '50%',
             }}>
               <TouchableOpacity onPress={async () => {
+                if (paused) return
+                setPaused(true)
                 const response = await authorRejectRequest(user, author)
                 if (response.success) {
                   cache.filter([user, 'incomingFriendRequests'])
@@ -194,6 +205,7 @@ const AuthorComponent = ({ author, disappear }) => {
                   setRelationship('none')
                   if (disappear) setHidden(true)
                 }
+                setPaused(false)
               }}>
                 <View center row style={{
                   width: '100%',
@@ -214,6 +226,8 @@ const AuthorComponent = ({ author, disappear }) => {
 
         {relationship === 'friend' && (
           <TouchableOpacity onPress={async () => {
+            if (paused) return
+            setPaused(true)
             const response = await authorRemoveFriend(user, author)
             if (response.success) {
               cache.filter([user, 'friends'])
@@ -224,6 +238,7 @@ const AuthorComponent = ({ author, disappear }) => {
               setRelationship('none')
               if (disappear) setHidden(true)
             }
+            setPaused(false)
           }}>
             <View center row>
               <Ionicons name='remove-circle' color={palette.color6} size={24} />

@@ -18,7 +18,7 @@ import BookComponent from '../components/BookComponent'
 const EditScrap = () => {
     const { user, setFunctions } = useContext(AppContext)
     const router = useRouter()
-    const { scrap } = useLocalSearchParams()
+    const { scrap, paused, setPaused } = useLocalSearchParams()
     const {
         title,
         setTitle,
@@ -41,6 +41,8 @@ const EditScrap = () => {
         setFunctions((prevFunctions) => ({
             ...prevFunctions,
             addThreadsToScrap: async (selection) => {
+                if (paused) return
+                setPaused(true)
                 for (const book of selection) {
                     const response = await utilityAddThread(scrap, book)
                     if (!response.success) {
@@ -59,6 +61,8 @@ const EditScrap = () => {
                 for (const book of selection) {
                     cache.filter([book, 'threads'])
                 }
+
+                setPaused(false)
                 return {
                     success: true,
                 }
@@ -67,6 +71,8 @@ const EditScrap = () => {
     }, [])
 
     const handleRemoveThread = async (book) => {
+        if (paused) return
+        setPaused(true)
         const response = await utilityRemoveThread(scrap, book)
         if (response.success) {
             setThreads((prevThreads) => ([
@@ -78,6 +84,8 @@ const EditScrap = () => {
             cache.filter([scrap, 'threads'])
             cache.filter([book, 'threads'])
         }
+
+        setPaused(false)
     }
 
     return (
@@ -110,11 +118,15 @@ const EditScrap = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Scrap', scrap, 'title', values[0])
                         if (response.success) {
                             cache.filter([scrap, 'title'])
                             setTitle(values[0])
                         }
+
+                        setPaused(false)
                         return response
                     }}
                 />
@@ -133,11 +145,15 @@ const EditScrap = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Scrap', scrap, 'description', values[0])
                         if (response.success) {
                             cache.filter([scrap, 'description'])
                             setDescription(values[0])
                         }
+
+                        setPaused(true)
                         return response
                     }}
                 />
@@ -156,11 +172,15 @@ const EditScrap = () => {
                         }
                     ]}
                     onSubmit={async (values) => {
+                        if (paused) return
+                        setPaused(true)
                         const response = await edit('Scrap', scrap, 'place', values[0])
                         if (response.success) {
                             cache.filter([scrap, 'place'])
                             setPlace(values[0])
                         }
+
+                        setPaused(true)
                         return response
                     }}
                 />

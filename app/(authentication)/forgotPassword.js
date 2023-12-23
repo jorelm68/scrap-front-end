@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native-ui-lib'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ErrorComponent from '../../components/ErrorComponent'
 import FieldComponent from '../../components/FieldComponent'
 import { dimensions, fonts, palette } from '../../data/styles'
@@ -8,10 +8,12 @@ import ButtonComponent from '../../components/ButtonComponent'
 import { regexAuthorEmail } from '../../data/regex'
 import { errorAuthorEmail } from '../../data/error'
 import { authorForgotPassword } from '../../data/api'
+import AppContext from '../../context/AppContext'
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
+    const { paused, setPaused } = useContext(AppContext)
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <KeyboardAvoidingView behavior="padding" style={{
@@ -52,6 +54,8 @@ const ForgotPassword = () => {
                         label='Request Password Change'
                         icon='lock-closed'
                         onPress={async () => {
+                            if (paused) return
+                            setPaused(true)
                             if (!regexAuthorEmail.test(email)) {
                                 setEmailError(errorAuthorEmail)
                             }
@@ -66,6 +70,7 @@ const ForgotPassword = () => {
                                     router.back()
                                 }
                             }
+                            setPaused(false)
                         }}
                     />
                 </View>
