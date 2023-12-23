@@ -29,11 +29,11 @@ const Layout = () => {
                 }}
             />
             <Tabs.Screen
-                name="offlineLibrary"
+                name="offlineScraps"
                 options={{
-                    tabBarLabel: 'Library',
-                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'library' : 'library-outline'} size={size} color={color} />,
-                    headerTitle: 'Library',
+                    tabBarLabel: 'Scraps',
+                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'image' : 'image-outline'} size={size} color={color} />,
+                    headerTitle: 'Scraps',
                     headerTitleStyle: {
                         fontFamily: fonts.playBold,
                         fontSize: 24,
