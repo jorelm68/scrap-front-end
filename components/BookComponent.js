@@ -178,7 +178,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                 backgroundColor: palette.color2,
                                 borderRadius: 8,
                             }}>
-                                <TouchableOpacity onPress={user !== author ? toggleLike : () => {
+                                <TouchableOpacity onPress={() => {
                                     router.push({
                                         pathname: '/likes',
                                         params: {
@@ -186,7 +186,16 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                         }
                                     })
                                 }}>
-                                    <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
+                                    <View center row>
+                                        <Text style={{
+                                            marginRight: 2,
+                                            fontFamily: fonts.itim,
+                                            fontSize: 12,
+                                            textAlign: 'center',
+                                            color: palette.color5,
+                                        }}>{likes.length} Like{likes.length === 1 ? '' : 's'}</Text>
+                                        <Ionicons name='person' color={palette.color6} size={12} />
+                                    </View>
                                 </TouchableOpacity>
 
                                 <View center row>
@@ -196,8 +205,8 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                         fontSize: 12,
                                         textAlign: 'center',
                                         color: palette.color5,
-                                    }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
-                                    <Ionicons name='person' color={palette.color6} size={12} />
+                                    }}>{scraps.length} Scrap{scraps.length === 1 ? '' : 's'}</Text>
+                                    <Ionicons name='image' color={palette.color6} size={12} />
                                 </View>
 
                                 <View center row>
@@ -226,7 +235,7 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
                                     <View center row>
                                         <Text style={{
                                             fontFamily: fonts.itim,
-                                            fontSize: 10,
+                                            fontSize: 12,
                                             lineHeight: 14,
                                             textAlign: 'center',
                                             color: palette.color5,
@@ -236,6 +245,23 @@ const BookComponent = ({ book, showAuthor, clickable }) => {
 
                             </View>
                         )}
+
+                        {!hidden && (
+                            <TouchableOpacity onPress={user !== author ? toggleLike : () => {
+                                router.push({
+                                    pathname: '/likes',
+                                    params: {
+                                        book,
+                                    }
+                                })
+                            }} style={{
+                                position: 'absolute',
+                                marginLeft: (dimensions.width - 8) * (3 / 4) - 12,
+                            }}>
+                                <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
+                            </TouchableOpacity>
+                        )}
+
                         {hidden && (
                             <View center style={{
                                 width: (dimensions.width - 8) / 4,
