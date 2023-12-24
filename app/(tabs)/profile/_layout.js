@@ -13,5 +13,13 @@ export default function ProfileLayout() {
           headerTitle: 'Profile',
         }}
       />
+      <Stack.Screen
+        name='profile/[author]'
+        options={{
+          ...options,
+          headerTitle: 'Profile',
+        }}
+      />
     </Stack>
-  )}
+  )
+}

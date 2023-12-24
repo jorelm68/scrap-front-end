@@ -1,9 +1,5 @@
 import { CAPACITY } from '@env'
-import {
-    utilityGet,
-    utilityGetPhoto,
-    utilitySet,
-} from './api'
+import api from './api'
 
 // <><><><><><><><><><CANCELLATION TOKEN><><><><><><><><><><><><><>
 class CancellationToken {
@@ -67,7 +63,7 @@ class Cache {
             const fetch = new Promise(async (resolve, reject) => {
                 try {
                     // Fetch data from the backend
-                    const response = await utilityGet(modelName, identifier, field, user)
+                    const response = await api.utility.get(modelName, identifier, field, user)
 
                     if (response.success) {
                         const data = response.data[field]
@@ -119,7 +115,7 @@ class Cache {
             const fetch = new Promise(async (resolve, reject) => {
                 try {
                     // Fetch data from the backend
-                    const response = await utilityGetPhoto(photo, size)
+                    const response = await api.utility.getPhoto(photo, size)
 
                     if (response.success) {
                         const data = response.data.iPhoto
@@ -185,7 +181,7 @@ class Cache {
             this.putLocks.set(key, cancellationToken)
 
             // Store the new data in the backend
-            const response = await utilitySet(modelName, identifier, field, value)
+            const response = await api.utility.set(modelName, identifier, field, value)
 
             if (!response) {
                 throw new Error(response.error)
