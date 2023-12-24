@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
-import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView, TouchableWithoutFeedback } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import { View, Text, Image, Switch } from 'react-native-ui-lib'
 import MapView, { Polyline } from 'react-native-maps'
