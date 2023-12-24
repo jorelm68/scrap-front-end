@@ -46,6 +46,7 @@ export const options = {
     headerStyle: {
         backgroundColor: palette.color0,
     },
+    headerBackTitleVisible: false,
     tabBarStyle: {
         backgroundColor: palette.color0,
     },

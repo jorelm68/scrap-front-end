@@ -176,7 +176,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                             }}>
                                 <TouchableOpacity onPress={() => {
                                     router.navigate({
-                                        pathname: '/likes',
+                                        pathname: `/${tab}/book/likes`,
                                         params: {
                                             book,
                                         }
@@ -245,7 +245,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                         {!hidden && (
                             <TouchableOpacity onPress={user !== author ? toggleLike : () => {
                                 router.navigate({
-                                    pathname: '/likes',
+                                    pathname: `/${tab}/book/likes`,
                                     params: {
                                         book,
                                     }
@@ -349,7 +349,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                         }}>
                             <TouchableOpacity onPress={() => {
                                 router.navigate({
-                                    pathname: '/likes',
+                                    pathname: `/${tab}/book/likes`,
                                     params: {
                                         book,
                                     }
@@ -418,7 +418,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                     {!hidden && (
                         <TouchableOpacity onPress={user !== author ? toggleLike : () => {
                             router.navigate({
-                                pathname: '/likes',
+                                pathname: `/${tab}/book/likes`,
                                 params: {
                                     book,
                                 }
