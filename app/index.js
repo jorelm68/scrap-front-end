@@ -25,20 +25,17 @@ const Autothenticate = () => {
       router.replace('offlineCamera')
     }
     else {
-      console.log(1)
       const user = await utility.retrieveData('autothenticate')
       if (!user) {
         router.replace('/signIn')
         return
       }
-      console.log(2)
       const response = await api.author.exists(user)
       if (!response.success) {
         await utility.deleteData('autothenticate')
         router.replace('/signIn')
         return
       }
-      console.log(3)
 
       setUser(user)
       setAuthenticated(true)
@@ -49,7 +46,6 @@ const Autothenticate = () => {
           console.log('Successfully saved offline scraps!')
         }
       }
-      console.log(4)
       router.replace('/camera')
     }
   }
