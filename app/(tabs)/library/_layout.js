@@ -27,65 +27,32 @@ export default function LibraryLayout() {
           presentation: 'modal',
           headerTitle: 'Choose Books',
         }}
-      />      
-      <Stack.Screen
-        name='profile/settings'
-        options={{
-          ...options,
-          headerTitle: 'Settings',
-        }}
       />
       <Stack.Screen
-        name='profile/[author]'
-        options={{
-          ...options,
-          headerTitle: 'Profile',
-        }}
-      />
-      <Stack.Screen
-        name='book/likes'
-        options={{
-          ...options,
-          headerTitle: 'Likes',
-        }}
-      />
-      <Stack.Screen
-        name='book/editBook'
+        name='createBook'
         options={{
           ...options,
           presentation: 'modal',
-          headerTitle: 'Edit Book',
+          headerTitle: 'Create Book',
         }}
       />
       <Stack.Screen
-        name='book/editScrap'
+        name='scraps'
         options={{
           ...options,
-          presentation: 'modal',
-          headerTitle: 'Edit Scrap',
+          headerTitle: 'Scraps',
         }}
       />
       <Stack.Screen
-        name='book/chooseScraps'
+        name='book'
         options={{
-          ...options,
-          presentation: 'modal',
-          headerTitle: 'Choose Scraps',
+          headerShown: false,
         }}
       />
       <Stack.Screen
-        name='book/findBooks'
+        name='profile'
         options={{
-          ...options,
-          presentation: 'modal',
-          headerTitle: 'Find Books',
-        }}
-      />
-      <Stack.Screen
-        name='book/[book]'
-        options={{
-          ...options,
-          headerTitle: 'Book',
+          headerShown: false,
         }}
       />
     </Stack>

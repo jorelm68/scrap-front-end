@@ -5,7 +5,11 @@ import { useContext } from "react";
 import { Text, View } from "react-native";
 import AppContext from '../../../context/AppContext'
 
-export default function Page() {
+const Page = () => {
   const { user } = useContext(AppContext)
-  return <Redirect href={`/profile/profile/${user}`} />;
+
+  return (
+    <Redirect href={`/profile/profile/${user}`} />
+  )
 }
+export default Page
