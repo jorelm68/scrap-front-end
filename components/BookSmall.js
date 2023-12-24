@@ -241,7 +241,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                                             lineHeight: 14,
                                             textAlign: 'center',
                                             color: palette.color5,
-                                        }}>{getDateRange(beginDate, endDate)}</Text>
+                                        }}>{utility.getDateRange(beginDate, endDate)}</Text>
                                     </View>
                                 )}
 

@@ -6,13 +6,12 @@ import { authorSignUp } from '../../data/api'
 import { Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native'
 import { useRouter } from 'expo-router'
 import AppContext from '../../context/AppContext'
-import { saveAccount, storeData } from '../../data/utility'
+import utility from '../../data/utility'
 import Logo from '../../components/Logo'
 import Field from '../../components/Field'
 import Button from '../../components/Button'
 import Error from '../../components/Error'
 import { dimensions } from '../../data/styles'
-import { hasOfflineScraps } from '../../data/offline'
 
 const SignUp = () => {
   const router = useRouter()
@@ -232,8 +231,8 @@ const SignUp = () => {
                   expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 }
 
-                await storeData('autothenticate', response.data.author)
-                await saveAccount(account)
+                await utility.storeData('autothenticate', response.data.author)
+                await utility.saveAccount(account)
 
                 setUser(response.data.author)
                 const yes = await hasOfflineScraps()

@@ -2,7 +2,7 @@ import { View, Text, Keyboard } from 'react-native'
 import React, { useContext } from 'react'
 import { Stack, useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { fonts } from '../data/styles'
+import { fonts, options } from '../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
 import AppContext from '../context/AppContext'
 import AppContextProvider from '../context/AppContextProvider'
@@ -12,7 +12,13 @@ const Layout = () => {
   const router = useRouter()
   return (
       <Stack>
-        
+        <Stack.Screen 
+          name="(tabs)"
+          options={{
+            ...options,
+            headerShown: false,
+          }}
+        />
       </Stack>
   )
 }

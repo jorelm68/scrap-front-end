@@ -12,7 +12,7 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
-import BlankBookSmall from './BlankBookSmall'
+import BookBlankSmall from './BookBlankSmall'
 
 const Page = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
     const { palette } = useContext(AppContext)
@@ -67,7 +67,7 @@ const Page = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
                     }
                     else {
                         return (
-                            <BlankBookSmall key={book} book={book} />
+                            <BookBlankSmall key={book} book={book} />
                         )
                     }
                 })}

@@ -3,18 +3,17 @@ import { Text, View, Drawer, TouchableOpacity } from 'react-native-ui-lib'
 import AppContext from '../../context/AppContext'
 import { Alert, FlatList } from 'react-native'
 import { authorExists } from '../../data/api'
-import { forgetAccount, retrieveData, saveAccount, storeData, getDate } from '../../data/utility'
+import utility from '../../data/utility'
 import { useRouter } from 'expo-router'
 import { dimensions, fonts } from '../../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { hasOfflineScraps, onlineSaveScraps } from '../../data/offline'
 
 const ChooseAccount = () => {
     const router = useRouter()
     const { setUser, paused, setPaused, palette } = useContext(AppContext)
     const [accounts, setAccounts] = useState([])
     useEffect(() => {
-        retrieveData('accounts').then((accounts) => {
+        utility.retrieveData('accounts').then((accounts) => {
             setAccounts(JSON.parse(accounts))
         }).catch(() => { })
     }, [])
@@ -29,7 +28,7 @@ const ChooseAccount = () => {
     // Function that handles when the user clicks the Forget button on the drawer
     const handleForget = async (account) => {
         // First, change the accounts on the device itself
-        await forgetAccount(account)
+        await utility.forgetAccount(account)
 
         // Then, change the accounts variable locally so that it disappears from the screen
         setAccounts(accounts.filter(storedAccount => storedAccount.author !== account.author))
@@ -46,14 +45,14 @@ const ChooseAccount = () => {
             router.back()
             setPaused(false)
             Alert.alert('Error', 'Error signing into your account. Please try manually')
-            await forgetAccount(account)
+            await utility.forgetAccount(account)
             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
         }
         else if (!response.data.exists) {
             router.back()
             setPaused(false)
             Alert.alert('Error', 'Error signing into your account. Please try manually')
-            await forgetAccount(account)
+            await utility.forgetAccount(account)
             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
         }
         else {
@@ -64,10 +63,10 @@ const ChooseAccount = () => {
                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             }
 
-            await forgetAccount(account)
-            await saveAccount(updatedAccount)
+            await utility.forgetAccount(account)
+            await utility.saveAccount(updatedAccount)
 
-            await storeData('autothenticate', account.author)
+            await utility.storeData('autothenticate', account.author)
             setUser(account.author)
             const yes = await hasOfflineScraps()
             if (yes) {
@@ -104,7 +103,7 @@ const ChooseAccount = () => {
                         },
                     ]}
                     leftItem={{
-                        text: `Expires: ${getDate(item.expires)}`,
+                        text: `Expires: ${utility.getDate(item.expires)}`,
                         background: palette.color4,
                     }}
                 >

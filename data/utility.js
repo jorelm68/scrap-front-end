@@ -8,7 +8,7 @@ import Cache from '../data/cache'
 import { utilityGet, utilitySet } from './api'
 import cache from '../data/cache'
 
-export async function storeData(key, value) {
+const storeData = async (key, value) => {
     try {
         await SecureStore.setItemAsync(key, value)
     } catch (error) {
@@ -16,7 +16,7 @@ export async function storeData(key, value) {
     }
 }
 
-export async function saveAccount(account) {
+const saveAccount = async (account) => {
     try {
         const data = await retrieveData('accounts')
         const accounts = JSON.parse(data)
@@ -31,7 +31,7 @@ export async function saveAccount(account) {
         console.log('Error while adding account: ', error)
     }
 }
-export async function forgetAccount(account) {
+const forgetAccount = async (account) => {
     try {
         const data = await retrieveData('accounts')
         const accounts = JSON.parse(data)
@@ -43,7 +43,7 @@ export async function forgetAccount(account) {
 }
 
 
-export async function retrieveData(key) {
+const retrieveData = async (key) => {
     try {
         const value = await SecureStore.getItemAsync(key)
         if (value !== null) {
@@ -58,7 +58,7 @@ export async function retrieveData(key) {
     }
 }
 
-export async function deleteData(key) {
+const deleteData = async (key) => {
     try {
         await SecureStore.deleteItemAsync(key)
     }
@@ -67,7 +67,7 @@ export async function deleteData(key) {
     }
 }
 
-export async function registerForPushNotifications() {
+const registerForPushNotifications = async () => {
     let token
 
     if (Platform.OS === 'android') {
@@ -98,7 +98,7 @@ export async function registerForPushNotifications() {
     return token
 }
 
-export async function loadFonts() {
+const loadFonts = async () => {
     try {
         await Font.loadAsync({
             'itim': require('../assets/fonts/Itim-Regular.ttf'),
@@ -114,7 +114,7 @@ export async function loadFonts() {
     }
 }
 
-export async function edit(modelName, id, key, value) {
+const edit = async (modelName, id, key, value) => {
     try {
         await cache.push(modelName, id, key, value)
         cache.put(cache.key(modelName, id, key), value)
@@ -137,7 +137,7 @@ export async function edit(modelName, id, key, value) {
 //              Then, it formats the month as its 3-letter acronym, the day with its
 //              suffix, and the year together. Then, returns the date object consisting
 //              of month, day, year, and formatted.
-export function getDate(newDate) {
+const getDate = (newDate) => {
     const dateObj = new Date(newDate);
 
     const month = dateObj.getMonth() + 1; // Months are zero-based
@@ -171,7 +171,7 @@ export function getDate(newDate) {
     return date;
 }
 
-function formatDate(dateString) {
+const formatDate = (dateString) => {
     const date = new Date(dateString);
     const month = date.getMonth() + 1; // Add 1 because getMonth() returns zero-based month
     const day = date.getDate();
@@ -180,7 +180,7 @@ function formatDate(dateString) {
     return `${month}/${day}/${year}`;
 }
 
-export function getDateRange(date1, date2) {
+const getDateRange = (date1, date2) => {
     const formattedDate1 = formatDate(date1);
     const formattedDate2 = formatDate(date2);
 
@@ -195,7 +195,7 @@ export function getDateRange(date1, date2) {
 //              permission from the user to get location
 // MODIFIES:    nothing
 // EFFECTS:     Gets the location of the user, then returns the latitude and longitude.
-export async function getLocation() {
+const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync()
     if (status !== 'granted') {
         throw new Error('Permission to access location was denied')
@@ -205,4 +205,115 @@ export async function getLocation() {
     const { latitude, longitude } = location.coords
 
     return { latitude, longitude }
+}
+
+const isDeviceOffline = async () => {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+        return !response.ok // Returns true if the response is not OK (i.e., request failed)
+    } catch (error) {
+        // If there's an error during the fetch, assume the device is offline
+        return true
+    }
+}
+
+const onlineSaveScraps = async (user) => {
+    const data = await retrieveData('scraps')
+    const scraps = JSON.parse(data)
+
+    if (scraps && scraps.length > 0) {
+        for (const scrap of scraps) {
+            scrap.author = user
+            console.log('saving: ', scrap)
+            const response = await scrapSaveScrap(scrap)
+            if (!response.success) {
+                Alert.alert('Error', response.error)
+                return
+            }
+        }
+        await deleteData('scraps')
+    }
+
+    return {
+        success: true,
+    }
+}
+
+const offlineSaveScrap = async (scrap) => {
+    const data = await retrieveData('scraps')
+    let scraps = JSON.parse(data)
+    if (!scraps) {
+        scraps = []
+    }
+    scraps.push(scrap)
+    await storeData('scraps', JSON.stringify(scraps))
+
+    return {
+        success: true,
+    }
+}
+
+const offlineGetScraps = async () => {
+    const data = await retrieveData('scraps')
+    const scraps = JSON.parse(data)
+
+    return scraps
+}
+
+const hasOfflineScraps = async () => {
+    const data = await retrieveData('scraps')
+    const scraps = JSON.parse(data)
+
+    return scraps && scraps.length > 0
+}
+
+const offlineEdit = async (index, key, value) => {
+    const data = await retrieveData('scraps')
+    let scraps = JSON.parse(data)
+
+    let scrap = scraps[index]
+    scrap[key] = value
+    scraps[index] = scrap
+
+    await storeData('scraps', JSON.stringify(scraps))
+
+    return {
+        success: true,
+    }
+}
+
+const offlineDeleteScrap = async (index) => {
+    const data = await utility.retrieveData('scraps')
+    let scraps = JSON.parse(data)
+
+    scraps = [...scraps.slice(0, index), ...scraps.slice(index + 1, scraps.length)];
+
+    await storeData('scraps', JSON.stringify(scraps))
+
+    return {
+        success: true,
+    }
+}
+
+export default {
+    storeData,
+    saveAccount,
+    forgetAccount,
+    retrieveData,
+    deleteData,
+    registerForPushNotifications,
+    loadFonts,
+    edit,
+    getDate,
+    formatDate,
+    getDateRange,
+    getLocation,
+    isDeviceOffline,
+    onlineSaveScraps,
+    offlineSaveScrap,
+    offlineGetScraps,
+    hasOfflineScraps,
+    offlineEdit,
+    offlineDeleteScrap,
+    
 }

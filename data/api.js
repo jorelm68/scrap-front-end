@@ -2,16 +2,6 @@ import axios from 'axios'
 import { API_URL, API_KEY } from '@env'
 console.log(API_URL)
 
-export const isDeviceOffline = async () => {
-    try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-        return !response.ok // Returns true if the response is not OK (i.e., request failed)
-    } catch (error) {
-        // If there's an error during the fetch, assume the device is offline
-        return true
-    }
-}
-
 async function handleGet(route) {
     try {
         return await axios.get(`${API_URL}/${route}`, {
@@ -185,73 +175,26 @@ async function handleBlob(route) {
 
 
 //-------------------------AUTHOR-------------------------------
-export async function authorExists(author) {
-    const route = 'api/authors/exists'
-    const data = { author }
-    return await handleResponse(route, data, 'post')
-}
-export async function authorSignUp(author) {
-    const route = 'api/authors/signUp'
-    return await handleResponse(route, author, 'post')
-}
-export async function authorSignIn(value, password) {
-    const route = 'api/authors/signIn'
-    const data = { value, password }
-    return await handleResponse(route, data, 'post')
-}
-export async function authorDeleteAccount(author) {
-    const route = `api/authors/deleteAccount`
-    const data = { author }
-    return await handleResponse(route, data, 'post')
-}
-export async function authorCheckCredentials(author, password) {
-    const route = `api/authors/checkCredentials`
-    const data = { author, password }
-    return await handleResponse(route, data, 'post')
-}
-export async function authorForgotPassword(email) {
-    const route = `api/authors/forgotPassword`
-    const data = { email }
-    return await handleResponse(route, data, 'post')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function authorRemoveAction(author, action) {
-    const route = `api/authors/removeAction`
-    const data = { author, action }
-    return await handleResponse(route, data, 'patch')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function authorSendRequest(user, author) {
-    const route = `api/authors/sendRequest`
-    const data = { user, author }
-    return await handleResponse(route, data, 'patch')
-}
-export async function authorRemoveRequest(user, author) {
-    const route = `api/authors/removeRequest`
-    const data = { user, author }
-    return await handleResponse(route, data, 'patch')
-}
-export async function authorAcceptRequest(user, author) {
-    const route = `api/authors/acceptRequest`
-    const data = { user, author }
-    return await handleResponse(route, data, 'patch')
-}
-export async function authorRejectRequest(user, author) {
-    const route = `api/authors/rejectRequest`
-    const data = { user, author }
-    return await handleResponse(route, data, 'patch')
-}
-export async function authorRemoveFriend(user, author) {
-    const route = `api/authors/removeFriend`
-    const data = { user, author }
-    return await handleResponse(route, data, 'patch')
+const author = {
+    exists: async (author) => handleResponse('api/authors/exists', { author }, 'post'),
+    signUp: async (author) => handleResponse('api/authors/signUp', author, 'post'),
+    signIn: async (value, password) => handleResponse('api/authors/signIn', { value, password }, 'post'),
+    deleteAccount: async (author) => handleResponse('api/authors/deleteAccount', { author }, 'post'),
+    checkCredentials: async (author, password) => handleResponse('api/authors/checkCredentials', { author, password }, 'post'),
+    forgotPassword: async (email) => handleResponse('api/authors/forgotPassword', { email }, 'post'),
+    removeAction: async (author, action) => handleResponse('api/authors/removeAction', { author, action }, 'patch'),
+    sendRequest: async (user, author) => handleResponse('api/authors/sendRequest', { user, author }, 'patch'),
+    removeRequest: async (user, author) => handleResponse('api/authors/removeRequest', { user, author }, 'patch'),
+    acceptRequest: async (user, author) => handleResponse('api/authors/acceptRequest', { user, author }, 'patch'),
+    rejectRequest: async (user, author) => handleResponse('api/authors/rejectRequest', { user, author }, 'patch'),
+    removeFriend: async (user, author) => handleResponse('api/authors/removeFriend', { user, author }, 'patch'),
 }
 //-------------------------AUTHOR-------------------------------
 
 //--------------------------SCRAPS------------------------------
-export async function scrapSaveScrap(scrap) {
-    const route = `api/scraps/saveScrap`
-    const data = {
+const scrap = {
+    exists: async (scrap) => await handleResponse('api/scraps/exists', { scrap }, 'post'),
+    saveScrap: async (scrap) => await handleResponse('api/scraps/saveScrap', {
         ...scrap,
         iPrograph: {
             uri: scrap.iPrograph.uri,
@@ -263,121 +206,42 @@ export async function scrapSaveScrap(scrap) {
             type: 'image/jpeg',
             name: 'iRetrograph',
         },
-    }
-    return await handleResponse(route, data, 'post')
-}
-export async function scrapDeleteScraps(scraps) {
-    const route = `api/scraps/deleteScraps/${JSON.stringify(scraps)}`
-    return await handleResponse(route, null, 'delete')
-}
-export async function scrapExists(scrap) {
-    const route = `api/scraps/exists`
-    const data = { scrap }
-    return await handleResponse(route, data, 'post')
+    }, 'post'),
+    deleteScraps: async (scraps) => await handleResponse(`api/scraps/deleteScraps/${JSON.stringify(scraps)}`, null, 'delete'),
 }
 //--------------------------SCRAPS------------------------------
 
 //---------------------------BOOKS------------------------------
-export async function bookExists(book) {
-    const route = `api/books/exists`
-    const data = { book }
-    return await handleResponse(route, data, 'post')
-}
-export async function bookSaveBook(book) {
-    const route = `api/books/saveBook`
-    const data = {
-        ...book,
-        scraps: JSON.stringify(book.scraps)
-    }
-    return await handleResponse(route, data, 'post')
-}
-export async function bookDeleteBooks(books) {
-    const route = `api/books/deleteBooks/${JSON.stringify(books)}`
-    return await handleResponse(route, null, 'delete')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function bookAddLike(book, author) {
-    const route = `api/books/addLike`
-    const data = { book, author }
-    return await handleResponse(route, data, 'patch')
-}
-export async function bookRemoveLike(book, author) {
-    const route = `api/books/removeLike`
-    const data = { book, author }
-    return await handleResponse(route, data, 'patch')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function bookAddScrap(book, scrap) {
-    const route = `api/books/addScrap`
-    const data = { book, scrap }
-    return await handleResponse(route, data, 'patch')
-}
-export async function bookRemoveScrap(book, scrap) {
-    const route = `api/books/removeScrap`
-    const data = { book, scrap }
-    return await handleResponse(route, data, 'patch')
+const book = {
+    exists: async (book) => await handleResponse('api/books/exists', { book }, 'post'),
+    saveBook: async (book) => await handleResponse('api/books/saveBook', { ...book, scraps: JSON.stringify(book.scraps) }, 'post'),
+    deleteBooks: async (books) => await handleResponse(`api/books/deleteBooks/${JSON.stringify(books)}`, null, 'delete'),
+    addLike: async (book, author) => await handleResponse('api/books/addLike', { book, author }, 'patch'),
+    removeLike: async (book, author) => await handleResponse('api/books/removeLike', { book, author }, 'patch'),
+    addScrap: async (book, scrap) => await handleResponse('api/books/addScrap', { book, scrap }, 'patch'),
+    removeScrap: async (book, scrap) => await handleResponse('api/books/removeScrap', { book, scrap }, 'patch'),
 }
 //---------------------------BOOKS------------------------------
 
 //-------------------------UTILITY------------------------------
-export async function utilityAddThread(scrap, book) {
-    const route = `api/utility/addThread`
-    const data = { scrap, book }
-    return await handleResponse(route, data, 'patch')
-}
-export async function utilityRemoveThread(scrap, book) {
-    const route = `api/utility/removeThread`
-    const data = { scrap, book }
-    return await handleResponse(route, data, 'patch')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function utilityAuthorSearch(author, search) {
-    const route = `api/utility/authorSearch`
-    const data = { author, search }
-    return await handleResponse(route, data, 'post')
-}
-export async function utilityBookSearch(author, search, remove) {
-    const route = `api/utility/bookSearch`
-    const data = {
-        author,
-        search,
-        remove: JSON.stringify(remove)
-    }
-    return await handleResponse(route, data, 'post')
-}
-export async function utilityScrapSearch(author, search) {
-    const route = `api/utility/scrapSearch`
-    const data = { author, search }
-    return await handleResponse(route, data, 'post')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function utilityGet(modelName, id, key, user) {
-    const route = `api/utility/get/${modelName}/${id}/${key}/${user}`
-    return await handleResponse(route, null, 'get')
-}
-export async function utilityGetPhoto(photo, size) {
-    const route = `api/utility/getPhoto/${photo}/${size}`
-    return await handleBlob(route)
-}
-export async function utilitySet(modelName, id, key, value) {
-    const route = `api/utility/set`
-    const data = { model: modelName, id, key, value }
-    return await handleResponse(route, data, 'patch')
-}
-export async function utilityScrapCoordinates(scraps) {
-    const route = `api/utility/scrapCoordinates`
-    const data = { scraps: JSON.stringify(scraps) }
-    return await handleResponse(route, data, 'post')
-}
-export async function utilityBookCoordinates(books) {
-    const route = `api/utility/bookCoordinates`
-    const data = { books: JSON.stringify(books) }
-    return await handleResponse(route, data, 'post')
-}
-// <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <> <>
-export async function utilityQuestion(author, question) {
-    const route = `api/utility/question`
-    const data = { author, question }
-    return await handleResponse(route, data, 'post')
+const utility = {
+    addThread: async (scrap, book) => await handleResponse('api/utility/addThread', { scrap, book }, 'patch'),
+    removeThread: async (scrap, book) => await handleResponse('api/utility/removeThread', { scrap, book }, 'patch'),
+    authorSearch: async (author, search) => await handleResponse('api/utility/authorSearch', { author, search }, 'post'),
+    bookSearch: async (author, search, remove) => await handleResponse('api/utility/bookSearch', { author, search, remove: JSON.stringify(remove) }, 'post'),
+    get: async (model, id, key, user) => await handleResponse(`api/utility/get/${model}/${id}/${key}/${user}`, null, 'get'),
+    getPhoto: async (photo, size) => await handleBlob(`api/utility/getPhoto/${photo}/${size}`),
+    set: async (model, id, key, value) => await handleResponse('api/utility/set', { model, id, key, value }, 'patch'),
+    scrapCoordinates: async (scraps) => await handleResponse('api/utility/scrapCoordinates', { scraps: JSON.stringify(scraps) }, 'post'),
+    bookCoordinates: async (books) => await handleResponse('api/utility/bookCoordinates', { books: JSON.stringify(books) }, 'post'),
+    question: async (author, question) => await handleResponse('api/utility/question', { author, question }, 'post'),
+
 }
 //-------------------------UTILITY------------------------------
+
+export default {
+    author,
+    book,
+    scrap,
+    utility,
+}
