@@ -1,17 +1,21 @@
-import { View, Text, TouchableOpacity, Carousel } from 'react-native-ui-lib'
-import React, { useContext, useEffect, useState } from 'react'
-import ScrapComponent from './ScrapComponent'
-import Scrap from './Scrap'
-import { useNavigation, useRouter } from 'expo-router'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { View, Text, Image } from 'react-native-ui-lib'
+import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions } from '../data/styles'
 import AppContext from '../context/AppContext'
+import useAuthor from '../hooks/useAuthor'
+import useBook from '../hooks/useBook'
+import useScrap from '../hooks/useScrap'
+import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
+import api from '../data/api'
+import utility from '../data/utility'
+import Scrap from './Scrap'
 
-const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
-    const { currentScrap, setCurrentScrap } = useContext(AppContext)
-    const [page, setPage] = useState(initialPage)
-
+const Page = ({ scraps, initialPage = 0 }) => {
+    const { palette, setCurrentScrap } = useContext(AppContext)
     useEffect(() => {
         setCurrentScrap(scraps[initialPage])
     }, [])
@@ -39,4 +43,4 @@ const ScrapCarousel = ({ scraps, initialPage = 0 }) => {
     )
 }
 
-export default ScrapCarousel
+export default Page

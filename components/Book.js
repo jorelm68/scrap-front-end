@@ -1,23 +1,21 @@
-import { View, Text } from 'react-native-ui-lib'
-import { ScrollView, TouchableOpacity } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
-import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { View, Text, Image } from 'react-native-ui-lib'
+import MapView, { Polyline, Marker } from 'react-native-maps'
+import { Ionicons } from '@expo/vector-icons'
+import AppContext from '../context/AppContext'
+import useAuthor from '../hooks/useAuthor'
 import useBook from '../hooks/useBook'
 import useScrap from '../hooks/useScrap'
-import ScrapCarousel from '../components/ScrapCarousel'
-import MapComponent from '../components/MapComponent'
-import AppContext from '../context/AppContext'
-import { Ionicons } from '@expo/vector-icons'
-import { fonts, dimensions } from '../data/styles'
-import BookComponent from './BookComponent'
-import useAuthor from '../hooks/useAuthor'
-import AuthorComponent from './AuthorComponent'
-import { getDateRange } from '../data/utility'
+import { dimensions, fonts } from '../data/styles'
+import cache from '../data/cache'
+import api from '../data/api'
+import utility from '../data/utility'
 
-const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
+const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
-    const router = useRouter()
-    const { currentScrap, user, palette } = useContext(AppContext)
+    const { palette, user, currentScrap } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
 
     const {
@@ -61,7 +59,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
             headerBackTitleVisible: false,
             headerRight: book && (user === author) ? () => (
                 <TouchableOpacity onPress={async () => {
-                    router.navigate({
+                    navigation.navigate({
                         pathname: '/editBook', params: {
                             book,
                         }
@@ -132,7 +130,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                     }}>
                         <TouchableOpacity
                             onPress={() => {
-                                router.navigate({
+                                navigation.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -148,7 +146,7 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={user !== author ? toggleLike : () => {
-                                router.navigate({
+                                navigation.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -199,4 +197,4 @@ const Book = ({ book, page = 0, scraps: scrapsGiven }) => {
     }
 }
 
-export default Book
+export default Page

@@ -1,121 +1,75 @@
-import { View, Text } from 'react-native'
-import React, { useContext } from 'react'
-import { Tabs } from 'expo-router'
+import { Tabs } from "expo-router";
 import { Ionicons } from '@expo/vector-icons'
 import { fonts } from '../../data/styles'
-import AppContext from '../../context/AppContext'
+import { useContext } from "react";
+import AppContext from "../../context/AppContext";
 
-const Layout = () => {
-    const { palette } = useContext(AppContext)
-    return (
-        <Tabs>
-            <Tabs.Screen
-                name="feed"
-                options={{
-                    tabBarLabel: 'Feed',
-                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />,
-                    headerTitle: 'Feed',
-                    headerTitleStyle: {
-                        fontFamily: fonts.playBold,
-                        fontSize: 24,
-                        color: palette.color7,
-                    },
-                    headerStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.accent,
-                }}
-            />
-            <Tabs.Screen
-                name="search"
-                options={{
-                    tabBarLabel: 'Search',
-                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'search' : 'search-outline'} size={size} color={color} />,
-                    headerTitle: 'Search',
-                    headerTitleStyle: {
-                        fontFamily: fonts.playBold,
-                        fontSize: 24,
-                        color: palette.color7,
-                    },
-                    headerStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.accent,
-                }}
-            />
-            <Tabs.Screen
-                name="camera"
-                options={{
-                    tabBarLabel: 'Camera',
-                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'camera' : 'camera-outline'} size={size} color={color} />,
-                    headerTitle: 'Scrap',
-                    headerTitleStyle: {
-                        fontFamily: fonts.playBold,
-                        fontSize: 24,
-                        color: palette.color7,
-                    },
-                    headerStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.accent,
-                }}
-            />
-            <Tabs.Screen
-                name="library"
-                options={{
-                    tabBarLabel: 'Library',
-                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'library' : 'library-outline'} size={size} color={color} />,
-                    headerTitle: 'Library',
-                    headerTitleStyle: {
-                        fontFamily: fonts.playBold,
-                        fontSize: 24,
-                        color: palette.color7,
-                    },
-                    headerStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.accent,
-                }}
-            />
-            <Tabs.Screen
-                name="profileInitial"
-                options={{
-                    tabBarLabel: 'Profile',
-                    tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />,
-                    headerTitle: 'Profile',
-                    headerTitleStyle: {
-                        fontFamily: fonts.playBold,
-                        fontSize: 24,
-                        color: palette.color7,
-                    },
-                    headerStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarStyle: {
-                        backgroundColor: palette.color0,
-                    },
-                    tabBarInactiveTintColor: palette.color6,
-                    tabBarActiveTintColor: palette.accent,
-                }}
-            />
-        </Tabs>
-    )
+export default function TabsLayout() {
+  const { palette } = useContext(AppContext)
+
+  const options = {
+    headerTitleStyle: {
+      fontFamily: fonts.playBold,
+      fontSize: 24,
+      color: palette.color7,
+    },
+    headerStyle: {
+      backgroundColor: palette.color0,
+    },
+    tabBarStyle: {
+      backgroundColor: palette.color0,
+    },
+    tabBarInactiveTintColor: palette.color6,
+    tabBarActiveTintColor: palette.accent,
+  }
+
+  return (
+    <Tabs screenOptions={{ headerShown: false }}>
+      <Tabs.Screen
+        name="feed"
+        options={{
+          ...options,
+          tabBarLabel: "Feed",
+          tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />,
+          headerTitle: "Feed"
+        }}
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          ...options,
+          tabBarLabel: "Search",
+          tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'search' : 'search-outline'} size={size} color={color} />,
+          headerTitle: "Search"
+        }}
+      />
+      <Tabs.Screen
+        name="camera"
+        options={{
+          ...options,
+          tabBarLabel: "Camera",
+          tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'camera' : 'camera-outline'} size={size} color={color} />,
+          headerTitle: "Camera"
+        }}
+      />
+      <Tabs.Screen
+        name="library"
+        options={{
+          ...options,
+          tabBarLabel: "Library",
+          tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'library' : 'library-outline'} size={size} color={color} />,
+          headerTitle: "Library"
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          ...options,
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ focused, size, color }) => <Ionicons name={focused ? 'profile' : 'profile-outline'} size={size} color={color} />,
+          headerTitle: "Profile"
+        }}
+      />
+    </Tabs>
+  );
 }
-
-export default Layout

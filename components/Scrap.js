@@ -1,17 +1,19 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
-import { TouchableWithoutFeedback } from 'react-native'
-import React, { useContext, useState } from 'react'
-import useScrap from '../hooks/useScrap'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { View, Text, Image } from 'react-native-ui-lib'
+import MapView, { Polyline, Marker } from 'react-native-maps'
+import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
-import { Ionicons } from '@expo/vector-icons'
-import { fonts, dimensions } from '../data/styles'
-import { useRouter } from 'expo-router'
-import { getDate } from '../data/utility'
-import BookComponent from './BookComponent'
 import useBook from '../hooks/useBook'
+import useScrap from '../hooks/useScrap'
+import { dimensions, fonts } from '../data/styles'
+import cache from '../data/cache'
+import api from '../data/api'
+import utility from '../data/utility'
 
-const Scrap = ({ scrap }) => {
+const Page = () => {
     const router = useRouter()
     const { user, palette } = useContext(AppContext)
     const {
@@ -252,4 +254,4 @@ const Scrap = ({ scrap }) => {
     )
 }
 
-export default Scrap
+export default Page

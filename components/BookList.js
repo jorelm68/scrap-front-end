@@ -1,11 +1,20 @@
-import { View, Text } from 'react-native-ui-lib'
-import { ScrollView, Image } from 'react-native'
-import React, { useState, useEffect, useRef, useContext } from 'react'
-import { dimensions } from '../data/styles'
-import BlankBookComponent from './BlankBookComponent'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard } from 'react-native'
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { View, Text, Image } from 'react-native-ui-lib'
+import MapView, { Polyline, Marker } from 'react-native-maps'
+import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
+import useAuthor from '../hooks/useAuthor'
+import useBook from '../hooks/useBook'
+import useScrap from '../hooks/useScrap'
+import { dimensions, fonts } from '../data/styles'
+import cache from '../data/cache'
+import api from '../data/api'
+import utility from '../data/utility'
+import BlankBookSmall from './BlankBookSmall'
 
-const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
+const Page = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
     const { palette } = useContext(AppContext)
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)
@@ -29,7 +38,7 @@ const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) =
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false} 
+        <ScrollView showsVerticalScrollIndicator={false}
             ref={scrollViewRef}
             onScroll={handleScroll}
             scrollEventThrottle={16} // Adjust the frequency of onScroll event
@@ -58,7 +67,7 @@ const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) =
                     }
                     else {
                         return (
-                            <BlankBookComponent key={book} book={book} />
+                            <BlankBookSmall key={book} book={book} />
                         )
                     }
                 })}
@@ -67,4 +76,4 @@ const BookList = ({ header = () => { }, headerHeight = 0, books, renderItem }) =
     )
 }
 
-export default BookList
+export default Page

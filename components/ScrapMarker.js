@@ -1,16 +1,19 @@
-import { View, TouchableOpacity, Image } from 'react-native-ui-lib'
-import { ScrollView } from 'react-native'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import ScrapComponent from './ScrapComponent'
-import { useLocalSearchParams, useNavigation } from 'expo-router'
-import ScrapCarousel from './ScrapCarousel'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { View, Text, Image } from 'react-native-ui-lib'
+import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
-import { styles, dimensions } from '../data/styles'
-import MapView, { Marker } from 'react-native-maps'
-import useScrap from '../hooks/useScrap'
 import AppContext from '../context/AppContext'
+import useAuthor from '../hooks/useAuthor'
+import useBook from '../hooks/useBook'
+import useScrap from '../hooks/useScrap'
+import { dimensions, fonts } from '../data/styles'
+import cache from '../data/cache'
+import api from '../data/api'
+import utility from '../data/utility'
 
-const ScrapMarker = ({ scrap }) => {
+const Page = ({ scrap }) => {
     const { palette } = useContext(AppContext)
     const {
         latitude,
@@ -51,9 +54,8 @@ const ScrapMarker = ({ scrap }) => {
                     resizeMode="contain"
                 />
             </View>
-
         </Marker>
     )
 }
 
-export default ScrapMarker
+export default Page
