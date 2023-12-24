@@ -18,7 +18,7 @@ import Error from '../../../../components/Error'
 import Switch from '../../../../components/Switch'
 
 const Settings = () => {
-    const { user, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
+    const { user, tab, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
     const router = useRouter()
 
     const {

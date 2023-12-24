@@ -20,7 +20,7 @@ import BookMarker from './BookMarker'
 
 const Page = ({ author }) => {
     const router = useRouter()
-    const { user, paused, setPaused, palette } = useContext(AppContext)
+    const { user, tab, paused, setPaused, palette } = useContext(AppContext)
     const navigation = useNavigation()
     const [name, setName] = useState('')
     const [photosReverse, setPhotosReverse] = useState(false)
@@ -368,7 +368,7 @@ const Page = ({ author }) => {
                                         icon='settings'
                                         onPress={async () => {
                                             router.navigate({
-                                                pathname: '/profile/profile/settings',
+                                                pathname: `/${tab}/profile/settings`,
                                             })
                                         }}
                                     />

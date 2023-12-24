@@ -12,6 +12,7 @@ const AppContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
     const [currentScrap, setCurrentScrap] = useState('')
+    const [tab, setTab] = useState('')
 
     useEffect(() => {
         cache.filter(['relationship'])
@@ -37,6 +38,8 @@ const AppContextProvider = ({ children }) => {
         setPaused,
         currentScrap,
         setCurrentScrap,
+        tab,
+        setTab,
         // ... other shared data and functions
     }
 
