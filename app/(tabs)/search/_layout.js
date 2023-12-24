@@ -10,6 +10,7 @@ export default function SearchLayout() {
         name='index'
         options={{
           ...options,
+          headerTitle: 'Search',
         }}
       />
     </Stack>

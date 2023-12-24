@@ -10,6 +10,7 @@ export default function CameraLayout() {
         name='index'
         options={{
           ...options,
+          headerTitle: 'Camera',
         }}
       />
     </Stack>

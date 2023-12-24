@@ -10,6 +10,7 @@ export default function FeedLayout() {
         name='index'
         options={{
           ...options,
+          headerTitle: 'Feed',
         }}
       />
     </Stack>
