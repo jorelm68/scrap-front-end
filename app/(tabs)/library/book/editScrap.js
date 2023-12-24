@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect } from 'react'
 import { KeyboardAvoidingView, ScrollView } from 'react-native'
-import { useLocalSearchParams, useRouter } from 'expo-router'
+import { useLocalSearchParams, usePathname, useRouter } from 'expo-router'
 import DropDown from '../../../../components/DropDown'
 import useScrap from '../../../../hooks/useScrap'
 import error from '../../../../data/error'
@@ -15,6 +15,7 @@ import BookSmall from '../../../../components/BookSmall'
 
 const EditScrap = () => {
     const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
+    const tab = utility.getTab(usePathname())
     const router = useRouter()
     const { scrap } = useLocalSearchParams()
     const {
@@ -188,7 +189,8 @@ const EditScrap = () => {
                             size='large'
                             onPress={() => {
                                 router.navigate({
-                                    pathname: '/bookFinder', params: {
+                                    pathname: `/${tab}/book/findBooks`,
+                                    params: {
                                         book,
                                         threads: JSON.stringify(threads),
                                         amount: JSON.stringify(3 - threads.length),

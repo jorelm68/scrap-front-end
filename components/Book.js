@@ -20,7 +20,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
     const router = useRouter()
     const { palette, user, currentScrap } = useContext(AppContext)
-    const tab = utility.getTab(usePathname)
+    const tab = utility.getTab(usePathname())
     const [hidden, setHidden] = useState(true)
 
     const {
