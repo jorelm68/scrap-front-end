@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
-import { ScrollView, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard } from 'react-native'
+import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { View, Text, Image } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -186,8 +186,7 @@ const Page = ({ title, value, onSubmit, topBorder, type, boxes }) => {
                             }} onPress={() => {
                                 setIsDropped(!isDropped)
                             }}>
-                                <Ionicons style={{
-                                }} name={isDropped ? 'chevron-down' : 'chevron-forward'} color={palette.color6} size={24} />
+                                <Ionicons name={isDropped ? 'chevron-down' : 'chevron-forward'} color={palette.color6} size={24} />
                             </TouchableOpacity>
                         </View>
 
