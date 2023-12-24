@@ -89,10 +89,7 @@ const Page = ({ scrap }) => {
                 padding: 4,
             }} onPress={() => {
                 router.push({
-                    pathname: '/profile',
-                    params: {
-                        author,
-                    }
+                    pathname: `/${tab}/author/${author}`,
                 })
             }}>
                 <Image source={iHeadshot} style={{

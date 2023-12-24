@@ -14,6 +14,14 @@ export default function ProfileLayout() {
         }}
       />
       <Stack.Screen
+        name='chooseScraps'
+        options={{
+          ...options,
+          presentation: 'modal',
+          headerTitle: 'Choose Scraps',
+        }}
+      />
+      <Stack.Screen
         name='[author]'
         options={{
           ...options,

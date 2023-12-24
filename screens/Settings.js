@@ -101,7 +101,7 @@ const Screen = () => {
                     amount={1}
                     onSubmit={async () => {
                         router.navigate({
-                            pathname: `/${tab}/book/chooseScraps`,
+                            pathname: `/${tab}/author/chooseScraps`,
                             params: {
                                 scraps: JSON.stringify(scraps),
                                 amount: JSON.stringify(1),

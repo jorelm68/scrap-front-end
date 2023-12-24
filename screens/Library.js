@@ -113,7 +113,7 @@ const Screen = () => {
 
     const handleDeleteScraps = async () => {
         router.navigate({
-            pathname: `/${tab}/book/chooseScraps`,
+            pathname: `/library/chooseScraps`,
             params: {
                 scraps: JSON.stringify(scraps),
                 amount: JSON.stringify(scraps.length),

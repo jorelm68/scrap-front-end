@@ -44,6 +44,14 @@ export default function LibraryLayout() {
         }}
       />
       <Stack.Screen
+        name='chooseScraps'
+        options={{
+          ...options,
+          presentation: 'modal',
+          headerTitle: 'Choose Scraps',
+        }}
+      />
+      <Stack.Screen
         name='book'
         options={{
           headerShown: false,
