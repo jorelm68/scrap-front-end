@@ -185,7 +185,7 @@ const Page = ({ author }) => {
                                         fontFamily: fonts.itim,
                                         fontSize: 16,
                                         color: mode === 'books' ? palette.accent : palette.color5,
-                                    }}>{profileBooks.length} Books</Text>
+                                    }}>{profileBooks.length} Book{profileBooks.length === 1 ? '' : 's'}</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -224,7 +224,7 @@ const Page = ({ author }) => {
                                         fontFamily: fonts.itim,
                                         fontSize: 16,
                                         color: mode === 'friends' ? palette.accent : palette.color5,
-                                    }}>{friends.length} Friends</Text>
+                                    }}>{friends.length} Friend{friends.length === 1 ? '' : 's'}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
