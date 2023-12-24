@@ -1,12 +1,9 @@
-// /app/(tabs)/camera/index.js
+import CameraScreen from '../../../screens/CameraScreen'
 
-import { Stack } from "expo-router";
-import { Text, View } from "react-native";
-
-export default function Page() {
+const Page = () => {
   return (
-    <View>
-      <Text>Index page of Camera Tab</Text>
-    </View>
-  );
+    <CameraScreen />
+  )
 }
+
+export default Page
