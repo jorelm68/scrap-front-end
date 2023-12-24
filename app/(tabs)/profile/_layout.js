@@ -35,6 +35,13 @@ export default function ProfileLayout() {
         }}
       />
       <Stack.Screen
+        name='book/editBook'
+        options={{
+          ...options,
+          headerTitle: 'Edit Book',
+        }}
+      />
+      <Stack.Screen
         name='book/[book]'
         options={{
           ...options,

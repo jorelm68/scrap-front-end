@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { View, Text, Image, TouchableOpacity  } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -18,7 +18,8 @@ import Map from './Map'
 
 const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
-    const { palette, user, currentScrap } = useContext(AppContext)
+    const router = useRouter()
+    const { palette, user, tab, currentScrap } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
 
     const {
@@ -62,8 +63,9 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
             headerBackTitleVisible: false,
             headerRight: book && (user === author) ? () => (
                 <TouchableOpacity onPress={async () => {
-                    navigation.navigate({
-                        pathname: '/editBook', params: {
+                    router.navigate({
+                        pathname: `/${tab}/book/editBook`,
+                        params: {
                             book,
                         }
                     })
@@ -105,7 +107,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
     }
     else {
         return (
-            <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
+            <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
                 <Map
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}
@@ -133,8 +135,8 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                     }}>
                         <TouchableOpacity
                             onPress={() => {
-                                navigation.navigate({
-                                    pathname: '/likes',
+                                router.navigate({
+                                    pathname: `/${tab}/book/likes`,
                                     params: {
                                         book,
                                     }
@@ -149,8 +151,8 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={user !== author ? toggleLike : () => {
-                                navigation.navigate({
-                                    pathname: '/likes',
+                                router.navigate({
+                                    pathname: `/${tab}/book/likes`,
                                     params: {
                                         book,
                                     }
