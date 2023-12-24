@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -16,7 +16,8 @@ import BookSmall from './BookSmall'
 
 const Page = ({ scrap }) => {
     const router = useRouter()
-    const { user, tab, palette } = useContext(AppContext)
+    const { user, palette } = useContext(AppContext)
+    const tab = utility.getTab(usePathname())
     const {
         iPrograph,
         iRetrograph,

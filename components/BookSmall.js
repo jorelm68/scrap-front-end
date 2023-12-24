@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -15,7 +15,8 @@ import utility from '../data/utility'
 
 const Page = ({ book, clickable }) => {
     const router = useRouter()
-    const { palette, user, tab } = useContext(AppContext)
+    const tab = utility.getTab(usePathname())
+    const { palette, user } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
     const {
         author,

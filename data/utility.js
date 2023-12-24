@@ -295,6 +295,11 @@ const offlineDeleteScrap = async (index) => {
     }
 }
 
+const getTab = (pathname) => {
+    const parts = pathname.split('/')
+    return parts[1]
+}
+
 export default {
     storeData,
     saveAccount,
@@ -315,5 +320,5 @@ export default {
     hasOfflineScraps,
     offlineEdit,
     offlineDeleteScrap,
-    
+    getTab,
 }

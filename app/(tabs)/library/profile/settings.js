@@ -19,7 +19,7 @@ import Switch from '../../../../components/Switch'
 
 const Settings = () => {
     const { user, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
-    const tab = utility.getTab(usePathname())
+    const tab = getTab(usePathname())
     const router = useRouter()
 
     const {

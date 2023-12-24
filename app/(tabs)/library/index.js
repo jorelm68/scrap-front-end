@@ -4,13 +4,15 @@ import AppContext from '../../../context/AppContext'
 import useAuthor from '../../../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, fonts } from '../../../data/styles'
-import { useRouter } from 'expo-router'
+import { usePathname, useRouter } from 'expo-router'
 import { bookDeleteBooks, scrapDeleteScraps } from '../../../data/api'
 import cache from '../../../data/cache'
 import { Alert } from 'react-native'
+import utility from '../../../data/utility'
 
 const Library = () => {
-  const { user, setFunctions, tab, paused, setPaused, palette } = useContext(AppContext)
+  const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
+  const tab = utility.getTab(usePathname())
   const router = useRouter()
   const {
     scraps,
@@ -95,7 +97,8 @@ const Library = () => {
 
   const handleDeleteBooks = async () => {
     router.navigate({
-      pathname: '/bookPicker', params: {
+      pathname: '/library/chooseBooks',
+      params: {
         books: JSON.stringify(books),
         amount: JSON.stringify(books.length),
         functionName: 'deleteBooks',
