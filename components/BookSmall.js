@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { View, Text, Image, TouchableOpacity  } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = ({ book, showAuthor, clickable }) => {
+const Page = ({ book, clickable }) => {
     const router = useRouter()
     const { palette, user, tab } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
@@ -113,31 +113,29 @@ const Page = ({ book, showAuthor, clickable }) => {
                             width: (dimensions.width - 8) / 2,
                             height: (dimensions.width - 8) / 4,
                         }}>
-                            {showAuthor && (
-                                <TouchableOpacity centerV row onPress={() => {
-                                    router.push(`/${tab}/profile/${author}`)
-                                }} style={{
-                                    marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
+                            <TouchableOpacity centerV row onPress={() => {
+                                router.push(`/${tab}/profile/${author}`)
+                            }} style={{
+                                marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
+                            }}>
+                                <View centerV row style={{
+                                    width: (dimensions.width - 8) / 2,
+                                    height: (dimensions.width - 8) / 4 * (1 / 4),
+                                    paddingLeft: 2,
                                 }}>
-                                    <View centerV row style={{
-                                        width: (dimensions.width - 8) / 2,
+                                    <Image source={iHeadshot} style={{
+                                        width: (dimensions.width - 8) / 4 * (1 / 4),
                                         height: (dimensions.width - 8) / 4 * (1 / 4),
+                                        borderRadius: 12,
+                                    }} />
+                                    <Text style={{
+                                        fontFamily: fonts.jockeyOne,
+                                        fontSize: 16,
                                         paddingLeft: 2,
-                                    }}>
-                                        <Image source={iHeadshot} style={{
-                                            width: (dimensions.width - 8) / 4 * (1 / 4),
-                                            height: (dimensions.width - 8) / 4 * (1 / 4),
-                                            borderRadius: 12,
-                                        }} />
-                                        <Text style={{
-                                            fontFamily: fonts.jockeyOne,
-                                            fontSize: 16,
-                                            paddingLeft: 2,
-                                            color: palette.color5,
-                                        }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
+                                        color: palette.color5,
+                                    }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                                </View>
+                            </TouchableOpacity>
 
                             {!hidden && (
                                 <View style={{
@@ -292,25 +290,23 @@ const Page = ({ book, showAuthor, clickable }) => {
                         width: (dimensions.width - 8) / 2,
                         height: (dimensions.width - 8) / 4,
                     }}>
-                        {showAuthor && (
-                            <View centerV row style={{
-                                width: (dimensions.width - 8) / 2,
+                        <View centerV row style={{
+                            width: (dimensions.width - 8) / 2,
+                            height: (dimensions.width - 8) / 4 * (1 / 4),
+                            paddingLeft: 2,
+                        }}>
+                            <Image source={iHeadshot} style={{
+                                width: (dimensions.width - 8) / 4 * (1 / 4),
                                 height: (dimensions.width - 8) / 4 * (1 / 4),
+                                borderRadius: 12,
+                            }} />
+                            <Text style={{
+                                fontFamily: fonts.jockeyOne,
+                                fontSize: 12,
                                 paddingLeft: 2,
-                            }}>
-                                <Image source={iHeadshot} style={{
-                                    width: (dimensions.width - 8) / 4 * (1 / 4),
-                                    height: (dimensions.width - 8) / 4 * (1 / 4),
-                                    borderRadius: 12,
-                                }} />
-                                <Text style={{
-                                    fontFamily: fonts.jockeyOne,
-                                    fontSize: 12,
-                                    paddingLeft: 2,
-                                    color: palette.color5,
-                                }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
-                            </View>
-                        )}
+                                color: palette.color5,
+                            }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                        </View>
 
                         {!hidden && (
                             <View style={{

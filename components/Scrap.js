@@ -247,7 +247,7 @@ const Page = ({ scrap }) => {
             }}>
                 {threads && threads.map((book) => {
                     return (
-                        <BookSmall book={book} clickable key={book} showAuthor />
+                        <BookSmall book={book} clickable key={book} />
                     )
                 })}
             </View>

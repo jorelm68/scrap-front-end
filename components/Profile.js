@@ -389,7 +389,7 @@ const Page = ({ author }) => {
                 books={profileBooks}
                 renderItem={(book) => {
                     return (
-                        <BookSmall book={book} key={book} clickable showAuthor />
+                        <BookSmall book={book} key={book} clickable />
                     )
                 }}
             />
