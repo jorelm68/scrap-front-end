@@ -367,7 +367,9 @@ const Page = ({ author }) => {
                                         label='Settings'
                                         icon='settings'
                                         onPress={async () => {
-                                            router.navigate('/settings')
+                                            router.navigate({
+                                                pathname: '/profile/profile/settings',
+                                            })
                                         }}
                                     />
                                 )}

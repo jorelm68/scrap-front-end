@@ -12,7 +12,7 @@ import { dimensions, fonts } from '../../../../data/styles'
 import cache from '../../../../data/cache'
 import api from '../../../../data/api'
 import utility from '../../../../data/utility'
-import ProfileHeader from '../../../../components/ProfileHeader'
+import Profile from '../../../../components/Profile'
 
 const Page = () => {
     const navigation = useNavigation()
@@ -40,7 +40,7 @@ const Page = () => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            <ProfileHeader author={author} />
+            <Profile author={author} />
         </View>
     )
 }

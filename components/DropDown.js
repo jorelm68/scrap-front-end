@@ -14,6 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import Error from './Error'
 import Field from './Field'
+import { defaultImage, defaultHeadshot } from '../data/icons'
 
 const Page = ({ title, value, onSubmit, topBorder, type, boxes }) => {
     const { palette } = useContext(AppContext)

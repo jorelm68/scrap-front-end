@@ -1,15 +1,20 @@
-export const errorAuthorPassword = 'Make sure your password is at least 8 characters long.'
-export const errorAuthorPseudonym = 'Make sure your pseudonym contains 3-16 letters, digits, or underscores.'
-export const errorAuthorFirstName = 'Make sure your first name is capitalized and contains letters or hyphens.'
-export const errorAuthorLastName = 'Make sure your first name is capitalized and contains letters or hyphens.'
-export const errorAuthorAutobiography = 'Make sure your autobiography is less than 180 characters and doesn\'t contain line breaks.'
-export const errorAuthorEmail = 'Make sure you typed your email correctly.'
-export const errorScrapTitle = 'Make sure your title is less than 80 characters long'
-export const errorScrapPlace = 'Make sure your place is less than 40 characters long.'
-export const errorScrapDescription = 'Invalid description. Keep it less than 2000 characters long.'
-export const errorBookTitle = 'Invalid title. Keep it less than than 40 characters long.'
-export const errorBookDescription = 'Invalid description. Keep it less than 2000 characters long.'
-export const errorCollectionName = 'Invalid name. Keep it less than 40 characters long.'
-export const errorAuthorPseudonymOrEmail = 'Make sure you typed your email correctly.\nMake sure your pseudonym contains 3-16 letters, digits, and/or underscores.'
-export const errorScrapComment = 'Invalid comment. Please keep it less than 2000 characters long.'
-export const errorScrapReply = 'Invalid reply. Please keep it less than 2000 characters long.'
+export default {
+    author: {
+        pseudonymOrEmail: 'Make sure you typed your email correctly.\nMake sure your pseudonym contains 3-16 letters, digits, and/or underscores.',
+        password: 'Make sure your password is at least 8 characters long.',
+        pseudonym: 'Make sure your pseudonym contains 3-16 letters, digits, or underscores.',
+        firstName: 'Make sure your first name is capitalized and contains letters or hyphens.',
+        lastName: 'Make sure your first name is capitalized and contains letters or hyphens.',
+        autobiography: 'Make sure your autobiography is less than 180 characters and doesn\'t contain line breaks.',
+        email: 'Make sure you typed your email correctly.',
+    },
+    scrap: {
+        title: 'Make sure your title is less than 80 characters long',
+        description: 'Invalid description. Keep it less than 2000 characters long.',
+        place: 'Make sure your place is less than 40 characters long.',
+    },
+    book: {
+        title: 'Invalid title. Keep it less than than 40 characters long.',
+        description: 'Invalid description. Keep it less than 2000 characters long.',
+    }
+}
