@@ -9,7 +9,7 @@ import regex from '../data/regex'
 import cache from '../data/cache'
 import { dimensions } from '../data/styles'
 import AppContext from '../context/AppContext'
-import utility from '../data/api'
+import utility from '../data/utility'
 import Button from '../components/Button'
 import BookSmall from '../components/BookSmall'
 

@@ -51,7 +51,7 @@ const Page = ({ author, disappear }) => {
                 height: 64,
             }}>
                 <TouchableOpacity onPress={() => {
-                    router.push(`/${tab}/profile/${author}`)
+                    router.push(`/${tab}/author/${author}`)
                 }}>
                     <View style={{
                         width: '100%',

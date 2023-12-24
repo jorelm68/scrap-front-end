@@ -50,7 +50,7 @@ export default function LibraryLayout() {
         }}
       />
       <Stack.Screen
-        name='profile'
+        name='author'
         options={{
           headerShown: false,
         }}

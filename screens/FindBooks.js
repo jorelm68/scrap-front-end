@@ -10,7 +10,7 @@ import BookSmall from '../components/BookSmall'
 import api from '../data/api'
 import BookList from '../components/BookList'
 
-const Screen = ({ book, threads, amount, functionName }) => {
+const Screen = ({ book = '', threads = [], amount = 0, functionName = '' }) => {
     const navigation = useNavigation()
     const router = useRouter()
     const { functions, user, paused, setPaused, palette } = useContext(AppContext)

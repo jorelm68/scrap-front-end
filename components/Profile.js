@@ -369,7 +369,7 @@ const Page = ({ author }) => {
                                         icon='settings'
                                         onPress={async () => {
                                             router.navigate({
-                                                pathname: `/${tab}/profile/settings`,
+                                                pathname: `/${tab}/author/settings`,
                                             })
                                         }}
                                     />

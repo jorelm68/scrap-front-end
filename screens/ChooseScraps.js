@@ -8,7 +8,7 @@ import { dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
 import ScrapList from '../components/ScrapList'
 
-const Screen = ({ scraps, amount, functionName }) => {
+const Screen = ({ scraps = [], amount = 0, functionName = '' }) => {
     const navigation = useNavigation()
     const router = useRouter()
     const { functions, palette } = useContext(AppContext)

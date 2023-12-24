@@ -20,7 +20,7 @@ export default function ProfileLayout() {
         }}
       />
       <Stack.Screen
-        name='profile'
+        name='author'
         options={{
           headerShown: false,
         }}

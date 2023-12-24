@@ -12,6 +12,14 @@ export default function BookLayout() {
                 }}
             />
             <Stack.Screen
+                name='chooseScraps'
+                options={{
+                    ...options,
+                    presentation: 'modal',
+                    headerTitle: 'Choose Scraps',
+                }}
+            />
+            <Stack.Screen
                 name='editBook'
                 options={{
                     ...options,
@@ -25,14 +33,6 @@ export default function BookLayout() {
                     ...options,
                     presentation: 'modal',
                     headerTitle: 'Edit Scrap',
-                }}
-            />
-            <Stack.Screen
-                name='chooseScraps'
-                options={{
-                    ...options,
-                    presentation: 'modal',
-                    headerTitle: 'Choose Scraps',
                 }}
             />
             <Stack.Screen

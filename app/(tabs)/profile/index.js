@@ -9,7 +9,7 @@ const Page = () => {
   const { user } = useContext(AppContext)
 
   return (
-    <Redirect href={`/profile/profile/${user}`} />
+    <Redirect href={`/profile/author/${user}`} />
   )
 }
 export default Page

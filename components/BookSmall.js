@@ -115,7 +115,7 @@ const Page = ({ book, clickable }) => {
                             height: (dimensions.width - 8) / 4,
                         }}>
                             <TouchableOpacity centerV row onPress={() => {
-                                router.push(`/${tab}/profile/${author}`)
+                                router.push(`/${tab}/author/${author}`)
                             }} style={{
                                 marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
                             }}>
