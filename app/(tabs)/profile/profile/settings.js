@@ -100,7 +100,8 @@ const Settings = () => {
                     amount={1}
                     onSubmit={async () => {
                         router.navigate({
-                            pathname: '/scrapPicker', params: {
+                            pathname: `/${tab}/book/chooseScraps`,
+                            params: {
                                 scraps: JSON.stringify(scraps),
                                 amount: JSON.stringify(1),
                                 functionName: 'setHeadshotAndCover',

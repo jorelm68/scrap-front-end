@@ -236,7 +236,8 @@ const EditBook = () => {
                     amount={1}
                     onSubmit={() => {
                         router.navigate({
-                            pathname: '/scrapPicker', params: {
+                            pathname: `/${tab}/book/chooseScraps`,
+                            params: {
                                 scraps: JSON.stringify(scraps ? scraps : []),
                                 amount: JSON.stringify(1),
                                 functionName: 'changeRepresentative',
@@ -254,7 +255,8 @@ const EditBook = () => {
                             size='large'
                             onPress={() => {
                                 router.navigate({
-                                    pathname: '/scrapPicker', params: {
+                                    pathname: `/${tab}/book/chooseScraps`,
+                                    params: {
                                         scraps: JSON.stringify(unbookedScraps.filter((value) => {
                                             return !scraps || !scraps.includes(value)
                                         })),

@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = () => {
+const Page = ({ scraps, renderItem }) => {
     const { palette } = useContext(AppContext)
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)

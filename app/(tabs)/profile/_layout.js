@@ -42,6 +42,14 @@ export default function ProfileLayout() {
         }}
       />
       <Stack.Screen
+        name='book/chooseScraps'
+        options={{
+          ...options,
+          presentation: 'modal',
+          headerTitle: 'Choose Scraps',
+        }}
+      />
+      <Stack.Screen
         name='book/[book]'
         options={{
           ...options,

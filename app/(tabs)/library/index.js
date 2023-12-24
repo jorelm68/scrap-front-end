@@ -10,7 +10,7 @@ import cache from '../../../data/cache'
 import { Alert } from 'react-native'
 
 const Library = () => {
-  const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
+  const { user, setFunctions, tab, paused, setPaused, palette } = useContext(AppContext)
   const router = useRouter()
   const {
     scraps,
@@ -109,7 +109,7 @@ const Library = () => {
 
   const handleDeleteScraps = async () => {
     router.navigate({
-      pathname: '/scrapPicker', params: {
+      pathname: `/${tab}/book/chooseScraps`, params: {
         scraps: JSON.stringify(scraps),
         amount: JSON.stringify(scraps.length),
         functionName: 'deleteScraps',
