@@ -29,12 +29,12 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
         isPublic,
         title,
         description,
-        miles,
+        miles: bookMiles,
         likes,
         beginDate,
         endDate,
         toggleLike,
-    } = useBook(book, [
+    } = useBook(book === 'scrapbook' ? undefined : book, [
         'scraps',
         'author',
         'isPublic',
@@ -51,18 +51,20 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
         lastName,
         pseudonym,
         relationship,
+        miles: authorMiles,
     } = useAuthor(author, [
         'firstName',
         'lastName',
         'pseudonym',
         'relationship',
+        'miles,'
     ])
 
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: book ? title : 'Scrapbook',
+            headerTitle: book === 'scrapbook' ? 'Scrapbook' : title,
             headerBackTitleVisible: false,
-            headerRight: book && (user === author) ? () => (
+            headerRight: book !== 'scrapbook' && (user === author) ? () => (
                 <TouchableOpacity onPress={async () => {
                     router.navigate({
                         pathname: `/${tab}/book/editBook`,
@@ -110,7 +112,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
         return (
             <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
                 <Map
-                    scraps={book ? scraps : scrapsGiven}
+                    scraps={book === 'scrapbook' ? scrapsGiven : scraps}
                     scrap={currentScrap}
                 />
                 <View centerV style={{
@@ -180,7 +182,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                             fontSize: 24,
                             color: '#CCCCCC',
                             lineHeight: 24,
-                        }}>{Math.round(miles)} Mile{Math.round(miles) === 1 ? '' : 's'} Traveled</Text>
+                        }}>{Math.round(book === 'scrapbook' ? authorMiles : bookMiles)} Mile{Math.round(book === 'scrapbook' ? authorMiles : bookMiles) === 1 ? '' : 's'} Traveled</Text>
                     </View>
 
                 </View>
@@ -196,7 +198,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                     }}>{description}</Text>
                 </View>
 
-                <ScrapCarousel scraps={book ? scraps : scrapsGiven} initialPage={page} />
+                <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} initialPage={page} />
                 <View height={120} />
             </ScrollView>
         )

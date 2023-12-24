@@ -24,7 +24,7 @@ const Scraps = ({ scraps }) => {
         return (
           <TouchableOpacity key={scrap} onPress={() => {
             router.push({
-              pathname: `/${tab}/book/`,
+              pathname: `/${tab}/book/scrapbook`,
               params: {
                 scraps: JSON.stringify(scraps),
                 page: JSON.stringify(scraps.indexOf(scrap))
