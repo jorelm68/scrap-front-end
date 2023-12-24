@@ -38,7 +38,16 @@ export default function ProfileLayout() {
         name='book/editBook'
         options={{
           ...options,
+          presentation: 'modal',
           headerTitle: 'Edit Book',
+        }}
+      />
+      <Stack.Screen
+        name='book/editScrap'
+        options={{
+          ...options,
+          presentation: 'modal',
+          headerTitle: 'Edit Scrap',
         }}
       />
       <Stack.Screen
