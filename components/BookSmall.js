@@ -14,8 +14,8 @@ import api from '../data/api'
 import utility from '../data/utility'
 
 const Page = ({ book, showAuthor, clickable }) => {
-    const navigation = useNavigation()
-    const { palette, user } = useContext(AppContext)
+    const router = useRouter()
+    const { palette, user, tab } = useContext(AppContext)
     const [hidden, setHidden] = useState(true)
     const {
         author,
@@ -92,10 +92,9 @@ const Page = ({ book, showAuthor, clickable }) => {
         }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
-                    navigation.push({
-                        pathname: '/book',
+                    router.push({
+                        pathname: `/${tab}/book/${book}`,
                         params: {
-                            book,
                             page: JSON.stringify(scraps.indexOf(representative))
                         }
                     })
@@ -116,12 +115,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                         }}>
                             {showAuthor && (
                                 <TouchableOpacity centerV row onPress={() => {
-                                    navigation.push({
-                                        pathname: '/profile',
-                                        params: {
-                                            author,
-                                        }
-                                    })
+                                    router.push(`/${tab}/profile/${author}`)
                                 }} style={{
                                     marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
                                 }}>
@@ -181,7 +175,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                                 borderRadius: 8,
                             }}>
                                 <TouchableOpacity onPress={() => {
-                                    navigation.navigate({
+                                    router.navigate({
                                         pathname: '/likes',
                                         params: {
                                             book,
@@ -250,7 +244,7 @@ const Page = ({ book, showAuthor, clickable }) => {
 
                         {!hidden && (
                             <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                                navigation.navigate({
+                                router.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -354,7 +348,7 @@ const Page = ({ book, showAuthor, clickable }) => {
                             borderRadius: 8,
                         }}>
                             <TouchableOpacity onPress={() => {
-                                navigation.navigate({
+                                router.navigate({
                                     pathname: '/likes',
                                     params: {
                                         book,
@@ -423,7 +417,7 @@ const Page = ({ book, showAuthor, clickable }) => {
 
                     {!hidden && (
                         <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                            navigation.navigate({
+                            router.navigate({
                                 pathname: '/likes',
                                 params: {
                                     book,

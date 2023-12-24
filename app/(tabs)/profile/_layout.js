@@ -27,6 +27,13 @@ export default function ProfileLayout() {
           headerTitle: 'Profile',
         }}
       />
+      <Stack.Screen
+        name='book/[book]'
+        options={{
+          ...options,
+          headerTitle: 'Book',
+        }}
+      />
     </Stack>
   )
 }

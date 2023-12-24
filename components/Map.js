@@ -19,8 +19,8 @@ const Page = ({ scraps, scrap = scraps[0], clickMarker }) => {
     const [coordinates, setCoordinates] = useState([])
 
     const getCoordinates = async () => {
-        const response = await utility.scrapCoordinates(scraps)
-        if (!response.success) {
+        const response = await api.utility.scrapCoordinates(scraps)
+        if (response.success) {
             setCoordinates(response.data.coordinates)
         }
     }

@@ -14,8 +14,8 @@ import api from '../data/api'
 import utility from '../data/utility'
 
 const Page = ({ author, disappear }) => {
-    const navigation = useNavigation()
-    const { palette, user, paused, setPaused } = useContext(AppContext)
+    const router = useRouter()
+    const { palette, user, tab, paused, setPaused } = useContext(AppContext)
     const [hidden, setHidden] = useState(false)
 
     const {
@@ -50,12 +50,7 @@ const Page = ({ author, disappear }) => {
                 height: 64,
             }}>
                 <TouchableOpacity onPress={() => {
-                    navigation.push({
-                        pathname: '/profile',
-                        params: {
-                            author,
-                        }
-                    })
+                    router.push(`/${tab}/profile/${author}`)
                 }}>
                     <View style={{
                         width: '100%',

@@ -12,8 +12,9 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
+import BookSmall from './BookSmall'
 
-const Page = () => {
+const Page = ({ scrap }) => {
     const router = useRouter()
     const { user, palette } = useContext(AppContext)
     const {
@@ -215,7 +216,7 @@ const Page = () => {
                                 fontSize: 12,
                                 paddingRight: 2,
                                 color: palette.color5,
-                            }}>{getDate(createdAt)}</Text>
+                            }}>{utility.getDate(createdAt)}</Text>
                             <Ionicons name='timer-outline' color={palette.color5} size={18} />
                         </View>
 
@@ -246,7 +247,7 @@ const Page = () => {
             }}>
                 {threads && threads.map((book) => {
                     return (
-                        <BookComponent book={book} clickable key={book} showAuthor />
+                        <BookSmall book={book} clickable key={book} showAuthor />
                     )
                 })}
             </View>

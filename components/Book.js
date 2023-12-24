@@ -12,6 +12,9 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
+import AuthorSmall from './AuthorSmall'
+import ScrapCarousel from './ScrapCarousel'
+import Map from './Map'
 
 const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
@@ -96,14 +99,14 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                     textAlign: 'center',
                 }}>This book is private and you aren't friends with {firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
 
-                <AuthorComponent author={author} />
+                <AuthorSmall author={author} />
             </View>
         )
     }
     else {
         return (
             <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
-                <MapComponent
+                <Map
                     scraps={book ? scraps : scrapsGiven}
                     scrap={currentScrap}
                 />
@@ -120,7 +123,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 color: palette.color6,
-                            }}>{getDateRange(beginDate, endDate)} </Text>
+                            }}>{utility.getDateRange(beginDate, endDate)} </Text>
                         </View>
                     )}
 
