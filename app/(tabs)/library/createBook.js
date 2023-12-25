@@ -1,13 +1,7 @@
-import { useLocalSearchParams } from 'expo-router'
-import Screen from '../../../screens/CreateBook'
+import CreateBook from '../../../screens/CreateBook'
 
-const Page = () => {
-    const params = useLocalSearchParams()
-    
-
-    return (
-        <Screen />
-    )
+const Page = () => {    
+    return <CreateBook />
 }
 
 export default Page

@@ -7,9 +7,7 @@ const Page = () => {
     const amount = JSON.parse(params.amount)
     const functionName = params.functionName
 
-    return (
-        <ChooseScraps scraps={scraps} amount={amount} functionName={functionName} />
-    )
+    return <ChooseScraps scraps={scraps} amount={amount} functionName={functionName} />
 }
 
 export default Page

@@ -8,9 +8,7 @@ const Page = () => {
     const amount = JSON.parse(params.amount)
     const functionName = params.functionName
 
-    return (
-        <FindBooks book={book} threads={threads} amount={amount} functionName={functionName} />
-    )
+    return <FindBooks book={book} threads={threads} amount={amount} functionName={functionName} />
 }
 
 export default Page

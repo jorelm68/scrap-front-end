@@ -3,7 +3,7 @@
 import { Stack } from "expo-router";
 import { options } from '../../../data/styles'
 
-export default function CameraLayout() {
+const Layout = () => {
   return (
     <Stack>
       <Stack.Screen
@@ -16,3 +16,5 @@ export default function CameraLayout() {
     </Stack>
   )
 }
+
+export default Layout

@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = ({ book, clickable }) => {
+const Component = ({ book, clickable }) => {
     const router = useRouter()
     const tab = utility.getTab(usePathname())
     const { palette, user } = useContext(AppContext)
@@ -449,4 +449,4 @@ const Page = ({ book, clickable }) => {
     )
 }
 
-export default Page
+export default Component

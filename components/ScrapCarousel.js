@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import Scrap from './Scrap'
 
-const Page = ({ scraps, initialPage = 0 }) => {
+const Component = ({ scraps, initialPage = 0 }) => {
     const { palette, setCurrentScrap } = useContext(AppContext)
     
     const [page, setPage] = useState(initialPage)
@@ -45,4 +45,4 @@ const Page = ({ scraps, initialPage = 0 }) => {
     )
 }
 
-export default Page
+export default Component

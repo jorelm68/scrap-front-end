@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { options } from '../../../../data/styles'
 
-export default function BookLayout() {
+const Layout = () => {
     return (
         <Stack>
             <Stack.Screen
@@ -53,3 +53,5 @@ export default function BookLayout() {
         </Stack>
     )
 }
+
+export default Layout

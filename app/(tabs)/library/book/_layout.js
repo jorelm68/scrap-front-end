@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { options } from '../../../../data/styles'
 
-export default function BookLayout() {
+const Layout = () => {
     return (
         <Stack>
             <Stack.Screen
@@ -9,14 +9,6 @@ export default function BookLayout() {
                 options={{
                     ...options,
                     headerTitle: 'Likes',
-                }}
-            />
-            <Stack.Screen
-                name='chooseScraps'
-                options={{
-                    ...options,
-                    presentation: 'modal',
-                    headerTitle: 'Choose Scraps',
                 }}
             />
             <Stack.Screen
@@ -33,6 +25,14 @@ export default function BookLayout() {
                     ...options,
                     presentation: 'modal',
                     headerTitle: 'Edit Scrap',
+                }}
+            />
+            <Stack.Screen
+                name='chooseScraps'
+                options={{
+                    ...options,
+                    presentation: 'modal',
+                    headerTitle: 'Choose Scraps',
                 }}
             />
             <Stack.Screen
@@ -53,3 +53,5 @@ export default function BookLayout() {
         </Stack>
     )
 }
+
+export default Layout

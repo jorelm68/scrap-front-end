@@ -1,11 +1,8 @@
-import { Tabs, useNavigation } from "expo-router";
+import { Tabs } from "expo-router"
 import { Ionicons } from '@expo/vector-icons'
-import { fonts, options } from '../../data/styles'
-import { useContext } from "react";
-import { TouchableOpacity } from 'react-native-ui-lib'
-import AppContext from "../../context/AppContext";
+import { options } from '../../data/styles'
 
-export default function TabsLayout() {
+const Layout = () => {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
@@ -71,3 +68,5 @@ export default function TabsLayout() {
     </Tabs>
   );
 }
+
+export default Layout

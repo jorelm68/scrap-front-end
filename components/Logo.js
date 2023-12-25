@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = () => {
+const Component = () => {
     const { palette } = useContext(AppContext)
 
     return (
@@ -27,4 +27,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default Component

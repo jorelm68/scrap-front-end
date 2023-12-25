@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = ({ author, disappear }) => {
+const Component = ({ author, disappear }) => {
     const router = useRouter()
     const { palette, user, paused, setPaused } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
@@ -256,4 +256,4 @@ const Page = ({ author, disappear }) => {
     )
 }
 
-export default Page
+export default Component

@@ -1,9 +1,7 @@
 import ChooseAccount from '../../screens/ChooseAccount'
 
 const Page = () => {
-    return (
-        <ChooseAccount />
-    )
+    return <ChooseAccount />
 }
 
 export default Page

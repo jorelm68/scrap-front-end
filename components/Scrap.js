@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import BookSmall from './BookSmall'
 
-const Page = ({ scrap }) => {
+const Component = ({ scrap }) => {
     const router = useRouter()
     const { user, palette } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
@@ -252,4 +252,4 @@ const Page = ({ scrap }) => {
     )
 }
 
-export default Page
+export default Component

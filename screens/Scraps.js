@@ -12,7 +12,7 @@ import AppContext from '../context/AppContext'
 import ScrapList from '../components/ScrapList'
 import utility from '../data/utility'
 
-const Scraps = ({ scraps }) => {
+const Screen = ({ scraps }) => {
   const { palette } = useContext(AppContext)
   const tab = utility.getTab(usePathname())
   const router = useRouter()
@@ -40,4 +40,4 @@ const Scraps = ({ scraps }) => {
   )
 }
 
-export default Scraps
+export default Screen

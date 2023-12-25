@@ -1,9 +1,7 @@
 import SignIn from '../../screens/SignIn'
 
 const Page = () => {
-  return (
-    <SignIn />
-  )
+  return <SignIn />
 }
 
 export default Page

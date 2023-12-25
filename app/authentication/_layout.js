@@ -1,11 +1,5 @@
-import { View, Text, Keyboard } from 'react-native'
-import React, { useContext } from 'react'
-import { Stack, useRouter } from 'expo-router'
-import { Ionicons } from '@expo/vector-icons'
-import { fonts, options } from '../../data/styles'
-import { TouchableOpacity } from 'react-native-ui-lib'
-import AppContext from '../../context/AppContext'
-import AppContextProvider from '../../context/AppContextProvider'
+import { Stack } from 'expo-router'
+import { options } from '../../data/styles'
 
 const Layout = () => {
   return (

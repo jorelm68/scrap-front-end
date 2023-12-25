@@ -18,7 +18,7 @@ import Button from './Button'
 import AuthorSmall from './AuthorSmall'
 import BookMarker from './BookMarker'
 
-const Page = ({ author }) => {
+const Component = ({ author }) => {
     const router = useRouter()
     const { user, paused, setPaused, palette } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
@@ -534,4 +534,4 @@ const Page = ({ author }) => {
     }
 }
 
-export default Page
+export default Component

@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import BookBlankSmall from './BookBlankSmall'
 
-const Page = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
+const Component = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
     const { palette } = useContext(AppContext)
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)
@@ -77,4 +77,4 @@ const Page = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
     )
 }
 
-export default Page
+export default Component

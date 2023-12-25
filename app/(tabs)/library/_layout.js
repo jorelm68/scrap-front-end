@@ -3,7 +3,7 @@
 import { Stack } from "expo-router";
 import { options } from '../../../data/styles'
 
-export default function LibraryLayout() {
+const Layout = () => {
   return (
     <Stack>
       <Stack.Screen
@@ -64,4 +64,7 @@ export default function LibraryLayout() {
         }}
       />
     </Stack>
-  )}
+  )
+}
+
+export default Layout

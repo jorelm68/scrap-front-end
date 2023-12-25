@@ -3,7 +3,7 @@
 import { Stack } from "expo-router";
 import { options } from '../../../data/styles'
 
-export default function FeedLayout() {
+const Layout = () => {
   return (
     <Stack>
       <Stack.Screen
@@ -33,4 +33,7 @@ export default function FeedLayout() {
         }}
       />
     </Stack>
-  )}
+  )
+}
+
+export default Layout

@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = ({ scrap }) => {
+const Component = ({ scrap }) => {
     const { palette } = useContext(AppContext)
     const {
         latitude,
@@ -58,4 +58,4 @@ const Page = ({ scrap }) => {
     )
 }
 
-export default Page
+export default Component

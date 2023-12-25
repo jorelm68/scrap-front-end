@@ -16,7 +16,7 @@ import Error from './Error'
 import Field from './Field'
 import { defaultImage, defaultHeadshot } from '../data/icons'
 
-const Page = ({ title, value, onSubmit, topBorder, type, boxes }) => {
+const Component = ({ title, value, onSubmit, topBorder, type, boxes }) => {
     const { palette } = useContext(AppContext)
     const [isDropped, setIsDropped] = useState(false)
     const [values, setValues] = useState([])
@@ -235,4 +235,4 @@ const Page = ({ title, value, onSubmit, topBorder, type, boxes }) => {
     )
 }
 
-export default Page
+export default Component

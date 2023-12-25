@@ -1,9 +1,7 @@
 import ForgotPassword from '../../screens/ForgotPassword'
 
 const Page = () => {
-    return (
-        <ForgotPassword />
-    )
+    return <ForgotPassword />
 }
 
 export default Page

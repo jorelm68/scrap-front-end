@@ -1,9 +1,9 @@
 // /app/(tabs)/search/index.js
 
-import Search from '../../../screens/Search'
+import Screen from '../../../screens/Search'
 
-export default function Page() {
-  return (
-    <Search />
-  );
+const Page = () => {
+  return <Screen />
 }
+
+export default Page

@@ -7,9 +7,7 @@ const Page = () => {
     const scraps = params.scraps ? JSON.parse(params.scraps) : []
     const page = params.page ? JSON.parse(params.page) : 0
 
-    return (
-        <Book book={book} scraps={scraps} page={page} />
-    )
+    return <Book book={book} scraps={scraps} page={page} />
 }
 
 export default Page

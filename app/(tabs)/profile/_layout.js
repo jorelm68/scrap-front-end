@@ -3,7 +3,7 @@
 import { Stack } from "expo-router";
 import { options } from '../../../data/styles'
 
-export default function ProfileLayout() {
+const Layout = () => {
   return (
     <Stack>
       <Stack.Screen
@@ -28,3 +28,5 @@ export default function ProfileLayout() {
     </Stack>
   )
 }
+
+export default Layout

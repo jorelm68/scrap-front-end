@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = ({ book }) => {
+const Component = ({ book }) => {
     const { palette } = useContext(AppContext)
     const {
         representative,
@@ -71,4 +71,4 @@ const Page = ({ book }) => {
     )
 }
 
-export default Page
+export default Component

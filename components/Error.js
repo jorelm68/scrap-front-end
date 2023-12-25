@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Page = ({ error }) => {
+const Component = ({ error }) => {
     const { palette } = useContext(AppContext)
 
     return (
@@ -30,4 +30,4 @@ const Page = ({ error }) => {
     )
 }
 
-export default Page
+export default Component

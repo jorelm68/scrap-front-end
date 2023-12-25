@@ -1,13 +1,11 @@
 import { useLocalSearchParams } from 'expo-router'
-import Scraps from '../../../screens/Scraps'
+import Screen from '../../../screens/Scraps'
 
 const Page = () => {
   const params = useLocalSearchParams()
   const scraps = JSON.parse(params.scraps)
 
-  return (
-    <Scraps scraps={scraps} />
-  )
+  return <Screen scraps={scraps} />
 }
 
 export default Page

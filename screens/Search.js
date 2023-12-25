@@ -14,7 +14,7 @@ import useScrap from '../hooks/useScrap'
 import MapView, { Polyline } from 'react-native-maps'
 import BookMarker from '../components/BookMarker'
 
-const Search = () => {
+const Screen = () => {
   const { user, palette } = useContext(AppContext)
   const [query, setQuery] = useState('')
   const navigation = useNavigation()
@@ -191,4 +191,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default Screen
