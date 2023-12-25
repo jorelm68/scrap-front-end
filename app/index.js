@@ -10,7 +10,7 @@ import Logo from '../components/Logo'
 
 utility.loadFonts()
 
-const Autothenticate = () => {
+const Page = () => {
   const { setUser, setAuthenticated, setDarkMode, setPalette } = useContext(AppContext)
   const [savingScraps, setSavingScraps] = useState(false)
 
@@ -73,4 +73,4 @@ const Autothenticate = () => {
   )
 }
 
-export default Autothenticate
+export default Page

@@ -5,7 +5,7 @@ import Logo from '../components/Logo'
 import { ActivityIndicator } from 'react-native'
 import AppContext from '../context/AppContext'
 
-const Loading = () => {
+const Page = () => {
     const { palette } = useContext(AppContext)
     return (
         <View flex center style={{
@@ -19,4 +19,4 @@ const Loading = () => {
     )
 }
 
-export default Loading
+export default Page
