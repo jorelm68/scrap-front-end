@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
-const Page = ({ scraps, scrap = scraps[0], clickMarker }) => {
+const Component = ({ scraps, scrap = scraps[0], clickMarker }) => {
     const { palette } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
@@ -81,4 +81,4 @@ const Page = ({ scraps, scrap = scraps[0], clickMarker }) => {
     )
 }
 
-export default Page
+export default Component

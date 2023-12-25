@@ -16,7 +16,7 @@ import AuthorSmall from './AuthorSmall'
 import ScrapCarousel from './ScrapCarousel'
 import Map from './Map'
 
-const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
+const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
     const navigation = useNavigation()
     const router = useRouter()
     const { palette, user, currentScrap } = useContext(AppContext)
@@ -115,57 +115,61 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                     scraps={book === 'scrapbook' ? scrapsGiven : scraps}
                     scrap={currentScrap}
                 />
-                <View centerV style={{
-                    width: dimensions.width,
-                    height: 24,
-                }}>
-                    {beginDate && endDate && (
+
+                {book !== 'scrapbook' && (
+                    <View centerV style={{
+                        width: dimensions.width,
+                        height: 24,
+                    }}>
+                        {beginDate && endDate && (
+                            <View row center style={{
+                                position: 'absolute',
+                                left: 4,
+                            }}>
+                                <Text style={{
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    color: palette.color6,
+                                }}>{utility.getDateRange(beginDate, endDate)} </Text>
+                            </View>
+                        )}
+
                         <View row center style={{
                             position: 'absolute',
-                            left: 4,
+                            right: 0,
                         }}>
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 12,
-                                color: palette.color6,
-                            }}>{utility.getDateRange(beginDate, endDate)} </Text>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    router.navigate({
+                                        pathname: `/${tab}/book/likes`,
+                                        params: {
+                                            book,
+                                        }
+                                    })
+                                }}
+                            >
+                                <Text style={{
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    color: palette.color6,
+                                }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={user !== author ? toggleLike : () => {
+                                    router.navigate({
+                                        pathname: `/${tab}/book/likes`,
+                                        params: {
+                                            book,
+                                        }
+                                    })
+                                }}
+                            >
+                                <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={24} />
+                            </TouchableOpacity>
                         </View>
-                    )}
-
-                    <View row center style={{
-                        position: 'absolute',
-                        right: 0,
-                    }}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                router.navigate({
-                                    pathname: `/${tab}/book/likes`,
-                                    params: {
-                                        book,
-                                    }
-                                })
-                            }}
-                        >
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 12,
-                                color: palette.color6,
-                            }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={user !== author ? toggleLike : () => {
-                                router.navigate({
-                                    pathname: `/${tab}/book/likes`,
-                                    params: {
-                                        book,
-                                    }
-                                })
-                            }}
-                        >
-                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={likes.includes(user) ? 'red' : palette.color6} size={24} />
-                        </TouchableOpacity>
                     </View>
-                </View>
+                )}
+
                 <View center style={{
                     position: 'absolute',
                     width: dimensions.width,
@@ -186,17 +190,20 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
                     </View>
 
                 </View>
-                <View style={{
-                    borderBottomWidth: 2,
-                    borderBottomColor: palette.color5,
-                }}>
-                    <Text style={{
-                        padding: 4,
-                        fontFamily: fonts.itim,
-                        fontSize: 12,
-                        color: palette.color5,
-                    }}>{description}</Text>
-                </View>
+
+                {book !== 'scrapbook' && (
+                    <View style={{
+                        borderBottomWidth: 2,
+                        borderBottomColor: palette.color5,
+                    }}>
+                        <Text style={{
+                            padding: 4,
+                            fontFamily: fonts.itim,
+                            fontSize: 12,
+                            color: palette.color5,
+                        }}>{description}</Text>
+                    </View>
+                )}
 
                 <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} initialPage={page} />
                 <View height={120} />
@@ -205,4 +212,4 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
     }
 }
 
-export default Page
+export default Component
