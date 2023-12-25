@@ -206,7 +206,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
                 )}
 
                 <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} initialPage={page} />
-                <View height={120} />
+                <View height={200} />
             </ScrollView>
         )
     }
