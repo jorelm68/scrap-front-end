@@ -18,8 +18,13 @@ const storeData = async (key, value) => {
 
 const saveAccount = async (account) => {
     try {
-        const data = await retrieveData('accounts')
-        const accounts = JSON.parse(data)
+        let accounts = await retrieveData('accounts')
+        if (!accounts) {
+            accounts = []
+        }
+        else {
+            accounts = JSON.parse(accounts)
+        }
         for (const storedAccount of accounts) {
             if (storedAccount.author === account.author) {
                 return
@@ -33,8 +38,13 @@ const saveAccount = async (account) => {
 }
 const forgetAccount = async (account) => {
     try {
-        const data = await retrieveData('accounts')
-        const accounts = JSON.parse(data)
+        let accounts = await retrieveData('accounts')
+        if (!accounts) {
+            accounts = []
+        }
+        else {
+            accounts = JSON.parse(accounts)
+        }
         const updatedAccounts = accounts.filter(storedAccount => storedAccount.author !== account.author)
         await storeData('accounts', JSON.stringify(updatedAccounts))
     } catch (error) {

@@ -16,6 +16,7 @@ const Layout = () => {
           name="(tabs)"
           options={{
             ...options,
+            gestureEnabled: false,
             headerShown: false,
           }}
         />
@@ -30,6 +31,13 @@ const Layout = () => {
           name="index"
           options={{
             ...options,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen 
+          name="loading"
+          options={{
+            gestureEnabled: false,
             headerShown: false,
           }}
         />
