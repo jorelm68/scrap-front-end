@@ -15,8 +15,7 @@ import Logo from '../components/Logo'
 import Error from '../components/Error'
 
 const Screen = () => {
-  const { palette } = useContext(AppContext)
-  const { setUser, paused, setPaused } = useContext(AppContext)
+  const { setUser, paused, setPaused, palette } = useContext(AppContext)
   const [accounts, setAccounts] = useState([])
   const router = useRouter()
   useEffect(() => {
