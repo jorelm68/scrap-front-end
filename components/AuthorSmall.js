@@ -81,7 +81,7 @@ const Page = ({ author, disappear }) => {
                             fontSize: 24,
                             paddingHorizontal: 4,
                             color: '#CCCCCC',
-                        }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                        }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
                     </View>
                     <Image source={iHeadshot} style={{
                         width: 64,

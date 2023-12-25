@@ -313,6 +313,10 @@ const getTab = (pathname) => {
     return parts[1]
 }
 
+const formatName = (firstName, lastName, pseudonym) => {
+    return firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`
+}
+
 export default {
     storeData,
     saveAccount,
@@ -334,4 +338,5 @@ export default {
     offlineEdit,
     offlineDeleteScrap,
     getTab,
+    formatName,
 }

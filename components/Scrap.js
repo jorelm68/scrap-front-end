@@ -104,7 +104,7 @@ const Page = ({ scrap }) => {
                         fontSize: 16,
                         paddingLeft: 4,
                         color: palette.color5,
-                    }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                    }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
 
                     {author === user && !isLongPressing && (
                         <TouchableOpacity style={{

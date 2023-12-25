@@ -134,7 +134,7 @@ const Page = ({ book, clickable }) => {
                                         fontSize: 16,
                                         paddingLeft: 2,
                                         color: palette.color5,
-                                    }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                                    }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
                                 </View>
                             </TouchableOpacity>
 
@@ -162,7 +162,7 @@ const Page = ({ book, clickable }) => {
                                     fontFamily: fonts.itim,
                                     fontSize: 12,
                                     color: palette.color5,
-                                }}>{hidden ? `Become friends with ${firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`} to view this book!` : description.length <= 100 ? description : `${description.slice(0, 100)}...`}</Text>
+                                }}>{hidden ? `Become friends with ${utility.formatName(firstName, lastName, pseudonym)} to view this book!` : description.length <= 100 ? description : `${description.slice(0, 100)}...`}</Text>
                             </View>
                         </View>
 
@@ -306,7 +306,7 @@ const Page = ({ book, clickable }) => {
                                 fontSize: 12,
                                 paddingLeft: 2,
                                 color: palette.color5,
-                            }}>{firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                            }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
                         </View>
 
                         {!hidden && (
@@ -333,7 +333,7 @@ const Page = ({ book, clickable }) => {
                                 fontFamily: fonts.itim,
                                 fontSize: 12,
                                 color: palette.color5,
-                            }}>{hidden ? `Become friends with ${firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`} to view this book!` : description.length <= 100 ? description : `${description.slice(0, 100)}...`}</Text>
+                            }}>{hidden ? `Become friends with ${utility.formatName(firstName, lastName, pseudonym)} to view this book!` : description.length <= 100 ? description : `${description.slice(0, 100)}...`}</Text>
                         </View>
                     </View>
 

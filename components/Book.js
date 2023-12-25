@@ -102,7 +102,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
                     fontSize: 16,
                     color: palette.color5,
                     textAlign: 'center',
-                }}>This book is private and you aren't friends with {firstName || lastName ? `${firstName}${firstName && lastName ? ' ' : ''}${lastName}` : `${pseudonym}`}</Text>
+                }}>This book is private and you aren't friends with {utility.formatName(firstName, lastName, pseudonym)}</Text>
 
                 <AuthorSmall author={author} />
             </View>

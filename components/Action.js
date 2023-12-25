@@ -18,9 +18,27 @@ const Page = ({ action }) => {
     const { palette } = useContext(AppContext)
 
     const {
+        sender,
+        target,
+        type,
         createdAt,
     } = useAction(action, [
+        'sender',
+        'target',
+        'type',
         'createdAt',
+    ])
+
+    const {
+        iHeadshot,
+        firstName,
+        lastName,
+        pseudonym,
+    } = useAuthor(sender.author, [
+        'iHeadshot->90',
+        'firstName',
+        'lastName',
+        'pseudonym',
     ])
 
     return (
@@ -30,11 +48,18 @@ const Page = ({ action }) => {
             borderBottomWidth: 1,
             borderBottomColor: palette.color2,
         }}>
-            <Text style={{
-                fontFamily: fonts.itim,
-                fontSize: 24,
-                color: palette.color6,
-            }}>{utility.getDate(createdAt)}</Text>
+            <View row>
+                <Image source={iHeadshot} style={{
+                    width: 24,
+                    height: 24,
+                    borderRadius: 12,
+                }} />
+                <Text style={{
+                    fontFamily: fonts.itim,
+                    fontSize: 12,
+                    color: palette.color6,
+                }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
+            </View>
         </View>
     )
 }
