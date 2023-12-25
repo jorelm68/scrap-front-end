@@ -1,8 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import AppContext from '../context/AppContext'
-import { defaultImage } from '../data/icons'
-import { bookRemoveLike, bookAddLike } from '../data/api'
-import { showAlert } from '../data/utility'
+import api from '../data/api'
 import cache from '../data/cache'
 import { Alert } from 'react-native'
 
@@ -74,7 +72,7 @@ export default function useBook(book, requests) {
             if (likes.includes(user)) {
                 setIsPaused(true)
 
-                const response = await bookRemoveLike(book, user)
+                const response = await api.book.removeLike(book, user)
                 setLikes(likes.filter((like) => {
                     return like !== user
                 }))
@@ -88,7 +86,7 @@ export default function useBook(book, requests) {
             } else {
                 setIsPaused(true)
 
-                const response = await bookAddLike(book, user)
+                const response = await api.book.addLike(book, user)
                 setLikes([...likes, user])
                 cache.filter([book, 'likes'])
                 cache.filter([user, 'likedBooks'])

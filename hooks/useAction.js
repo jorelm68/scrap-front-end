@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
-import { defaultHeadshot, defaultCover } from '../data/icons'
 
 export default function useAction(action, requests) {
     const { user } = useContext(AppContext)
