@@ -13,5 +13,18 @@ export default function SearchLayout() {
           headerTitle: 'Search',
         }}
       />
+      <Stack.Screen
+        name='author'
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='book'
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
-  )}
+  )
+}
