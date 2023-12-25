@@ -222,7 +222,7 @@ const Component = ({ book, clickable }) => {
                                         lineHeight: 14,
                                         textAlign: 'center',
                                         color: palette.color5,
-                                    }}>{place ? place : 'Somwhere'}</Text>
+                                    }}>{place ? place : 'Somewhere'}</Text>
                                     <Ionicons name='pin' color={palette.color6} size={12} />
                                 </View>
 
