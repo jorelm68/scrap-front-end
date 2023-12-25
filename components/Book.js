@@ -130,7 +130,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
                                     fontFamily: fonts.itim,
                                     fontSize: 12,
                                     color: palette.color6,
-                                }}>{utility.getDateRange(beginDate, endDate)} </Text>
+                                }}>From {utility.getDate(beginDate)} to {utility.getDate(endDate)}</Text>
                             </View>
                         )}
 

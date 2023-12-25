@@ -180,7 +180,7 @@ const getDate = (newDate) => {
     const formattedHours = hours % 12 || 12;
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    const date = `${formattedMonth} ${formattedDay}, ${year} ${formattedHours}:${formattedMinutes} ${ampm}`;
+    const date = `${formattedMonth} ${formattedDay}, ${year} at ${formattedHours}:${formattedMinutes} ${ampm}`;
     return date;
 }
 
