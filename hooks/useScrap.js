@@ -23,13 +23,13 @@ export default function useScrap(scrap, requests) {
     const [iPrograph, setIPrograph] = useState(defaultImage)
     const [iRetrograph, setIRetrograph] = useState(defaultHeadshot)
 
-    const get = async (modelName, identifier, field, setResponse = () => { }, handleError = () => { }) => {
-        if (modelName === undefined || identifier === undefined || field === undefined || setResponse === undefined) {
+    const get = async (model, id, key, setResponse = () => { }, handleError = () => { }) => {
+        if (model === undefined || id === undefined || key === undefined || setResponse === undefined) {
             return undefined
         }
         try {
             let response = null
-            if (!isCanceled) response = await Cache.get(modelName, identifier, field, user)
+            if (!isCanceled) response = await Cache.get(model, id, key, user)
             if (!isCanceled) setResponse(response)
         } catch (error) {
             if (!isCanceled) handleError()

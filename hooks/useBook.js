@@ -22,11 +22,11 @@ export default function useBook(book, requests) {
     const [beginDate, setBeginDate] = useState('')
     const [endDate, setEndDate] = useState('')
 
-    const get = async (modelName, identifier, field, setResponse = () => { }, handleError = () => { }) => {
-        if (!modelName || !identifier || !field || !setResponse) return undefined
+    const get = async (model, id, key, setResponse = () => { }, handleError = () => { }) => {
+        if (!model || !id || !key || !setResponse) return undefined
         try {
             let response = null
-            if (!isCanceled) response = await cache.get(modelName, identifier, field, user)
+            if (!isCanceled) response = await cache.get(model, id, key, user)
             if (!isCanceled) setResponse(response)
         } catch (error) {
             if (!isCanceled) handleError()

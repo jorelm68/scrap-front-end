@@ -14,6 +14,13 @@ export default function FeedLayout() {
         }}
       />
       <Stack.Screen
+        name='actions'
+        options={{
+          ...options,
+          headerTitle: 'Actions',
+        }}
+      />
+      <Stack.Screen
         name='author'
         options={{
           headerShown: false,
