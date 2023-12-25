@@ -344,25 +344,16 @@ const Component = ({ book, clickable }) => {
                             backgroundColor: palette.color2,
                             borderRadius: 8,
                         }}>
-                            <TouchableOpacity onPress={() => {
-                                router.navigate({
-                                    pathname: `/${tab}/book/likes`,
-                                    params: {
-                                        book,
-                                    }
-                                })
-                            }}>
-                                <View center row>
-                                    <Text style={{
-                                        marginRight: 2,
-                                        fontFamily: fonts.itim,
-                                        fontSize: 12,
-                                        textAlign: 'center',
-                                        color: palette.color5,
-                                    }}>{likes.length} Like{likes.length === 1 ? '' : 's'}</Text>
-                                    <Ionicons name='person' color={palette.color6} size={12} />
-                                </View>
-                            </TouchableOpacity>
+                            <View center row>
+                                <Text style={{
+                                    marginRight: 2,
+                                    fontFamily: fonts.itim,
+                                    fontSize: 12,
+                                    textAlign: 'center',
+                                    color: palette.color5,
+                                }}>{likes.length} Like{likes.length === 1 ? '' : 's'}</Text>
+                                <Ionicons name='person' color={palette.color6} size={12} />
+                            </View>
 
                             <View center row>
                                 <Text style={{
