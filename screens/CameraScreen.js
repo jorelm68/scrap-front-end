@@ -257,10 +257,7 @@ const Screen = ({ offline }) => {
                             else {
                                 setIsLoading(true)
                                 const response = await api.scrap.saveScrap(scrap)
-                                if (!response.success) {
-                                    Alert.alert('Error', response.error)
-                                }
-                                else {
+                                if (response.success) {
                                     setScrap({
                                         author: user,
                                         latitude: scrap.latitude,
@@ -274,7 +271,6 @@ const Screen = ({ offline }) => {
                                     setIsLoading(false)
                                     setShowButtons(true)
                                 }
-
                             }
                         }}>
                             <View center style={{
