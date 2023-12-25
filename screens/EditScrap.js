@@ -12,6 +12,7 @@ import AppContext from '../context/AppContext'
 import utility from '../data/utility'
 import Button from '../components/Button'
 import BookSmall from '../components/BookSmall'
+import api from '../data/api'
 
 const Screen = ({ scrap }) => {
     const { setFunctions, paused, setPaused, palette } = useContext(AppContext)
@@ -42,7 +43,7 @@ const Screen = ({ scrap }) => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 for (const book of selection) {
-                    await utility.utilityAddThread(scrap, book)
+                    await api.utility.addThread(scrap, book)
                 }
 
                 setThreads((prevThreads) => ([
@@ -67,7 +68,7 @@ const Screen = ({ scrap }) => {
     const handleRemoveThread = async (book) => {
         if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
-        const response = await utility.removeThread(scrap, book)
+        const response = await api.utility.removeThread(scrap, book)
         if (response.success) {
             setThreads((prevThreads) => ([
                 ...prevThreads.filter((value) => {

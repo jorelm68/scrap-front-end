@@ -9,7 +9,7 @@ const Page = () => {
     const functionName = params.functionName
 
     return (
-        <FindBooks book={book} />
+        <FindBooks book={book} threads={threads} amount={amount} functionName={functionName} />
     )
 }
 

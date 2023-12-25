@@ -67,7 +67,6 @@ const Page = ({ scrap }) => {
     const handleDoubleTap = () => {
         const currentTime = new Date().getTime();
         const timeSinceLastTap = currentTime - lastTapTime;
-        console.log(timeSinceLastTap)
 
         // Check if the time since the last tap is within a reasonable interval
         if (timeSinceLastTap < 175) {

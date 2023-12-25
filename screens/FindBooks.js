@@ -15,7 +15,7 @@ const Screen = ({ book = '', threads = [], amount = 0, functionName = '' }) => {
     const router = useRouter()
     const { functions, user, paused, setPaused, palette } = useContext(AppContext)
     const onSubmit = functions[functionName]
-
+console.log(functionName, functions, onSubmit)
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
     const [selection, setSelection] = useState([])
