@@ -18,7 +18,7 @@ import BookList from '../components/BookList'
 const Screen = () => {
     const navigation = useNavigation()
     const router = useRouter()
-    const { palette, user, refresh } = useContext(AppContext)
+    const { palette, user } = useContext(AppContext)
     const [numUnread, setNumUnread] = useState(0)
 
     const {
@@ -46,7 +46,7 @@ const Screen = () => {
 
     useEffect(() => {
         calculateNumUnread()
-    }, [refresh])
+    }, [actions])
 
     useEffect(() => {
         navigation.setOptions({
@@ -67,7 +67,7 @@ const Screen = () => {
                 )
             }
         })
-    }, [navigation, actions, refresh, numUnread])
+    }, [navigation, numUnread])
 
     return (
         <View style={{

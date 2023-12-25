@@ -12,7 +12,6 @@ const AppContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
     const [currentScrap, setCurrentScrap] = useState('')
-    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
         cache.filter(['relationship'])
@@ -31,8 +30,6 @@ const AppContextProvider = ({ children }) => {
         palette,
         setPalette,
         darkMode,
-        refresh,
-        setRefresh,
         setDarkMode,
         functions,
         setFunctions,

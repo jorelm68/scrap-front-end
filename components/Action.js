@@ -17,7 +17,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const Component = ({ action, handleRemove }) => {
     const router = useRouter()
-    const { palette, user, setRefresh } = useContext(AppContext)
+    const { palette, user } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
 
     const {
@@ -72,7 +72,7 @@ const Component = ({ action, handleRemove }) => {
         const response = await utility.edit('Action', action, 'read', true)
         if (response.success) {
             cache.filter([action, 'read'])
-            setRefresh((prevRefresh) => !prevRefresh)
+            cache.filter([user, 'actions'])
             setRead(true)
         }
     }
