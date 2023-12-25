@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
-import { ScrollView, TouchableOpacity, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { View, Text, Image } from 'react-native-ui-lib'
+import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
+import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
+import { View, Text, Image, TouchableOpacity, Drawer } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -13,20 +13,26 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-const Component = ({ action }) => {
-    const { palette } = useContext(AppContext)
+const Component = ({ action, handleRemove }) => {
+    const router = useRouter()
+    const { palette, user, setRefresh } = useContext(AppContext)
+    const tab = utility.getTab(usePathname())
 
     const {
         sender,
         target,
         type,
         createdAt,
+        read,
+        setRead,
     } = useAction(action, [
         'sender',
         'target',
         'type',
         'createdAt',
+        'read',
     ])
 
     const {
@@ -41,26 +47,103 @@ const Component = ({ action }) => {
         'pseudonym',
     ])
 
+    const {
+        representative,
+        title,
+    } = useBook(target.book, [
+        'representative',
+        'title',
+    ])
+
+    const {
+        iPrograph,
+    } = useScrap(representative, [
+        'iPrograph->90',
+    ])
+
+    let text = ''
+    if (type === 'sendRequest') text = 'sent you a friend request! '
+    else if (type === 'acceptRequest') text = 'accepted your friend request! '
+    else if (type === 'likeBook') text = 'liked your book '
+    else if (type === 'postBook') text = 'posted their book '
+
+    const handleRead = async () => {
+        if (read) return
+        const response = await utility.edit('Action', action, 'read', true)
+        if (response.success) {
+            cache.filter([action, 'read'])
+            setRefresh((prevRefresh) => !prevRefresh)
+            setRead(true)
+        }
+    }
+
     return (
-        <View style={{
-            width: dimensions.width,
-            height: 64,
-            borderBottomWidth: 1,
-            borderBottomColor: palette.color2,
-        }}>
-            <View row>
-                <Image source={iHeadshot} style={{
-                    width: 24,
-                    height: 24,
-                    borderRadius: 12,
-                }} />
-                <Text style={{
-                    fontFamily: fonts.itim,
-                    fontSize: 12,
-                    color: palette.color6,
-                }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
-            </View>
-        </View>
+        <GestureHandlerRootView>
+            <Drawer
+                itemsTextStyle={{
+                    color: palette.color5,
+                    fontFamily: fonts.playBold,
+                }}
+                rightItems={[
+                    {
+                        text: 'Remove',
+                        background: palette.color1,
+                        onPress: () => handleRemove(action),
+                    }
+                ]}
+                leftItem={{
+                    text: `${utility.getDate(createdAt)}`,
+                    background: palette.color1,
+                }}
+            >
+                <TouchableOpacity center row onPress={() => {
+                    router.navigate(`${tab}/author/${sender.author}`)
+                    handleRead()
+                }} style={{
+                    width: dimensions.width,
+                    height: 64,
+                    borderBottomWidth: 1,
+                    borderBottomColor: palette.color2,
+                    opacity: read ? 0.5 : 1,
+                }}>
+                    <Image source={iHeadshot} style={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: 12,
+                    }} />
+                    <Text style={{
+                        fontFamily: fonts.jockeyOne,
+                        fontSize: 16,
+                        color: palette.color6,
+                    }}> {utility.formatName(firstName, lastName, pseudonym)} </Text>
+
+                    <Text style={{
+                        fontFamily: fonts.itim,
+                        fontSize: 16,
+                        color: palette.color6,
+                    }}>{text}</Text>
+
+                    {['likeBook', 'postBook'].includes(type) && (
+                        <TouchableOpacity center row onPress={() => {
+                            router.navigate(`/${tab}/book/${target.book}`)
+                            handleRead()
+                        }}>
+                            <Image source={iPrograph} style={{
+                                width: 24,
+                                height: 24,
+                                borderRadius: 2,
+                            }} />
+
+                            <Text style={{
+                                fontFamily: fonts.itim,
+                                fontSize: 16,
+                                color: palette.color6,
+                            }}> {title}</Text>
+                        </TouchableOpacity>
+                    )}
+                </TouchableOpacity>
+            </Drawer>
+        </GestureHandlerRootView>
     )
 }
 

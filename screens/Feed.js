@@ -18,7 +18,8 @@ import BookList from '../components/BookList'
 const Screen = () => {
     const navigation = useNavigation()
     const router = useRouter()
-    const { palette, user } = useContext(AppContext)
+    const { palette, user, refresh } = useContext(AppContext)
+    const [numUnread, setNumUnread] = useState(0)
 
     const {
         feed,
@@ -27,12 +28,25 @@ const Screen = () => {
         'feed',
         'actions',
     ])
-    let numUnread = 0
-    for (const action of actions) {
-        if (!action.read) {
-            numUnread++
+
+    const calculateNumUnread = async () => {
+        let num = 0
+        for (const action of actions) {
+            const read = await cache.get('Action', action, 'read', user)
+            if (!read) {
+                num++
+            }
         }
+        setNumUnread(num)
     }
+
+    useEffect(() => {
+        calculateNumUnread()
+    }, [])
+
+    useEffect(() => {
+        calculateNumUnread()
+    }, [refresh])
 
     useEffect(() => {
         navigation.setOptions({
@@ -53,7 +67,7 @@ const Screen = () => {
                 )
             }
         })
-    }, [navigation, actions])
+    }, [navigation, actions, refresh, numUnread])
 
     return (
         <View style={{

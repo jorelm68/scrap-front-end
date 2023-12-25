@@ -20,6 +20,7 @@ const Screen = () => {
 
     const {
         actions,
+        setActions,
     } = useAuthor(user, [
         'actions',
     ])
@@ -32,7 +33,18 @@ const Screen = () => {
         }}>
             <ActionList actions={actions} renderItem={(action) => {
                 return (
-                    <Action key={action} action={action} />
+                    <Action key={action} action={action} handleRemove={async (action) => {
+                        const response = await api.author.removeAction(user, action)
+                        if (response.success) {
+                            cache.filter([user, 'actions'])
+                            cache.filter([action])
+                            setActions((prevActions) => [
+                                ...prevActions.filter((value) => {
+                                    return value !== action
+                                })
+                            ])
+                        }
+                    }}/>
                 )
             }} />
         </View>
