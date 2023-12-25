@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
-import { View, Text, Image, TouchableOpacity  } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -261,28 +261,35 @@ const Component = ({ author }) => {
                                         height: 48,
                                     }}>
 
-                                        <Button
-                                            label='Accept Request'
-                                            icon='checkmark-circle'
-                                            onPress={async () => {
-                                                if (paused) return { success: false, error: 'Please don\'t click too fast' }
-                                                setPaused(true)
-                                                const response = await api.author.acceptRequest(user, author)
-                                                if (response.success) {
-                                                    cache.filter([user, 'incomingFriendRequests'])
-                                                    cache.filter([user, 'relationship'])
-                                                    cache.filter([author, 'relationship'])
-                                                    cache.filter([author, 'profileBooks'])
-                                                    cache.filter([user, 'friends'])
-                                                    cache.filter(['feed'])
-                                                    cache.filter([author, 'outgoingFriendRequests'])
-                                                    cache.filter([author, 'friends'])
-                                                    setRelationship('friend')
-                                                }
-                                                setPaused(false)
-                                            }}
-                                        />
+                                        <View style={{
+                                            marginRight: 2,
+                                        }}>
+                                            <Button
+                                                label='Accept Request'
+                                                icon='checkmark-circle'
+                                                onPress={async () => {
+                                                    if (paused) return { success: false, error: 'Please don\'t click too fast' }
+                                                    setPaused(true)
+                                                    const response = await api.author.acceptRequest(user, author)
+                                                    if (response.success) {
+                                                        cache.filter([user, 'incomingFriendRequests'])
+                                                        cache.filter([user, 'relationship'])
+                                                        cache.filter([author, 'relationship'])
+                                                        cache.filter([author, 'profileBooks'])
+                                                        cache.filter([user, 'friends'])
+                                                        cache.filter(['feed'])
+                                                        cache.filter([author, 'outgoingFriendRequests'])
+                                                        cache.filter([author, 'friends'])
+                                                        setRelationship('friend')
+                                                    }
+                                                    setPaused(false)
+                                                }}
+                                            />
+                                        </View>
 
+                                        <View style={{
+                                            marginLeft: 2,
+                                        }}>
                                         <Button
                                             label='Reject Request'
                                             icon='close-circle'
@@ -300,6 +307,7 @@ const Component = ({ author }) => {
                                                 setPaused(false)
                                             }}
                                         />
+                                        </View>
                                     </View>
                                 )}
 
