@@ -2,11 +2,10 @@
 
 import { Stack } from "expo-router";
 import { Text, View } from "react-native";
+import Feed from '../../../screens/Feed'
 
 export default function Page() {
   return (
-    <View>
-      <Text>Index page of Feed Tab</Text>
-    </View>
-  );
+    <Feed />
+  )
 }
