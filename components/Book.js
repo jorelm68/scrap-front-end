@@ -57,7 +57,7 @@ const Page = ({ book, page = 0, scraps: scrapsGiven }) => {
         'lastName',
         'pseudonym',
         'relationship',
-        'miles,'
+        'miles',
     ])
 
     useEffect(() => {
