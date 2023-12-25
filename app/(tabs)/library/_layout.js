@@ -14,10 +14,15 @@ const Layout = () => {
         }}
       />
       <Stack.Screen
-        name='books'
+        name='book'
         options={{
-          ...options,
-          headerTitle: 'Books',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='author'
+        options={{
+          headerShown: false,
         }}
       />
       <Stack.Screen
@@ -29,38 +34,11 @@ const Layout = () => {
         }}
       />
       <Stack.Screen
-        name='createBook'
-        options={{
-          ...options,
-          presentation: 'modal',
-          headerTitle: 'Create Book',
-        }}
-      />
-      <Stack.Screen
-        name='scraps'
-        options={{
-          ...options,
-          headerTitle: 'Scraps',
-        }}
-      />
-      <Stack.Screen
         name='chooseScraps'
         options={{
           ...options,
           presentation: 'modal',
           headerTitle: 'Choose Scraps',
-        }}
-      />
-      <Stack.Screen
-        name='book'
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name='author'
-        options={{
-          headerShown: false,
         }}
       />
     </Stack>

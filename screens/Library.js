@@ -78,7 +78,7 @@ const Screen = () => {
 
     const handleScraps = async () => {
         router.navigate({
-            pathname: '/library/scraps',
+            pathname: `/${tab}/book/scraps`,
             params: {
                 scraps: JSON.stringify(scraps),
             }
@@ -86,19 +86,19 @@ const Screen = () => {
     }
     const handleBooks = async () => {
         router.navigate({
-            pathname: '/library/books',
+            pathname: `/${tab}/book/books`,
             params: {
                 books: JSON.stringify(books),
             }
         })
     }
     const handleCreateBook = async () => {
-        router.navigate('/library/createBook')
+        router.navigate(`/${tab}/book/createBook`)
     }
 
     const handleDeleteBooks = async () => {
         router.navigate({
-            pathname: '/library/chooseBooks',
+            pathname: `/library/chooseBooks`,
             params: {
                 books: JSON.stringify(books),
                 amount: JSON.stringify(books.length),

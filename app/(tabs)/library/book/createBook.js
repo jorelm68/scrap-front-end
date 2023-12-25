@@ -1,4 +1,4 @@
-import CreateBook from '../../../screens/CreateBook'
+import CreateBook from '../../../../screens/CreateBook'
 
 const Page = () => {    
     return <CreateBook />
