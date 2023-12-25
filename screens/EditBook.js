@@ -247,7 +247,7 @@ const Screen = ({ book }) => {
                     }}
                 />
 
-                {scraps.length < 5 && (
+                {scraps.length < 10 && (
                     <View center style={{
                         marginVertical: 16,
                     }}>
@@ -261,7 +261,7 @@ const Screen = ({ book }) => {
                                         scraps: JSON.stringify(unbookedScraps.filter((value) => {
                                             return !scraps || !scraps.includes(value)
                                         })),
-                                        amount: JSON.stringify(5 - scraps.length),
+                                        amount: JSON.stringify(10 - scraps.length),
                                         functionName: 'addScrapsToBook',
                                     }
                                 })
