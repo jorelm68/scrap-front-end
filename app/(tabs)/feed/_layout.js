@@ -13,5 +13,17 @@ export default function FeedLayout() {
           headerTitle: 'Feed',
         }}
       />
+      <Stack.Screen
+        name='author'
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='book'
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   )}
