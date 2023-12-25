@@ -31,6 +31,7 @@ const Screen = ({ offline }) => {
     const [isSaving, setIsSaving] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [reverse, setReverse] = useState(false)
+    const [lastTapTime, setLastTapTime] = useState(0);
 
     const processLocation = async () => {
         const location = await utility.getLocation()
@@ -141,6 +142,19 @@ const Screen = ({ offline }) => {
         )
     }
 
+    const handleDoubleTap = () => {
+        const currentTime = new Date().getTime();
+        const timeSinceLastTap = currentTime - lastTapTime;
+        console.log(timeSinceLastTap)
+
+        // Check if the time since the last tap is within a reasonable interval
+        if (timeSinceLastTap < 175) {
+            handleFlipCamera()
+        }
+
+        setLastTapTime(currentTime);
+    };
+
     return (
         <View style={{
             width: dimensions.width,
@@ -171,15 +185,18 @@ const Screen = ({ offline }) => {
                     </View>
 
                     <View height='84%'>
-                        <Camera
-                            style={{
-                                width: dimensions.width,
-                                height: dimensions.width,
-                            }}
-                            type={direction}
-                            ref={(ref) => setCamera(ref)}
-                            flashMode={light}
-                        />
+                        <TouchableOpacity onPress={handleDoubleTap}>
+                            <Camera
+                                style={{
+                                    width: dimensions.width,
+                                    height: dimensions.width,
+                                }}
+                                type={direction}
+                                ref={(ref) => setCamera(ref)}
+                                flashMode={light}
+                            />
+                        </TouchableOpacity>
+
 
                         {permission && permission.granted && showButtons && (
                             <View center>
