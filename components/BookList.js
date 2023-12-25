@@ -72,6 +72,7 @@ const Page = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
                     }
                 })}
             </View>
+            <View height={200} />
         </ScrollView>
     )
 }
