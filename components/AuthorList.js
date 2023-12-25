@@ -12,16 +12,17 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
+import { defaultImage, defaultHeadshot } from '../data/icons'
 
-const Page = ({ authors, renderItem }) => {
+const Component = ({ header = () => { }, headerHeight = 0, authors, renderItem }) => {
     const { palette } = useContext(AppContext)
     const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
     const scrollViewRef = useRef(null)
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y
-        const visibleRange = visibleOffset + layoutMeasurement.height
+        const visibleOffset = contentOffset.y - headerHeight; // Consider the header height
+        const visibleRange = visibleOffset + layoutMeasurement.height + headerHeight; // Subtract header height
 
         if (authors && authors.length > 0) {
             const visibleItems = authors.reduce((acc, _, index) => {
@@ -49,10 +50,12 @@ const Page = ({ authors, renderItem }) => {
                 backgroundColor: palette.color1,
             }}
         >
+            {header()}
             <View style={{
                 flex: 1,
                 flexWrap: 'wrap',
                 flexDirection: 'row',
+                marginTop: 4,
             }}>
                 {authors && authors.length > 0 && authors.map((author, index) => {
                     if (rows.includes(index)) {
@@ -64,16 +67,59 @@ const Page = ({ authors, renderItem }) => {
                     }
                     else {
                         return (
-                            <Image key={author} source={defaultImage} style={{
-                                width: dimensions.width,
+                            <View key={author} row style={{
+                                width: dimensions.width - 8,
+                                paddingHorizontal: 4,
+                                marginVertical: 4,
                                 height: 64,
-                            }} />
+                            }}>
+                                <View style={{
+                                    width: `${(2 / 3) * 100}%`,
+                                    height: 64,
+                                }}>
+                                    <View style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        position: 'absolute',
+                                        paddingLeft: 32,
+                                    }}>
+                                        <Image source={defaultImage} style={{
+                                            width: '100%',
+                                            height: 64,
+                                            borderTopRightRadius: 32,
+                                            borderBottomRightRadius: 32,
+                                        }} />
+                                    </View>
+
+                                    <View style={{
+                                        position: 'absolute',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                        marginLeft: 32,
+                                        paddingRight: 8,
+                                        borderRadius: 24,
+                                        marginTop: 16,
+                                    }} />
+                                    <Image source={defaultHeadshot} style={{
+                                        width: 64,
+                                        height: 64,
+                                        borderRadius: 32,
+                                    }} />
+                                </View>
+
+                                <View center style={{
+                                    width: `${(1 / 3) * 100}%`,
+                                    height: 64,
+                                }}>
+                                    <ActivityIndicator size='small' color={palette.color6} />
+                                </View>
+                            </View>
                         )
                     }
                 })}
             </View>
+            <View height={200} />
         </ScrollView>
     )
 }
 
-export default Page
+export default Component
