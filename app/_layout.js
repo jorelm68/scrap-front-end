@@ -20,6 +20,13 @@ const Layout = () => {
           }}
         />
         <Stack.Screen 
+          name="authentication"
+          options={{
+            ...options,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen 
           name="index"
           options={{
             ...options,

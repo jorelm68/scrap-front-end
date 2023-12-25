@@ -235,7 +235,6 @@ const utility = {
     scrapCoordinates: async (scraps) => await handleResponse('api/utility/scrapCoordinates', { scraps: JSON.stringify(scraps) }, 'post'),
     bookCoordinates: async (books) => await handleResponse('api/utility/bookCoordinates', { books: JSON.stringify(books) }, 'post'),
     question: async (author, question) => await handleResponse('api/utility/question', { author, question }, 'post'),
-
 }
 //-------------------------UTILITY------------------------------
 

@@ -3,6 +3,7 @@ export default {
         pseudonym: /^[a-zA-Z0-9_]{3,16}$/,
         firstName: /^[A-Z][a-zA-Z\-]*$/,
         lastName: /^[A-Z][a-zA-Z\-]*$/,
+        name: /^[A-Z][a-zA-Z\-]*$/,
         autobiography: /^[\s\S]{0,180}$/,
         email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         password: /^.{8,}$/,

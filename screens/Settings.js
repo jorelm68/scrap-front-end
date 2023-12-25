@@ -360,7 +360,7 @@ const Screen = () => {
                             while (router.canGoBack()) {
                                 router.back()
                             }
-                            router.replace('/signIn')
+                            router.replace('/authentication/signIn')
                         }}
                         icon='person-remove'
                         width='50%'

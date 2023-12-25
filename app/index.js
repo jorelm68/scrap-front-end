@@ -27,13 +27,13 @@ const Autothenticate = () => {
     else {
       const user = await utility.retrieveData('autothenticate')
       if (!user) {
-        router.replace('/signIn')
+        router.replace('/authentication/signIn')
         return
       }
       const response = await api.author.exists(user)
       if (!response.success) {
         await utility.deleteData('autothenticate')
-        router.replace('/signIn')
+        router.replace('/authentication/signIn')
         return
       }
 
