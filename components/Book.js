@@ -52,7 +52,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
         pseudonym,
         relationship,
         miles: authorMiles,
-    } = useAuthor(author, [
+    } = useAuthor(book === 'scrapbook' ? user : author, [
         'firstName',
         'lastName',
         'pseudonym',
