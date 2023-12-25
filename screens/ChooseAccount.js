@@ -84,11 +84,9 @@ const Screen = () => {
                                             console.log('successfully saved scraps')
                                         }
                                     }
-                                    setTimeout(() => {
-                                        router.replace('/(tabs)/camera')
-                                        setPaused(false)
 
-                                    }, 1000)
+                                    router.replace('/(tabs)/camera')
+                                    setPaused(false)
                                 }
                             },
                         },

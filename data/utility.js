@@ -1,11 +1,9 @@
 import * as Font from 'expo-font'
-import { Alert } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import * as Location from 'expo-location'
 import * as Device from 'expo-device'
 import * as Notifications from 'expo-notifications'
 import * as SecureStore from 'expo-secure-store'
-import Cache from '../data/cache'
-import { utilityGet, utilitySet } from './api'
 import cache from '../data/cache'
 
 const storeData = async (key, value) => {
@@ -77,8 +75,8 @@ const deleteData = async (key) => {
     }
 }
 
-const registerForPushNotifications = async () => {
-    let token
+const registerForPushNotificationsAsync = async () => {
+    let token;
 
     if (Platform.OS === 'android') {
         await Notifications.setNotificationChannelAsync('default', {
@@ -86,26 +84,30 @@ const registerForPushNotifications = async () => {
             importance: Notifications.AndroidImportance.MAX,
             vibrationPattern: [0, 250, 250, 250],
             lightColor: '#FF231F7C',
-        })
+        });
     }
 
     if (Device.isDevice) {
-        const { status: existingStatus } = await Notifications.getPermissionsAsync()
-        let finalStatus = existingStatus
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
         if (existingStatus !== 'granted') {
-            const { status } = await Notifications.requestPermissionsAsync()
-            finalStatus = status
+            const { status } = await Notifications.requestPermissionsAsync();
+            finalStatus = status;
         }
         if (finalStatus !== 'granted') {
-            alert('Failed to get push token for push notification!')
-            return
+            alert('Failed to get push token for push notification!');
+            return;
         }
-        token = (await Notifications.getExpoPushTokenAsync()).data
+        // Learn more about projectId:
+        // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
+        token = await Notifications.getExpoPushTokenAsync({
+            projectId: Constants.expoConfig.extra.eas.projectId,
+        });
     } else {
-        alert('Must use physical device for Push Notifications')
+        alert('Must use physical device for Push Notifications');
     }
 
-    return token
+    return token;
 }
 
 const loadFonts = async () => {
@@ -316,7 +318,7 @@ export default {
     forgetAccount,
     retrieveData,
     deleteData,
-    registerForPushNotifications,
+    registerForPushNotificationsAsync,
     loadFonts,
     edit,
     getDate,

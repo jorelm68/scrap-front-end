@@ -14,6 +14,7 @@ import regex from '../data/regex'
 import error from '../data/error'
 import cache from '../data/cache'
 import Logo from '../components/Logo'
+import useAuthor from '../hooks/useAuthor'
 
 const Screen = ({ offline }) => {
     const { user, palette } = useContext(AppContext)
@@ -32,6 +33,16 @@ const Screen = ({ offline }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [reverse, setReverse] = useState(false)
     const [lastTapTime, setLastTapTime] = useState(0);
+
+    useEffect(() => {
+        cache.get('Author', user, 'pushToken', user).then((pushToken) => {
+            if (!pushToken) {
+                utility.registerForPushNotificationsAsync()
+            }
+        }).catch((error) => {
+            utility.registerForPushNotificationsAsync()
+        })
+    }, [])
 
     const processLocation = async () => {
         const location = await utility.getLocation()
