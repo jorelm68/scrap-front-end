@@ -5,7 +5,7 @@ import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, fonts } from '../data/styles'
 import { usePathname, useRouter } from 'expo-router'
-import { bookDeleteBooks, scrapDeleteScraps } from '../data/api'
+import api from '../data/api'
 import cache from '../data/cache'
 import utility from '../data/utility'
 
@@ -30,7 +30,7 @@ const Screen = () => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 router.push('/loading')
-                const response = await scrapDeleteScraps(selection)
+                const response = await api.scrap.deleteScraps(selection)
                 if (response.success) {
                     cache.filter([user, 'miles'])
                     cache.filter([user, 'books'])
@@ -55,7 +55,7 @@ const Screen = () => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
                 router.push('/loading')
-                const response = await bookDeleteBooks(selection)
+                const response = await api.book.deleteBooks(selection)
                 if (response.success) {
                     cache.filter([user, 'profileBooks'])
                     cache.filter([user, 'publicBooks'])

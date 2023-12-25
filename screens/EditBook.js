@@ -101,7 +101,7 @@ const Screen = ({ book }) => {
                 return response
             },
         }))
-    }, [])
+    }, [representative])
 
     const handleRemoveScrap = async (scrap) => {
         if (paused) return { success: false, error: 'Please don\'t click too fast' }
@@ -231,7 +231,9 @@ const Screen = ({ book }) => {
                     type='Scrap'
                     title='Representative:'
                     value={representative}
-                    options={scraps}
+                    options={scraps.filter((scrap) => {
+                        return scrap !== representative
+                    })}
                     amount={1}
                     onSubmit={() => {
                         router.navigate({
