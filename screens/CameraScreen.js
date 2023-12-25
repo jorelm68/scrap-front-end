@@ -35,12 +35,14 @@ const Screen = ({ offline }) => {
     const [lastTapTime, setLastTapTime] = useState(0);
 
     useEffect(() => {
-        cache.get('Author', user, 'pushToken', user).then((pushToken) => {
+        cache.get('Author', user, 'pushToken', user).then(async (pushToken) => {
             if (!pushToken) {
-                utility.registerForPushNotificationsAsync()
+                const response = await utility.registerForPushNotificationsAsync()
+                console.log(response.data)
+                await utility.edit('Author', user, 'pushToken', response.data)
             }
         }).catch((error) => {
-            utility.registerForPushNotificationsAsync()
+            console.log(error)
         })
     }, [])
 

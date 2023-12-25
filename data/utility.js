@@ -4,6 +4,7 @@ import * as Location from 'expo-location'
 import * as Device from 'expo-device'
 import * as Notifications from 'expo-notifications'
 import * as SecureStore from 'expo-secure-store'
+import Constants from 'expo-constants'
 import cache from '../data/cache'
 
 const storeData = async (key, value) => {
