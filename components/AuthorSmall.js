@@ -101,7 +101,7 @@ const Component = ({ author, disappear }) => {
                     <TouchableOpacity onPress={async () => {
                         if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
-                        const response = await api.authorSendRequest(user, author)
+                        const response = await api.author.sendRequest(user, author)
                         if (response.success) {
                             cache.filter([user, 'outgoingFriendRequests'])
                             cache.filter([author, 'relationship'])
@@ -126,7 +126,7 @@ const Component = ({ author, disappear }) => {
                     <TouchableOpacity onPress={async () => {
                         if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
-                        const response = await api.authorRemoveRequest(user, author)
+                        const response = await api.author.removeRequest(user, author)
                         if (response.success) {
                             cache.filter([user, 'outgoingFriendRequests'])
                             cache.filter([author, 'relationship'])
@@ -160,7 +160,7 @@ const Component = ({ author, disappear }) => {
                             <TouchableOpacity onPress={async () => {
                                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                 setPaused(true)
-                                const response = await api.authorAcceptRequest(user, author)
+                                const response = await api.author.acceptRequest(user, author)
                                 if (response.success) {
                                     cache.filter([user, 'incomingFriendRequests'])
                                     cache.filter([author, 'relationship'])
@@ -196,7 +196,7 @@ const Component = ({ author, disappear }) => {
                             <TouchableOpacity onPress={async () => {
                                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                 setPaused(true)
-                                const response = await api.authorRejectRequest(user, author)
+                                const response = await api.author.rejectRequest(user, author)
                                 if (response.success) {
                                     cache.filter([user, 'incomingFriendRequests'])
                                     cache.filter([author, 'relationship'])
@@ -227,7 +227,7 @@ const Component = ({ author, disappear }) => {
                     <TouchableOpacity onPress={async () => {
                         if (paused) return { success: false, error: 'Please don\'t click too fast' }
                         setPaused(true)
-                        const response = await api.authorRemoveFriend(user, author)
+                        const response = await api.author.removeFriend(user, author)
                         if (response.success) {
                             cache.filter([user, 'friends'])
                             cache.filter([author, 'relationship'])

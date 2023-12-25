@@ -267,7 +267,7 @@ const Component = ({ author }) => {
                                             onPress={async () => {
                                                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                                 setPaused(true)
-                                                const response = await authorAcceptRequest(user, author)
+                                                const response = await api.author.acceptRequest(user, author)
                                                 if (response.success) {
                                                     cache.filter([user, 'incomingFriendRequests'])
                                                     cache.filter([user, 'relationship'])
@@ -289,7 +289,7 @@ const Component = ({ author }) => {
                                             onPress={async () => {
                                                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                                 setPaused(true)
-                                                const response = await authorRejectRequest(user, author)
+                                                const response = await api.author.rejectRequest(user, author)
                                                 if (response.success) {
                                                     cache.filter([user, 'incomingFriendRequests'])
                                                     cache.filter([user, 'relationship'])
@@ -310,7 +310,7 @@ const Component = ({ author }) => {
                                         onPress={async () => {
                                             if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                             setPaused(true)
-                                            const response = await authorRemoveRequest(user, author)
+                                            const response = await api.author.removeRequest(user, author)
                                             if (response.success) {
                                                 cache.filter([user, 'outgoingFriendRequests'])
                                                 cache.filter([author, 'incomingFriendRequests'])
@@ -330,7 +330,7 @@ const Component = ({ author }) => {
                                         onPress={async () => {
                                             if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                             setPaused(true)
-                                            const response = await authorRemoveFriend(user, author)
+                                            const response = await api.author.removeFriend(user, author)
                                             if (response.success) {
                                                 cache.filter([user, 'friends'])
                                                 cache.filter([author, 'friends'])
@@ -350,7 +350,7 @@ const Component = ({ author }) => {
                                         onPress={async () => {
                                             if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                             setPaused(true)
-                                            const response = await authorSendRequest(user, author)
+                                            const response = await api.author.sendRequest(user, author)
                                             if (response.success) {
                                                 cache.filter([user, 'outgoingFriendRequests'])
                                                 cache.filter([author, 'incomingFriendRequests'])
