@@ -8,8 +8,6 @@ import AppContext from '../../context/AppContext'
 import AppContextProvider from '../../context/AppContextProvider'
 
 const Layout = () => {
-  const { palette } = useContext(AppContext)
-  const router = useRouter()
   return (
     <Stack>
       <Stack.Screen
@@ -46,12 +44,4 @@ const Layout = () => {
   )
 }
 
-const App = () => {
-  return (
-    <AppContextProvider>
-      <Layout />
-    </AppContextProvider>
-  )
-}
-
-export default App
+export default Layout
