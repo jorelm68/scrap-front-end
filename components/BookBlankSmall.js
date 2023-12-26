@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { View, Text, Image, TouchableOpacity  } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -35,31 +35,18 @@ const Component = ({ book }) => {
                     width: (dimensions.width - 8),
                     height: (dimensions.width - 8) / 4,
                 }}>
-                    <View style={{
+                    <View center style={{
                         width: (dimensions.width - 8) / 4,
                         height: (dimensions.width - 8) / 4,
                         borderRadius: 8,
                         backgroundColor: palette.color2,
-                    }} />
-
-                    <View center style={{
-                        width: (dimensions.width - 8) / 2,
-                        height: (dimensions.width - 8) / 4,
                     }}>
                         <ActivityIndicator size='small' color={palette.color6} />
                     </View>
-
-                    <View center style={{
-                        width: (dimensions.width - 8) / 4,
-                        height: (dimensions.width - 8) / 4,
-                        backgroundColor: palette.color2,
-                        borderRadius: 8,
-
-                    }} />
                 </View>
-            </TouchableOpacity>
-        </View>
-    )     
+            </TouchableOpacity >
+        </View >
+    )
 }
 
 export default Component

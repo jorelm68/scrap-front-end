@@ -25,11 +25,11 @@ const Component = ({ book, clickable }) => {
         isPublic,
         representative,
         scraps,
-        miles,
-        likes,
-        beginDate,
-        endDate,
-        toggleLike,
+        // miles,
+        // likes,
+        // beginDate,
+        // endDate,
+        // toggleLike,
     } = useBook(book, [
         'author',
         'title',
@@ -37,10 +37,10 @@ const Component = ({ book, clickable }) => {
         'isPublic',
         'representative',
         'scraps',
-        'miles',
-        'beginDate',
-        'endDate',
-        'likes',
+        // 'miles',
+        // 'beginDate',
+        // 'endDate',
+        // 'likes',
     ])
 
     const {
@@ -51,10 +51,10 @@ const Component = ({ book, clickable }) => {
 
     const {
         iPrograph,
-        place,
+        // place,
     } = useScrap(representative, [
         'iPrograph->270',
-        'place',
+        // 'place',
     ])
 
     const {
@@ -111,7 +111,7 @@ const Component = ({ book, clickable }) => {
                         }} />
 
                         <View style={{
-                            width: (dimensions.width - 8) / 2,
+                            width: (dimensions.width - 8)  * (3 / 4),
                             height: (dimensions.width - 8) / 4,
                         }}>
                             <TouchableOpacity centerV row onPress={() => {
@@ -120,7 +120,7 @@ const Component = ({ book, clickable }) => {
                                 marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
                             }}>
                                 <View centerV row style={{
-                                    width: (dimensions.width - 8) / 2,
+                                    width: (dimensions.width - 8)  * (3 / 4),
                                     height: (dimensions.width - 8) / 4 * (1 / 4),
                                     paddingLeft: 2,
                                 }}>
@@ -140,7 +140,7 @@ const Component = ({ book, clickable }) => {
 
                             {!hidden && (
                                 <View style={{
-                                    width: (dimensions.width - 8) / 2,
+                                    width: (dimensions.width - 8) * (3 / 4),
                                     height: (dimensions.width - 8) / 4 * (1 / 4)
                                 }}>
                                     <Text style={{
@@ -148,13 +148,13 @@ const Component = ({ book, clickable }) => {
                                         fontSize: 18,
                                         color: palette.color5,
                                         paddingHorizontal: 2,
-                                    }}>{title.length <= 20 ? title : `${title.slice(0, 20)}...`}</Text>
+                                    }}>{title.length <= 30 ? title : `${title.slice(0, 30)}...`}</Text>
                                 </View>
                             )}
 
                             <View style={{
-                                width: (dimensions.width - 8) / 2,
-                                height: (dimensions.width - 8) / 4 * (1 / 2)
+                                width: (dimensions.width - 8) * (3 / 4),
+                                height: (dimensions.width - 8) / 4 * (1 / 2),
                             }}>
                                 <Text style={{
                                     height: 48,
@@ -166,7 +166,7 @@ const Component = ({ book, clickable }) => {
                             </View>
                         </View>
 
-                        {!hidden && (
+                        {/* {!hidden && (
                             <View center style={{
                                 width: (dimensions.width - 8) / 4,
                                 height: (dimensions.width - 8) / 4,
@@ -255,23 +255,7 @@ const Component = ({ book, clickable }) => {
                             }}>
                                 <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
                             </TouchableOpacity>
-                        )}
-
-                        {hidden && (
-                            <View center style={{
-                                width: (dimensions.width - 8) / 4,
-                                height: (dimensions.width - 8) / 4,
-                            }}>
-                                <Ionicons name='finger-print' color={palette.color5} size={24} />
-                                <Text style={{
-                                    fontFamily: fonts.itim,
-                                    fontSize: 12,
-                                    lineHeight: 14,
-                                    textAlign: 'center',
-                                    color: palette.color5,
-                                }}>Private</Text>
-                            </View>
-                        )}
+                        )} */}
                     </View>
                 </TouchableOpacity>
             )}
@@ -288,11 +272,11 @@ const Component = ({ book, clickable }) => {
                     }} />
 
                     <View style={{
-                        width: (dimensions.width - 8) / 2,
+                        width: (dimensions.width - 8) * (3 / 4),
                         height: (dimensions.width - 8) / 4,
                     }}>
                         <View centerV row style={{
-                            width: (dimensions.width - 8) / 2,
+                            width: (dimensions.width - 8) * (3 / 4),
                             height: (dimensions.width - 8) / 4 * (1 / 4),
                             paddingLeft: 2,
                         }}>
@@ -311,7 +295,7 @@ const Component = ({ book, clickable }) => {
 
                         {!hidden && (
                             <View style={{
-                                width: (dimensions.width - 8) / 2,
+                                width: (dimensions.width - 8) * (3 / 4),
                                 height: (dimensions.width - 8) / 4 * (1 / 4)
                             }}>
                                 <Text style={{
@@ -319,12 +303,12 @@ const Component = ({ book, clickable }) => {
                                     fontSize: 18,
                                     color: palette.color5,
                                     paddingHorizontal: 2,
-                                }}>{title.length <= 20 ? title : `${title.slice(0, 20)}...`}</Text>
+                                }}>{title.length <= 30 ? title : `${title.slice(0, 30)}...`}</Text>
                             </View>
                         )}
 
                         <View style={{
-                            width: (dimensions.width - 8) / 2,
+                            width: (dimensions.width - 8) * (3 / 4),
                             height: (dimensions.width - 8) / 4 * (1 / 2)
                         }}>
                             <Text style={{
@@ -337,7 +321,7 @@ const Component = ({ book, clickable }) => {
                         </View>
                     </View>
 
-                    {!hidden && (
+                    {/* {!hidden && (
                         <View center style={{
                             width: (dimensions.width - 8) / 4,
                             height: (dimensions.width - 8) / 4,
@@ -417,23 +401,7 @@ const Component = ({ book, clickable }) => {
                         }}>
                             <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
                         </TouchableOpacity>
-                    )}
-
-                    {hidden && (
-                        <View center style={{
-                            width: (dimensions.width - 8) / 4,
-                            height: (dimensions.width - 8) / 4,
-                        }}>
-                            <Ionicons name='finger-print' color={palette.color5} size={24} />
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 12,
-                                lineHeight: 14,
-                                textAlign: 'center',
-                                color: palette.color5,
-                            }}>Private</Text>
-                        </View>
-                    )}
+                    )} */}
                 </View>
             )}
         </View>
