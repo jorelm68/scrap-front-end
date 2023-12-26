@@ -1,7 +1,9 @@
 // /app/(tabs)/profile/_layout.js
 
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
+import { TouchableOpacity } from 'react-native-ui-lib'
 import { options } from '../../../../data/styles'
+import { Ionicons } from '@expo/vector-icons'
 
 const Layout = () => {
   return (
@@ -10,6 +12,16 @@ const Layout = () => {
         name='settings'
         options={{
           ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
+          presentation: 'modal',
           headerTitle: 'Settings',
         }}
       />
@@ -17,6 +29,15 @@ const Layout = () => {
         name='chooseScraps'
         options={{
           ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
           presentation: 'modal',
           headerTitle: 'Choose Scraps',
         }}
@@ -25,6 +46,15 @@ const Layout = () => {
         name='[author]'
         options={{
           ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='chevron-back' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
           headerTitle: 'Profile',
         }}
       />

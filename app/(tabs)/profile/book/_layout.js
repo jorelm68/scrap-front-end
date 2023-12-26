@@ -1,13 +1,27 @@
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { options } from '../../../../data/styles'
+import { useContext } from "react";
+import AppContext from "../../../../context/AppContext";
+import { Ionicons } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-ui-lib'
 
 const Layout = () => {
+    const { palette } = useContext(AppContext)
     return (
         <Stack>
             <Stack.Screen
                 name='likes'
                 options={{
                     ...options,
+                    headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='chevron-back' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
                     headerTitle: 'Likes',
                 }}
             />
@@ -15,6 +29,15 @@ const Layout = () => {
                 name='editBook'
                 options={{
                     ...options,
+                    headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
                     presentation: 'modal',
                     headerTitle: 'Edit Book',
                 }}
@@ -23,6 +46,15 @@ const Layout = () => {
                 name='editScrap'
                 options={{
                     ...options,
+                    headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
                     presentation: 'modal',
                     headerTitle: 'Edit Scrap',
                 }}
@@ -31,6 +63,15 @@ const Layout = () => {
                 name='chooseScraps'
                 options={{
                     ...options,
+                    headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
                     presentation: 'modal',
                     headerTitle: 'Choose Scraps',
                 }}
@@ -39,6 +80,15 @@ const Layout = () => {
                 name='findBooks'
                 options={{
                     ...options,
+                    headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
                     presentation: 'modal',
                     headerTitle: 'Find Books',
                 }}
@@ -47,6 +97,15 @@ const Layout = () => {
                 name='[book]'
                 options={{
                     ...options,
+                    headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='chevron-back' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
                     headerTitle: 'Book',
                 }}
             />

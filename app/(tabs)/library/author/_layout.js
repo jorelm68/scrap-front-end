@@ -1,15 +1,30 @@
 // /app/(tabs)/profile/_layout.js
 
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { options } from '../../../../data/styles'
+import { Ionicons } from '@expo/vector-icons'
+import { useContext } from "react";
+import AppContext from "../../../../context/AppContext";
+import { TouchableOpacity } from 'react-native-ui-lib'
 
 const Layout = () => {
+  const { palette } = useContext(AppContext)
   return (
     <Stack>
       <Stack.Screen
         name='settings'
         options={{
           ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
+          presentation: 'modal',
           headerTitle: 'Settings',
         }}
       />
@@ -17,6 +32,15 @@ const Layout = () => {
         name='chooseScraps'
         options={{
           ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
           presentation: 'modal',
           headerTitle: 'Choose Scraps',
         }}
@@ -25,6 +49,15 @@ const Layout = () => {
         name='[author]'
         options={{
           ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='chevron-back' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
           headerTitle: 'Profile',
         }}
       />
