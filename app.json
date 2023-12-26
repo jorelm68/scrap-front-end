@@ -26,7 +26,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.jorelm68.scrapfrontend",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "bundler": "metro",
