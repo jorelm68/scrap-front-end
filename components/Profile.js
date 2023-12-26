@@ -21,7 +21,8 @@ import BookMarker from './BookMarker'
 const Component = ({ author }) => {
     const router = useRouter()
     const { user, paused, setPaused, palette } = useContext(AppContext)
-    const tab = utility.getTab(usePathname())
+    const pathname = usePathname()
+    const tab = utility.getTab(pathname)
     const navigation = useNavigation()
     const [name, setName] = useState('')
     const [photosReverse, setPhotosReverse] = useState(false)
@@ -376,8 +377,9 @@ const Component = ({ author }) => {
                                         label='Settings'
                                         icon='settings'
                                         onPress={async () => {
+                                            const route = pathname === '/profile' ? `/${tab}/settings` : `${tab}/author/settings`
                                             router.navigate({
-                                                pathname: `/${tab}/author/settings`,
+                                                pathname: route,
                                             })
                                         }}
                                     />
