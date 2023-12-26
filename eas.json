@@ -10,9 +10,18 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
-  },
-  "submit": {
-    "production": {}
+    "production": {
+      "env": {
+        "API_URL": "https://scrap-back-end-6a4f36f8f7ee.herokuapp.com",
+        "API_KEY": "mJvnWmmFvf3wGZu3FcY8hYKaQtxhfHrN4t9x",
+        "GEOCODE_KEY": "AIzaSyB3ute1BzgXLH61yb2VyovZm6Z_WT8FrIs",
+        "PLACE_KEY": "AIzaSyCSzBVxTTKPg2AimZauorAs9TAjhddx9fk",
+        "CAPACITY": "500"
+      },
+      "ios": {
+        "enterpriseProvisioning": "universal"
+      },
+      "autoIncrement": true
+    }
   }
 }

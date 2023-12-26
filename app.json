@@ -17,13 +17,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.jorelm68.scrapfrontend"
+      "bundleIdentifier": "com.jorelm68.scrapfrontend",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jorelm68.scrapfrontend",
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro",
