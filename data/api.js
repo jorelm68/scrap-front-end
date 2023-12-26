@@ -196,6 +196,7 @@ const scrap = {
     exists: async (scrap) => await handleResponse('api/scraps/exists', { scrap }, 'post'),
     saveScrap: async (scrap) => await handleResponse('api/scraps/saveScrap', {
         ...scrap,
+        createdAt: JSON.stringify(scrap.createdAt),
         iPrograph: {
             uri: scrap.iPrograph.uri,
             type: 'image/jpeg',
