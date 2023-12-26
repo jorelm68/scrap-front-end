@@ -12,6 +12,7 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
+import { defaultImage } from '../data/icons'
 
 const Component = ({ scraps, renderItem }) => {
     const { palette } = useContext(AppContext)
