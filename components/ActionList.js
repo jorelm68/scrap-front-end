@@ -21,8 +21,8 @@ const Component = ({ actions, renderItem }) => {
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y
-        const visibleRange = visibleOffset + layoutMeasurement.height
+        const visibleOffset = contentOffset.y - 3000
+        const visibleRange = visibleOffset + layoutMeasurement.height + 3000
 
         if (actions && actions.length > 0) {
             const visibleItems = actions.reduce((acc, _, index) => {

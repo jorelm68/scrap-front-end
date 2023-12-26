@@ -21,14 +21,14 @@ const Component = ({ scraps, renderItem }) => {
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y
-        const visibleRange = visibleOffset + layoutMeasurement.height
+        const visibleOffset = contentOffset.y - 3000
+        const visibleRange = visibleOffset + layoutMeasurement.height + 3000
 
         if (scraps && scraps.length > 0) {
             const visibleItems = scraps.reduce((acc, _, index) => {
                 const itemDimensions = dimensions.width / 3 // Assuming each item has a width of dimensions.width / 3
                 const offset = index * itemDimensions
-                if (offset + 3000 >= visibleOffset && offset <= visibleRange + 3000) {
+                if (offset >= visibleOffset && offset <= visibleRange) {
                     acc.push(index)
                 }
                 return acc

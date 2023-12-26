@@ -21,8 +21,8 @@ const Component = ({ header = () => { }, headerHeight = 0, authors, renderItem }
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y - headerHeight; // Consider the header height
-        const visibleRange = visibleOffset + layoutMeasurement.height + headerHeight; // Subtract header height
+        const visibleOffset = contentOffset.y - headerHeight - 3000; // Consider the header height
+        const visibleRange = visibleOffset + layoutMeasurement.height + headerHeight - 3000; // Subtract header height
 
         if (authors && authors.length > 0) {
             const visibleItems = authors.reduce((acc, _, index) => {
