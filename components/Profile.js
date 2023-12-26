@@ -426,7 +426,7 @@ const Component = ({ author }) => {
                     {profileBooks && profileBooks.map((book) => {
                         return (
                             <TouchableOpacity key={book} onPress={() => {
-                                router.push({
+                                router.navigate({
                                     pathname: '/book',
                                     params: {
                                         book,

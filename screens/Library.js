@@ -29,7 +29,7 @@ const Screen = () => {
             deleteScraps: async (selection) => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
-                router.push('/loading')
+                router.navigate('/loading')
                 const response = await api.scrap.deleteScraps(selection)
                 if (response.success) {
                     cache.filter([user, 'miles'])
@@ -54,7 +54,7 @@ const Screen = () => {
             deleteBooks: async (selection) => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
-                router.push('/loading')
+                router.navigate('/loading')
                 const response = await api.book.deleteBooks(selection)
                 if (response.success) {
                     cache.filter([user, 'profileBooks'])

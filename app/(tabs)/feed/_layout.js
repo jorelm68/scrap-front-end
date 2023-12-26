@@ -4,8 +4,12 @@ import { Stack, router } from "expo-router";
 import { options } from '../../../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-ui-lib'
+import { useContext } from "react";
+import AppContext from "../../../context/AppContext";
 
 const Layout = () => {
+  const { palette } = useContext(AppContext)
+  
   return (
     <Stack>
       <Stack.Screen

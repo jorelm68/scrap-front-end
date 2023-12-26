@@ -6,14 +6,14 @@ import { Ionicons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-ui-lib'
 
 const Layout = () => {
-    const { palette } = useContext(AppContext)
-    return (
-        <Stack>
-            <Stack.Screen
-                name='likes'
-                options={{
-                    ...options,
-                    headerLeft: () => {
+  const { palette } = useContext(AppContext)
+  return (
+    <Stack>
+      <Stack.Screen
+        name='likes'
+        options={{
+          ...options,
+          headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => {
                 router.back()
@@ -22,14 +22,14 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-                    headerTitle: 'Likes',
-                }}
-            />
-            <Stack.Screen
-                name='editBook'
-                options={{
-                    ...options,
-                    headerLeft: () => {
+          headerTitle: 'Likes',
+        }}
+      />
+      <Stack.Screen
+        name='editBook'
+        options={{
+          ...options,
+          headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => {
                 router.back()
@@ -38,15 +38,15 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-                    presentation: 'modal',
-                    headerTitle: 'Edit Book',
-                }}
-            />
-            <Stack.Screen
-                name='editScrap'
-                options={{
-                    ...options,
-                    headerLeft: () => {
+          presentation: 'modal',
+          headerTitle: 'Edit Book',
+        }}
+      />
+      <Stack.Screen
+        name='editScrap'
+        options={{
+          ...options,
+          headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => {
                 router.back()
@@ -55,15 +55,15 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-                    presentation: 'modal',
-                    headerTitle: 'Edit Scrap',
-                }}
-            />
-            <Stack.Screen
-                name='chooseScraps'
-                options={{
-                    ...options,
-                    headerLeft: () => {
+          presentation: 'modal',
+          headerTitle: 'Edit Scrap',
+        }}
+      />
+      <Stack.Screen
+        name='chooseScraps'
+        options={{
+          ...options,
+          headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => {
                 router.back()
@@ -72,15 +72,15 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-                    presentation: 'modal',
-                    headerTitle: 'Choose Scraps',
-                }}
-            />
-            <Stack.Screen
-                name='findBooks'
-                options={{
-                    ...options,
-                    headerLeft: () => {
+          presentation: 'modal',
+          headerTitle: 'Choose Scraps',
+        }}
+      />
+      <Stack.Screen
+        name='findBooks'
+        options={{
+          ...options,
+          headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => {
                 router.back()
@@ -89,15 +89,15 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-                    presentation: 'modal',
-                    headerTitle: 'Find Books',
-                }}
-            />
-            <Stack.Screen
-                name='[book]'
-                options={{
-                    ...options,
-                    headerLeft: () => {
+          presentation: 'modal',
+          headerTitle: 'Find Books',
+        }}
+      />
+      <Stack.Screen
+        name='[book]'
+        options={{
+          ...options,
+          headerLeft: () => {
             return (
               <TouchableOpacity onPress={() => {
                 router.back()
@@ -106,11 +106,11 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-                    headerTitle: 'Book',
-                }}
-            />
-        </Stack>
-    )
+          headerTitle: 'Book',
+        }}
+      />
+    </Stack>
+  )
 }
 
 export default Layout

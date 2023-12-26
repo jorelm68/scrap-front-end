@@ -108,7 +108,7 @@ const Screen = () => {
               onPress={async () => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
-                router.push('/loading')
+                router.navigate('/loading')
                 // First set the error messages if necessary
                 if (!regex.author.pseudonymOrEmail.test(value)) {
                   setValueError(error.author.pseudonymOrEmail)

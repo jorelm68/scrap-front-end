@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
-import { View, Text, Image, TouchableOpacity  } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
-const Component = ({ scraps, scrap = scraps[0], clickMarker }) => {
+const Component = ({ scraps, scrap: currentScrap = scraps[0], clickMarker }) => {
     const { palette } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
@@ -31,7 +31,7 @@ const Component = ({ scraps, scrap = scraps[0], clickMarker }) => {
     const {
         latitude,
         longitude,
-    } = useScrap(scrap, [
+    } = useScrap(currentScrap, [
         'latitude',
         'longitude',
     ])
@@ -62,14 +62,13 @@ const Component = ({ scraps, scrap = scraps[0], clickMarker }) => {
                 height: 200,
                 borderRadius: 8,
             }}>
-            {scraps && scraps.map((scrap) => {
-                return (
-                    <TouchableOpacity key={scrap} onPress={() => {
-                        if (clickMarker) clickMarker(scraps.indexOf(scrap))
-                    }}>
-                        <ScrapMarker scrap={scrap} />
-                    </TouchableOpacity>
-                )
+            {scraps && scraps.map((scrap, index) => {
+                if (scraps.length <= 10 || Math.abs(scraps.indexOf(currentScrap) - index) <= 5) {
+                    return (
+                        <ScrapMarker key={scrap} scrap={scrap} />
+                    )
+                }
+                return null
             })}
 
             <Polyline

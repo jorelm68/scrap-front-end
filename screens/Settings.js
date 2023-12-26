@@ -19,7 +19,8 @@ import Switch from '../components/Switch'
 
 const Screen = () => {
     const { user, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
-    const tab = utility.getTab(usePathname())
+    const pathname = usePathname()
+    const tab = utility.getTab(pathname)
     const router = useRouter()
 
     const {
@@ -100,8 +101,9 @@ const Screen = () => {
                     options={scraps}
                     amount={1}
                     onSubmit={async () => {
+                        const route = pathname === '/profile/settings' ? `/profile/chooseScraps` : `/${tab}/author/chooseScraps`
                         router.navigate({
-                            pathname: `/${tab}/author/chooseScraps`,
+                            pathname: route,
                             params: {
                                 scraps: JSON.stringify(scraps),
                                 amount: JSON.stringify(1),

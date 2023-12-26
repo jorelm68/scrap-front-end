@@ -48,7 +48,7 @@ const Screen = () => {
         <TouchableOpacity onPress={async () => {
           if (paused) return { success: false, error: 'Please don\'t click too fast' }
           setPaused(true)
-          router.push('/loading')
+          router.navigate('/loading')
           const response = await api.book.saveBook(book)
           if (!response.success) {
             router.back()

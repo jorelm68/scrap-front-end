@@ -36,6 +36,23 @@ const Layout = () => {
         }}
       />
       <Stack.Screen
+        name='chooseScraps'
+        options={{
+          ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='close-circle' color={palette.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
+          presentation: 'modal',
+          headerTitle: 'Choose Scraps',
+        }}
+      />
+      <Stack.Screen
         name='book'
         options={{
           headerShown: false,

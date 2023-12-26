@@ -28,7 +28,7 @@ const Component = ({ scraps, renderItem }) => {
             const visibleItems = scraps.reduce((acc, _, index) => {
                 const itemDimensions = dimensions.width / 3 // Assuming each item has a width of dimensions.width / 3
                 const offset = index * itemDimensions
-                if (offset >= visibleOffset && offset <= visibleRange) {
+                if (offset + 3000 >= visibleOffset && offset <= visibleRange + 3000) {
                     acc.push(index)
                 }
                 return acc
