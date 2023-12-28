@@ -2,7 +2,7 @@
   "expo": {
     "name": "Scrap",
     "slug": "scrap",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.jorelm68.scrap",
-      "buildNumber": "6"
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
@@ -63,7 +63,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "d28d9ff5-8b07-4887-a539-3d9c776c7468"
+        "projectId": "6a2d6897-d9bc-4959-a27b-f0f907826a9d"
       }
     },
     "owner": "jorelm68"
