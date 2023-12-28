@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { router, useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -14,7 +14,6 @@ import api from '../data/api'
 import utility from '../data/utility'
 
 const Component = ({ book }) => {
-    const navigation = useNavigation()
     const { palette } = useContext(AppContext)
 
     return (
@@ -23,13 +22,7 @@ const Component = ({ book }) => {
             paddingHorizontal: 4,
         }}>
             <TouchableOpacity onPress={() => {
-                navigation.push({
-                    pathname: '/book',
-                    params: {
-                        book,
-                        page: JSON.stringify(scraps.indexOf(representative))
-                    }
-                })
+                router.navigate(`/${tab}/book/${book}`)
             }}>
                 <View row style={{
                     width: (dimensions.width - 8),
