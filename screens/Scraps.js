@@ -24,7 +24,7 @@ const Screen = ({ scraps }) => {
         return (
           <TouchableOpacity key={scrap} onPress={() => {
             router.navigate({
-              pathname: `/${tab}/book/scrapbook`,
+              pathname: `/${tab}/book/scrapsCarousel`,
               params: {
                 scraps: JSON.stringify(scraps),
                 page: JSON.stringify(scraps.indexOf(scrap))
