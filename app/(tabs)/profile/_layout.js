@@ -1,6 +1,6 @@
 // /app/(tabs)/profile/_layout.js
 
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { options } from '../../../data/styles'
 import { TouchableOpacity } from 'react-native-ui-lib'
 import { Ionicons } from '@expo/vector-icons'
