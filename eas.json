@@ -17,7 +17,7 @@
         "API_KEY": "mJvnWmmFvf3wGZu3FcY8hYKaQtxhfHrN4t9x",
         "GEOCODE_KEY": "AIzaSyB3ute1BzgXLH61yb2VyovZm6Z_WT8FrIs",
         "PLACE_KEY": "AIzaSyCSzBVxTTKPg2AimZauorAs9TAjhddx9fk",
-        "CAPACITY": "500"
+        "CAPACITY": "2000"
       },
       "ios": {
         "enterpriseProvisioning": "universal"
