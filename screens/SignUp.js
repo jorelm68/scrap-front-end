@@ -234,9 +234,9 @@ const Screen = () => {
                 await utility.saveAccount(account)
 
                 setUser(response.data.author)
-                const yes = await hasOfflineScraps()
+                const yes = await utility.hasOfflineScraps()
                 if (yes) {
-                  const response1 = await onlineSaveScraps(response.data.author)
+                  const response1 = await utility.onlineSaveScraps(response.data.author)
                   if (response1.success) {
                     console.log('successfully saved scraps')
                   }
