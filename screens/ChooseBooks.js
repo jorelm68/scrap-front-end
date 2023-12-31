@@ -59,7 +59,7 @@ const Screen = ({ books, amount, functionName }) => {
 
     return (
         <BookList
-            books={books.reverse()}
+            books={books}
             renderItem={(book) => {
                 return (
                     <TouchableOpacity key={book} onPress={() => {

@@ -60,7 +60,7 @@ const Screen = ({ scraps = [], amount = 0, functionName = '' }) => {
 
     return (
         <ScrapList
-            scraps={scraps.reverse()}
+            scraps={scraps}
             renderItem={(scrap) => {
                 return (
                     <TouchableOpacity key={scrap} onPress={() => {

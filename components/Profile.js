@@ -396,7 +396,7 @@ const Component = ({ author }) => {
             <BookList
                 header={ProfileHeader}
                 headerHeight={(dimensions.width / 2) + (dimensions.width / 4 / 2) + (48 * 3 + 4 * 2 + 4 * 2)}
-                books={profileBooks.reverse()}
+                books={profileBooks}
                 renderItem={(book) => {
                     return (
                         <BookSmall book={book} key={book} clickable />
