@@ -132,16 +132,18 @@ const Screen = () => {
                 height: '45%',
             }}>
                 <TouchableOpacity center onPress={handleBooks}>
-                    <Ionicons name='library-outline' size={dimensions.width / 3} color={palette.color6} />
+                    <Ionicons name='library-outline' size={dimensions.width / 6} color={palette.color6} />
                     <Text style={{
                         fontFamily: fonts.playBold,
-                        fontSize: 48,
+                        fontSize: 24,
                         color: palette.color6,
                     }}>Books</Text>
                 </TouchableOpacity>
 
                 <View>
-                    <TouchableOpacity row center onPress={handleCreateBook}>
+                    <TouchableOpacity row center onPress={handleCreateBook} style={{
+                        marginHorizontal: 16,
+                    }}>
                         <Ionicons name='add' size={24} color={palette.color6} />
                         <Text style={{
                             fontSize: 18,
@@ -166,11 +168,13 @@ const Screen = () => {
             <View row center style={{
                 height: '45%',
             }}>
-                <TouchableOpacity center onPress={handleScraps}>
-                    <Ionicons name='image-outline' size={dimensions.width / 3} color={palette.color6} />
+                <TouchableOpacity center onPress={handleScraps} style={{
+                    marginHorizontal: 16,
+                }}>
+                    <Ionicons name='image-outline' size={dimensions.width / 6} color={palette.color6} />
                     <Text style={{
                         fontFamily: fonts.playBold,
-                        fontSize: 48,
+                        fontSize: 24,
                         color: palette.color6,
                     }}>Scraps</Text>
                 </TouchableOpacity>
