@@ -105,6 +105,7 @@ const Component = ({ action, handleRemove }) => {
                         router.navigate(`${tab}/author/${sender.author}`)
                         handleRead()
                     }} style={{
+                        width: dimensions.width,
                         opacity: read ? 0.5 : 1,
                     }}>
                         <Image source={iHeadshot} style={{
