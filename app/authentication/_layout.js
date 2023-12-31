@@ -1,12 +1,9 @@
 import { Stack, router } from 'expo-router'
-import { options } from '../../data/styles'
+import { dark, options } from '../../data/styles'
 import { Ionicons } from '@expo/vector-icons'
-import { useContext } from 'react'
-import AppContext from '../../context/AppContext'
 import { TouchableOpacity } from 'react-native-ui-lib'
 
 const Layout = () => {
-  const { palette } = useContext(AppContext)
   return (
     <Stack>
       <Stack.Screen
@@ -24,7 +21,7 @@ const Layout = () => {
               <TouchableOpacity onPress={() => {
                 router.back()
               }}>
-                <Ionicons name='close-circle' color={palette.color6} size={24} />
+                <Ionicons name='close-circle' color={dark.color6} size={24} />
               </TouchableOpacity>
             )
           },
@@ -41,7 +38,7 @@ const Layout = () => {
               <TouchableOpacity onPress={() => {
                 router.back()
               }}>
-                <Ionicons name='close-circle' color={palette.color6} size={24} />
+                <Ionicons name='close-circle' color={dark.color6} size={24} />
               </TouchableOpacity>
             )
           },
@@ -58,7 +55,7 @@ const Layout = () => {
               <TouchableOpacity onPress={() => {
                 router.back()
               }}>
-                <Ionicons name='close-circle' color={palette.color6} size={24} />
+                <Ionicons name='close-circle' color={dark.color6} size={24} />
               </TouchableOpacity>
             )
           },

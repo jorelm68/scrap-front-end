@@ -2,7 +2,7 @@
 
 import { Stack, router } from "expo-router";
 import { TouchableOpacity } from 'react-native-ui-lib'
-import { options } from '../../../../data/styles'
+import { dark, options } from '../../../../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 
 const Layout = () => {
@@ -17,7 +17,7 @@ const Layout = () => {
               <TouchableOpacity onPress={() => {
                 router.back()
               }}>
-                <Ionicons name='close-circle' color={palette.color6} size={24} />
+                <Ionicons name='close-circle' color={dark.color6} size={24} />
               </TouchableOpacity>
             )
           },
@@ -34,7 +34,7 @@ const Layout = () => {
               <TouchableOpacity onPress={() => {
                 router.back()
               }}>
-                <Ionicons name='close-circle' color={palette.color6} size={24} />
+                <Ionicons name='close-circle' color={dark.color6} size={24} />
               </TouchableOpacity>
             )
           },
@@ -51,7 +51,7 @@ const Layout = () => {
               <TouchableOpacity onPress={() => {
                 router.back()
               }}>
-                <Ionicons name='chevron-back' color={palette.color6} size={24} />
+                <Ionicons name='chevron-back' color={dark.color6} size={24} />
               </TouchableOpacity>
             )
           },
