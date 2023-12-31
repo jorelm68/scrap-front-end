@@ -66,7 +66,7 @@ const Screen = () => {
                 )
             }
         })
-    }, [useNavigation, numUnread])
+    }, [navigation, numUnread])
 
     return (
         <View style={{

@@ -31,7 +31,7 @@ const Screen = ({ books, amount, functionName }) => {
                 </TouchableOpacity>
             ),
         })
-    }, [useNavigation, selection])
+    }, [navigation, selection])
 
     const toggleSelect = async (book) => {
         if (selection.includes(book)) {

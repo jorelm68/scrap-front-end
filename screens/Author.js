@@ -30,7 +30,7 @@ const Screen = ({ author }) => {
         navigation.setOptions({
             headerTitle: `${firstName} ${lastName}`,
         });
-    }, [useNavigation, firstName, lastName])
+    }, [navigation, firstName, lastName])
 
 
     return (

@@ -74,7 +74,7 @@ const Screen = () => {
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })
-  }, [useNavigation, book])
+  }, [navigation, book])
 
   useEffect(() => {
     setFunctions((prevFunctions) => ({

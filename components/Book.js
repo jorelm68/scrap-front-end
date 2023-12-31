@@ -76,7 +76,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
                 </TouchableOpacity>
             ) : () => { },
         })
-    }, [useNavigation, title, user, author])
+    }, [navigation, title, user, author])
 
     useEffect(() => {
         if (scrapsGiven) {

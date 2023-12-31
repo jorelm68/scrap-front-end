@@ -88,7 +88,7 @@ const Component = ({ author }) => {
         navigation.setOptions({
             headerTitle: `${firstName} ${lastName}`,
         });
-    }, [useNavigation, firstName, lastName])
+    }, [navigation, firstName, lastName])
 
     useEffect(() => {
         setName(`${firstName} ${lastName}`)

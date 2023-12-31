@@ -69,7 +69,7 @@ const Screen = ({ book = '', threads = [], amount = 0, functionName = '' }) => {
                 </TouchableOpacity>
             ),
         })
-    }, [useNavigation, selection])
+    }, [navigation, selection])
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

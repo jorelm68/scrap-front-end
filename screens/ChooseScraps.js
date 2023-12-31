@@ -32,7 +32,7 @@ const Screen = ({ scraps = [], amount = 0, functionName = '' }) => {
                 </TouchableOpacity>
             ),
         })
-    }, [useNavigation, selection])
+    }, [navigation, selection])
 
     const toggleSelect = async (scrap) => {
         if (selection.includes(scrap)) {
