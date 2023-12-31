@@ -19,14 +19,12 @@ const Layout = () => {
         router.back()
       }
       router.replace('/authentication/signIn')
-      setUser('bruh')
     }
   }
 
   useEffect(() => {
     handleChangeUser()
   }, [user])
-
 
   return (
     <Tabs screenOptions={{ headerShown: false }}>

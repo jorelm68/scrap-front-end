@@ -290,23 +290,23 @@ const Component = ({ author }) => {
                                         <View style={{
                                             marginLeft: 2,
                                         }}>
-                                        <Button
-                                            label='Reject Request'
-                                            icon='close-circle'
-                                            onPress={async () => {
-                                                if (paused) return { success: false, error: 'Please don\'t click too fast' }
-                                                setPaused(true)
-                                                const response = await api.author.rejectRequest(user, author)
-                                                if (response.success) {
-                                                    cache.filter([user, 'incomingFriendRequests'])
-                                                    cache.filter([user, 'relationship'])
-                                                    cache.filter([author, 'relationship'])
-                                                    cache.filter([author, 'outgoingFriendRequests'])
-                                                    setRelationship('none')
-                                                }
-                                                setPaused(false)
-                                            }}
-                                        />
+                                            <Button
+                                                label='Reject Request'
+                                                icon='close-circle'
+                                                onPress={async () => {
+                                                    if (paused) return { success: false, error: 'Please don\'t click too fast' }
+                                                    setPaused(true)
+                                                    const response = await api.author.rejectRequest(user, author)
+                                                    if (response.success) {
+                                                        cache.filter([user, 'incomingFriendRequests'])
+                                                        cache.filter([user, 'relationship'])
+                                                        cache.filter([author, 'relationship'])
+                                                        cache.filter([author, 'outgoingFriendRequests'])
+                                                        setRelationship('none')
+                                                    }
+                                                    setPaused(false)
+                                                }}
+                                            />
                                         </View>
                                     </View>
                                 )}
@@ -372,16 +372,42 @@ const Component = ({ author }) => {
                                 )}
 
                                 {relationship === 'self' && (
-                                    <Button
-                                        label='Settings'
-                                        icon='settings'
-                                        onPress={async () => {
-                                            const route = pathname === '/profile' ? `/${tab}/settings` : `${tab}/author/settings`
-                                            router.navigate({
-                                                pathname: route,
-                                            })
-                                        }}
-                                    />
+                                    <View center row style={{
+                                        width: (dimensions.width - 8) * (2 / 3) - 2,
+                                        height: 48,
+                                    }}>
+                                        <View style={{
+                                            marginRight: 2,
+                                        }}>
+                                            <Button
+                                                label='Liked Books'
+                                                icon='library'
+                                                onPress={async () => {
+                                                    router.navigate({
+                                                        pathname: `/${tab}/book/likedBooks`,
+                                                        params: {
+                                                            author: user,
+                                                        }
+                                                    })
+                                                }}
+                                            />
+                                        </View>
+
+                                        <View style={{
+                                            marginLeft: 2,
+                                        }}>
+                                            <Button
+                                                label='Settings'
+                                                icon='settings'
+                                                onPress={async () => {
+                                                    const route = pathname === '/profile' ? `/${tab}/settings` : `${tab}/author/settings`
+                                                    router.navigate({
+                                                        pathname: route,
+                                                    })
+                                                }}
+                                            />
+                                        </View>
+                                    </View>
                                 )}
                             </View>
                         </View>

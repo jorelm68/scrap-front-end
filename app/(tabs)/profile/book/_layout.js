@@ -91,6 +91,22 @@ const Layout = () => {
         }}
       />
       <Stack.Screen
+        name='likedBooks'
+        options={{
+          ...options,
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={() => {
+                router.back()
+              }}>
+                <Ionicons name='chevron-back' color={dark.color6} size={24} />
+              </TouchableOpacity>
+            )
+          },
+          headerTitle: 'Liked Books',
+        }}
+      />
+      <Stack.Screen
         name='[book]'
         options={{
           ...options,
