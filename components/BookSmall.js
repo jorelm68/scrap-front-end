@@ -25,10 +25,10 @@ const Component = ({ book, clickable }) => {
         representative,
         scraps,
         // miles,
-        // likes,
+        likes,
         // beginDate,
         // endDate,
-        // toggleLike,
+        toggleLike,
     } = useBook(book, [
         'author',
         'title',
@@ -39,7 +39,7 @@ const Component = ({ book, clickable }) => {
         // 'miles',
         // 'beginDate',
         // 'endDate',
-        // 'likes',
+        'likes',
     ])
 
     const {
@@ -233,7 +233,7 @@ const Component = ({ book, clickable }) => {
                                 )}
 
                             </View>
-                        )}
+                        )} */}
 
                         {!hidden && (
                             <TouchableOpacity onPress={user !== author ? toggleLike : () => {
@@ -245,11 +245,11 @@ const Component = ({ book, clickable }) => {
                                 })
                             }} style={{
                                 position: 'absolute',
-                                marginLeft: (dimensions.width - 8) * (3 / 4) - 12,
+                                right: 4,
                             }}>
                                 <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
                             </TouchableOpacity>
-                        )} */}
+                        )}
                     </View>
                 </TouchableOpacity>
             )}
@@ -379,22 +379,6 @@ const Component = ({ book, clickable }) => {
                             )}
 
                         </View>
-                    )}
-
-                    {!hidden && (
-                        <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                            router.navigate({
-                                pathname: `/${tab}/book/likes`,
-                                params: {
-                                    book,
-                                }
-                            })
-                        }} style={{
-                            position: 'absolute',
-                            marginLeft: (dimensions.width - 8) * (3 / 4) - 12,
-                        }}>
-                            <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
-                        </TouchableOpacity>
                     )} */}
                 </View>
             )}
