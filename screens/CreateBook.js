@@ -5,7 +5,7 @@ import AppContext from '../context/AppContext'
 import DropDown from '../components/DropDown'
 import regex from '../data/regex'
 import error from '../data/error'
-import { navigation, usePathname, router } from 'expo-router'
+import { useNavigation, usePathname, router } from 'expo-router'
 import api from '../data/api'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions } from '../data/styles'
@@ -17,6 +17,7 @@ import cache from '../data/cache'
 import utility from '../data/utility'
 
 const Screen = () => {
+  const navigation = useNavigation()
   const { user, setFunctions, palette, paused, setPaused } = useContext(AppContext)
   const tab = utility.getTab(usePathname())
   const [book, setBook] = useState({
@@ -73,7 +74,7 @@ const Screen = () => {
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })
-  }, [navigation, book])
+  }, [useNavigation, book])
 
   useEffect(() => {
     setFunctions((prevFunctions) => ({

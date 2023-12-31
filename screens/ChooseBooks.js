@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
-import { router, useLocalSearchParams, navigation, router } from 'expo-router'
+import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
@@ -8,6 +8,7 @@ import BookSmall from '../components/BookSmall'
 import BookList from '../components/BookList'
 
 const Screen = ({ books, amount, functionName }) => {
+    const navigation = useNavigation()
     const { functions, palette } = useContext(AppContext)
     const onSubmit = functions[functionName]
     const [selection, setSelection] = useState([])
@@ -30,7 +31,7 @@ const Screen = ({ books, amount, functionName }) => {
                 </TouchableOpacity>
             ),
         })
-    }, [navigation, selection])
+    }, [useNavigation, selection])
 
     const toggleSelect = async (book) => {
         if (selection.includes(book)) {

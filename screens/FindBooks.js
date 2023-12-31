@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native-ui-lib'
 import { TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 import React, { useContext, useState, useEffect } from 'react'
-import { useLocalSearchParams, navigation, router } from 'expo-router'
+import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import AppContext from '../context/AppContext'
 import { dimensions, fonts } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
@@ -11,9 +11,9 @@ import api from '../data/api'
 import BookList from '../components/BookList'
 
 const Screen = ({ book = '', threads = [], amount = 0, functionName = '' }) => {
+    const navigation = useNavigation()
     const { functions, user, paused, setPaused, palette } = useContext(AppContext)
     const onSubmit = functions[functionName]
-console.log(functionName, functions, onSubmit)
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
     const [selection, setSelection] = useState([])
@@ -69,7 +69,7 @@ console.log(functionName, functions, onSubmit)
                 </TouchableOpacity>
             ),
         })
-    }, [navigation, selection])
+    }, [useNavigation, selection])
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

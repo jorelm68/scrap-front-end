@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import { ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocalSearchParams, navigation, router } from 'expo-router'
+import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import useBook from '../hooks/useBook'
 import useScrap from '../hooks/useScrap'
 import ScrapCarousel from '../components/ScrapCarousel'
