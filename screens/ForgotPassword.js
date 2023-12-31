@@ -9,10 +9,9 @@ import regex from '../data/regex'
 import error from '../data/error'
 import api from '../data/api'
 import AppContext from '../context/AppContext'
-import { useRouter } from 'expo-router'
+import { router } from 'expo-router'
 
 const Screen = () => {
-    const router = useRouter()
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
     const { paused, setPaused, palette } = useContext(AppContext)

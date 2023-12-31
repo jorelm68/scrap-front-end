@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, router } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -19,7 +19,6 @@ import AuthorSmall from './AuthorSmall'
 import BookMarker from './BookMarker'
 
 const Component = ({ author }) => {
-    const router = useRouter()
     const { user, paused, setPaused, palette } = useContext(AppContext)
     const pathname = usePathname()
     const tab = utility.getTab(pathname)

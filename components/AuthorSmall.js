@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, router } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -14,7 +14,6 @@ import api from '../data/api'
 import utility from '../data/utility'
 
 const Component = ({ author, disappear }) => {
-    const router = useRouter()
     const { palette, user, paused, setPaused } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
     const [hidden, setHidden] = useState(false)

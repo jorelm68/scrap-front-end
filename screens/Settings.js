@@ -11,7 +11,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import cache from '../data/cache'
 import DropDown from '../components/DropDown'
-import { usePathname, useRouter } from 'expo-router'
+import { usePathname, router } from 'expo-router'
 import Field from '../components/Field'
 import Button from '../components/Button'
 import Error from '../components/Error'
@@ -21,7 +21,6 @@ const Screen = () => {
     const { user, setUser, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
     const pathname = usePathname()
     const tab = utility.getTab(pathname)
-    const router = useRouter()
 
     const {
         firstName: initialFirstName,

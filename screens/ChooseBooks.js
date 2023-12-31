@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
-import { router, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { router, useLocalSearchParams, useNavigation, router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
@@ -8,7 +8,6 @@ import BookSmall from '../components/BookSmall'
 import BookList from '../components/BookList'
 
 const Screen = ({ books, amount, functionName }) => {
-    const router = useRouter()
     const { functions, palette } = useContext(AppContext)
     const onSubmit = functions[functionName]
     const [selection, setSelection] = useState([])

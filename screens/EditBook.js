@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native-ui-lib'
 import { TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React, { useContext, useEffect } from 'react'
-import { useLocalSearchParams, usePathname, useRouter } from 'expo-router'
+import { useLocalSearchParams, usePathname, router } from 'expo-router'
 import DropDown from '../components/DropDown'
 import useScrap from '../hooks/useScrap'
 import error from '../data/error'
@@ -18,7 +18,6 @@ import cache from '../data/cache'
 import { dimensions } from '../data/styles'
 
 const Screen = ({ book }) => {
-    const router = useRouter()
     const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
 

@@ -1,5 +1,5 @@
 import { Redirect } from 'expo-router'
-import { useRouter, Link } from 'expo-router'
+import { router, Link } from 'expo-router'
 import { Text, View } from 'react-native-ui-lib'
 import { useContext, useEffect, useState } from 'react'
 import regex from '../data/regex'
@@ -17,7 +17,6 @@ import Error from '../components/Error'
 const Screen = () => {
   const { setUser, paused, setPaused, palette } = useContext(AppContext)
   const [accounts, setAccounts] = useState([])
-  const router = useRouter()
   useEffect(() => {
     utility.retrieveData('accounts').then((accounts) => {
       setAccounts(JSON.parse(accounts))

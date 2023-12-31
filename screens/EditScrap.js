@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect } from 'react'
 import { KeyboardAvoidingView, ScrollView } from 'react-native'
-import { useLocalSearchParams, usePathname, useRouter } from 'expo-router'
+import { useLocalSearchParams, usePathname, router } from 'expo-router'
 import DropDown from '../components/DropDown'
 import useScrap from '../hooks/useScrap'
 import error from '../data/error'
@@ -17,7 +17,6 @@ import api from '../data/api'
 const Screen = ({ scrap }) => {
     const { setFunctions, paused, setPaused, palette } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
-    const router = useRouter()
     const {
         title,
         setTitle,

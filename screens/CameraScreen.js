@@ -6,7 +6,7 @@ import { ActivityIndicator, TouchableWithoutFeedback, ScrollView } from 'react-n
 import { Camera, CameraType } from 'expo-camera'
 import * as ImageManipulator from 'expo-image-manipulator'
 import { Ionicons } from '@expo/vector-icons'
-import { useNavigation, useRouter } from 'expo-router'
+import { useNavigation, router } from 'expo-router'
 import api from '../data/api'
 import AppContext from '../context/AppContext'
 import DropDown from '../components/DropDown'

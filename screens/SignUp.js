@@ -4,7 +4,7 @@ import regex from '../data/regex'
 import error from '../data/error'
 import api from '../data/api'
 import { Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native'
-import { useRouter } from 'expo-router'
+import { router } from 'expo-router'
 import AppContext from '../context/AppContext'
 import utility from '../data/utility'
 import Logo from '../components/Logo'
@@ -14,7 +14,6 @@ import Error from '../components/Error'
 import { dimensions } from '../data/styles'
 
 const Screen = () => {
-  const router = useRouter()
   const { setUser, paused, setPaused, palette } = useContext(AppContext)
 
   const [pseudonym, setPseudonym] = useState('')

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, router } from 'expo-router'
 import { View, Text, Image, TouchableOpacity, Drawer } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -16,7 +16,6 @@ import utility from '../data/utility'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const Component = ({ action, handleRemove }) => {
-    const router = useRouter()
     const { palette, user } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
 

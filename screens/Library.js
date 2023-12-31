@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 import { dimensions, fonts } from '../data/styles'
-import { usePathname, useRouter } from 'expo-router'
+import { usePathname, router } from 'expo-router'
 import api from '../data/api'
 import cache from '../data/cache'
 import utility from '../data/utility'
@@ -12,7 +12,6 @@ import utility from '../data/utility'
 const Screen = () => {
     const { user, setFunctions, paused, setPaused, palette } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
-    const router = useRouter()
     const {
         scraps,
         setScraps,

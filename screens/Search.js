@@ -6,7 +6,7 @@ import Field from '../components/Field'
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import api from '../data/api'
 import AuthorSmall from '../components/AuthorSmall'
-import { useNavigation, useRouter } from 'expo-router'
+import { useNavigation, router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import BookSmall from '../components/BookSmall'
 import useBook from '../hooks/useBook'
@@ -18,7 +18,6 @@ const Screen = () => {
   const { user, palette } = useContext(AppContext)
   const [query, setQuery] = useState('')
   const navigation = useNavigation()
-  const router = useRouter()
   const [results, setResults] = useState('')
   const [mode, setMode] = useState('authors')
   const [coordinates, setCoordinates] = useState([])

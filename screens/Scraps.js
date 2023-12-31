@@ -2,7 +2,7 @@ import { View, TouchableOpacity } from 'react-native-ui-lib'
 import { ScrollView } from 'react-native'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import ScrapSmall from '../components/ScrapSmall'
-import { useLocalSearchParams, useNavigation, usePathname, useRouter } from 'expo-router'
+import { useLocalSearchParams, useNavigation, usePathname, router } from 'expo-router'
 import ScrapCarousel from '../components/ScrapCarousel'
 import { Ionicons } from '@expo/vector-icons'
 import { styles, dimensions } from '../data/styles'
@@ -15,7 +15,6 @@ import utility from '../data/utility'
 const Screen = ({ scraps }) => {
   const { palette } = useContext(AppContext)
   const tab = utility.getTab(usePathname())
-  const router = useRouter()
 
   return (
     <ScrapList

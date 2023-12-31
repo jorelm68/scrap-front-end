@@ -4,12 +4,11 @@ import AppContext from '../context/AppContext'
 import { Alert, FlatList } from 'react-native'
 import api from '../data/api'
 import utility from '../data/utility'
-import { useRouter } from 'expo-router'
+import { router } from 'expo-router'
 import { dimensions, fonts } from '../data/styles'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const Screen = () => {
-    const router = useRouter()
     const { user, setUser, paused, setPaused, palette } = useContext(AppContext)
     const [accounts, setAccounts] = useState([])
     useEffect(() => {
