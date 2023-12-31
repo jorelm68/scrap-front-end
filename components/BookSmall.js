@@ -92,12 +92,7 @@ const Component = ({ book, clickable }) => {
         }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
-                    router.navigate({
-                        pathname: `/${tab}/book/${book}`,
-                        params: {
-                            page: JSON.stringify(scraps.indexOf(representative))
-                        }
-                    })
+                    router.navigate(`/${tab}/book/${book}`)
                 }}>
                     <View row style={{
                         width: (dimensions.width - 8),
