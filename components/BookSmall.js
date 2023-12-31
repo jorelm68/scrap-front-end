@@ -105,7 +105,7 @@ const Component = ({ book, clickable }) => {
                         }} />
 
                         <View style={{
-                            width: (dimensions.width - 8)  * (3 / 4),
+                            width: (dimensions.width - 8) * (3 / 4),
                             height: (dimensions.width - 8) / 4,
                         }}>
                             <TouchableOpacity centerV row onPress={() => {
@@ -114,7 +114,7 @@ const Component = ({ book, clickable }) => {
                                 marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
                             }}>
                                 <View centerV row style={{
-                                    width: (dimensions.width - 8)  * (3 / 4),
+                                    width: (dimensions.width - 8) * (3 / 4),
                                     height: (dimensions.width - 8) / 4 * (1 / 4),
                                     paddingLeft: 2,
                                 }}>
@@ -236,19 +236,36 @@ const Component = ({ book, clickable }) => {
                         )} */}
 
                         {!hidden && (
-                            <TouchableOpacity onPress={user !== author ? toggleLike : () => {
-                                router.navigate({
-                                    pathname: `/${tab}/book/likes`,
-                                    params: {
-                                        book,
-                                    }
-                                })
-                            }} style={{
+                            <View center row style={{
                                 position: 'absolute',
                                 right: 4,
                             }}>
-                                <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
-                            </TouchableOpacity>
+                                <TouchableOpacity center onPress={() => {
+                                    router.navigate({
+                                        pathname: `/${tab}/book/likes`,
+                                        params: {
+                                            book,
+                                        }
+                                    })
+                                }}>
+                                    <Text style={{
+                                        fontFamily: fonts.itim,
+                                        fontSize: 12,
+                                        color: palette.color6,
+                                    }}>{likes.length} Like{likes.length === 1 ? '' : 's'} </Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity center onPress={user !== author ? toggleLike : () => {
+                                    router.navigate({
+                                        pathname: `/${tab}/book/likes`,
+                                        params: {
+                                            book,
+                                        }
+                                    })
+                                }}>
+                                    <Ionicons name={user === author ? 'heart-circle' : likes.includes(user) ? 'heart' : 'heart-outline'} color={user === author ? palette.color6 : likes.includes(user) ? 'red' : palette.color6} size={24} />
+                                </TouchableOpacity>
+                            </View>
                         )}
                     </View>
                 </TouchableOpacity>
