@@ -18,7 +18,7 @@ import Error from '../components/Error'
 import Switch from '../components/Switch'
 
 const Screen = () => {
-    const { user, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
+    const { user, setUser, setFunctions, paused, setPaused, darkMode, setDarkMode, palette, setPalette } = useContext(AppContext)
     const pathname = usePathname()
     const tab = utility.getTab(pathname)
     const router = useRouter()
@@ -363,6 +363,7 @@ const Screen = () => {
                                 router.back()
                             }
                             router.replace('/authentication/signIn')
+                            setUser('bruh')
                         }}
                         icon='person-remove'
                         width='50%'
