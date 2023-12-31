@@ -67,9 +67,9 @@
       }
     },
     "owner": "jorelm68"
-  },
-  "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-9779436269713031~3626549502",
-    "ios_app_id": "ca-app-pub-9779436269713031~8088522781"
   }
+  // "react-native-google-mobile-ads": {
+  //   "android_app_id": "ca-app-pub-9779436269713031~3626549502",
+  //   "ios_app_id": "ca-app-pub-9779436269713031~8088522781"
+  // }
 }
