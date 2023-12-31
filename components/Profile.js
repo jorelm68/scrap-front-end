@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, router } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, navigation, usePathname, router } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -22,7 +22,6 @@ const Component = ({ author }) => {
     const { user, paused, setPaused, palette } = useContext(AppContext)
     const pathname = usePathname()
     const tab = utility.getTab(pathname)
-    const navigation = useNavigation()
     const [name, setName] = useState('')
     const [photosReverse, setPhotosReverse] = useState(false)
     const [mode, setMode] = useState('books')

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
-import { router, useLocalSearchParams, useNavigation, router } from 'expo-router'
+import { router, useLocalSearchParams, navigation, router } from 'expo-router'
 import ScrapSmall from '../components/ScrapSmall'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert, ScrollView } from 'react-native'
@@ -9,7 +9,6 @@ import AppContext from '../context/AppContext'
 import ScrapList from '../components/ScrapList'
 
 const Screen = ({ scraps = [], amount = 0, functionName = '' }) => {
-    const navigation = useNavigation()
     const { functions, palette } = useContext(AppContext)
     const onSubmit = functions[functionName]
     const [selection, setSelection] = useState([])

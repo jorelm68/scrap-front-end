@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, usePathname, router } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, navigation, usePathname, router } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -17,7 +17,6 @@ import ScrapCarousel from './ScrapCarousel'
 import Map from './Map'
 
 const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
-    const navigation = useNavigation()
     const { palette, user, currentScrap } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
     const [hidden, setHidden] = useState(true)
