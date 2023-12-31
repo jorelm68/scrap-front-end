@@ -167,7 +167,7 @@ const Screen = () => {
         />
         <DropDown
           type='Scrap'
-          title='Representative:'
+          title='Front Cover:'
           value={book.representative}
           options={book.scraps}
           amount={1}

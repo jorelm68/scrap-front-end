@@ -229,7 +229,7 @@ const Screen = ({ book }) => {
 
                 <DropDown
                     type='Scrap'
-                    title='Representative:'
+                    title='Front Cover:'
                     value={representative}
                     options={scraps.filter((scrap) => {
                         return scrap !== representative
