@@ -16,19 +16,19 @@ import { defaultImage } from '../data/icons'
 
 const Component = ({ scraps, renderItem }) => {
     const { palette } = useContext(AppContext)
-    const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
+    const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5, 6, 7])
     const scrollViewRef = useRef(null)
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y - 3000
-        const visibleRange = visibleOffset + layoutMeasurement.height + 3000
+        const visibleOffset = contentOffset.y
+        const visibleRange = visibleOffset + layoutMeasurement.height
 
         if (scraps && scraps.length > 0) {
             const visibleItems = scraps.reduce((acc, _, index) => {
                 const itemDimensions = dimensions.width / 3 // Assuming each item has a width of dimensions.width / 3
                 const offset = index * itemDimensions
-                if (offset >= visibleOffset && offset <= visibleRange) {
+                if (offset + 1000 >= visibleOffset && offset - 1000 <= visibleRange) {
                     acc.push(index)
                 }
                 return acc
