@@ -129,7 +129,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
                                     fontFamily: fonts.itim,
                                     fontSize: 12,
                                     color: palette.color6,
-                                }}>From {utility.getDate(beginDate)} to {utility.getDate(endDate)}</Text>
+                                }}>Timeframe: {utility.getDateRange(beginDate, endDate)}</Text>
                             </View>
                         )}
 
