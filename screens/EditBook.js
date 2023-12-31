@@ -52,6 +52,12 @@ const Screen = ({ book }) => {
             addScrapsToBook: async (selection) => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)
+
+                setScraps((prevScraps) => [
+                    ...prevScraps,
+                    ...selection,
+                ])
+
                 for (const scrap of selection) {
                     await api.book.addScrap(book, scrap)
                 }
@@ -63,11 +69,6 @@ const Screen = ({ book }) => {
                         cache.filter([book, 'representative'])
                     }
                 }
-
-                setScraps((prevScraps) => ([
-                    ...prevScraps,
-                    ...selection,
-                ]))
 
                 cache.filter([book, 'scraps'])
                 cache.filter([user, 'books'])
@@ -100,19 +101,19 @@ const Screen = ({ book }) => {
                 return response
             },
         }))
-    }, [representative])
+    }, [representative, unbookedScraps, scraps])
 
     const handleRemoveScrap = async (scrap) => {
         if (paused) return { success: false, error: 'Please don\'t click too fast' }
         setPaused(true)
+
+        setScraps((prevScraps) => ([
+            ...prevScraps.filter((value) => {
+                return value !== scrap
+            })
+        ]))
+
         const response = await api.book.removeScrap(book, scrap)
-        if (response.success) {
-            setScraps((prevScraps) => ([
-                ...prevScraps.filter((value) => {
-                    return value !== scrap
-                })
-            ]))
-        }
 
         cache.filter([book, 'scraps'])
         cache.filter([user, 'unbookedScraps'])
@@ -254,11 +255,12 @@ const Screen = ({ book }) => {
                             label='Add Scraps'
                             size='large'
                             onPress={() => {
+                                cache.filter([user, 'unbookedScraps'])
                                 router.navigate({
                                     pathname: `/${tab}/book/chooseScraps`,
                                     params: {
                                         scraps: JSON.stringify(unbookedScraps.filter((value) => {
-                                            return !scraps || !scraps.includes(value)
+                                            return !scraps.includes(value)
                                         })),
                                         amount: JSON.stringify(10 - scraps.length),
                                         functionName: 'addScrapsToBook',
