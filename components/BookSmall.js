@@ -92,7 +92,7 @@ const Component = ({ book, clickable }) => {
         }}>
             {clickable && (
                 <TouchableOpacity onPress={() => {
-                    router.navigate(`/${tab}/book/${book}`)
+                    router.push(`/${tab}/book/${book}`)
                 }}>
                     <View row style={{
                         width: (dimensions.width - 8),
@@ -109,7 +109,7 @@ const Component = ({ book, clickable }) => {
                             height: (dimensions.width - 8) / 4,
                         }}>
                             <TouchableOpacity centerV row onPress={() => {
-                                router.navigate(`/${tab}/author/${author}`)
+                                router.push(`/${tab}/author/${author}`)
                             }} style={{
                                 marginLeft: -((dimensions.width - 8) / 4 * (1 / 4)) / 2,
                             }}>

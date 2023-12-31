@@ -22,7 +22,7 @@ const Component = ({ book }) => {
             paddingHorizontal: 4,
         }}>
             <TouchableOpacity onPress={() => {
-                router.navigate(`/${tab}/book/${book}`)
+                router.push(`/${tab}/book/${book}`)
             }}>
                 <View row style={{
                     width: (dimensions.width - 8),

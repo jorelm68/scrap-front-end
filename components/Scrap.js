@@ -89,9 +89,7 @@ const Component = ({ scrap }) => {
                     width: dimensions.width * (2 / 3) - 4,
                     padding: 4,
                 }} onPress={() => {
-                    router.navigate({
-                        pathname: `/${tab}/author/${author}`,
-                    })
+                    router.push(`/${tab}/author/${author}`)
                 }}>
                     <Image source={iHeadshot} style={{
                         width: 24,

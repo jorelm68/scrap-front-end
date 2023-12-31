@@ -102,7 +102,7 @@ const Component = ({ action, handleRemove }) => {
                     }}
                 >
                     <TouchableOpacity center row onPress={() => {
-                        router.navigate(`${tab}/author/${sender.author}`)
+                        router.push(`${tab}/author/${sender.author}`)
                         handleRead()
                     }} style={{
                         width: dimensions.width,
@@ -127,7 +127,7 @@ const Component = ({ action, handleRemove }) => {
 
                         {['likeBook', 'postBook'].includes(type) && (
                             <TouchableOpacity center row onPress={() => {
-                                router.navigate(`/${tab}/book/${target.book}`)
+                                router.push(`/${tab}/book/${target.book}`)
                                 handleRead()
                             }}>
                                 <Image source={iPrograph} style={{
