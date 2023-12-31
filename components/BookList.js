@@ -16,13 +16,13 @@ import BookBlankSmall from './BookBlankSmall'
 
 const Component = ({ header = () => { }, headerHeight = 0, books, renderItem }) => {
     const { palette } = useContext(AppContext)
-    const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5])
+    const [rows, setRows] = useState([-1, 0, 1, 2, 3, 4, 5, 6, 7])
     const scrollViewRef = useRef(null)
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y - headerHeight - 3000; // Consider the header height
-        const visibleRange = visibleOffset + layoutMeasurement.height + headerHeight + 3000; // Subtract header height
+        const visibleOffset = contentOffset.y - headerHeight;
+        const visibleRange = visibleOffset + layoutMeasurement.height + headerHeight + 1000;
 
         if (books && books.length > 0) {
             const visibleItems = books.reduce((acc, _, index) => {
