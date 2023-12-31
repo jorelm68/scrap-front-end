@@ -8,7 +8,7 @@ import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import useBook from '../hooks/useBook'
 import useScrap from '../hooks/useScrap'
-import { dimensions, fonts } from '../data/styles'
+import { dark, dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
@@ -60,7 +60,7 @@ const Screen = () => {
                                 fontSize: 12,
                                 color: numUnread > 0 ? 'red' : palette.color6,
                             }}>{numUnread > 0 ? numUnread : ''}</Text>
-                            <Ionicons name='notifications' size={24} color={numUnread > 0 ? 'red' : palette.color6} />
+                            <Ionicons name='notifications' size={24} color={numUnread > 0 ? 'red' : dark.color6} />
                         </View>
                     </TouchableOpacity>
                 )

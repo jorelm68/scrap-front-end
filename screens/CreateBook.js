@@ -8,7 +8,7 @@ import error from '../data/error'
 import { useNavigation, usePathname, router } from 'expo-router'
 import api from '../data/api'
 import { Ionicons } from '@expo/vector-icons'
-import { dimensions } from '../data/styles'
+import { dark, dimensions } from '../data/styles'
 import Button from '../components/Button'
 import useAuthor from '../hooks/useAuthor'
 import ScrapSmall from '../components/ScrapSmall'
@@ -63,14 +63,14 @@ const Screen = () => {
           router.back()
           setPaused(false)
         }}>
-          <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
+          <Ionicons name='checkmark-circle' color={dark.color6} size={24} />
         </TouchableOpacity>
       ),
       headerLeft: () => ( // Corrected headerLeft configuration
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close-circle' color={palette.color6} size={24} />
+          <Ionicons name='close-circle' color={dark.color6} size={24} />
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })

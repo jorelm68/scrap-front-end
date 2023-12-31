@@ -8,7 +8,7 @@ import AppContext from '../context/AppContext'
 import useAuthor from '../hooks/useAuthor'
 import useBook from '../hooks/useBook'
 import useScrap from '../hooks/useScrap'
-import { dimensions, fonts } from '../data/styles'
+import { dimensions, fonts, dark } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
@@ -72,7 +72,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
                         }
                     })
                 }}>
-                    <Ionicons name='pencil' color={palette.color6} size={24} />
+                    <Ionicons name='pencil' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ) : () => { },
         })

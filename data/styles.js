@@ -41,15 +41,15 @@ export const options = {
     headerTitleStyle: {
         fontFamily: fonts.playBold,
         fontSize: 24,
-        color: palette.color7,
+        color: dark.color7,
     },
     headerStyle: {
-        backgroundColor: palette.color0,
+        backgroundColor: dark.color0,
     },
     headerBackTitleVisible: false,
     tabBarStyle: {
-        backgroundColor: palette.color0,
+        backgroundColor: dark.color0,
     },
-    tabBarInactiveTintColor: palette.color6,
-    tabBarActiveTintColor: palette.accent,
+    tabBarInactiveTintColor: dark.color6,
+    tabBarActiveTintColor: dark.accent,
 }

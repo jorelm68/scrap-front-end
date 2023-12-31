@@ -4,7 +4,7 @@ import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import ScrapSmall from '../components/ScrapSmall'
 import { Ionicons } from '@expo/vector-icons'
 import { Alert, ScrollView } from 'react-native'
-import { dimensions, fonts } from '../data/styles'
+import { dark, dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
 import ScrapList from '../components/ScrapList'
 
@@ -21,14 +21,14 @@ const Screen = ({ scraps = [], amount = 0, functionName = '' }) => {
                     onSubmit(selection)
                     router.back()
                 }}>
-                    <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
+                    <Ionicons name='checkmark-circle' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ),
             headerLeft: () => (
                 <TouchableOpacity onPress={() => {
                     router.back()
                 }}>
-                    <Ionicons name='close-circle' color={palette.color6} size={24} />
+                    <Ionicons name='close-circle' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ),
         })

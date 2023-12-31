@@ -3,7 +3,7 @@ import { TouchableOpacity, TouchableWithoutFeedback, Keyboard, Alert } from 'rea
 import React, { useContext, useState, useEffect } from 'react'
 import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import AppContext from '../context/AppContext'
-import { dimensions, fonts } from '../data/styles'
+import { dark, dimensions, fonts } from '../data/styles'
 import { Ionicons } from '@expo/vector-icons'
 import Field from '../components/Field'
 import BookSmall from '../components/BookSmall'
@@ -65,7 +65,7 @@ const Screen = ({ book = '', threads = [], amount = 0, functionName = '' }) => {
                     onSubmit(selection)
                     router.back()
                 }}>
-                    <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
+                    <Ionicons name='checkmark-circle' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ),
         })

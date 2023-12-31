@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native-ui-lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocalSearchParams, useNavigation, router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
-import { dimensions, fonts } from '../data/styles'
+import { dark, dimensions, fonts } from '../data/styles'
 import AppContext from '../context/AppContext'
 import BookSmall from '../components/BookSmall'
 import BookList from '../components/BookList'
@@ -20,14 +20,14 @@ const Screen = ({ books, amount, functionName }) => {
                     onSubmit(selection)
                     router.back()
                 }}>
-                    <Ionicons name='checkmark-circle' color={palette.color6} size={24} />
+                    <Ionicons name='checkmark-circle' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ),
             headerLeft: () => (
                 <TouchableOpacity onPress={() => {
                     router.back()
                 }}>
-                    <Ionicons name='close-circle' color={palette.color6} size={24} />
+                    <Ionicons name='close-circle' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ),
         })
