@@ -63,14 +63,14 @@ const Screen = () => {
           router.back()
           setPaused(false)
         }}>
-          <Ionicons name='checkmark-circle' color={dark.color6} size={24} />
+          <Ionicons name='checkmark' color={dark.color6} size={24} />
         </TouchableOpacity>
       ),
       headerLeft: () => ( // Corrected headerLeft configuration
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='chevron-down' color={dark.color6} size={24} />
+          <Ionicons name='close' color={dark.color6} size={24} />
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })

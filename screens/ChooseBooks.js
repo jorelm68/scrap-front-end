@@ -20,7 +20,7 @@ const Screen = ({ books, amount, functionName }) => {
                     onSubmit(selection)
                     router.back()
                 }}>
-                    <Ionicons name='checkmark-circle' color={dark.color6} size={24} />
+                    <Ionicons name='checkmark' color={dark.color6} size={24} />
                 </TouchableOpacity>
             ),
             headerLeft: () => (

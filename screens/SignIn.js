@@ -103,7 +103,7 @@ const Screen = () => {
             <View height={16} />
             <Button
               label='Sign In'
-              icon='checkmark-circle'
+              icon='checkmark'
               onPress={async () => {
                 if (paused) return { success: false, error: 'Please don\'t click too fast' }
                 setPaused(true)

@@ -146,7 +146,7 @@ const Screen = () => {
 
           <Button
             label='Sign Up'
-            icon='checkmark-circle'
+            icon='checkmark'
             onPress={async () => {
               if (paused) return { success: false, error: 'Please don\'t click too fast' }
               setPaused(true)
