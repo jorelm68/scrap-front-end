@@ -49,6 +49,8 @@ export default function useAuthor(author, requests) {
 
     const [feed, setFeed] = useState([])
     const [actions, setActions] = useState([])
+    const [activated, setActivated] = useState(false)
+    const [advertisements, setAdvertisements] = useState(true)
 
     const get = async (model, id, key, setResponse = () => { }, handleError = () => { }) => {
         if (!model || !id || !key || !setResponse) return undefined
@@ -87,6 +89,8 @@ export default function useAuthor(author, requests) {
         else if (request === 'actions') set = setActions
         else if (request === 'publicBooks') set = setPublicBooks
         else if (request === 'unbookedScraps') set = setUnbookedScraps
+        else if (request === 'activated') set = setActivated
+        else if (request === 'advertisements') set = setAdvertisements
 
         if (author !== undefined && author !== '') {
             if (request.includes('iHeadshot')) {
@@ -146,6 +150,10 @@ export default function useAuthor(author, requests) {
         setFirstName,
         profileBooks,
         setProfileBooks,
+        activated,
+        setActivated,
+        advertisements,
+        setAdvertisements,
         lastName,
         setLastName,
         pseudonym,
