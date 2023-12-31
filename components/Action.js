@@ -78,70 +78,73 @@ const Component = ({ action, handleRemove }) => {
 
     return (
         <GestureHandlerRootView>
-            <Drawer
-                itemsTextStyle={{
-                    color: palette.color5,
-                    fontFamily: fonts.playBold,
-                }}
-                rightItems={[
-                    {
-                        text: 'Remove',
+            <View center style={{
+                width: dimensions.width,
+                height: 64,
+                borderBottomWidth: 1,
+                borderBottomColor: palette.color2,
+            }}>
+                <Drawer
+                    itemsTextStyle={{
+                        color: palette.color5,
+                        fontFamily: fonts.playBold,
+                    }}
+                    rightItems={[
+                        {
+                            text: 'Remove',
+                            background: palette.color1,
+                            onPress: () => handleRemove(action),
+                        }
+                    ]}
+                    leftItem={{
+                        text: `${utility.getDate(createdAt)}`,
                         background: palette.color1,
-                        onPress: () => handleRemove(action),
-                    }
-                ]}
-                leftItem={{
-                    text: `${utility.getDate(createdAt)}`,
-                    background: palette.color1,
-                }}
-            >
-                <TouchableOpacity center row onPress={() => {
-                    router.navigate(`${tab}/author/${sender.author}`)
-                    handleRead()
-                }} style={{
-                    width: dimensions.width,
-                    height: 64,
-                    borderBottomWidth: 1,
-                    borderBottomColor: palette.color2,
-                    opacity: read ? 0.5 : 1,
-                }}>
-                    <Image source={iHeadshot} style={{
-                        width: 24,
-                        height: 24,
-                        borderRadius: 12,
-                    }} />
-                    <Text style={{
-                        fontFamily: fonts.jockeyOne,
-                        fontSize: 16,
-                        color: palette.color6,
-                    }}> {utility.formatName(firstName, lastName, pseudonym)} </Text>
+                    }}
+                >
+                    <TouchableOpacity center row onPress={() => {
+                        router.navigate(`${tab}/author/${sender.author}`)
+                        handleRead()
+                    }} style={{
+                        opacity: read ? 0.5 : 1,
+                    }}>
+                        <Image source={iHeadshot} style={{
+                            width: 24,
+                            height: 24,
+                            borderRadius: 12,
+                        }} />
+                        <Text style={{
+                            fontFamily: fonts.jockeyOne,
+                            fontSize: 16,
+                            color: palette.color6,
+                        }}> {utility.formatName(firstName, lastName, pseudonym)} </Text>
 
-                    <Text style={{
-                        fontFamily: fonts.itim,
-                        fontSize: 16,
-                        color: palette.color6,
-                    }}>{text}</Text>
+                        <Text style={{
+                            fontFamily: fonts.itim,
+                            fontSize: 16,
+                            color: palette.color6,
+                        }}>{text}</Text>
 
-                    {['likeBook', 'postBook'].includes(type) && (
-                        <TouchableOpacity center row onPress={() => {
-                            router.navigate(`/${tab}/book/${target.book}`)
-                            handleRead()
-                        }}>
-                            <Image source={iPrograph} style={{
-                                width: 24,
-                                height: 24,
-                                borderRadius: 2,
-                            }} />
+                        {['likeBook', 'postBook'].includes(type) && (
+                            <TouchableOpacity center row onPress={() => {
+                                router.navigate(`/${tab}/book/${target.book}`)
+                                handleRead()
+                            }}>
+                                <Image source={iPrograph} style={{
+                                    width: 24,
+                                    height: 24,
+                                    borderRadius: 2,
+                                }} />
 
-                            <Text style={{
-                                fontFamily: fonts.itim,
-                                fontSize: 16,
-                                color: palette.color6,
-                            }}> {title.length > 15 ? `${title.slice(0, 15)}...` : title}</Text>
-                        </TouchableOpacity>
-                    )}
-                </TouchableOpacity>
-            </Drawer>
+                                <Text style={{
+                                    fontFamily: fonts.itim,
+                                    fontSize: 16,
+                                    color: palette.color6,
+                                }}> {title.length > 15 ? `${title.slice(0, 15)}...` : title}</Text>
+                            </TouchableOpacity>
+                        )}
+                    </TouchableOpacity>
+                </Drawer>
+            </View>
         </GestureHandlerRootView>
     )
 }

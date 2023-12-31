@@ -21,12 +21,12 @@ const Component = ({ actions, renderItem }) => {
 
     const handleScroll = (event) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent
-        const visibleOffset = contentOffset.y - 3000
-        const visibleRange = visibleOffset + layoutMeasurement.height + 3000
+        const visibleOffset = contentOffset.y
+        const visibleRange = visibleOffset + layoutMeasurement.height + 1000
 
         if (actions && actions.length > 0) {
             const visibleItems = actions.reduce((acc, _, index) => {
-                const itemDimensions = dimensions.width / 3 // Assuming each item has a width of dimensions.width / 3
+                const itemDimensions = dimensions.width / 3
                 const offset = index * itemDimensions
                 if (offset >= visibleOffset && offset <= visibleRange) {
                     acc.push(index)
@@ -67,10 +67,10 @@ const Component = ({ actions, renderItem }) => {
                     else {
                         return (
                             <View key={action} row style={{
-                                width: dimensions.width - 8,
-                                paddingHorizontal: 4,
-                                marginVertical: 4,
+                                width: dimensions.width,
                                 height: 64,
+                                borderBottomWidth: 1,
+                                borderBottomColor: palette.color2,
                             }}>
 
                             </View>
