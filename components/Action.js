@@ -63,8 +63,8 @@ const Component = ({ action, handleRemove }) => {
     let text = ''
     if (type === 'sendRequest') text = 'sent you a friend request! '
     else if (type === 'acceptRequest') text = 'accepted your friend request! '
-    else if (type === 'likeBook') text = 'liked your book '
-    else if (type === 'postBook') text = 'posted their book '
+    else if (type === 'likeBook') text = 'liked '
+    else if (type === 'postBook') text = 'posted '
 
     const handleRead = async () => {
         if (read) return
@@ -137,7 +137,7 @@ const Component = ({ action, handleRemove }) => {
                                 fontFamily: fonts.itim,
                                 fontSize: 16,
                                 color: palette.color6,
-                            }}> {title}</Text>
+                            }}> {title.length > 15 ? `${title.slice(0, 15)}...` : title}</Text>
                         </TouchableOpacity>
                     )}
                 </TouchableOpacity>
