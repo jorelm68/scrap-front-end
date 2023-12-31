@@ -40,7 +40,7 @@ const Screen = () => {
         }}>
             {accounts && accounts.map((account) => {
                 return (
-                    <GestureHandlerRootView>
+                    <GestureHandlerRootView key={account.author}>
                         <Drawer
                             itemsTextStyle={{
                                 color: palette.color5,
@@ -96,7 +96,7 @@ const Screen = () => {
                                 },
                                 {
                                     text: 'Forget',
-                                    background: palette.color4,
+                                    background: palette.color2,
                                     onPress: async () => {
                                         // First, change the accounts on the device itself
                                         await utility.forgetAccount(account)
@@ -108,7 +108,7 @@ const Screen = () => {
                             ]}
                             leftItem={{
                                 text: `Expires ${utility.getDate(account.expires)}`,
-                                background: palette.color4,
+                                background: palette.color2,
                             }}
                         >
                             <View center padding-s4 bg-white style={{
