@@ -115,7 +115,7 @@ const Component = ({ author, disappear }) => {
 
                             <Text style={{
                                 fontFamily: fonts.itim,
-                                fontSize: 16,
+                                fontSize: 12,
                                 color: palette.color6,
                             }}>Send Request</Text>
                         </View>
