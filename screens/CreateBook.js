@@ -70,7 +70,7 @@ const Screen = () => {
         <TouchableOpacity onPress={() => {
           router.back()
         }}>
-          <Ionicons name='close-circle' color={dark.color6} size={24} />
+          <Ionicons name='chevron-down' color={dark.color6} size={24} />
         </TouchableOpacity>
       ), // Don't forget the closing parenthesis for headerLeft
     })
