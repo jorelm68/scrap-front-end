@@ -82,61 +82,65 @@ const Component = ({ scrap }) => {
 
     return (
         <View>
-            <TouchableOpacity centerV row style={{
-                width: dimensions.width * (2 / 3) - 4,
-                padding: 4,
-            }} onPress={() => {
-                router.navigate({
-                    pathname: `/${tab}/author/${author}`,
-                })
+            <View style={{
+                minHeight: 48,
             }}>
-                <Image source={iHeadshot} style={{
-                    width: 24,
-                    height: 24,
-                    borderRadius: 12,
-                }} />
-                <View row centerV style={{
-                    width: dimensions.width * (2 / 3) - 24,
+                <TouchableOpacity centerV row style={{
+                    width: dimensions.width * (2 / 3) - 4,
+                    padding: 4,
+                }} onPress={() => {
+                    router.navigate({
+                        pathname: `/${tab}/author/${author}`,
+                    })
                 }}>
-                    <Text style={{
-                        fontFamily: fonts.jockeyOne,
-                        fontSize: 16,
-                        paddingLeft: 4,
-                        color: palette.color5,
-                    }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
+                    <Image source={iHeadshot} style={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: 12,
+                    }} />
+                    <View row centerV style={{
+                        width: dimensions.width * (2 / 3) - 24,
+                    }}>
+                        <Text style={{
+                            fontFamily: fonts.jockeyOne,
+                            fontSize: 16,
+                            paddingLeft: 4,
+                            color: palette.color5,
+                        }}>{utility.formatName(firstName, lastName, pseudonym)}</Text>
 
-                    {author === user && !isLongPressing && (
-                        <TouchableOpacity style={{
-                            position: 'absolute',
-                            right: 8,
-                        }} onPress={() => {
-                            router.navigate({
-                                pathname: `/${tab}/book/editScrap`,
-                                params: {
-                                    scrap,
-                                }
-                            })
-                        }}>
-                            <Ionicons name='pencil' color={palette.color6} size={18} />
-                        </TouchableOpacity>
-                    )}
+                        {author === user && !isLongPressing && (
+                            <TouchableOpacity style={{
+                                position: 'absolute',
+                                right: 8,
+                            }} onPress={() => {
+                                router.navigate({
+                                    pathname: `/${tab}/book/editScrap`,
+                                    params: {
+                                        scrap,
+                                    }
+                                })
+                            }}>
+                                <Ionicons name='pencil' color={palette.color6} size={18} />
+                            </TouchableOpacity>
+                        )}
 
-                </View>
+                    </View>
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
-            {title && (
-                <View>
-                    <Text style={{
-                        fontFamily: fonts.itim,
-                        fontSize: 18,
-                        paddingBottom: 4,
-                        paddingHorizontal: 4,
-                        width: dimensions.width * (2 / 3),
-                        color: palette.color5,
-                    }}>{title}</Text>
-                </View>
-            )}
+                {title && (
+                    <View>
+                        <Text style={{
+                            fontFamily: fonts.itim,
+                            fontSize: 18,
+                            paddingBottom: 4,
+                            paddingHorizontal: 4,
+                            width: dimensions.width * (2 / 3),
+                            color: palette.color5,
+                        }}>{title}</Text>
+                    </View>
+                )}
+            </View>
 
             <TouchableWithoutFeedback
                 onPress={() => {
