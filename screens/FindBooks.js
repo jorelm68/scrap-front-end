@@ -113,7 +113,7 @@ const Screen = ({ book = '', threads = [], amount = 0, functionName = '' }) => {
                         )
                     }}
                     headerHeight={48}
-                    books={results}
+                    books={results.reverse()}
                     renderItem={(book) => {
                         return (
                             <TouchableOpacity key={book} onPress={() => {

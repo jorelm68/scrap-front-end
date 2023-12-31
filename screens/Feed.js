@@ -75,7 +75,7 @@ const Screen = () => {
             backgroundColor: palette.color1,
         }}>
             <BookList
-                books={feed}
+                books={feed.reverse()}
                 renderItem={(book) => {
                     return (
                         <BookSmall book={book} key={book} clickable />

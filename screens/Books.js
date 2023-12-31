@@ -10,7 +10,7 @@ import BookList from '../components/BookList'
 const Screen = ({ books }) => {
   return (
     <BookList
-      books={books}
+      books={books.reverse()}
       renderItem={(book) => {
         return (
           <BookSmall book={book} key={book} clickable />
