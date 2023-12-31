@@ -20,7 +20,7 @@ const Screen = ({ book, page = 0, scraps = [] }) => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            <Book book={book} scraps={scraps.reverse()} page={page} />
+            <Book book={book} scraps={scraps} page={page} />
         </View>
     )
 }
