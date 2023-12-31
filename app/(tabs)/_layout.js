@@ -7,25 +7,6 @@ import utility from '../../data/utility'
 import cache from '../../data/cache'
 
 const Layout = () => {
-  const { user, setUser } = useContext(AppContext)
-
-  const handleChangeUser = async () => {
-    if (user === 'bruh') {
-      // sign out
-      utility.deleteData('autothenticate')
-      cache.filter(['relationship'])
-      cache.filter(['profileBooks'])
-      while (router.canGoBack()) {
-        router.back()
-      }
-      router.replace('/authentication/signIn')
-    }
-  }
-
-  useEffect(() => {
-    handleChangeUser()
-  }, [user])
-
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen

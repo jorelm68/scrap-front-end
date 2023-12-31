@@ -1,10 +1,23 @@
 import { useState, useEffect, useContext } from 'react'
 import AppContext from '../context/AppContext'
 import cache from '../data/cache'
+import utility from '../data/utility'
 import { defaultHeadshot, defaultCover } from '../data/icons'
+import { router } from 'expo-router'
 
 export default function useAuthor(author, requests) {
     const { user } = useContext(AppContext)
+
+    if (user === 'author') {
+        // sign out
+        utility.deleteData('autothenticate')
+        cache.filter(['relationship'])
+        cache.filter(['profileBooks'])
+        while (router.canGoBack()) {
+            router.back()
+        }
+        router.replace('/authentication/signIn')
+    }
 
     const [headshot, setHeadshot] = useState('')
     const [cover, setCover] = useState('')
