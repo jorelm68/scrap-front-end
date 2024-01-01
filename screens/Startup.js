@@ -4,14 +4,14 @@ import AppContext from '../context/AppContext'
 import utility from '../data/utility'
 import api from '../data/api'
 import { router } from 'expo-router'
-import { dark, dimensions, light, palette } from '../data/styles'
+import { dark, dimensions, light, fonts } from '../data/styles'
 import { ActivityIndicator } from 'react-native'
 import Logo from '../components/Logo'
 
 utility.loadFonts()
 
 const Screen = () => {
-  const { setUser, setAuthenticated, setDarkMode, setPalette } = useContext(AppContext)
+  const { palette, setUser, setAuthenticated, setDarkMode, setPalette } = useContext(AppContext)
   const [savingScraps, setSavingScraps] = useState(false)
 
   const startup = async () => {
@@ -37,7 +37,7 @@ const Screen = () => {
     const yes = await utility.hasOfflineScraps()
     if (yes) {
       setSavingScraps(true)
-      const response1 = await utility.onlineSaveScraps(response.data.author)
+      const response1 = await utility.onlineSaveScraps(user)
       if (response1.success) {
         console.log('Successfully saved offline scraps!')
       }

@@ -6,6 +6,7 @@ import * as Notifications from 'expo-notifications'
 import * as SecureStore from 'expo-secure-store'
 import Constants from 'expo-constants'
 import cache from '../data/cache'
+import api from '../data/api'
 
 const storeData = async (key, value) => {
     try {
@@ -228,7 +229,7 @@ const onlineSaveScraps = async (user) => {
         for (const scrap of scraps) {
             scrap.author = user
             console.log('saving: ', scrap)
-            const response = await scrapSaveScrap(scrap)
+            const response = await api.scrap.saveScrap(scrap)
             if (!response.success) {
                 Alert.alert('Error', response.error)
                 return
