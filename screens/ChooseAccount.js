@@ -43,9 +43,9 @@ const Screen = () => {
                 backgroundColor: palette.color1,
             }}
         >
-            {accounts && accounts.map((account) => {
+            {accounts && accounts.map((account, index) => {
                 return (
-                    <GestureHandlerRootView key={account.author}>
+                    <GestureHandlerRootView key={index}>
                         <Drawer
                             itemsTextStyle={{
                                 color: palette.color5,
