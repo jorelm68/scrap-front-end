@@ -26,7 +26,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.jorelm68.scrap",
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO",
