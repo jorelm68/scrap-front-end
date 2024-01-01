@@ -220,16 +220,6 @@ const getLocation = async () => {
     return { latitude, longitude }
 }
 
-const isDeviceOffline = async () => {
-    try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-        return !response.ok // Returns true if the response is not OK (i.e., request failed)
-    } catch (error) {
-        // If there's an error during the fetch, assume the device is offline
-        return true
-    }
-}
-
 const onlineSaveScraps = async (user) => {
     const data = await retrieveData('scraps')
     const scraps = JSON.parse(data)

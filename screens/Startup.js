@@ -11,7 +11,7 @@ import Logo from '../components/Logo'
 utility.loadFonts()
 
 const Screen = () => {
-  const { setUser, setAuthenticated, setDarkMode, setPalette } = useContext(AppContext)
+  const { setUser, setAuthenticated, setDarkMode, setPalette, isConnected } = useContext(AppContext)
   const [savingScraps, setSavingScraps] = useState(false)
 
   const startup = async () => {
@@ -20,9 +20,8 @@ const Screen = () => {
     setDarkMode(darkMode)
     setPalette(darkMode ? dark : light)
 
-    const offline = await utility.isDeviceOffline()
-    if (offline) {
-      router.replace('offlineCamera')
+    if (!isConnected) {
+      router.replace('/offlineCamera')
     }
     else {
       const user = await utility.retrieveData('autothenticate')

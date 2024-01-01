@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AppContext from './AppContext'
 import cache from '../data/cache'
+import NetInfo from '@react-native-community/netinfo';
 
 const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
@@ -12,6 +13,17 @@ const AppContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
     const [currentScrap, setCurrentScrap] = useState('')
+    const [isConnected, setIsConnected] = useState(true);
+
+    useEffect(() => {
+        const unsubscribe = NetInfo.addEventListener(state => {
+            setIsConnected(state.isConnected);
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     useEffect(() => {
         cache.filter(['relationship'])
@@ -37,6 +49,8 @@ const AppContextProvider = ({ children }) => {
         setPaused,
         currentScrap,
         setCurrentScrap,
+        isConnected,
+        setIsConnected,
         // ... other shared data and functions
     }
 
