@@ -320,7 +320,6 @@ export default {
     formatDate,
     getDateRange,
     getLocation,
-    isDeviceOffline,
     onlineSaveScraps,
     offlineSaveScrap,
     offlineGetScraps,
