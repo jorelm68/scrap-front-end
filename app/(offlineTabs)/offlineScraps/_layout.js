@@ -13,6 +13,13 @@ const Layout = () => {
           headerTitle: 'Scraps',
         }}
       />
+      <Stack.Screen
+        name='offlineEditScrap'
+        options={{
+          ...options,
+          headerTitle: 'Edit Scrap',
+        }}
+      />
     </Stack>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
-import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router'
+import { useFocusEffect, useLocalSearchParams, useNavigation, router } from 'expo-router'
 import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
@@ -18,7 +18,6 @@ import ScrapList from '../components/ScrapList'
 const Screen = () => {
     const { palette } = useContext(AppContext)
     const [scraps, setScraps] = useState([])
-    const router = useRouter()
 
     const getScraps = async () => {
         const scraps = await utility.offlineGetScraps()
@@ -39,7 +38,7 @@ const Screen = () => {
                         height: dimensions.width / 3,
                     }} onPress={() => {
                         router.navigate({
-                            pathname: '/offlineEditScrap',
+                            pathname: `/(offlineTabs)/offlineScraps/offlineEditScrap`,
                             params: {
                                 index: JSON.stringify(index),
                             }

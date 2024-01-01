@@ -60,7 +60,7 @@ const Component = ({ scraps, renderItem }) => {
                     if (rows.includes(row)) {
                         return (
                             <View key={scrap}>
-                                {renderItem(scrap)}
+                                {renderItem(scrap, index)}
                             </View>
                         )
                     }
