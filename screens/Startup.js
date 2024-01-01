@@ -11,7 +11,7 @@ import Logo from '../components/Logo'
 utility.loadFonts()
 
 const Screen = () => {
-  const { setUser, setAuthenticated, setDarkMode, setPalette, isConnected } = useContext(AppContext)
+  const { setUser, setAuthenticated, setDarkMode, setPalette } = useContext(AppContext)
   const [savingScraps, setSavingScraps] = useState(false)
 
   const startup = async () => {
@@ -20,35 +20,30 @@ const Screen = () => {
     setDarkMode(darkMode)
     setPalette(darkMode ? dark : light)
 
-    if (!isConnected) {
-      router.replace('/offlineCamera')
+    const user = await utility.retrieveData('autothenticate')
+    if (!user) {
+      router.replace('/authentication/signIn')
+      return
     }
-    else {
-      const user = await utility.retrieveData('autothenticate')
-      if (!user) {
-        router.replace('/authentication/signIn')
-        return
-      }
-      const response = await api.author.exists(user)
-      if (!response.success) {
-        await utility.deleteData('autothenticate')
-        router.replace('/authentication/signIn')
-        return
-      }
+    const response = await api.author.exists(user)
+    if (!response.success) {
+      await utility.deleteData('autothenticate')
+      router.replace('/authentication/signIn')
+      return
+    }
 
-      setUser(user)
-      setAuthenticated(true)
-      const yes = await utility.hasOfflineScraps()
-      if (yes) {
-        setSavingScraps(true)
-        const response1 = await utility.onlineSaveScraps(response.data.author)
-        if (response1.success) {
-          console.log('Successfully saved offline scraps!')
-        }
-        setSavingScraps(false)
+    setUser(user)
+    setAuthenticated(true)
+    const yes = await utility.hasOfflineScraps()
+    if (yes) {
+      setSavingScraps(true)
+      const response1 = await utility.onlineSaveScraps(response.data.author)
+      if (response1.success) {
+        console.log('Successfully saved offline scraps!')
       }
-      router.replace('/camera')
+      setSavingScraps(false)
     }
+    router.replace('/camera')
   }
 
   useEffect(() => {

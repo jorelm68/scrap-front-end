@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AppContext from './AppContext'
 import cache from '../data/cache'
 import NetInfo from '@react-native-community/netinfo';
+import { router } from 'expo-router';
 
 const AppContextProvider = ({ children }) => {
     // Define the shared variables and their initial values here
@@ -17,7 +18,15 @@ const AppContextProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = NetInfo.addEventListener(state => {
-            setIsConnected(state.isConnected);
+            if (!state.isConnected) {
+                setUser('bruh')
+                setAuthenticated(false)
+                setPaused(false)
+                while (router.canGoBack()) {
+                    router.back()
+                }
+                router.replace(`/offlineCamera`)
+            }
         });
 
         return () => {
