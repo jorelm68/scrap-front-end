@@ -76,6 +76,7 @@ const Screen = () => {
     }, [])
 
     const handleScraps = async () => {
+        cache.filter([user, 'scraps'])
         router.navigate({
             pathname: `/${tab}/book/scraps`,
             params: {
@@ -84,6 +85,7 @@ const Screen = () => {
         })
     }
     const handleBooks = async () => {
+        cache.filter([user, 'books'])
         router.navigate({
             pathname: `/${tab}/book/books`,
             params: {
