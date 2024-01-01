@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, Drawer, TouchableOpacity } from 'react-native-ui-lib'
 import AppContext from '../context/AppContext'
-import { Alert, FlatList } from 'react-native'
+import { Alert, ScrollView } from 'react-native'
 import api from '../data/api'
 import utility from '../data/utility'
 import { router } from 'expo-router'
@@ -33,11 +33,16 @@ const Screen = () => {
     }
 
     return (
-        <View style={{
-            width: dimensions.width,
-            height: dimensions.height,
-            backgroundColor: palette.color1,
-        }}>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps={'always'}
+            automaticallyAdjustKeyboardInsets={true}
+            style={{
+                width: dimensions.width,
+                height: dimensions.height,
+                backgroundColor: palette.color1,
+            }}
+        >
             {accounts && accounts.map((account) => {
                 return (
                     <GestureHandlerRootView key={account.author}>
@@ -127,7 +132,7 @@ const Screen = () => {
                     </GestureHandlerRootView>
                 )
             })}
-        </View>
+        </ScrollView>
     )
 }
 

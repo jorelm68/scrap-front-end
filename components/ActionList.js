@@ -38,7 +38,8 @@ const Component = ({ actions, renderItem }) => {
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}
+        <ScrollView
+            showsVerticalScrollIndicator={false}
             ref={scrollViewRef}
             onScroll={handleScroll}
             scrollEventThrottle={16} // Adjust the frequency of onScroll event
