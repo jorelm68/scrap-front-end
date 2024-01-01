@@ -14,6 +14,14 @@ const Layout = () => {
         }}
       />
       <Stack.Screen
+        name="(offlineTabs)"
+        options={{
+          ...options,
+          gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
         name="authentication"
         options={{
           ...options,

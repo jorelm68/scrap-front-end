@@ -18,14 +18,14 @@ const AppContextProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = NetInfo.addEventListener(state => {
-            if (!state.isConnected) {
+            if (state.isConnected) {
                 setUser('bruh')
                 setAuthenticated(false)
                 setPaused(false)
                 while (router.canGoBack()) {
                     router.back()
                 }
-                router.replace(`/offlineCamera`)
+                router.replace(`/(offlineTabs)/offlineCamera`)
             }
         });
 
