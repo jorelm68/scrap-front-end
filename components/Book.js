@@ -80,15 +80,16 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
 
     useEffect(() => {
         if (scrapsGiven) {
+            console.log('scrapsGiven')
             setHidden(false)
         }
         else if (isPublic) {
+            console.log('isPublic')
             setHidden(false)
         }
-        else {
-            if (['friend', 'self'].includes(relationship)) {
-                setHidden(false)
-            }
+        else if (['friend', 'self'].includes(relationship)) {
+            console.log('permitted')
+            setHidden(false)
         }
     }, [relationship, isPublic])
 

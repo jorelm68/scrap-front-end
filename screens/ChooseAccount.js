@@ -20,10 +20,13 @@ const Screen = () => {
     // Display some error text when the user hasn't signed in before
     if (accounts.length === 0) {
         return (
-            <View center style={{
-                padding: 4,
+            <View centerH style={{
+                width: dimensions.width,
+                height: dimensions.height,
+                backgroundColor: palette.color1,
             }}>
                 <Text style={{
+                    padding: 4,
                     fontFamily: fonts.itim,
                     fontSize: 16,
                     color: palette.color6,
