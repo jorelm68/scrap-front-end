@@ -35,7 +35,7 @@ const Layout = () => {
               </TouchableOpacity>
             )
           },
-          headerTitle: 'Scrap',
+          headerTitle: 'Scrapbook',
         }}
       />
       <Stack.Screen
