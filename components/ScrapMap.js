@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
-const Component = ({ scraps }) => {
+const Component = ({ scraps, scrapbook }) => {
     const { palette, currentPage, setCurrentPage } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
@@ -88,7 +88,7 @@ const Component = ({ scraps }) => {
                         <TouchableOpacity key={scrap} onPress={() => {
                             setCurrentPage(index)
                         }}>
-                            <ScrapMarker scrap={scrap} index={index} />
+                            <ScrapMarker scrap={scrap} index={index} scrapbook />
                         </TouchableOpacity>
                     )
                 }

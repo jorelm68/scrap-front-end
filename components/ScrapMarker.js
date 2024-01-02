@@ -13,7 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Component = ({ scrap, index }) => {
+const Component = ({ scrap, index, scrapbook }) => {
     const { palette } = useContext(AppContext)
 
     const {
@@ -42,7 +42,7 @@ const Component = ({ scrap, index }) => {
             <View center style={{
                 width: 30,
                 height: 30,
-                backgroundColor: palette.accent,
+                backgroundColor: scrapbook && (index === 0) ? 'black' : scrapbook && (index === 2) ? 'white' : palette.accent,
                 borderRadius: 15,
             }}>
                 <Image

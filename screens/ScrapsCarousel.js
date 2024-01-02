@@ -36,6 +36,7 @@ const Page = ({ scraps, page }) => {
         }}>
             <ScrapMap
                 scraps={visible}
+                scrapbook
             />
 
             <View height={4} />
