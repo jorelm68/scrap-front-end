@@ -8,7 +8,7 @@ import { router } from 'expo-router'
 export default function useAuthor(author, requests) {
     const { user } = useContext(AppContext)
 
-    if (user === 'author') {
+    if (user === 'bruh') {
         // sign out
         utility.deleteData('autothenticate')
         cache.filter(['relationship'])

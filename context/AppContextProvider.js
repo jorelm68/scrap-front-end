@@ -14,6 +14,7 @@ const AppContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
     const [currentScrap, setCurrentScrap] = useState('')
+    const [currentPage, setCurrentPage] = useState(0)
     const [isConnected, setIsConnected] = useState(true);
 
     useEffect(() => {
@@ -36,6 +37,14 @@ const AppContextProvider = ({ children }) => {
 
     useEffect(() => {
         cache.filter(['relationship'])
+        if (user === 'bruh') {
+            setAuthenticated(false)
+            setPaused(false)
+            while (router.canGoBack()) {
+                router.back()
+            }
+            router.replace('/authentication/signIn')
+        }
     }, [user])
 
     // You can also define functions or any other data that you want to share
@@ -58,6 +67,8 @@ const AppContextProvider = ({ children }) => {
         setPaused,
         currentScrap,
         setCurrentScrap,
+        currentPage,
+        setCurrentPage,
         isConnected,
         setIsConnected,
         // ... other shared data and functions
