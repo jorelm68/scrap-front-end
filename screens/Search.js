@@ -15,53 +15,13 @@ import MapView, { Polyline } from 'react-native-maps'
 import BookList from '../components/BookList'
 import BookMarker from '../components/BookMarker'
 import utility from '../data/utility'
+import BookMap from '../components/BookMap'
 
 const Screen = () => {
   const { user, palette } = useContext(AppContext)
-  const tab = utility.getTab(usePathname())
   const [query, setQuery] = useState('')
   const [results, setResults] = useState('')
   const [mode, setMode] = useState('authors')
-  const [coordinates, setCoordinates] = useState([])
-
-  const {
-    representative,
-  } = useBook(results[0], [
-    'representative',
-  ])
-
-  const {
-    latitude,
-    longitude,
-  } = useScrap(representative, [
-    'latitude',
-    'longitude',
-  ])
-
-  const [region, setRegion] = useState({
-    latitude,
-    longitude,
-  })
-
-  useEffect(() => {
-    setRegion({
-      latitude,
-      longitude,
-    })
-  }, [latitude, longitude])
-
-  const getCoordinates = async () => {
-    const response = await api.utility.bookCoordinates(results)
-    if (!response.success) {
-      Alert.alert('Error', response.error)
-    }
-    else {
-      setCoordinates(response.data.coordinates)
-    }
-  }
-  useEffect(() => {
-    getCoordinates()
-  }, [results])
 
   const sendQuery = async () => {
     Keyboard.dismiss()
@@ -149,31 +109,10 @@ const Screen = () => {
           })}
 
           {mode === 'books' && results && results.length > 0 && (
-            <MapView
-              region={region}
-              style={{
-                width: dimensions.width,
-                marginBottom: 4,
-                borderRadius: 8,
-                height: 200,
-              }}
-            >
-              {results && results.map((book) => {
-                return (
-                  <TouchableOpacity key={book} onPress={() => {
-                    router.navigate(`/${tab}/book/${book}`)
-                  }}>
-                    <BookMarker book={book} />
-                  </TouchableOpacity>
-                )
-              })}
-
-              <Polyline
-                coordinates={coordinates}
-                strokeColor={palette.accent}
-                strokeWidth={2}
-              />
-            </MapView>
+            <BookMap 
+              books={results}
+              height={200}
+            />
           )}
           <BookList
             books={results}

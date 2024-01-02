@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import AuthorSmall from './AuthorSmall'
 import ScrapCarousel from './ScrapCarousel'
-import Map from './Map'
+import ScrapMap from './ScrapMap'
 
 const Component = ({ book, scraps: scrapsGiven = [] }) => {
     const navigation = useNavigation()
@@ -108,7 +108,7 @@ const Component = ({ book, scraps: scrapsGiven = [] }) => {
     else {
         return (
             <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
-                <Map
+                <ScrapMap
                     scraps={book === 'scrapbook' ? scrapsGiven : scraps}
                 />
 

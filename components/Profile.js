@@ -16,7 +16,7 @@ import BookList from './BookList'
 import BookSmall from './BookSmall'
 import Button from './Button'
 import AuthorSmall from './AuthorSmall'
-import BookMarker from './BookMarker'
+import BookMap from './BookMap'
 
 const Component = ({ author }) => {
     const navigation = useNavigation()
@@ -27,7 +27,6 @@ const Component = ({ author }) => {
     const [photosReverse, setPhotosReverse] = useState(false)
     const [mode, setMode] = useState('books')
     const [option, setOption] = useState('friends')
-    const [coordinates, setCoordinates] = useState([])
 
     const {
         iHeadshot,
@@ -58,32 +57,6 @@ const Component = ({ author }) => {
         'relationship',
     ])
 
-    const {
-        representative,
-    } = useBook(profileBooks[0], [
-        'representative',
-    ])
-
-    const {
-        latitude,
-        longitude,
-    } = useScrap(representative, [
-        'latitude',
-        'longitude',
-    ])
-
-    const [region, setRegion] = useState({
-        latitude,
-        longitude,
-    })
-
-    useEffect(() => {
-        setRegion({
-            latitude,
-            longitude,
-        })
-    }, [latitude, longitude])
-
     useEffect(() => {
         navigation.setOptions({
             headerTitle: `${firstName} ${lastName}`,
@@ -93,19 +66,6 @@ const Component = ({ author }) => {
     useEffect(() => {
         setName(`${firstName} ${lastName}`)
     }, [firstName, lastName])
-
-    const getCoordinates = async () => {
-        const response = await api.utility.bookCoordinates(profileBooks)
-        if (!response.success) {
-            Alert.alert('Error', response.error)
-        }
-        else {
-            setCoordinates(response.data.coordinates)
-        }
-    }
-    useEffect(() => {
-        getCoordinates()
-    }, [profileBooks])
 
     const ProfileHeader = () => {
         return (
@@ -440,30 +400,11 @@ const Component = ({ author }) => {
             }}>
                 <ProfileHeader />
 
-                <MapView
-                    region={region}
-                    style={{
-                        width: dimensions.width,
-                        borderRadius: 8,
-                        height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
-                    }}
-                >
-                    {profileBooks && profileBooks.map((book) => {
-                        return (
-                            <TouchableOpacity key={book} onPress={() => {
-                                router.push(`/${tab}/book/${book}`)
-                            }}>
-                                <BookMarker book={book} />
-                            </TouchableOpacity>
-                        )
-                    })}
-
-                    <Polyline
-                        coordinates={coordinates}
-                        strokeColor={palette.accent}
-                        strokeWidth={2}
-                    />
-                </MapView>
+                <BookMap 
+                    books={profileBooks}
+                    height={265}
+                    polyline
+                />
             </View>
         )
     }
