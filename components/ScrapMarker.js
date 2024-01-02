@@ -13,8 +13,9 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 
-const Component = ({ scrap }) => {
+const Component = ({ scrap, index }) => {
     const { palette } = useContext(AppContext)
+
     const {
         latitude,
         longitude,
