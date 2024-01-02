@@ -15,7 +15,7 @@ import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
 const Component = ({ scraps }) => {
-    const { palette, setCurrentPage } = useContext(AppContext)
+    const { palette, currentPage, setCurrentPage } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
     const getCoordinates = async () => {
@@ -47,13 +47,16 @@ const Component = ({ scraps }) => {
                 const centerLat = (maxLat + minLat) / 2;
                 const centerLon = (maxLon + minLon) / 2;
 
-                const padding = 0.5; // Adjust this value for desired padding
+                // Calculate padding based on the fraction of delta values
+                const paddingFraction = 0.5; // Adjust this fraction as needed
+                const paddingLat = deltaLat * paddingFraction;
+                const paddingLon = deltaLon * paddingFraction;
 
                 const region = {
                     latitude: centerLat,
                     longitude: centerLon,
-                    latitudeDelta: deltaLat + padding,
-                    longitudeDelta: deltaLon + padding,
+                    latitudeDelta: deltaLat + paddingLat,
+                    longitudeDelta: deltaLon + paddingLon,
                 };
 
                 mapViewRef.current.animateToRegion(region, 1000); // Adjust animation duration as needed
@@ -75,7 +78,7 @@ const Component = ({ scraps }) => {
                         <TouchableOpacity key={scrap} onPress={() => {
                             setCurrentPage(index)
                         }}>
-                            <ScrapMarker scrap={scrap} />
+                            <ScrapMarker scrap={scrap} index={index} />
                         </TouchableOpacity>
                     )
                 }
