@@ -19,15 +19,27 @@ const Page = ({ scraps, page }) => {
     const { palette } = useContext(AppContext)
     const [current, setCurrent] = useState(page)
 
+    let visible = [];
+    if (current >= 1) {
+        visible.push(scraps[current - 1]);
+    }
+    visible.push(scraps[current]);
+    if (current < scraps.length - 2) {
+        visible.push(scraps[current + 1]);
+    }
+
     return (
         <View style={{
             width: dimensions.width,
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            <ScrapMap 
-                scraps={[scraps[current]]}
+            <ScrapMap
+                scraps={visible}
             />
+
+            <View height={4} />
+
             <Carousel
                 onChangePage={(newIndex) => {
                     setCurrent(newIndex);
