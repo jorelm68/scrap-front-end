@@ -89,7 +89,6 @@ const Screen = () => {
 
                                             await utility.storeData('autothenticate', account.author)
                                             setUser(account.author)
-                                            console.log('got here')
                                             const yes = await utility.hasOfflineScraps()
                                             if (yes) {
                                                 console.log('about to save scraps')
