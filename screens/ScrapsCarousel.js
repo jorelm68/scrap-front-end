@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Alert, Keyboard, ActivityIndicator } from 'react-native'
 import { useFocusEffect, useLocalSearchParams, useNavigation, router } from 'expo-router'
-import { View, Text, Image, TouchableOpacity } from 'react-native-ui-lib'
+import { View, Text, Image, TouchableOpacity, Carousel } from 'react-native-ui-lib'
 import MapView, { Polyline, Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons'
 import AppContext from '../context/AppContext'
@@ -12,10 +12,11 @@ import { dimensions, fonts } from '../data/styles'
 import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
-import ScrapCarousel from '../components/ScrapCarousel'
+import Scrap from '../components/Scrap'
 
 const Page = ({ scraps, page }) => {
     const { palette } = useContext(AppContext)
+    const [current, setCurrent] = useState(page)
 
     return (
         <View style={{
@@ -23,10 +24,24 @@ const Page = ({ scraps, page }) => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            <ScrapCarousel
-                scraps={scraps}
+            <Carousel
+                onChangePage={(newIndex) => {
+                    setCurrent(newIndex);
+                }}
                 initialPage={page}
-            />
+                showCounter
+            >
+                {scraps && scraps.map((scrap, index) => {
+                    if (Math.abs(current - index) < 3) {
+                        return (
+                            <Scrap scrap={scrap} key={scrap} />
+                        )
+                    }
+                    return (
+                        <View key={scrap} />
+                    )
+                })}
+            </Carousel>
         </View>
     )
 }
