@@ -123,11 +123,14 @@ const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
                                 position: 'absolute',
                                 left: 4,
                             }}>
+                                <Ionicons name='timer-outline' color={palette.color6} size={12} />
                                 <Text style={{
                                     fontFamily: fonts.itim,
+                                    marginLeft: 2,
+                                    marginBottom: 2,
                                     fontSize: 12,
                                     color: palette.color6,
-                                }}>Timeframe: {utility.getDateRange(beginDate, endDate)}</Text>
+                                }}>{utility.getDateRange(beginDate, endDate)}</Text>
                             </View>
                         )}
 
