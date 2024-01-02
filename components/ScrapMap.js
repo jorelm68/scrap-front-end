@@ -88,7 +88,7 @@ const Component = ({ scraps, scrapbook }) => {
                         <TouchableOpacity key={scrap} onPress={() => {
                             setCurrentPage(index)
                         }}>
-                            <ScrapMarker scrap={scrap} index={index} scrapbook />
+                            <ScrapMarker scrap={scrap} index={index} scrapbook={scrapbook} />
                         </TouchableOpacity>
                     )
                 }
