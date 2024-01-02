@@ -12,7 +12,13 @@ import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 
 const Screen = ({ book, page = 0, scraps = [] }) => {
-    const { palette } = useContext(AppContext)
+    const { palette, setCurrentPage } = useContext(AppContext)
+
+    useEffect(() => {
+        if (book !== 'scrapbook') {
+            setCurrentPage(0)
+        }
+    }, [])
 
     return (
         <View style={{
