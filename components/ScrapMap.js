@@ -97,7 +97,7 @@ const Component = ({ scraps, scrapbook }) => {
 
             <Polyline
                 coordinates={coordinates}
-                strokeColor={palette.accent}
+                strokeColor={scrapbook ? 'white' : palette.accent}
                 strokeWidth={2}
             />
         </MapView>

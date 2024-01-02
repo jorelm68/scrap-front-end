@@ -20,9 +20,6 @@ const Page = ({ scraps, page }) => {
     const [current, setCurrent] = useState(page)
 
     let visible = [];
-    if (current >= 1) {
-        visible.push(scraps[current - 1]);
-    }
     visible.push(scraps[current]);
     if (current < scraps.length - 2) {
         visible.push(scraps[current + 1]);
