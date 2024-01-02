@@ -13,7 +13,6 @@ const AppContextProvider = ({ children }) => {
     const [paused, setPaused] = useState(false)
     const [authenticated, setAuthenticated] = useState(false)
     const [functions, setFunctions] = useState({})
-    const [currentScrap, setCurrentScrap] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
     const [isConnected, setIsConnected] = useState(true);
 
@@ -65,8 +64,6 @@ const AppContextProvider = ({ children }) => {
         setFunctions,
         paused,
         setPaused,
-        currentScrap,
-        setCurrentScrap,
         currentPage,
         setCurrentPage,
         isConnected,

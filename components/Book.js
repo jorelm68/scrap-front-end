@@ -16,9 +16,9 @@ import AuthorSmall from './AuthorSmall'
 import ScrapCarousel from './ScrapCarousel'
 import Map from './Map'
 
-const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
+const Component = ({ book, scraps: scrapsGiven = [] }) => {
     const navigation = useNavigation()
-    const { palette, user, currentScrap, currentPage } = useContext(AppContext)
+    const { palette, user } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
     const [hidden, setHidden] = useState(true)
 
@@ -204,7 +204,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
                     </View>
                 )}
 
-                <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} initialPage={currentPage} />
+                <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} />
                 <View height={200} />
             </ScrollView>
         )

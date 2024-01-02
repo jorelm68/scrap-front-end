@@ -15,7 +15,7 @@ import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
 const Component = ({ scraps }) => {
-    const { palette } = useContext(AppContext)
+    const { palette, setCurrentPage } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
     const getCoordinates = async () => {
@@ -72,7 +72,11 @@ const Component = ({ scraps }) => {
             {scraps && scraps.map((scrap, index) => {
                 if (scraps.length <= 10 || Math.abs(currentPage - index) <= 5) {
                     return (
-                        <ScrapMarker key={scrap} scrap={scrap} />
+                        <TouchableOpacity key={scrap} onPress={() => {
+                            setCurrentPage(index)
+                        }}>
+                            <ScrapMarker scrap={scrap} />
+                        </TouchableOpacity>
                     )
                 }
                 return null

@@ -14,25 +14,25 @@ import api from '../data/api'
 import utility from '../data/utility'
 import Scrap from './Scrap'
 
-const Component = ({ scraps, initialPage = 0 }) => {
-    const { palette, setCurrentScrap } = useContext(AppContext)
-    
-    const [page, setPage] = useState(initialPage)
+const Component = ({ scraps }) => {
+    const { palette, currentPage, setCurrentPage } = useContext(AppContext)
+    const [forceUpdate, setForceUpdate] = useState(false);
+
     useEffect(() => {
-        setCurrentScrap(scraps[initialPage])
-    }, [])
+        setForceUpdate(prev => !prev); // Toggle the forceUpdate state to trigger re-render
+    }, [currentPage]);
 
     return (
         <Carousel
+            key={`carousel-${currentPage}`} // Use currentPage directly in the key
             onChangePage={(newIndex) => {
-                setPage(newIndex)
-                setCurrentScrap(scraps[newIndex])
+                setCurrentPage(newIndex);
             }}
-            initialPage={initialPage}
+            initialPage={currentPage} // Set initialPage using currentPage directly
             showCounter
         >
             {scraps && scraps.map((scrap, index) => {
-                if (Math.abs(page - index) < 3) {
+                if (Math.abs(currentPage - index) < 3) {
                     return (
                         <Scrap scrap={scrap} key={scrap} />
                     )
