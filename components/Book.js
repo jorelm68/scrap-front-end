@@ -18,7 +18,7 @@ import Map from './Map'
 
 const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
     const navigation = useNavigation()
-    const { palette, user, currentScrap } = useContext(AppContext)
+    const { palette, user, currentScrap, currentPage } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
     const [hidden, setHidden] = useState(true)
 
@@ -110,7 +110,6 @@ const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
             <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
                 <Map
                     scraps={book === 'scrapbook' ? scrapsGiven : scraps}
-                    scrap={currentScrap}
                 />
 
                 {book !== 'scrapbook' && (
@@ -205,7 +204,7 @@ const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
                     </View>
                 )}
 
-                <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} initialPage={page} />
+                <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} initialPage={currentPage} />
                 <View height={200} />
             </ScrollView>
         )

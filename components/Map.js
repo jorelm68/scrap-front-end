@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
-const Component = ({ scraps, scrap: currentScrap = scraps[0], clickMarker }) => {
+const Component = ({ scraps }) => {
     const { palette } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
@@ -28,42 +28,49 @@ const Component = ({ scraps, scrap: currentScrap = scraps[0], clickMarker }) => 
         getCoordinates()
     }, [scraps])
 
-    const {
-        latitude,
-        longitude,
-    } = useScrap(currentScrap, [
-        'latitude',
-        'longitude',
-    ])
-
-    const [region, setRegion] = useState({
-        latitude,
-        longitude,
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.1,
-    })
-
     const mapViewRef = useRef()
-
     useEffect(() => {
-        setRegion((prevRegion) => ({
-            ...prevRegion,
-            latitude,
-            longitude,
-        }))
-    }, [latitude, longitude])
+        if (coordinates.length > 0) {
+            const scrapCoordinates = coordinates.slice(0, 10); // Get the first 10 scrap coordinates
+            if (mapViewRef.current && scrapCoordinates.length > 0) {
+                const lats = scrapCoordinates.map(coord => coord.latitude);
+                const lons = scrapCoordinates.map(coord => coord.longitude);
+
+                const minLat = Math.min(...lats);
+                const maxLat = Math.max(...lats);
+                const minLon = Math.min(...lons);
+                const maxLon = Math.max(...lons);
+
+                const deltaLat = maxLat - minLat;
+                const deltaLon = maxLon - minLon;
+
+                const centerLat = (maxLat + minLat) / 2;
+                const centerLon = (maxLon + minLon) / 2;
+
+                const padding = 0.5; // Adjust this value for desired padding
+
+                const region = {
+                    latitude: centerLat,
+                    longitude: centerLon,
+                    latitudeDelta: deltaLat + padding,
+                    longitudeDelta: deltaLon + padding,
+                };
+
+                mapViewRef.current.animateToRegion(region, 1000); // Adjust animation duration as needed
+            }
+        }
+    }, [coordinates]);
 
     return (
         <MapView
             ref={mapViewRef}
-            region={region}
             style={{
                 width: dimensions.width,
                 height: 200,
                 borderRadius: 8,
             }}>
             {scraps && scraps.map((scrap, index) => {
-                if (scraps.length <= 10 || Math.abs(scraps.indexOf(currentScrap) - index) <= 5) {
+                if (scraps.length <= 10 || Math.abs(currentPage - index) <= 5) {
                     return (
                         <ScrapMarker key={scrap} scrap={scrap} />
                     )
