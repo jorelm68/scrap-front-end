@@ -197,6 +197,7 @@ const Component = ({ scrap }) => {
                             fontFamily: fonts.itim,
                             fontSize: 12,
                             paddingLeft: 2,
+                            marginTop: 2,
                             color: palette.color5,
                             minHeight: 18,
                         }}>{place}</Text>
