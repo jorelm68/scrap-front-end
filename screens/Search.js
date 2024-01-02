@@ -12,6 +12,7 @@ import BookSmall from '../components/BookSmall'
 import useBook from '../hooks/useBook'
 import useScrap from '../hooks/useScrap'
 import MapView, { Polyline } from 'react-native-maps'
+import BookList from '../components/BookList'
 import BookMarker from '../components/BookMarker'
 
 const Screen = () => {
@@ -84,10 +85,10 @@ const Screen = () => {
   }
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} style={{
-      backgroundColor: palette.color1,
+    <View style={{
       width: dimensions.width,
       height: dimensions.height,
+      backgroundColor: palette.color1,
     }}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View centerH style={{
@@ -152,7 +153,7 @@ const Screen = () => {
                 width: dimensions.width,
                 marginBottom: 4,
                 borderRadius: 8,
-                height: dimensions.height - ((dimensions.width / 2) + (dimensions.width / 8 * 3) + (dimensions.width / 8)) - 90 - 16,
+                height: 200,
               }}
             >
               {results && results.map((book) => {
@@ -177,15 +178,17 @@ const Screen = () => {
               />
             </MapView>
           )}
-          {mode === 'books' && results && results.map((book) => {
-            return (
-              <BookSmall book={book} key={book} clickable showAuthor />
-            )
-          })}
+          <BookList
+            books={results}
+            renderItem={(book) => {
+              return (
+                <BookSmall book={book} clickable />
+              )
+            }}
+          />
         </View>
       </TouchableWithoutFeedback>
-      <View height={200} />
-    </ScrollView>
+    </View>
   )
 }
 
