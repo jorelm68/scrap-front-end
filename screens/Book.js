@@ -11,13 +11,11 @@ import { dimensions } from '../data/styles'
 import useAuthor from '../hooks/useAuthor'
 import { Ionicons } from '@expo/vector-icons'
 
-const Screen = ({ book, page = 0, scraps = [] }) => {
+const Screen = ({ book, scraps = [] }) => {
     const { palette, setCurrentPage } = useContext(AppContext)
 
     useEffect(() => {
-        if (book !== 'scrapbook') {
-            setCurrentPage(0)
-        }
+        setCurrentPage(0)
     }, [])
 
     return (
@@ -26,7 +24,7 @@ const Screen = ({ book, page = 0, scraps = [] }) => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            <Book book={book} scraps={scraps} page={page} />
+            <Book book={book} scraps={scraps} />
         </View>
     )
 }
