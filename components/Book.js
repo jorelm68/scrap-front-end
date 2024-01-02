@@ -16,7 +16,7 @@ import AuthorSmall from './AuthorSmall'
 import ScrapCarousel from './ScrapCarousel'
 import ScrapMap from './ScrapMap'
 
-const Component = ({ book, scraps: scrapsGiven = [] }) => {
+const Component = ({ book }) => {
     const navigation = useNavigation()
     const { palette, user } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
@@ -79,10 +79,7 @@ const Component = ({ book, scraps: scrapsGiven = [] }) => {
     }, [navigation, title, user, author])
 
     useEffect(() => {
-        if (scrapsGiven && scrapsGiven.length > 0) {
-            setHidden(false)
-        }
-        else if (isPublic) {
+        if (isPublic) {
             setHidden(false)
         }
         else if (['friend', 'self'].includes(relationship)) {
@@ -109,7 +106,7 @@ const Component = ({ book, scraps: scrapsGiven = [] }) => {
         return (
             <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
                 <ScrapMap
-                    scraps={book === 'scrapbook' ? scrapsGiven : scraps}
+                    scraps={scraps}
                 />
 
                 {book !== 'scrapbook' && (
@@ -204,7 +201,7 @@ const Component = ({ book, scraps: scrapsGiven = [] }) => {
                     </View>
                 )}
 
-                <ScrapCarousel scraps={book === 'scrapbook' ? scrapsGiven : scraps} />
+                <ScrapCarousel scraps={scraps} />
                 <View height={200} />
             </ScrollView>
         )
