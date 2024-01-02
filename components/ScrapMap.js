@@ -36,7 +36,7 @@ const Component = ({ scraps }) => {
                 // Adjust zoom level for a single coordinate
                 const singleCoordinate = coordinates[0];
                 const defaultZoom = 0.2; // Adjust the default zoom level as needed
-    
+
                 region = {
                     latitude: singleCoordinate.latitude,
                     longitude: singleCoordinate.longitude,
@@ -44,14 +44,24 @@ const Component = ({ scraps }) => {
                     longitudeDelta: defaultZoom,
                 };
             } else {
-                // Calculate zoom level based on multiple coordinates (similar to previous logic)
-                const scrapCoordinates = coordinates.slice(0, 10);
-                // ... (calculate deltaLat, deltaLon, centerLat, centerLon)
-    
+                const lats = coordinates.map(coord => coord.latitude);
+                const lons = coordinates.map(coord => coord.longitude);
+
+                const minLat = Math.min(...lats);
+                const maxLat = Math.max(...lats);
+                const minLon = Math.min(...lons);
+                const maxLon = Math.max(...lons);
+
+                const deltaLat = maxLat - minLat;
+                const deltaLon = maxLon - minLon;
+
+                const centerLat = (maxLat + minLat) / 2;
+                const centerLon = (maxLon + minLon) / 2;
+
                 const paddingFraction = 0.5; // Adjust this fraction as needed
                 const paddingLat = deltaLat * paddingFraction;
                 const paddingLon = deltaLon * paddingFraction;
-    
+
                 region = {
                     latitude: centerLat,
                     longitude: centerLon,
@@ -59,11 +69,11 @@ const Component = ({ scraps }) => {
                     longitudeDelta: deltaLon + paddingLon,
                 };
             }
-    
+
             mapViewRef.current.animateToRegion(region, 1000); // Adjust animation duration as needed
         }
     }, [coordinates]);
-    
+
     return (
         <MapView
             ref={mapViewRef}
