@@ -13,6 +13,7 @@ import cache from '../data/cache'
 import api from '../data/api'
 import utility from '../data/utility'
 import Scrap from '../components/Scrap'
+import ScrapMap from '../components/ScrapMap'
 
 const Page = ({ scraps, page }) => {
     const { palette } = useContext(AppContext)
@@ -24,6 +25,9 @@ const Page = ({ scraps, page }) => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
+            <ScrapMap 
+                scraps={[scraps[current]]}
+            />
             <Carousel
                 onChangePage={(newIndex) => {
                     setCurrent(newIndex);
