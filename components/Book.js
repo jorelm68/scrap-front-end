@@ -16,7 +16,7 @@ import AuthorSmall from './AuthorSmall'
 import ScrapCarousel from './ScrapCarousel'
 import Map from './Map'
 
-const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
+const Component = ({ book, page = 0, scraps: scrapsGiven = [] }) => {
     const navigation = useNavigation()
     const { palette, user, currentScrap } = useContext(AppContext)
     const tab = utility.getTab(usePathname())
@@ -79,16 +79,13 @@ const Component = ({ book, page = 0, scraps: scrapsGiven }) => {
     }, [navigation, title, user, author])
 
     useEffect(() => {
-        if (scrapsGiven) {
-            console.log('scrapsGiven')
+        if (scrapsGiven && scrapsGiven.length > 0) {
             setHidden(false)
         }
         else if (isPublic) {
-            console.log('isPublic')
             setHidden(false)
         }
         else if (['friend', 'self'].includes(relationship)) {
-            console.log('permitted')
             setHidden(false)
         }
     }, [relationship, isPublic])

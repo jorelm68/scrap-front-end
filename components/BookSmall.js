@@ -78,10 +78,8 @@ const Component = ({ book, clickable }) => {
         if (isPublic) {
             setHidden(false)
         }
-        else {
-            if (['friend', 'self'].includes(relationship)) {
-                setHidden(false)
-            }
+        else if (['friend', 'self'].includes(relationship)) {
+            setHidden(false)
         }
     }, [isPublic, relationship])
 
