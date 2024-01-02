@@ -6,7 +6,7 @@ import Field from '../components/Field'
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native'
 import api from '../data/api'
 import AuthorSmall from '../components/AuthorSmall'
-import { useNavigation, router } from 'expo-router'
+import { useNavigation, router, usePathname } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import BookSmall from '../components/BookSmall'
 import useBook from '../hooks/useBook'
@@ -14,9 +14,11 @@ import useScrap from '../hooks/useScrap'
 import MapView, { Polyline } from 'react-native-maps'
 import BookList from '../components/BookList'
 import BookMarker from '../components/BookMarker'
+import utility from '../data/utility'
 
 const Screen = () => {
   const { user, palette } = useContext(AppContext)
+  const tab = utility.getTab(usePathname())
   const [query, setQuery] = useState('')
   const [results, setResults] = useState('')
   const [mode, setMode] = useState('authors')
@@ -159,12 +161,7 @@ const Screen = () => {
               {results && results.map((book) => {
                 return (
                   <TouchableOpacity key={book} onPress={() => {
-                    router.navigate({
-                      pathname: '/book',
-                      params: {
-                        book,
-                      }
-                    })
+                    router.navigate(`/${tab}/book/${book}`)
                   }}>
                     <BookMarker book={book} />
                   </TouchableOpacity>
