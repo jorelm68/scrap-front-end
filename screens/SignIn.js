@@ -13,6 +13,7 @@ import Button from '../components/Button'
 import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import Logo from '../components/Logo'
 import Error from '../components/Error'
+import cache from '../data/cache'
 
 const Screen = () => {
   const { setUser, paused, setPaused, palette } = useContext(AppContext)
@@ -147,7 +148,9 @@ const Screen = () => {
                   expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 }
 
-                await utility.storeData('autothenticate', response.data.author)
+                const token = await cache.get('Author', response.data.author, 'token', response.data.author)
+                const autothenticate = { author: response.data.author, token: token }
+                await utility.storeData('autothenticate', JSON.stringify(autothenticate))
                 await utility.saveAccount(account)
 
                 setUser(response.data.author)

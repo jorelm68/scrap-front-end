@@ -20,13 +20,15 @@ const Screen = () => {
     setDarkMode(darkMode)
     setPalette(darkMode ? dark : light)
 
-    const user = await utility.retrieveData('autothenticate')
+    const autothenticate = await utility.retrieveData('autothenticate')
     if (!user) {
       router.replace('/authentication/signIn')
       return
     }
-    const response = await api.author.exists(user)
-    if (!response.success) {
+
+    const { user, token } = JSON.parse(autothenticate)
+    const response = await api.author.autothenticate(user, token)
+    if (!response.success || !response.data.autothenticate) {
       await utility.deleteData('autothenticate')
       router.replace('/authentication/signIn')
       return
