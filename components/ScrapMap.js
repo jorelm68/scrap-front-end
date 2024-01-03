@@ -14,7 +14,7 @@ import api from '../data/api'
 import utility from '../data/utility'
 import ScrapMarker from './ScrapMarker'
 
-const Component = ({ scraps, scrapbook }) => {
+const Component = ({ scraps }) => {
     const { palette, currentPage, setCurrentPage } = useContext(AppContext)
     const [coordinates, setCoordinates] = useState([])
 
@@ -88,7 +88,7 @@ const Component = ({ scraps, scrapbook }) => {
                         <TouchableOpacity key={scrap} onPress={() => {
                             setCurrentPage(index)
                         }}>
-                            <ScrapMarker scrap={scrap} index={index} scrapbook={scrapbook} />
+                            <ScrapMarker scrap={scrap} index={index} />
                         </TouchableOpacity>
                     )
                 }
@@ -97,7 +97,7 @@ const Component = ({ scraps, scrapbook }) => {
 
             <Polyline
                 coordinates={coordinates}
-                strokeColor={scrapbook ? 'white' : palette.accent}
+                strokeColor={palette.accent}
                 strokeWidth={2}
             />
         </MapView>

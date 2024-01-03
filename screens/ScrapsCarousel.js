@@ -19,12 +19,6 @@ const Page = ({ scraps, page }) => {
     const { palette } = useContext(AppContext)
     const [current, setCurrent] = useState(page)
 
-    let visible = [];
-    visible.push(scraps[current]);
-    if (current < scraps.length - 2) {
-        visible.push(scraps[current + 1]);
-    }
-
     return (
         <View style={{
             width: dimensions.width,
@@ -32,8 +26,7 @@ const Page = ({ scraps, page }) => {
             backgroundColor: palette.color1,
         }}>
             <ScrapMap
-                scraps={visible}
-                scrapbook
+                scraps={[scraps[current]]}
             />
 
             <View height={4} />

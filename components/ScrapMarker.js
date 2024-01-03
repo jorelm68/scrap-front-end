@@ -42,7 +42,7 @@ const Component = ({ scrap, index, scrapbook }) => {
             <View center style={{
                 width: 30,
                 height: 30,
-                backgroundColor: scrapbook && (index === 1) ? 'white' : palette.accent,
+                backgroundColor: palette.accent,
                 borderRadius: 15,
             }}>
                 <Image
