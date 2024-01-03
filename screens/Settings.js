@@ -335,9 +335,6 @@ const Screen = () => {
                                     error: response.error,
                                 }
                             }
-                            else {
-                                console.log('updated token to:', token + 1)
-                            }
                         }
 
                         setPaused(false)
