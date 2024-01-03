@@ -177,6 +177,7 @@ async function handleBlob(route) {
 //-------------------------AUTHOR-------------------------------
 const author = {
     exists: async (author) => handleResponse('api/authors/exists', { author }, 'post'),
+    autothenticate: async (author, token) => handleResponse('api/authors/autothenticate', { author, token }, 'post'),
     signUp: async (author) => handleResponse('api/authors/signUp', author, 'post'),
     signIn: async (value, password) => handleResponse('api/authors/signIn', { value, password }, 'post'),
     deleteAccount: async (author) => handleResponse('api/authors/deleteAccount', { author }, 'post'),
