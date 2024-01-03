@@ -59,7 +59,9 @@ const Screen = () => {
         }}
       >
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View centerH>
+          <View centerH style={{
+            marginBottom: 16,
+          }}>
             <View center row style={{
               width: dimensions.width * (8 / 10),
               marginVertical: 16,
