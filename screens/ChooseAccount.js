@@ -61,8 +61,8 @@ const Screen = () => {
                                     onPress: async () => {
                                         if (paused) return { success: false, error: 'Please don\'t click too fast' }
                                         setPaused(true)
-                                        // First, make sure the author exists on the back end
-                                        const response = await api.author.exists(account.author)
+                                        // First, make sure the author exists on the back end and the token matches
+                                        const response = await api.author.autothenticate(account.author, account.token)
                                         // If there is some sort of error, forget the account
                                         if (response.error) {
                                             setPaused(false)
@@ -70,7 +70,7 @@ const Screen = () => {
                                             await utility.forgetAccount(account)
                                             setAccounts(accounts.filter(storedAccounts => storedAccounts.author !== account.author))
                                         }
-                                        else if (!response.data.exists) {
+                                        else if (!response.data.autothenticate) {
                                             setPaused(false)
                                             Alert.alert('Error', 'Error signing into your account. Please try manually')
                                             await utility.forgetAccount(account)
@@ -81,13 +81,15 @@ const Screen = () => {
                                             const updatedAccount = {
                                                 author: account.author,
                                                 pseudonym: account.pseudonym,
+                                                token: account.token,
                                                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                                             }
 
                                             await utility.forgetAccount(account)
                                             await utility.saveAccount(updatedAccount)
 
-                                            await utility.storeData('autothenticate', account.author)
+                                            const autothenticate = { author: updatedAccount.author, token: updatedAccount.token }
+                                            await utility.storeData('autothenticate', JSON.stringify(autothenticate))
                                             setUser(account.author)
                                             const yes = await utility.hasOfflineScraps()
                                             if (yes) {

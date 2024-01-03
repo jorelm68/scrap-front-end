@@ -324,6 +324,22 @@ const Screen = () => {
                             }
                         }
 
+                        const token = await cache.get('Author', user, 'token', user)
+
+                        if (token >= 0) {
+                            response = await utility.edit('Author', user, 'token', token + 1)
+                            if (!response.success) {
+                                setPaused(false)
+                                return {
+                                    success: false,
+                                    error: response.error,
+                                }
+                            }
+                            else {
+                                console.log('updated token to:', token + 1)
+                            }
+                        }
+
                         setPaused(false)
                         return {
                             success: true,
