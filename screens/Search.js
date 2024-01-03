@@ -46,84 +46,132 @@ const Screen = () => {
     }
   }
 
-  return (
-    <View style={{
-      width: dimensions.width,
-      height: dimensions.height,
-      backgroundColor: palette.color1,
-    }}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View centerH style={{
+  if (mode === 'authors') {
+    return (
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps={'always'}
+        automaticallyAdjustKeyboardInsets={true}
+        style={{
           width: dimensions.width,
           height: dimensions.height,
           backgroundColor: palette.color1,
-        }}>
-          <View center row style={{
-            width: dimensions.width * (8 / 10),
-            marginVertical: 16,
-          }}>
-            <View center style={{
-              width: dimensions.width * (1 / 10),
-              height: 48,
-            }}>
-              <TouchableOpacity onPress={() => {
-                setResults([])
-                if (mode === 'authors') {
-                  setMode('books')
-                }
-                else {
-                  setMode('authors')
-                }
-              }}>
-                <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.accent} size={18} />
-              </TouchableOpacity>
-            </View>
-            <Field
-              placeholder='Search...'
-              width={dimensions.width * (6 / 10)}
-              value={query}
-              onChangeText={(value) => {
-                setQuery(value)
-              }}
-              autoCorrect={false}
-              autoCapitalize='none'
-              autoComplete='off'
-            />
-            <TouchableOpacity onPress={sendQuery} style={{
-              width: dimensions.width * (1 / 10),
-              height: dimensions.width * (1 / 10),
+        }}
+      >
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View centerH>
+            <View center row style={{
+              width: dimensions.width * (8 / 10),
+              marginVertical: 16,
             }}>
               <View center style={{
                 width: dimensions.width * (1 / 10),
+                height: 48,
+              }}>
+                <TouchableOpacity onPress={() => {
+                  setResults([])
+                  setMode('books')
+                }}>
+                  <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.accent} size={18} />
+                </TouchableOpacity>
+              </View>
+              <Field
+                placeholder='Search...'
+                width={dimensions.width * (6 / 10)}
+                value={query}
+                onChangeText={(value) => {
+                  setQuery(value)
+                }}
+                autoCorrect={false}
+                autoCapitalize='none'
+                autoComplete='off'
+              />
+              <TouchableOpacity onPress={sendQuery} style={{
+                width: dimensions.width * (1 / 10),
                 height: dimensions.width * (1 / 10),
               }}>
-                <Ionicons name='search' color={palette.color6} size={24} />
-              </View>
-            </TouchableOpacity>
-          </View>
+                <View center style={{
+                  width: dimensions.width * (1 / 10),
+                  height: dimensions.width * (1 / 10),
+                }}>
+                  <Ionicons name='search' color={palette.color6} size={24} />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-          {mode === 'authors' && results && results.map((author) => {
-            return (
-              <AuthorSmall author={author} key={author} />
-            )
-          })}
-
-          {mode === 'books' && results && results.length > 0 && (
-            <BookMap 
-              books={results}
-              height={200}
-            />
-          )}
-          <BookList
-            books={results}
-            renderItem={(book) => {
+            {results && results.map((author) => {
               return (
-                <BookSmall book={book} clickable />
+                <AuthorSmall author={author} key={author} />
               )
-            }}
-          />
+            })}
+          </View>
+        </TouchableWithoutFeedback>
+      </ScrollView>
+
+    )
+  }
+
+  return (
+    <View
+      centerH
+      style={{
+        width: dimensions.width,
+        height: dimensions.height,
+        backgroundColor: palette.color1,
+      }}>
+      <View center row style={{
+        width: dimensions.width * (8 / 10),
+        marginVertical: 16,
+      }}>
+        <View center style={{
+          width: dimensions.width * (1 / 10),
+          height: 48,
+        }}>
+          <TouchableOpacity onPress={() => {
+            setResults([])
+            setMode('authors')
+          }}>
+            <Ionicons name={mode === 'authors' ? 'person' : 'library'} color={palette.accent} size={18} />
+          </TouchableOpacity>
         </View>
-      </TouchableWithoutFeedback>
+        <Field
+          placeholder='Search...'
+          width={dimensions.width * (6 / 10)}
+          value={query}
+          onChangeText={(value) => {
+            setQuery(value)
+          }}
+          autoCorrect={false}
+          autoCapitalize='none'
+          autoComplete='off'
+        />
+        <TouchableOpacity onPress={sendQuery} style={{
+          width: dimensions.width * (1 / 10),
+          height: dimensions.width * (1 / 10),
+        }}>
+          <View center style={{
+            width: dimensions.width * (1 / 10),
+            height: dimensions.width * (1 / 10),
+          }}>
+            <Ionicons name='search' color={palette.color6} size={24} />
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {results && results.length > 0 && (
+        <BookMap
+          books={results}
+          height={200}
+        />
+      )}
+      <BookList
+        books={results}
+        renderItem={(book) => {
+          return (
+            <BookSmall book={book} clickable />
+          )
+        }}
+      />
     </View>
   )
 }
