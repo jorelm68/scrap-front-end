@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.jorelm68.scrap",
-      "buildNumber": "12"
+      "buildNumber": "13"
     },
     "android": {
       "adaptiveIcon": {
