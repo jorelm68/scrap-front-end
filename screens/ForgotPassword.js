@@ -68,6 +68,7 @@ const Screen = () => {
                                 }
                                 else {
                                     Alert.alert('Success', 'Please check your email to continue resetting your password')
+                                    Keyboard.dismiss()
                                     router.back()
                                 }
                             }
