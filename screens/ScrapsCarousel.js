@@ -25,30 +25,34 @@ const Page = ({ scraps, page }) => {
             height: dimensions.height,
             backgroundColor: palette.color1,
         }}>
-            <ScrapMap
-                scraps={[scraps[current]]}
-            />
+            <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'} automaticallyAdjustKeyboardInsets={true} >
+                <ScrapMap
+                    scraps={[scraps[current]]}
+                />
 
-            <View height={4} />
+                <View height={4} />
 
-            <Carousel
-                onChangePage={(newIndex) => {
-                    setCurrent(newIndex);
-                }}
-                initialPage={page}
-                showCounter
-            >
-                {scraps && scraps.map((scrap, index) => {
-                    if (Math.abs(current - index) < 3) {
+                <Carousel
+                    onChangePage={(newIndex) => {
+                        setCurrent(newIndex);
+                    }}
+                    initialPage={page}
+                    showCounter
+                >
+                    {scraps && scraps.map((scrap, index) => {
+                        if (Math.abs(current - index) < 3) {
+                            return (
+                                <Scrap scrap={scrap} key={scrap} />
+                            )
+                        }
                         return (
-                            <Scrap scrap={scrap} key={scrap} />
+                            <View key={scrap} />
                         )
-                    }
-                    return (
-                        <View key={scrap} />
-                    )
-                })}
-            </Carousel>
+                    })}
+                </Carousel>
+
+                <View height={500} />
+            </ScrollView>
         </View>
     )
 }
