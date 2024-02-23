@@ -21,25 +21,25 @@ const Screen = () => {
     setPalette(darkMode ? dark : light)
 
     const autothenticate = await utility.retrieveData('autothenticate')
-    if (!user) {
+    const { author, token } = JSON.parse(autothenticate)
+    if (!author) {
       router.replace('/authentication/signIn')
       return
     }
 
-    const { user, token } = JSON.parse(autothenticate)
-    const response = await api.author.autothenticate(user, token)
+    const response = await api.author.autothenticate(author, token)
     if (!response.success || !response.data.autothenticate) {
       await utility.deleteData('autothenticate')
       router.replace('/authentication/signIn')
       return
     }
 
-    setUser(user)
+    setUser(author)
     setAuthenticated(true)
     const yes = await utility.hasOfflineScraps()
     if (yes) {
       setSavingScraps(true)
-      const response1 = await utility.onlineSaveScraps(user)
+      const response1 = await utility.onlineSaveScraps(author)
       if (response1.success) {
         console.log('Successfully saved offline scraps!')
       }
