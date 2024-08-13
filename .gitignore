@@ -13,6 +13,8 @@ web-build/
 playstore.json
 certificate_for_google.pem
 credentials.json
+credentials
+eas.json
 
 babel.config.js
 package-lock.json
